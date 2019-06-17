@@ -16,11 +16,11 @@ And that's it! Modpack fully installed.
 
 
 #### To do list:
-    - [] Add a pack updater feature so users don't need to redownload the entire pack each time.
-    - [] Add a forge auto-detector, and notify the user if forge is not found that they need to install it.
-    - [] Possibly add a feature that auto adjusts the allocated RAM for the profile, and sets the launcher profile to the pack.
-    - [] Document the source code.
-    - [] Add in a feature that auto-pings the server to see if it is up when the install finishes.
+- Add a pack updater feature so users don't need to redownload the entire pack each time.
+- Add a forge auto-detector, and notify the user if forge is not found that they need to install it.
+- Possibly add a feature that auto adjusts the allocated RAM for the profile, and sets the launcher profile to the pack.
+- Document the source code.
+- Add in a feature that auto-pings the server to see if it is up when the install finishes.
 
 
 
