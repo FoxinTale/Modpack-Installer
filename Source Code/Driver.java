@@ -11,8 +11,18 @@ public class Driver {
 	static String zipFile = "Modpack.zip";
 	static int installProgress = 0;
 	static int selectedOption = 0;
-
-
+	/*
+	 * This is licensed under the WTFPL 2.0.
+	 * 
+	 * Basically, you are permitted to do whatever the hell you want with this code.
+	 * You're welcome to improve upon it. If you do, please let me know, and I'll
+	 * implement your fix / improvement, and give you credit for it. I know my code
+	 * isn't the best, I'm only a beginner.
+	 * 
+	 * Despite the GUI saying "Copyright" That's more my way of saying that I made it.
+	 * And for the try/catch, it outputs a Pokemon name for a bit of humor. If someone tells me it said a Pokemon,
+	 * I can look at where it is supposed to be outputting that, and understand what's going wrong.
+	 */
 	private static File minecraftInstallLocation = null;
 	private static String minecraftInstall = null;
 	private static String downloadsLocation = null;
@@ -115,7 +125,6 @@ public class Driver {
 		}
 		return isValid;
 	}
-
 
 	public static void folderCreate(File folder) {
 		if (!folder.exists()) {

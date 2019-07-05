@@ -5,8 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class osDetect {
-	
+
 	static String username = System.getProperty("user.name");
+
 	public static void isWindows() {
 		File downloads = new File("C:\\Users\\" + username + "\\Downloads");
 		File minecraftDefaultPath = new File("C:\\Users\\" + username + "\\AppData\\Roaming\\.minecraft");
@@ -33,7 +34,7 @@ public class osDetect {
 				Driver.setMinecraftInstall(Driver.getMinecraftInstallLocation().getAbsolutePath());
 			}
 			// if the user cancelled the operation
-						
+
 			else {
 				String messageTwo = "Cannot continue without Minecraft install!";
 				JOptionPane.showMessageDialog(new JFrame(), messageTwo, "Install Search Cancelled",

@@ -21,13 +21,12 @@ import javax.swing.filechooser.FileSystemView;
 
 @SuppressWarnings("unused")
 public class Extractor {
-	public static void Extractor() {
-		String outputFolder = Driver.getDownloadsLocation() + File.separator + "Modpack" + File.separator;
-
+	public static void Extractor(String fileName, String loc) {
+		String outputFolder = Driver.getDownloadsLocation() + File.separator + loc + File.separator;
 
 		File zipLocation;
 		// try {
-		String zipFile = Driver.getDownloadsLocation() + File.separator + "Modpack.zip";
+		String zipFile = fileName;
 		// }
 		/*
 		 * catch(FileNotFoundException n) { String message =
@@ -48,11 +47,6 @@ public class Extractor {
 		 * 
 		 * }
 		 */
-
-		// Driver.folderCreate(modpackLocation);
-		// folderCreate(modpackMods);
-		// folderCreate(modpackConfig);
-		// folderCreate(modpackFlans);
 
 		try (ZipFile file = new ZipFile(zipFile)) {
 			FileSystem fileSystem = FileSystems.getDefault();
@@ -86,13 +80,12 @@ public class Extractor {
 						fileOutput.write(bis.read());
 					}
 					fileOutput.close();
-	
+
 				}
 			}
 
 			System.out.println(" Extraction Complete\n");
 			Install.install();
-			//GUI.progress.setIndeterminate(false);
 		} catch (IOException e) {
 			GUI.errors.setText("File not found.");
 		}

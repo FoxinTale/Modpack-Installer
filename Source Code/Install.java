@@ -1,8 +1,10 @@
 import java.io.File;
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -44,7 +46,6 @@ public class Install {
 		Driver.folderCreate(backupMods);
 		Driver.folderCreate(backupConfig);
 		Driver.folderCreate(backupFlans);
-		// folderCreate(modpackLocation);
 
 		if (minecraftMods.exists()) {
 			if (backupMods.exists()) {
@@ -52,7 +53,7 @@ public class Install {
 				try {
 					Files.move(minecraftMods.toPath(), backupMods.toPath(), StandardCopyOption.REPLACE_EXISTING);
 				} catch (IOException a) {
-					// Do nothing
+					// Do nothing. Java complained if I didn't put this here.
 				}
 			}
 		}
@@ -74,14 +75,10 @@ public class Install {
 				try {
 					Files.move(minecraftFlans.toPath(), backupFlans.toPath(), StandardCopyOption.REPLACE_EXISTING);
 				} catch (IOException b) {
-					// Do nothing, again.
+					// Do nothing, yet again.
 				}
 			}
 		}
-
-		// folderCreate(modpackMods);
-
-		// folderCreate(minecraftConfig);
 
 		if (minecraftFlans.exists()) {
 			minecraftFlans.delete();
@@ -94,7 +91,6 @@ public class Install {
 			System.out.println("\nMoving Stuff");
 			if (modpackMods.exists()) {
 				if (minecraftMods.exists()) {
-					// FileUtils.copyDirectory(modpackMods, minecraftMods);
 					Files.move(modpackMods.toPath(), minecraftMods.toPath(), StandardCopyOption.REPLACE_EXISTING);
 					System.out.println("Mods Moved");
 				}
@@ -114,25 +110,53 @@ public class Install {
 				System.out.println("Flans Moved");
 			}
 		} catch (IOException i) {
-			System.out.println("Motherfucker");
+			System.out.println("Giritina");
+
 		}
 
-		// Driver.folderCreate(modpackFlans);
-
-		// Moving the information downloaded in the modpack directory from Github. The
-		// final folder structure is yet to be determined.
-		// moveStuff(modpackMods, minecraftMods);
-		// moveStuff(modpackConfig, minecraftConfig);
-		// moveStuff(modpackFlans, minecraftFlans);
-		installDone();
+		installFinalize();
 	}
 
-	public static void installDone() {
+	public static void installFinalize() {
 		String message = "Your pre-existing mods and configs have been moved to a folder on the desktop named 'Minecraft Stuff'.";
 		JOptionPane.showMessageDialog(new JFrame(), message, "Info", JOptionPane.INFORMATION_MESSAGE);
 		String completeMessage = "The modpack has been installed! Please read the read me file in the modpack folder in your downloads for more information. Have fun!";
 		JOptionPane.showMessageDialog(new JFrame(), completeMessage, "Install Complete!",
 				JOptionPane.INFORMATION_MESSAGE);
+		String t = "Would you like the installer to check if the server is up?";
+		int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Server Test", JOptionPane.YES_NO_OPTION);
+		if (o == JOptionPane.YES_OPTION) {
+			serverPing();
+		}
+		if (o == JOptionPane.NO_OPTION) {
+			allDone();
+		}
+	}
+
+	@SuppressWarnings("resource")
+	public static void serverPing() {
+		try {
+			Socket server = new Socket();
+			server.connect(new InetSocketAddress("IP ADDRESS", 25525), 60000);
+			// Yes, I know the string won't work. But I'm not putting my IP out here for the whole world to see on here.
+			String notification = "The server is up! Get on it and have fun!";
+			JOptionPane.showMessageDialog(new JFrame(), notification, "Server Up!", JOptionPane.INFORMATION_MESSAGE);
+			allDone();
+
+		} catch (UnknownHostException h) {
+			System.out.println("Chimchar");
+			// If this happens.. heh.. You're screwed.
+		} catch (IOException i) {
+			String notification = "It isnt up, please let me know, and I'll get on it as soon as I can.";
+			JOptionPane.showMessageDialog(new JFrame(), notification, "Server Down", JOptionPane.ERROR_MESSAGE);
+			// This is an error that must be caught, as it the server sometimes crashes.
+		}
+	}
+
+	public static void allDone() {
+		String messageTwo = "Thanks for using the installer!";
+		JOptionPane.showMessageDialog(new JFrame(), messageTwo, "Finished!", JOptionPane.INFORMATION_MESSAGE);
+		Updater.updates.delete();
 		System.exit(0);
 	}
 }
