@@ -25,13 +25,13 @@ Also, when the install finishes, it asks if you would like to check if the serve
 
 
 ## Features!
-Automatic modpack installation.
-An option to download the pack file for manual installation.
-Automatically backs up any pre-existing mods!
-An option to ping the server to see if it is up, upon completion of the installation.
-Oh, and since this is made in Java, it runs on Windows, Mac and Linux!
-And most recently, a component so users do not have to redownload the pack for each update. This is still a work in progress though.
-Licensed under the WTFPL V2, allowing you to do anything you please with the code. Modify it to your specific usage, or improve it!
+- Automatic modpack installation.
+- An option to download the pack file for manual installation.
+- Automatically backs up any pre-existing mods!
+- An option to ping the server to see if it is up, upon completion of the installation.
+- Oh, and since this is made in Java, it runs on Windows, Mac and Linux!
+- And most recently, a component so users do not have to redownload the pack for each update. This is still a work in progress though.
+- Licensed under the WTFPL V2, allowing you to do anything you please with the code. Modify it to your specific usage, or improve it!
 
 #### What is the WTFPL?
 This program is free software. It comes without any warranty, to the extent permitted by applicable law. 
