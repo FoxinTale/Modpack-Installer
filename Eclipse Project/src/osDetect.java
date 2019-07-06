@@ -5,8 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class osDetect {
-	
+
 	static String username = System.getProperty("user.name");
+
 	public static void isWindows() {
 		File downloads = new File("C:\\Users\\" + username + "\\Downloads");
 		File minecraftDefaultPath = new File("C:\\Users\\" + username + "\\AppData\\Roaming\\.minecraft");
@@ -33,7 +34,7 @@ public class osDetect {
 				Driver.setMinecraftInstall(Driver.getMinecraftInstallLocation().getAbsolutePath());
 			}
 			// if the user cancelled the operation
-						
+
 			else {
 				String messageTwo = "Cannot continue without Minecraft install!";
 				JOptionPane.showMessageDialog(new JFrame(), messageTwo, "Install Search Cancelled",
@@ -47,6 +48,7 @@ public class osDetect {
 		}
 
 		if (!desktop.exists()) {
+			//Oh, you're fucked if you see this.
 			String message = "You...seem to not have a desktop. Please fix that before continuing";
 			JOptionPane.showMessageDialog(new JFrame(), message, "No Desktop Error", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
@@ -55,6 +57,8 @@ public class osDetect {
 	}
 
 	public static void isLinux() {
+		// Hello Linux user!  You have made a good choice.
+		// Yes, I know I need to also fix these.
 		File downloads = new File("/home/" + username + "Downloads/");
 		File minecraftDefaultPath = new File("C:\\Users\\" + username + "\\AppData\\Roaming\\.minecraft");
 		File desktop = new File("/home/" + username + "Desktop/");
@@ -93,7 +97,8 @@ public class osDetect {
 		}
 	}
 
-	public static void isMac() {
+	public static void isMac() { 
+		// Yes, I know the locations are incorrect. I do not have access to, or own a Mac, so I am unable to do this.
 		File downloads = new File("/user/" + username + "Downloads/");
 		File minecraftDefaultPath = new File("C:\\Users\\" + username + "\\AppData\\Roaming\\.minecraft"); // is.
 		File desktop = new File("/user/" + username + "Desktop/");
@@ -123,6 +128,7 @@ public class osDetect {
 		}
 
 		if (!desktop.exists()) {
+			//You thought you were fucked with Windows? You might as well bend over with this one.
 			String message = "You...seem to not have a desktop. Please fix that before continuing";
 			JOptionPane.showMessageDialog(new JFrame(), message, "No Desktop Error", JOptionPane.ERROR_MESSAGE);
 		}

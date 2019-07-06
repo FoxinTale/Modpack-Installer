@@ -21,38 +21,12 @@ import javax.swing.filechooser.FileSystemView;
 
 @SuppressWarnings("unused")
 public class Extractor {
-	public static void Extractor() {
-		String outputFolder = Driver.getDownloadsLocation() + File.separator + "Modpack" + File.separator;
-
+	public static void Extractor(String fileName, String loc) {
+		String outputFolder = Driver.getDownloadsLocation() + File.separator + loc + File.separator;
 
 		File zipLocation;
-		// try {
-		String zipFile = Driver.getDownloadsLocation() + File.separator + "Modpack.zip";
-		// }
-		/*
-		 * catch(FileNotFoundException n) { String message =
-		 * "Unable to locate zip file."; JOptionPane.showMessageDialog(new JFrame(),
-		 * message, "File Not Found.", JOptionPane.ERROR_MESSAGE); JFileChooser findFile
-		 * = new JFileChooser();
-		 * //findFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); int r =
-		 * findFile.showSaveDialog(null); if (r == JFileChooser.APPROVE_OPTION) {
-		 * zipLocation = findFile.getSelectedFile(); String zipFile =
-		 * zipLocation.getName();
-		 * 
-		 * Driver.minecraftInstall = Driver.minecraftInstallLocation.getAbsolutePath();
-		 * } // if the user cancelled the operation else { String messageTwo =
-		 * "Cannot continue without Modpack!"; JOptionPane.showMessageDialog(new
-		 * JFrame(), messageTwo, " Search Cancelled", JOptionPane.ERROR_MESSAGE);
-		 * System.exit(0); }
-		 * 
-		 * 
-		 * }
-		 */
 
-		// Driver.folderCreate(modpackLocation);
-		// folderCreate(modpackMods);
-		// folderCreate(modpackConfig);
-		// folderCreate(modpackFlans);
+		String zipFile = fileName;
 
 		try (ZipFile file = new ZipFile(zipFile)) {
 			FileSystem fileSystem = FileSystems.getDefault();
@@ -65,7 +39,7 @@ public class Extractor {
 				Files.createDirectory(fileSystem.getPath(uncompressedDirectory));
 
 			} catch (FileAlreadyExistsException e) {
-
+				// Do nothing.
 			}
 			while (entries.hasMoreElements()) {
 				ZipEntry entry = entries.nextElement();
@@ -86,13 +60,12 @@ public class Extractor {
 						fileOutput.write(bis.read());
 					}
 					fileOutput.close();
-	
+
 				}
 			}
 
 			System.out.println(" Extraction Complete\n");
 			Install.install();
-			//GUI.progress.setIndeterminate(false);
 		} catch (IOException e) {
 			GUI.errors.setText("File not found.");
 		}
