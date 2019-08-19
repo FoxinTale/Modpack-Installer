@@ -1,133 +1,93 @@
-import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
-import javax.swing.JRadioButton;
-
-@SuppressWarnings("resource")
 public class Updater {
-	// A bunch of ArrayLists.
+
 	static ArrayList<String> versions = new ArrayList<>();
-	static ArrayList<String> one = new ArrayList<>();
-	static ArrayList<String> two = new ArrayList<>();
-	static ArrayList<String> three = new ArrayList<>();
-	static ArrayList<String> four = new ArrayList<>();
-	static ArrayList<String> five = new ArrayList<>();
-	static ArrayList<String> six = new ArrayList<>();
-	static ArrayList<String> seven = new ArrayList<>();
-	static ArrayList<String> eight = new ArrayList<>();
-	static ArrayList<String> nine = new ArrayList<>();
-	static ArrayList<String> ten = new ArrayList<>();
-	
-	static String updateFile = Driver.getDownloadsLocation();
-	static File updates = new File(updateFile + File.separator + "Updates.txt");
-	static String baseLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/";
+	static ArrayList<String> version;
+	static String baseLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Updates/";
+	static File versionFile = new File(Driver.getMinecraftInstallLocation() + "Modpack_Version.txt");
+	static String installedVersion = "";
+	static String currentVersion = "";
 
-	//Oh look, more getters and setters.
-	public static String getBaseLink() {
-		return baseLink;
-	}
+	public static void updater() {
 
-	public static void setBaseLink(String baseLink) {
-		Updater.baseLink = baseLink;
-	}
+		websiteReader.siteReader("https://sites.google.com/view/aubreys-modpack-info/home/latest-version", false, 2,
+				versions);
+		String versionPreTrim = (Arrays.toString(versions.toArray()).replace('[', ' ').replace(']', ' '));
+		currentVersion = versionPreTrim.trim();
 
-	public static void printList(ArrayList<String> list) {
-		//This prints an arrayList.. What else did you think it did?
-		// I think this is not needed anymore and is left over from debugging and testing.
-		// But it will stay here until I know for sure I will not need it.
-		System.out.println(Arrays.toString(list.toArray()));
-	}
-
-	public static void readFile() {
-		try {
-			Scanner lines = new Scanner(updates);
-			int count = 0;
-			while (lines.hasNext() && count < 11) {
-				String current = lines.nextLine();
-				if (current.equals("-")) {
-					count++;
-					continue;
-				}
-				switch (count) {
-				case 0:
-					versions.add(current);
-					break;
-				case 1:
-					one.add(current);
-					break;
-				case 2:
-					two.add(current);
-					break;
-				case 3:
-					three.add(current);
-					break;
-				case 4:
-					four.add(current);
-					break;
-				case 5:
-					five.add(current);
-					break;
-				case 6:
-					six.add(current);
-					break;
-				case 7:
-					seven.add(current);
-					break;
-				case 8:
-					eight.add(current);
-					break;
-				case 9:
-					nine.add(current);
-					break;
-				case 10:
-					ten.add(current);
-					break;
-
-				}
+		if (!versionFile.exists()) {
+			versionFile();
+		}
+		if (versionFile.exists()) {
+			versionRead();
+		}
+		if (versionCompare()) {
+			System.out.println("Yay, you are running the latest version. No need to continue.");
+		}
+		if (!versionCompare()) {
+			System.out.println("Seems as if a new version has been released.");
+			System.out.println("Downloading update file");
+			try {
+				Downloader.Downloader(new URL(baseLink + currentVersion + ".zip"));
+			} catch (MalformedURLException e) {
+				
+				e.printStackTrace();
 			}
-			UpdateGUI.partOne();
-		} catch (IOException i) {
-			GUI.errors.setText("Update info not found.");
-			// The file wasn't found.
 		}
 	}
 
-	public static void optionVisibility(JRadioButton button, ArrayList<String> list, String s) {
-		if (list.contains(s)) {
-			button.setVisible(true);
-		}
-		if (!list.contains(s)) {
-			button.setVisible(false);
-		}
-
-	}
-
-	public static void download() {
-		//A simple download function for the text file that lists the updates.
+	public static void versionFile() {
 		try {
-			String url = "https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Updates/Updates.txt";
-			BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
-			FileOutputStream fileOut = new FileOutputStream(updates);
-			byte dataBuffer[] = new byte[1024];
-			int bytesRead;
-			while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-				fileOut.write(dataBuffer, 0, bytesRead);
-			}
-			readFile();
-
+			PrintWriter writer = new PrintWriter(versionFile);
+			String versionInfo = Arrays.toString(versions.toArray()).replace('[', ' ').replace(']', ' ');
+			writer.println(versionInfo.trim());
+			writer.println("Please do not delete this file. this is how the installer knows if there is an update.");
+			writer.close();
+			versionFile.setReadOnly();
 		} catch (IOException e) {
-			System.out.println("Update File not found");
+			e.printStackTrace();
 		}
+	}
+
+	public static void versionRead() {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(versionFile));
+			String line;
+			ArrayList<String> versionsContent = new ArrayList<>();
+			while ((line = reader.readLine()) != null) {
+				versionsContent.add(line);
+			}
+			reader.close();
+			installedVersion = versionsContent.get(0);
+			versionCompare();
+		} catch (IOException e) {
+
+		}
+	}
+
+	public static Boolean versionCompare() {
+		Boolean versionsMatch = false;
+		if (currentVersion.equals(installedVersion)) {
+			versionsMatch = true;
+		}
+		if (!currentVersion.equals(installedVersion)) {
+			versionsMatch = false;
+		}
+		return versionsMatch;
 	}
 
 	public static void installUpdate() {
-		//This needs a lot of work, but I've no idea what exactly to do.
-		File updateFolder =new File(Driver.getDownloadsLocation() + UpdateGUI.getFolderLoc());
+		// This needs a lot of work, but I've no idea what exactly to do.
+		// File updateFolder = new File(Driver.getDownloadsLocation() +
+		// UpdateGUI.getFolderLoc());
 	}
 }

@@ -18,6 +18,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+/*
+ * Let's be honest, this class does document itself, for the most part.
+ * 
+ */
 public class GUI {
 	static JProgressBar progress = new JProgressBar();
 	static JEditorPane pane = new JEditorPane();
@@ -28,11 +32,11 @@ public class GUI {
 	static Boolean updateOnly = false;
 
 	public static void launchGUI() {
-		JFrame frame = new JFrame("Modpack Installer by Aubrey");// creating instance of JFrame
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		JFrame frame = new JFrame("Modpack Installer by Aubrey");// creating instance of JFrame, and setting the title.
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		JTextField packLink = new JTextField("Custom pack link goes here. :)");
 		JRadioButton modpackOne = new JRadioButton("1.7.10 Modpack.");
-		JRadioButton downloadOption = new JRadioButton("Download for manual install.");
+		JRadioButton downloadOption = new JRadioButton("Download pack zip file.");
 		JRadioButton updateOption = new JRadioButton("Update.");
 		JRadioButton extractOption = new JRadioButton("");
 
@@ -47,8 +51,6 @@ public class GUI {
 
 		progress.setMaximum(100000);
 
-		packLink.setEditable(false);
-		packLink.setVisible(false);
 		options.add(modpackOne);
 		options.add(downloadOption);
 		options.add(updateOption);
@@ -73,11 +75,7 @@ public class GUI {
 						validPack = true;
 					}
 
-					if (selection.equals("Download for manual install.")) {
-						System.out.println(
-								"\n If you're downloading for a manual install, don't blame me if it doesn't work.");
-						System.out
-								.println("\n Otherwise, if you just want the pack because a massive update, carry on.");
+					if (selection.equals("Download pack zip file.")) {
 						modpackOne.setEnabled(false);
 						downloadOption.setEnabled(false);
 						updateOption.setEnabled(false);
@@ -88,6 +86,9 @@ public class GUI {
 
 					if (selection.equals("Update.")) {
 						modpackOne.setEnabled(false);
+						downloadOption.setEnabled(false);
+						updateOption.setEnabled(false);
+						extractOption.setEnabled(false);
 						Driver.selectedOption = 3;
 						Driver.installProgress = 1;
 						validPack = true;
@@ -140,7 +141,7 @@ public class GUI {
 					System.out.println("\n Launching update panel.");
 					System.out.println("\n Select an update.");
 					updateOnly = true;
-					Updater.download();
+				
 				}
 				if (Driver.installProgress == 1 && Driver.selectedOption == 4) {
 					System.out.println("\n Beginning Extraction...");
@@ -150,7 +151,6 @@ public class GUI {
 		};
 
 		button.setBounds(325, 400, 100, 25);// x axis, y axis, width, height
-
 		scroll.setBounds(25, 25, 400, 200);
 		errors.setBounds(75, 375, 350, 20);
 		errorsLabel.setBounds(25, 375, 50, 20);
@@ -159,7 +159,6 @@ public class GUI {
 		updateOption.setBounds(150, 300, 250, 15);
 		// extractOption.setBounds(150, 325, 250, 15);
 		progress.setBounds(25, 400, 275, 25);
-		packLink.setBounds(25, 350, 400, 20);
 
 		consoleOutput.setEditable(false);
 		errors.setEditable(false);
@@ -179,19 +178,17 @@ public class GUI {
 
 		frame.add(button);// adding button in JFrame
 		frame.add(scroll);
-		frame.add(packLink);
 		frame.add(progress);
 		frame.add(errors);
 		frame.add(errorsLabel);
 		frame.add(modpackOne);
 		frame.add(downloadOption);
-		frame.add(updateOption);
+		// frame.add(updateOption);
 
 		frame.setSize(480, 480);
 		frame.setResizable(false);
 
 		frame.setLayout(null);// using no layout managers
 		frame.setVisible(true);// making the frame visible
-
 	}
 }

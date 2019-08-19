@@ -9,6 +9,8 @@ import java.nio.file.StandardCopyOption;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import org.hyperic.sigar.SigarException;
+
 public class Install {
 
 	public static void install() {
@@ -84,16 +86,25 @@ public class Install {
 			System.out.println("Giritina");
 
 		}
+		String t = "Would you like the installer to adjust your Java aruments in the launcher? This will also allow you to configure the amount of ram you allocate to Minecraft.";
+		int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Server Test", JOptionPane.YES_NO_OPTION);
+		if (o == JOptionPane.YES_OPTION) {
+			try {
+				installOptions.sliderGUI();
+			} catch (SigarException e) {
+				e.printStackTrace();
+			}
+		}
+		if (o == JOptionPane.NO_OPTION) {
+			installFinalize();
+		}
 
-		installFinalize();
 	}
 
 	public static void installFinalize() {
 		String message = "Your pre-existing mods and configs have been moved to a folder on the desktop named 'Minecraft Stuff'.";
 		JOptionPane.showMessageDialog(new JFrame(), message, "Info", JOptionPane.INFORMATION_MESSAGE);
-		String completeMessage = "The modpack has been installed! Please read the read me file in the modpack folder in your downloads for more information. Have fun!";
-		JOptionPane.showMessageDialog(new JFrame(), completeMessage, "Install Complete!",
-				JOptionPane.INFORMATION_MESSAGE);
+		
 		String t = "Would you like the installer to check if the server is up?";
 		int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Server Test", JOptionPane.YES_NO_OPTION);
 		if (o == JOptionPane.YES_OPTION) {
@@ -104,30 +115,33 @@ public class Install {
 		}
 	}
 
-	@SuppressWarnings("resource")
 	public static void serverPing() {
 		try {
 			Socket server = new Socket();
 			server.connect(new InetSocketAddress("IP ADDRESS", 25525), 60000);
 			// Not putting my IP address out there for all to see.
+			// If ran as it, it will throw the UnknownHostException below, but if changed to
+			// a proper IP that error should never be thrown.
 			String notification = "The server is up! Get on it and have fun!";
 			JOptionPane.showMessageDialog(new JFrame(), notification, "Server Up!", JOptionPane.INFORMATION_MESSAGE);
+			server.close();
 			allDone();
 
 		} catch (UnknownHostException h) {
-			System.out.println("Chimchar");
-			// If this happens.. heh.. You're screwed.
+			String notification = "It seems that either the computer isn't turned on, or my internet is down. Check the minecraft channel for more info.";
+			JOptionPane.showMessageDialog(new JFrame(), notification, "No connection", JOptionPane.ERROR_MESSAGE);
 		} catch (IOException i) {
 			String notification = "It isnt up, please let me know, and I'll get on it as soon as I can.";
 			JOptionPane.showMessageDialog(new JFrame(), notification, "Server Down", JOptionPane.ERROR_MESSAGE);
-			// This is an error that must be caught, as the server sometimes crashes without my knowing.
+			// This is an error that must be caught, as the server sometimes crashes without
+			// my knowing.
+			allDone();
 		}
 	}
 
 	public static void allDone() {
-		String messageTwo = "Thanks for using the installer!";
+		String messageTwo = "Thanks for using this installer!";
 		JOptionPane.showMessageDialog(new JFrame(), messageTwo, "Finished!", JOptionPane.INFORMATION_MESSAGE);
-		Updater.updates.delete();
 		System.exit(0);
 	}
 
