@@ -18,6 +18,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import org.hyperic.sigar.SigarException;
+
 /*
  * Let's be honest, this class does document itself, for the most part.
  * 
@@ -37,6 +39,7 @@ public class GUI {
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		JRadioButton modpackOne = new JRadioButton("1.7.10 Modpack.");
 		JRadioButton downloadOption = new JRadioButton("Download pack zip file.");
+		// JRadioButton updateOption = new JRadioButton("Update.");
 		JRadioButton updateOption = new JRadioButton("Update.");
 		JRadioButton extractOption = new JRadioButton("");
 
@@ -138,14 +141,24 @@ public class GUI {
 				}
 
 				if (Driver.installProgress == 1 && Driver.selectedOption == 3) {
-					System.out.println("\n Launching update panel.");
-					System.out.println("\n Select an update.");
-					updateOnly = true;
+				
+					try {
+						installOptions.sliderGUI();
+					} catch (SigarException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				
 				}
 				if (Driver.installProgress == 1 && Driver.selectedOption == 4) {
-					System.out.println("\n Beginning Extraction...");
+					// System.out.println("\n Beginning Extraction...");
 					// Extractor.Extractor();
+					try {
+						installOptions.sliderGUI();
+					} catch (SigarException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
 		};
@@ -157,7 +170,7 @@ public class GUI {
 		modpackOne.setBounds(150, 250, 250, 15);
 		downloadOption.setBounds(150, 275, 250, 15);
 		updateOption.setBounds(150, 300, 250, 15);
-		// extractOption.setBounds(150, 325, 250, 15);
+		extractOption.setBounds(150, 325, 250, 15);
 		progress.setBounds(25, 400, 275, 25);
 
 		consoleOutput.setEditable(false);
@@ -184,6 +197,7 @@ public class GUI {
 		frame.add(modpackOne);
 		frame.add(downloadOption);
 		// frame.add(updateOption);
+		// frame.add(extractOption);
 
 		frame.setSize(480, 480);
 		frame.setResizable(false);

@@ -63,7 +63,7 @@ public class osDetect {
 		File minecraftDefaultPath = new File("/home/" + username + "/.minecraft/");
 		File desktop = new File("/home/" + username + "/Desktop/");
 		if (downloads.exists()) {
-			Driver.setMinecraftInstall(minecraftDefaultPath.getAbsolutePath());
+			Driver.setDownloadsLocation(downloads.getAbsolutePath());
 		}
 		if (!downloads.exists()) {
 			// Prompt the user towards their downloads folder
@@ -103,7 +103,7 @@ public class osDetect {
 		File minecraftDefaultPath = new File("/Users/" + username + "/Library/Application Support/minecraft"); // is.
 		File desktop = new File("/Users/" + username + "/Desktop/");
 		if (downloads.exists()) {
-			Driver.setMinecraftInstall(minecraftDefaultPath.getAbsolutePath());
+			Driver.setDownloadsLocation(downloads.getAbsolutePath());
 		}
 		if (!downloads.exists()) {
 			// Prompt the user towards their downloads folder

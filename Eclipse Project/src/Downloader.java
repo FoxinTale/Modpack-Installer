@@ -91,10 +91,9 @@ public class Downloader {
 						int n = JOptionPane.showConfirmDialog(new JFrame(), s, "Choices", JOptionPane.YES_NO_OPTION);
 
 						if (n == JOptionPane.YES_OPTION) {
-							System.out.println(" This will take some time to complete.");
-							System.out.println("This varies depending on your system and the size of the file");
-							System.out.println(" Don't worry, it hasn't frozen. It is extracting.");
-							System.out.println(" The installer will output when finished");
+							System.out.println(" This will take about a minute.");
+							System.out.println("There will likely be noticeable system lag during extraction.");
+							System.out.println("This is due to Java being dumb.");
 							System.out.println(" Beginning Extraction now...\n");
 							if (GUI.packDownloadOnly == false) {
 								if (GUI.updateOnly == true) {

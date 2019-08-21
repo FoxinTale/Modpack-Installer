@@ -88,11 +88,14 @@ public class Driver {
 		System.setErr(printStream);
 
 		Boolean validOS = false;
+		
+		
 		String OS = System.getProperty("os.name"); // This gets the name of the current operating system.
 		if (OS.equals("Windows 10") || OS.equals("Windows 8.1") || OS.equals("Windows 7")) {
 			// For modern Windows systems
 			validOS = true;
 			osDetect.isWindows();
+			Install.checkForMinecraftandForge();
 			GUI.launchGUI();
 		}
 		if (OS.equals("Windows Vista") || OS.equals("Windows XP")) {
@@ -106,21 +109,22 @@ public class Driver {
 			// Good on you for using Linux!
 			validOS = true;
 			osDetect.isLinux();
+			Install.checkForMinecraftandForge();
 			GUI.launchGUI();
 		}
 
 		if (OS.equals("Mac")) {
 			// Big oof.
 			validOS = true;
-			// osDetect.isMac();
-			// GUI.launchGUI();
-			String message = "Mac OS is not supported currently...I don't own one to be able to test folder locations.";
-			JOptionPane.showMessageDialog(new JFrame(), message, "Mac OS not supported", JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
+			osDetect.isMac();
+			Install.checkForMinecraftandForge();
+			GUI.launchGUI();
+			
 		}
 
 		if (validOS == false) {
 			// If you see this, well... why are you trying to run this on an unsupported OS?
+			// Except Solaris..Which is really uncommon. If you're running that, I'd like to know why.
 			String message = "Your OS is not supported by this installer.";
 			JOptionPane.showMessageDialog(new JFrame(), message, "Unknown Operating System", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
