@@ -1,24 +1,30 @@
 import java.awt.Color;
-import java.awt.Container;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-
-import org.hyperic.sigar.SigarException;
+import javax.swing.border.LineBorder;
 
 /*
  * Let's be honest, this class does document itself, for the most part.
@@ -32,18 +38,20 @@ public class GUI {
 	static JTextField errors = new JTextField(" Nothing to report.");
 	static Boolean packDownloadOnly = false;
 	static Boolean updateOnly = false;
+	static Font pretty;
+	static String q = File.separator;
 
 	public static void launchGUI() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		JFrame frame = new JFrame("Modpack Installer by Aubrey");// creating instance of JFrame, and setting the title.
+		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		JRadioButton modpackOne = new JRadioButton("1.7.10 Modpack.");
-		JRadioButton downloadOption = new JRadioButton("Download pack zip file.");
-		// JRadioButton updateOption = new JRadioButton("Update.");
+		JRadioButton modpackOne = new JRadioButton("Do it for me.");
+		JRadioButton downloadOption = new JRadioButton("Just download the zip file.");
 		JRadioButton updateOption = new JRadioButton("Update.");
+		JRadioButton otherOptions = new JRadioButton("Other Features.");
 		JRadioButton extractOption = new JRadioButton("");
 
-		JButton button = new JButton("Next");// creating instance of JButton
+		JButton button = new JButton("Download");
 		JLabel errorsLabel = new JLabel("Errors: ");
 		ButtonGroup options = new ButtonGroup();
 
@@ -54,10 +62,20 @@ public class GUI {
 
 		progress.setMaximum(100000);
 
+		scroll.setBorder(new LineBorder(Color.black, 1, true));
+
+		Color rbc = new Color(220, 255, 255); // Hex value: dcffff
+
 		options.add(modpackOne);
 		options.add(downloadOption);
 		options.add(updateOption);
 		options.add(extractOption);
+		options.add(otherOptions);
+
+		JPanel modpackPanel = new RoundedPanel(10, rbc);
+		JPanel downloadPanel = new RoundedPanel(10, rbc);
+		JPanel updatePanel = new RoundedPanel(10, rbc);
+		JPanel optionsPanel = new RoundedPanel(10, rbc);
 
 		ActionListener radioButtonEvent = new ActionListener() {
 
@@ -65,33 +83,34 @@ public class GUI {
 				AbstractButton absButton = (AbstractButton) ae.getSource();
 				String selection = absButton.getText();
 				if (Driver.installProgress == 0) {
-
 					Boolean validPack = false;
-					if (selection.equals("1.7.10 Modpack.")) {
-						System.out.println("\n You have selected the 1.7.10 Modpack.");
-						System.out.println("\n Please click next to continue.");
+					if (selection.equals("Do it for me.")) {
+						System.out.println(" You have selected the 1.7.10 Modpack.");
+						System.out.println(" Please click next to continue.");
 						modpackOne.setEnabled(false);
 						downloadOption.setEnabled(false);
 						updateOption.setEnabled(false);
+						otherOptions.setEnabled(false);
 						Driver.selectedOption = 1;
 						Driver.installProgress = 1;
 						validPack = true;
 					}
-
-					if (selection.equals("Download pack zip file.")) {
+					if (selection.equals("Just download the zip file.")) {
 						modpackOne.setEnabled(false);
 						downloadOption.setEnabled(false);
+						otherOptions.setEnabled(false);
 						updateOption.setEnabled(false);
 						Driver.installProgress = 1;
 						Driver.selectedOption = 2;
 						validPack = true;
 					}
-
 					if (selection.equals("Update.")) {
 						modpackOne.setEnabled(false);
 						downloadOption.setEnabled(false);
+						otherOptions.setEnabled(false);
 						updateOption.setEnabled(false);
 						extractOption.setEnabled(false);
+						Driver.updateTime = true;
 						Driver.selectedOption = 3;
 						Driver.installProgress = 1;
 						validPack = true;
@@ -101,12 +120,23 @@ public class GUI {
 						modpackOne.setEnabled(false);
 						downloadOption.setEnabled(false);
 						updateOption.setEnabled(false);
+						otherOptions.setEnabled(false);
 						extractOption.setEnabled(false);
 						Driver.selectedOption = 4;
 						Driver.installProgress = 1;
 						validPack = true;
 						Install.install();
-
+					}
+					if (selection.equals("Other Features.")) {
+						Driver.selectedOption = 5;
+						Driver.installProgress = 1;
+						modpackOne.setEnabled(false);
+						downloadOption.setEnabled(false);
+						updateOption.setEnabled(false);
+						extractOption.setEnabled(false);
+						otherOptions.setEnabled(false);
+						button.setText("Next");
+						validPack = true;
 					}
 					if (validPack == false) {
 						System.out.println("\n Something went terribly wrong.\n");
@@ -123,9 +153,10 @@ public class GUI {
 					try {
 						URL modpackOneLink = new URL(
 								"https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
-						Downloader.Downloader(modpackOneLink);
+						Downloader.Download(modpackOneLink, "Modpack.zip");
 					} catch (MalformedURLException f) {
 						errors.setText("Fuck you Java.");
+						System.out.println("Shaymin");
 					}
 				}
 
@@ -134,60 +165,99 @@ public class GUI {
 						URL modpackTwoLink = new URL(
 								"https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
 						packDownloadOnly = true;
-						Downloader.Downloader(modpackTwoLink);
+						Downloader.Download(modpackTwoLink, "Modpack.zip");
 					} catch (MalformedURLException g) {
 						errors.setText("Fuck you Java.");
+						System.out.println("Glameow");
 					}
 				}
 
 				if (Driver.installProgress == 1 && Driver.selectedOption == 3) {
-				
-					try {
-						installOptions.sliderGUI();
-					} catch (SigarException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				
+
+					// Quilva
+					Updater.updater();
+
 				}
 				if (Driver.installProgress == 1 && Driver.selectedOption == 4) {
-					// System.out.println("\n Beginning Extraction...");
-					// Extractor.Extractor();
-					try {
-						installOptions.sliderGUI();
-					} catch (SigarException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					installOptions.sliderGUI();
+				}
+				if (Driver.installProgress == 1 && Driver.selectedOption == 5) {
+					installOptions.otherOptionsGUI();
+					Install.featuresUsed = true;
 				}
 			}
 		};
 
-		button.setBounds(325, 400, 100, 25);// x axis, y axis, width, height
+		try {
+			pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Equestria.ttf")).deriveFont(16f);
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Equestria.ttf")));
+		} catch (IOException e) {
+
+		} catch (FontFormatException e) {
+			System.out.println("Screwy font");
+		}
+
+		frame.setFont(pretty);
+		consoleOutput.setFont(pretty);
+		modpackOne.setFont(pretty);
+		downloadOption.setFont(pretty);
+		otherOptions.setFont(pretty);
+		updateOption.setFont(pretty);
+		errors.setFont(pretty);
+		errorsLabel.setFont(pretty);
+		button.setFont(pretty);
+
+		frame.setTitle("Modpack Installer by Aubrey");
+
+		button.setBounds(325, 475, 100, 25);// x axis, y axis, width, height
 		scroll.setBounds(25, 25, 400, 200);
-		errors.setBounds(75, 375, 350, 20);
-		errorsLabel.setBounds(25, 375, 50, 20);
-		modpackOne.setBounds(150, 250, 250, 15);
-		downloadOption.setBounds(150, 275, 250, 15);
-		updateOption.setBounds(150, 300, 250, 15);
-		extractOption.setBounds(150, 325, 250, 15);
-		progress.setBounds(25, 400, 275, 25);
+		errors.setBounds(75, 430, 350, 20);
+		errorsLabel.setBounds(25, 430, 50, 20);
+
+		modpackOne.setBounds(120, 255, 200, 15);
+		modpackPanel.setBounds(115, 250, 250, 25);
+
+		downloadOption.setBounds(120, 290, 200, 15);
+		downloadPanel.setBounds(115, 285, 250, 25);
+
+		otherOptions.setBounds(120, 325, 200, 15);
+		optionsPanel.setBounds(115, 320, 250, 25);
+
+		updateOption.setBounds(120, 360, 200, 15);
+		updatePanel.setBounds(115, 355, 250, 25);
+		progress.setBounds(25, 475, 275, 25);
+
+		// Radio Button Colour
+		modpackOne.setBackground(rbc);
+		downloadOption.setBackground(rbc);
+		otherOptions.setBackground(rbc);
+		updateOption.setBackground(rbc);
+
+		modpackPanel.add(modpackOne);
+		downloadPanel.add(downloadOption);
+		optionsPanel.add(otherOptions);
+		updatePanel.add(updateOption);
 
 		consoleOutput.setEditable(false);
 		errors.setEditable(false);
 
-		System.out.println(" Welcome to the installer!\n");
-		System.out.println("\n Please select an option from below.\n");
+		System.out.println(" Welcome to the installer!");
+		System.out.println(" Please select an option from below.\n");
 
 		modpackOne.addActionListener(radioButtonEvent);
 		downloadOption.addActionListener(radioButtonEvent);
 		updateOption.addActionListener(radioButtonEvent);
 		extractOption.addActionListener(radioButtonEvent);
+		otherOptions.addActionListener(radioButtonEvent);
 		button.addActionListener(buttonEvent);
 
-		Container c = frame.getContentPane();
-
-		c.setBackground(new Color(255, 220, 220));
+		ImageIcon background = new ImageIcon("resources" + q + "Background.png");
+		Image bg = background.getImage();
+		Image bgImg = bg.getScaledInstance(480, 550, Image.SCALE_SMOOTH);
+		background = new ImageIcon(bgImg);
+		JLabel backgroundImage = new JLabel(background);
+		backgroundImage.setBounds(0, 0, 480, 550);
 
 		frame.add(button);// adding button in JFrame
 		frame.add(scroll);
@@ -195,11 +265,18 @@ public class GUI {
 		frame.add(errors);
 		frame.add(errorsLabel);
 		frame.add(modpackOne);
-		frame.add(downloadOption);
-		// frame.add(updateOption);
-		// frame.add(extractOption);
 
-		frame.setSize(480, 480);
+		frame.add(downloadOption);
+
+		frame.add(updateOption);
+		frame.add(otherOptions);
+
+		frame.add(modpackPanel);
+		frame.add(downloadPanel);
+		frame.add(optionsPanel);
+		frame.add(updatePanel);
+		frame.add(backgroundImage);
+		frame.setSize(480, 550);
 		frame.setResizable(false);
 
 		frame.setLayout(null);// using no layout managers

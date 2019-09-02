@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -67,7 +68,6 @@ public class websiteReader {
 			Document doc = Jsoup.connect(siteLink).get();
 			String title = doc.title();
 			Jsoup.parse(title);
-
 			StringBuilder fullText = new StringBuilder(doc.body().text());
 
 			int listStart = fullText.indexOf("-----");
@@ -77,7 +77,6 @@ public class websiteReader {
 			int length;
 			length = fullText.length();
 			fullText.delete(listEnd, length);
-// Total amount of arrays would be the Normal modlist, any updated mods, any mods to remove
 			length = fullText.length();
 			char[] data = new char[length];
 			fullText.getChars(0, length, data, 0);
@@ -85,11 +84,18 @@ public class websiteReader {
 			StringBuilder s = new StringBuilder();
 
 			for (int i = 0; i < data.length; i++) {
+
+				if (data[i] == '/') {
+					s.append(File.separator);
+					data[i] = ' ';
+				}
 				s.append(data[i]);
+
 				if (data[i] == '*') {
 					data[i] = '\n';
 					s.deleteCharAt(s.length() - 1);
 					obj = s.toString();
+					obj = obj.replaceAll("\\s+", "");
 					list.add(obj);
 					s.delete(0, s.length());
 				}
@@ -116,9 +122,12 @@ public class websiteReader {
 			if (ops == 3) {
 				setChecksums(list);
 			}
+			if (ops == 4) {
+				setToRemove(list);
+			}
 
 		} catch (IOException e) {
-
+			GUI.errors.setText("Wobbuffet");
 		}
 	}
 }

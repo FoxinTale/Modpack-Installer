@@ -9,96 +9,77 @@ import java.nio.file.StandardCopyOption;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import org.hyperic.sigar.SigarException;
+import org.apache.commons.io.FileUtils;
 
 public class Install {
+	static String q = File.separator;
+	static int selectedOption = 0;
+	static Boolean featuresUsed = false;
+	static File modpackLocation = new File(Driver.getDownloadsLocation() + q + "Modpack");
 
 	public static void install() {
 
-		System.out.println("Installing the Modpack now.");
+		System.out.println(" Installing the Modpack now.");
+		modpackLocation.deleteOnExit();
 
 		String minecraftPath = Driver.getMinecraftInstall();
 
-		File minecraftMods = new File(minecraftPath + File.separator + "mods");
-		File minecraftConfig = new File(minecraftPath + File.separator + "config");
-		File minecraftFlans = new File(minecraftPath + File.separator + "Flan");
+		File minecraftMods = new File(minecraftPath + q + "mods");
+		File minecraftConfig = new File(minecraftPath + q + "config");
+		File minecraftFlans = new File(minecraftPath + q + "Flan");
 
-		File backups = new File(Driver.getDesktopLocation() + File.separator + "Minecraft Stuff");
+		File backups = new File(Driver.getDesktopLocation() + q + "Minecraft Stuff");
 		String backupsLocation = backups.getAbsolutePath();
-		File backupMods = new File(backupsLocation + File.separator + "Mods");
-		File backupConfig = new File(backupsLocation + File.separator + "Config");
-		File backupFlans = new File(backupsLocation + File.separator + "Flans");
+		File backupMods = new File(backupsLocation + q + "Mods");
+		File backupConfig = new File(backupsLocation + q + "Config");
+		File backupFlans = new File(backupsLocation + q + "Flans");
 
-		File modpackLocation = new File(Driver.getDownloadsLocation() + File.separator + "Modpack");
+		File modpackMods = new File(modpackLocation + q + "mods");
+		File modpackConfig = new File(modpackLocation + q + "config");
+		File modpackFlans = new File(modpackLocation + q + "Flan");
 
-		File modpackMods = new File(modpackLocation + File.separator + "mods");
-		File modpackConfig = new File(modpackLocation + File.separator + "config");
-		File modpackFlans = new File(modpackLocation + File.separator + "Flan");
-
-		if (backups.exists()) {
-			backups.delete();
-			// Put a prompt alerting the user that a folder of the same name exists,
-			// Then ask to overwrite, or put it elsewhere.
-			// If overwrite is chosen, delete the folder and carry on.
-			// If not, allow the user to set where the alternate backup goes.
-			// Also have a boolean that changes the end message if this is chosen.
-
-		}
 		Driver.folderCreate(backups);
 		Driver.folderCreate(backupMods);
 		Driver.folderCreate(backupConfig);
 		Driver.folderCreate(backupFlans);
 
-		moveFiles(minecraftMods, backupMods, "Backing up any Mods");
-		moveFiles(minecraftConfig, backupConfig, "Backing up any configs.");
-		moveFiles(minecraftFlans, backupFlans, "Backing up any Flans related items");
+		moveFiles(minecraftMods, backupMods, " Backing up any Mods");
+		moveFiles(minecraftConfig, backupConfig, " Backing up any configs.");
+		moveFiles(minecraftFlans, backupFlans, " Backing up any Flans related items");
 
 		if (minecraftFlans.exists()) {
 			minecraftFlans.delete();
 		}
 
+		if (!Updater.versionFile.exists()) {
+			Updater.versionFile();
+		}
+
 		Driver.folderCreate(minecraftFlans);
 		Driver.folderCreate(minecraftConfig);
 		Driver.folderCreate(minecraftMods);
-		try {
-			System.out.println("\nMoving Stuff");
-			if (modpackMods.exists()) {
-				if (minecraftMods.exists()) {
-					Files.move(modpackMods.toPath(), minecraftMods.toPath(), StandardCopyOption.REPLACE_EXISTING);
-					System.out.println("Mods Moved");
-				}
-			}
 
-			if (modpackConfig.exists() && minecraftConfig.exists()) {
-				Files.move(modpackConfig.toPath(), minecraftConfig.toPath(), StandardCopyOption.REPLACE_EXISTING);
-				System.out.println("Config Moved");
-			}
-		} catch (IOException i) {
-			System.out.println("Charizard");
-		}
+		System.out.println(" Installing. ");
 
-		try {
-			if (modpackFlans.exists() && minecraftFlans.exists()) {
-				Files.move(modpackFlans.toPath(), minecraftFlans.toPath(), StandardCopyOption.REPLACE_EXISTING);
-				System.out.println("Flans Moved");
-			}
-		} catch (IOException i) {
-			System.out.println("Giritina");
+		copyFiles(modpackMods, minecraftMods);
+		copyFiles(modpackConfig, minecraftConfig);
+		copyFiles(modpackFlans, minecraftFlans);
 
-		}
-		String t = "Would you like the installer to adjust your Java aruments in the launcher? This will also allow you to configure the amount of ram you allocate to Minecraft.";
-		int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Server Test", JOptionPane.YES_NO_OPTION);
-		if (o == JOptionPane.YES_OPTION) {
-			try {
+		System.out.println(" Verifying install.");
+		if (installOptions.verifyInstall()) {
+			System.out.println(" Install successful.");
+			String t = "Would you like the installer to adjust your Java aruments in the launcher? This will also allow you to configure the amount of ram you allocate to Minecraft.";
+			int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Server Test", JOptionPane.YES_NO_OPTION);
+			if (o == JOptionPane.YES_OPTION) {
 				installOptions.sliderGUI();
-			} catch (SigarException e) {
-				e.printStackTrace();
+			}
+			if (o == JOptionPane.NO_OPTION) {
+				installFinalize();
 			}
 		}
-		if (o == JOptionPane.NO_OPTION) {
-			installFinalize();
+		if(!installOptions.verifyInstall()) {
+			GUI.errors.setText("Ehrm...Installer broke");
 		}
-
 	}
 
 	public static void installFinalize() {
@@ -111,7 +92,7 @@ public class Install {
 			serverPing();
 		}
 		if (o == JOptionPane.NO_OPTION) {
-			allDone();
+		 end();
 		}
 	}
 
@@ -120,48 +101,49 @@ public class Install {
 			Socket server = new Socket();
 			server.connect(new InetSocketAddress("IP ADDRESS", 25525), 10000);
 			// Not putting my IP address out there for all to see.
-			// If ran as it, it will throw the UnknownHostException below, but if changed to
+			// If ran as is, it will throw the UnknownHostException below, but if changed to
 			// a proper IP that error should never be thrown.
 			String notification = "The server is up! Get on it and have fun!";
 			JOptionPane.showMessageDialog(new JFrame(), notification, "Server Up!", JOptionPane.INFORMATION_MESSAGE);
 			server.close();
-			allDone();
+			end();
 
 		} catch (UnknownHostException h) {
-			String notification = "It seems that either the computer isn't turned on, or my internet is down. Check the minecraft channel for more info.";
-			JOptionPane.showMessageDialog(new JFrame(), notification, "No connection", JOptionPane.ERROR_MESSAGE);
+			// This should never happen.
+			// EVER
+			GUI.errors.setText("Something's fucky.");
 		} catch (IOException i) {
-			String notification = "It isnt up, please let me know, and I'll get on it as soon as I can.";
+			String notification = "It isn't up, please let me know, and I'll get on it as soon as I can.";
 			JOptionPane.showMessageDialog(new JFrame(), notification, "Server Down", JOptionPane.ERROR_MESSAGE);
 			// This is an error that must be caught, as the server sometimes crashes without
 			// my knowing.
-			allDone();
+			end();
 		}
 	}
 
 	public static void checkForMinecraftandForge() {
-		String minecraftVersions = Driver.getMinecraftInstall() + File.separator + "versions" + File.separator;
-		File vanillaMinecraft = new File(minecraftVersions + "1.7.10" + File.separator + "1.7.10.jar");
-		File vanillaMinecraftConfig = new File(minecraftVersions + "1.7.10" + File.separator + "1.7.10.json");
-		File moddedMinecraftConfig = new File(minecraftVersions + File.separator + "1.7.10-Forge10.13.4.1614-1.7.10"
-				+ File.separator + "1.7.10-Forge10.13.4.1614-1.7.10.json");
-		
+		String minecraftVersions = Driver.getMinecraftInstall() + q + "versions" + q;
+		File vanillaMinecraft = new File(minecraftVersions + "1.7.10" + q + "1.7.10.jar");
+		File vanillaMinecraftConfig = new File(minecraftVersions + "1.7.10" + q + "1.7.10.json");
+		File moddedMinecraftConfig = new File(
+				minecraftVersions + q + "1.7.10-Forge10.13.4.1614-1.7.10" + q + "1.7.10-Forge10.13.4.1614-1.7.10.json");
+
 		if (!vanillaMinecraft.exists() || !vanillaMinecraftConfig.exists()) {
 			String noVanilla = "Please run Vanilla Minecraft 1.7.10 at least once before continuing.";
 			JOptionPane.showMessageDialog(new JFrame(), noVanilla, "Vanilla not Found", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 
 		}
-		if(!moddedMinecraftConfig.exists()) {
+		if (!moddedMinecraftConfig.exists()) {
 			String noMod = "Please install Forge before continuing!";
 			JOptionPane.showMessageDialog(new JFrame(), noMod, "Forge not Found", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		}
 	}
 
-	public static void allDone() {
-		String messageTwo = "Thanks for using this installer!";
-		JOptionPane.showMessageDialog(new JFrame(), messageTwo, "Finished!", JOptionPane.INFORMATION_MESSAGE);
+	public static void end() {
+		String endMessage = "That's everything! Go have fun.";
+		JOptionPane.showMessageDialog(new JFrame(), endMessage, "All Done!", JOptionPane.INFORMATION_MESSAGE);
 		System.exit(0);
 	}
 
@@ -171,6 +153,18 @@ public class Install {
 				System.out.println(s);
 				try {
 					Files.move(dirOne.toPath(), dirTwo.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				} catch (IOException a) {
+					// Do nothing. Java complained if I didn't put this here.
+				}
+			}
+		}
+	}
+
+	public static void copyFiles(File dirOne, File dirTwo) {
+		if (dirOne.exists()) {
+			if (dirTwo.exists()) {
+				try {
+					FileUtils.copyDirectory(dirOne, dirTwo);
 				} catch (IOException a) {
 					// Do nothing. Java complained if I didn't put this here.
 				}

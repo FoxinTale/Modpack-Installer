@@ -1,21 +1,21 @@
 import java.io.File;
-import java.io.IOException;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
 public class Extractor {
-	public static void Extractor(String fileName, String loc) {
+	static String q = File.separator;
+
+	public static void Extract(String fileName, String loc) {
+
 		String zipFilePath = fileName;
-		File modpack = new File(Driver.getDownloadsLocation() + File.separator + "Modpack");
-		String folderPath = Driver.getDownloadsLocation() + File.separator + loc + File.separator;
+		File modpack = new File(Driver.getDownloadsLocation() + q + "Modpack");
+		String folderPath = Driver.getDownloadsLocation() + q + loc + q;
 		String password = "";
-		String zipFile = fileName;
 		if (modpack.exists()) {
 			modpack.delete();
 		}
 		unzip(zipFilePath, folderPath, password);
-
 	}
 
 	public static void unzip(String zipFilePath, String folderPath, String password) {
@@ -25,12 +25,15 @@ public class Extractor {
 				zipFile.setPassword(password);
 			}
 			zipFile.extractAll(folderPath);
-
 		} catch (ZipException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			GUI.errors.setText("Kyogre");
 		}
-		System.out.println("Extraction complete.");
-		Install.install();
+		System.out.println(" Extraction complete.");
+		if (!Driver.updateTime) {
+			Install.install();
+		}
+		if (Driver.updateTime) {
+			Updater.installUpdate();
+		}
 	}
 }

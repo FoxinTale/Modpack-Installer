@@ -27,7 +27,8 @@ And that's it! Modpack fully installed.
 - If it cannot find your default directories, it asks to be pointed to them.
 - Features a GUI slider that allows you to allocate your Memory to Minecraft, and set Java arguments to optimized ones for you.
 - A nifty little feature that checks if the modpack got corrupted during its download.
-- An option to ping the server itself upon completion to see if it is up.
+- An aesthetically pleasing user interface.
+- It also has the ability to download updates for the modpack too!
 
 
 ### Major Update! 7-5-2019
@@ -43,16 +44,37 @@ Also, when the install finishes, it asks if you would like to check if the serve
 Oh, this is a massive update. While the update component is still unfinished, it has been totally reworked and overhauled. In addition to this, I've added so many features I'm surprised it all works.
 I'm damn proud of this now. It now has an option to set your Java arguments and adjust your ram via a GUI. I also made the GUI a bit prettier, and added full Linux and Mac file system compatibility.
 
+### Update 9-02-2019
+
+Reworked the GUI to be even prettier, added a new option and a new popup menu with the smaller options. Hopefully fixed the crash when setting the amount of ram via the GUI. Added a feature that when the installer launches, looks for Vanilla Minecraft and Forge 1.7.10. If it cannot find either,
+it notifies the user. There are also "failsafes", that if you are sure that the various file operations throw a warning, you can actually point the installer to the proper location, because sometimes things wonk out. Fixed a wonky directory for Linux users. Added a pretty pastel background and a custom font for the GUI. 
+
+And of course...The updater. This was actually rather simple to implement, but getting it to work together with everything wasn't easy.
+
 
 #### What is the WTFPL?
 This program is free software. It comes without any warranty, to the extent permitted by applicable law. 
 You can redistribute it and/or modify it under the terms of the Do What The Fuck You Want To Public License, Version 2, as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 
+##### Class File Code Count Breakdown
+- CustomOutputStream : 23
+- Downloader : 168
+- Driver : 138
+- Extractor : 39
+- GUI : 285
+- Install : 174
+- installOptions : 453
+- osDetect : 136
+- RoundedPanel : 56
+- Updater : 121
+- websiteReader : 133
+- Total lines of code : 1726
+
 #### To do list:
-- Make the updater component actually install the update.
 - Optimize the code, if possible.
-- Possibly add a forge auto-detector, and notify the user if forge is not found that they need to install it.
 - Document the source code.
+- Bug fix as needed.
+
 
 
 

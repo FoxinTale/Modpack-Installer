@@ -17,8 +17,9 @@ public class Downloader {
 	static String modpackSum;
 	static String calculatedSum;
 	static Boolean checksPassed;
+	static String q = File.separator;
 
-	public static void Downloader(URL packLink) {
+	public static void Download(URL packLink, String zipName) {
 		System.out.println("\n Downloading...");
 		ArrayList<String> checksums = new ArrayList<>();
 		String checkPage = "https://sites.google.com/view/aubreys-modpack-info/home/checksums";
@@ -30,7 +31,7 @@ public class Downloader {
 					long completeFileSize = httpConnection.getContentLength();
 					java.io.BufferedInputStream in = new java.io.BufferedInputStream(httpConnection.getInputStream());
 					java.io.FileOutputStream fos = new java.io.FileOutputStream(
-							File.separator + Driver.getDownloadsLocation() + File.separator + Driver.zipFile);
+							q + Driver.getDownloadsLocation() + q + zipName);
 					java.io.BufferedOutputStream bout = new BufferedOutputStream(fos, 1024);
 					byte[] data = new byte[1024];
 					long downloadedFileSize = 0;
@@ -52,13 +53,15 @@ public class Downloader {
 					bout.close();
 					in.close();
 
-					System.out.println("\n Download Complete!\n");
+					System.out.println("\n Download Complete!");
 					GUI.progress.setValue(0);
 
-					if (!GUI.updateOnly) {
-						System.out.println("Verifying file integrity.");
-						File modpack = new File(
-								File.separator + Driver.getDownloadsLocation() + File.separator + Driver.zipFile);
+					if (!Driver.updateTime) {
+						// I do this because it is a large file. There is a chance it can get corrupted
+						// during a download.
+						// This checks if that did happen, and if so, redownloads it.
+						System.out.println(" Verifying file integrity.");
+						File modpack = new File(q + Driver.getDownloadsLocation() + q + Driver.zipFile);
 						try {
 							MessageDigest md5Digest = MessageDigest.getInstance("MD5");
 							ArrayList<String> checksum = new ArrayList<>();
@@ -73,65 +76,59 @@ public class Downloader {
 							modpackSum = actualSum.toString().trim();
 							calculatedSum = getFileChecksum(md5Digest, modpack);
 						} catch (NoSuchAlgorithmException e) {
-
+							GUI.errors.setText("Blastoise");
 							// This should never happen, otherwise you're screwed.
 						}
 						checksPassed = equalChecksums(modpackSum, calculatedSum);
 					}
-					if (GUI.updateOnly) {
+					if (Driver.updateTime) {
 						checksPassed = true;
-						// It just bypasses the checksum for now. I'm getting tired of this for the day,
-						// later, I'll rework it so the
-						// Update zip goes through this, but for now it straight up bypasses it.
+						// Compared to the main pack, the update is a small file. Not really much of a
+						// need to verify its integrity.
+
 					}
 
 					if (checksPassed) {
-						System.out.println("Success!");
+						System.out.println(" Success!");
 						String s = "Would you like the installer to automagically extract and install the pack?";
 						int n = JOptionPane.showConfirmDialog(new JFrame(), s, "Choices", JOptionPane.YES_NO_OPTION);
-
 						if (n == JOptionPane.YES_OPTION) {
-							System.out.println(" This will take about a minute.");
-							System.out.println("There will likely be noticeable system lag during extraction.");
-							System.out.println("This is due to Java being dumb.");
+
 							System.out.println(" Beginning Extraction now...\n");
 							if (GUI.packDownloadOnly == false) {
-								if (GUI.updateOnly == true) {
-									Extractor.Extractor(File.separator + Driver.getDownloadsLocation() + File.separator
-											+ Updater.currentVersion + ".zip", Updater.currentVersion);
+								if (Driver.updateTime) {
+									Extractor.Extract(
+											q + Driver.getDownloadsLocation() + q + Updater.currentVersion + ".zip",
+											Updater.currentVersion);
 								}
-								if (GUI.updateOnly == false) {
-									Extractor.Extractor(File.separator + Driver.getDownloadsLocation() + File.separator
-											+ Driver.zipFile, "Modpack");
+								if (!Driver.updateTime) {
+									System.out.println(" This will take about a minute.");
+									System.out.println(" There may be noticeable system lag during extraction.");
+									System.out.println(" This is due to Java being dumb.");
+									Extractor.Extract(q + Driver.getDownloadsLocation() + q + Driver.zipFile,
+											"Modpack");
 								}
 							}
 						}
 						if (n == JOptionPane.NO_OPTION) {
-							String t = "Are you sure you want to do a manual install?";
-							int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Confirm",
-									JOptionPane.YES_NO_OPTION);
-							if (o == JOptionPane.YES_OPTION) {
-								String message = "Not my fault if things don't work then.";
-								JOptionPane.showMessageDialog(new JFrame(), message, "Info.",
-										JOptionPane.INFORMATION_MESSAGE);
-							}
-							if (o == JOptionPane.NO_OPTION) {
+							String t = "Assuming manual install or MultiMC, Exiting...";
+							JOptionPane.showMessageDialog(new JFrame(), t, "Confirm", JOptionPane.INFORMATION_MESSAGE);
+							System.exit(0);
 
-							}
 						}
 					}
 					if (!checksPassed) {
 						// Redownload the pack.
-						System.out.println("The file failed to validate. Redownloading");
+						System.out.println(" The file failed to validate. Redownloading");
 						System.out.println(
 								"If this happens repeatedly, please tell me. This means I forgot to update the checksum");
 						URL pack = new URL("https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
-						Downloader(pack);
+						Download(pack, zipName);
 					}
 				} catch (FileNotFoundException e) {
-					// Handle this.
+					GUI.errors.setText("Roserade");
 				} catch (IOException e) {
-					// Handle this too
+					GUI.errors.setText("Jumpluff");
 				}
 			}
 		};

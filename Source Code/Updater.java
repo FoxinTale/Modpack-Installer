@@ -8,14 +8,22 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class Updater {
 
 	static ArrayList<String> versions = new ArrayList<>();
+	static ArrayList<String> removal = new ArrayList<>();
 	static ArrayList<String> version;
-	static String baseLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Updates/";
-	static File versionFile = new File(Driver.getMinecraftInstallLocation() + "Modpack_Version.txt");
+
+	static File versionFile = new File(Driver.getMinecraftInstallLocation() + File.separator + "Modpack_Version.txt");
 	static String installedVersion = "";
 	static String currentVersion = "";
+
+	static String removalLink = "https://sites.google.com/view/aubreys-modpack-info/home/to-delete";
+	static String baseLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Updates/";
+	static String q = File.separator;
 
 	public static void updater() {
 
@@ -37,10 +45,9 @@ public class Updater {
 			System.out.println("Seems as if a new version has been released.");
 			System.out.println("Downloading update file");
 			try {
-				Downloader.Downloader(new URL(baseLink + currentVersion + ".zip"));
+				Downloader.Download(new URL(baseLink + currentVersion + ".zip"), currentVersion + ".zip");
 			} catch (MalformedURLException e) {
-				
-				e.printStackTrace();
+				GUI.errors.setText("Bastiodon");
 			}
 		}
 	}
@@ -54,7 +61,7 @@ public class Updater {
 			writer.close();
 			versionFile.setReadOnly();
 		} catch (IOException e) {
-			e.printStackTrace();
+			GUI.errors.setText("Carnivine");
 		}
 	}
 
@@ -70,7 +77,7 @@ public class Updater {
 			installedVersion = versionsContent.get(0);
 			versionCompare();
 		} catch (IOException e) {
-
+			GUI.errors.setText("Clefable");
 		}
 	}
 
@@ -85,9 +92,30 @@ public class Updater {
 		return versionsMatch;
 	}
 
+	public static void removeStuff() {
+		File modsDirectory = new File(Driver.getMinecraftInstall() + q + "mods");
+		File begone;
+		if (removal.contains("None")) {
+			// Do nothing. Literally.
+		}
+		for (int i = removal.size(); i > 0; i--) {
+			begone = new File(modsDirectory.toString() + q + removal.get(i - 1));
+			begone.delete();
+		}
+	}
+
 	public static void installUpdate() {
-		// This needs a lot of work, but I've no idea what exactly to do.
-		// File updateFolder = new File(Driver.getDownloadsLocation() +
-		// UpdateGUI.getFolderLoc());
+		removeStuff();
+		File modsDirectory = new File(Driver.getMinecraftInstall() + q + "mods");
+		File configDirectory = new File(Driver.getMinecraftInstall() + q + "config");
+
+		File updateMods = new File(Driver.getDownloadsLocation() + q + currentVersion + q + "mods");
+		File updateConfig = new File(Driver.getDownloadsLocation() + q + currentVersion + q + "config");
+
+		Install.copyFiles(updateMods, modsDirectory);
+		Install.copyFiles(updateConfig, configDirectory);
+
+		String updateMessage = "Update installed!";
+		JOptionPane.showMessageDialog(new JFrame(), updateMessage, "Update done.", JOptionPane.INFORMATION_MESSAGE);
 	}
 }

@@ -1,32 +1,30 @@
- 
+
 import java.io.File;
 import java.io.PrintStream;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+/*
+ * This program is free software. It comes without any warranty, to the extent
+ * permitted by applicable law. You can redistribute it and/or modify it under
+ * the terms of the Do What The Fuck You Want To Public License, Version 2, as
+ * published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
+ *
+ * You're welcome to improve upon it. If you do, please let me know, and I'll
+ * implement your fix / improvement, and give you credit for it. I know my code
+ * isn't the best, I'm only a beginner.
+ * 
+ * For the try/catch blocks, it outputs a Pokemon name for a bit of humor. If
+ * someone tells me it said a Pokemon, I can look at where it is supposed to be
+ * outputting that, and understand what's going wrong.
+ *
+ */
 
 public class Driver {
 	static String zipFile = "Modpack.zip";
 	static int installProgress = 0;
 	static int selectedOption = 0;
-	/*
-	 * This program is free software. It comes without any warranty, to the extent
-	 * permitted by applicable law. You can redistribute it and/or modify it under
-	 * the terms of the Do What The Fuck You Want To Public License, Version 2, as
-	 * published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
-	 *
-	 * You're welcome to improve upon it. If you do, please let me know, and I'll
-	 * implement your fix / improvement, and give you credit for it. I know my code
-	 * isn't the best, I'm only a beginner.
-	 * 
-	 * Despite the GUI saying "Copyright" That's more my way of saying that I made
-	 * it. And for the try/catch, it outputs a Pokemon name for a bit of humor. If
-	 * someone tells me it said a Pokemon, I can look at where it is supposed to be
-	 * outputting that, and understand what's going wrong.
-	 *
-	 */
+	static Boolean updateTime = false;
 
 	private static File minecraftInstallLocation = null;
 	private static String minecraftInstall = null;
@@ -80,16 +78,12 @@ public class Driver {
 //This the main. This starts everything.
 
 	public static void main(String[] args) {
-
 		// Creating the custom output stream.
 		PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
 		standardOut = System.out;
 		System.setOut(printStream);
 		System.setErr(printStream);
-
 		Boolean validOS = false;
-		
-		
 		String OS = System.getProperty("os.name"); // This gets the name of the current operating system.
 		if (OS.equals("Windows 10") || OS.equals("Windows 8.1") || OS.equals("Windows 7")) {
 			// For modern Windows systems
@@ -97,11 +91,13 @@ public class Driver {
 			osDetect.isWindows();
 			Install.checkForMinecraftandForge();
 			GUI.launchGUI();
+
 		}
 		if (OS.equals("Windows Vista") || OS.equals("Windows XP")) {
 			String message = "Why are you still using this computer?";
 			JOptionPane.showMessageDialog(new JFrame(), message, "Outdated OS", JOptionPane.ERROR_MESSAGE);
 			// For older Windows systems. Which, frankly, why are you still using?
+			GUI.errors.setText("Old Windows being used");
 			System.exit(0);
 		}
 
@@ -119,17 +115,17 @@ public class Driver {
 			osDetect.isMac();
 			Install.checkForMinecraftandForge();
 			GUI.launchGUI();
-			
 		}
 
 		if (validOS == false) {
 			// If you see this, well... why are you trying to run this on an unsupported OS?
-			// Except Solaris..Which is really uncommon. If you're running that, I'd like to know why.
+			// Except Solaris..Which is really uncommon. If you're running that, I'd like to
+			// know why.
 			String message = "Your OS is not supported by this installer.";
 			JOptionPane.showMessageDialog(new JFrame(), message, "Unknown Operating System", JOptionPane.ERROR_MESSAGE);
+			GUI.errors.setText("Operating System not supported");
 			System.exit(0);
 		}
-
 	}
 
 	// This explains itself. I decided on a function because otherwise this would
