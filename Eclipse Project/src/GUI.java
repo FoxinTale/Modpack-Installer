@@ -54,6 +54,8 @@ public class GUI {
 		JButton button = new JButton("Download");
 		JLabel errorsLabel = new JLabel("Errors: ");
 		ButtonGroup options = new ButtonGroup();
+		
+		JLabel installerVersion = new JLabel("Version 2.0.1");
 
 		consoleOutput.setLineWrap(true);
 
@@ -173,10 +175,7 @@ public class GUI {
 				}
 
 				if (Driver.installProgress == 1 && Driver.selectedOption == 3) {
-
-					// Quilva
 					Updater.updater();
-
 				}
 				if (Driver.installProgress == 1 && Driver.selectedOption == 4) {
 					installOptions.sliderGUI();
@@ -187,11 +186,11 @@ public class GUI {
 				}
 			}
 		};
-
+		
 		try {
-			pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Equestria.ttf")).deriveFont(16f);
+			pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")).deriveFont(16f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Equestria.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")));
 		} catch (IOException e) {
 
 		} catch (FontFormatException e) {
@@ -207,13 +206,14 @@ public class GUI {
 		errors.setFont(pretty);
 		errorsLabel.setFont(pretty);
 		button.setFont(pretty);
+		installerVersion.setFont(pretty);
 
 		frame.setTitle("Modpack Installer by Aubrey");
-
-		button.setBounds(325, 475, 100, 25);// x axis, y axis, width, height
+		
+		button.setBounds(325, 450, 100, 25);// x axis, y axis, width, height
 		scroll.setBounds(25, 25, 400, 200);
-		errors.setBounds(75, 430, 350, 20);
-		errorsLabel.setBounds(25, 430, 50, 20);
+		errors.setBounds(75, 405, 350, 20);
+		errorsLabel.setBounds(25, 405, 50, 20);
 
 		modpackOne.setBounds(120, 255, 200, 15);
 		modpackPanel.setBounds(115, 250, 250, 25);
@@ -226,7 +226,9 @@ public class GUI {
 
 		updateOption.setBounds(120, 360, 200, 15);
 		updatePanel.setBounds(115, 355, 250, 25);
-		progress.setBounds(25, 475, 275, 25);
+		
+		progress.setBounds(25, 450, 275, 25); // X, Y, Width, Height
+		installerVersion.setBounds(190, 485, 100, 20);
 
 		// Radio Button Colour
 		modpackOne.setBackground(rbc);
@@ -251,7 +253,7 @@ public class GUI {
 		extractOption.addActionListener(radioButtonEvent);
 		otherOptions.addActionListener(radioButtonEvent);
 		button.addActionListener(buttonEvent);
-
+		
 		ImageIcon background = new ImageIcon("resources" + q + "Background.png");
 		Image bg = background.getImage();
 		Image bgImg = bg.getScaledInstance(480, 550, Image.SCALE_SMOOTH);
@@ -273,9 +275,13 @@ public class GUI {
 
 		frame.add(modpackPanel);
 		frame.add(downloadPanel);
+		
 		frame.add(optionsPanel);
 		frame.add(updatePanel);
+		
 		frame.add(backgroundImage);
+		frame.add(installerVersion);
+		
 		frame.setSize(480, 550);
 		frame.setResizable(false);
 

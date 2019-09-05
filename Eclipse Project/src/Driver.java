@@ -90,8 +90,7 @@ public class Driver {
 			validOS = true;
 			osDetect.isWindows();
 			Install.checkForMinecraftandForge();
-			GUI.launchGUI();
-
+			folderCheck();
 		}
 		if (OS.equals("Windows Vista") || OS.equals("Windows XP")) {
 			String message = "Why are you still using this computer?";
@@ -106,7 +105,7 @@ public class Driver {
 			validOS = true;
 			osDetect.isLinux();
 			Install.checkForMinecraftandForge();
-			GUI.launchGUI();
+			folderCheck();
 		}
 
 		if (OS.equals("Mac")) {
@@ -114,7 +113,7 @@ public class Driver {
 			validOS = true;
 			osDetect.isMac();
 			Install.checkForMinecraftandForge();
-			GUI.launchGUI();
+			folderCheck();
 		}
 
 		if (validOS == false) {
@@ -133,6 +132,16 @@ public class Driver {
 	public static void folderCreate(File folder) {
 		if (!folder.exists()) {
 			folder.mkdir();
+		}
+	}
+	public static void folderCheck() {
+		if(installOptions.resourceCheck()) {
+			GUI.launchGUI();
+		}
+		if(!installOptions.resourceCheck()) {
+			String message = "Please put this back in the folder it was originally in.";
+			JOptionPane.showMessageDialog(new JFrame(), message, "Resources not found.", JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
 		}
 	}
 }

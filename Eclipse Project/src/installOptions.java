@@ -333,9 +333,9 @@ public class installOptions extends Install {
 		};
 
 		try {
-			pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Equestria.ttf")).deriveFont(16f);
+			pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")).deriveFont(16f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Equestria.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")));
 		} catch (IOException e) {
 
 		} catch (FontFormatException e) {
@@ -449,5 +449,15 @@ public class installOptions extends Install {
 		} catch (IOException e) {
 			GUI.errors.setText("Lapras");
 		}
+	}
+
+	public static Boolean resourceCheck() {
+		String home = System.getProperty("user.dir");
+		File libsDir = new File(home + q + "Modpack-Installer_lib");
+		File resourceDir = new File(home + q + "resources");
+		if (libsDir.exists() && resourceDir.exists()) {
+			return true;
+		}
+		return false;
 	}
 }

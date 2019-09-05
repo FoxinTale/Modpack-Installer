@@ -29,6 +29,7 @@ public class Updater {
 
 		websiteReader.siteReader("https://sites.google.com/view/aubreys-modpack-info/home/latest-version", false, 2,
 				versions);
+		websiteReader.siteReader(removalLink, false, 4, removal);
 		String versionPreTrim = (Arrays.toString(versions.toArray()).replace('[', ' ').replace(']', ' '));
 		currentVersion = versionPreTrim.trim();
 
@@ -61,7 +62,7 @@ public class Updater {
 			writer.close();
 			versionFile.setReadOnly();
 		} catch (IOException e) {
-			GUI.errors.setText("Carnivine");
+			// Do nothing.
 		}
 	}
 
