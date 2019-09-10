@@ -12,7 +12,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -51,7 +54,7 @@ public class installOptions extends Install {
 			BufferedReader reader = new BufferedReader(new FileReader(launcherSettings));
 			String s = "";
 			String line = "";
-			StringBuilder content = new StringBuilder();
+			StringBuffer content = new StringBuffer();
 			while ((s = reader.readLine()) != null) {
 				content.append(s);
 				content.trimToSize();
@@ -267,18 +270,21 @@ public class installOptions extends Install {
 		JRadioButton extract = new JRadioButton("Extract.");
 		JRadioButton launcher = new JRadioButton("Set Memory.");
 		JRadioButton ping = new JRadioButton("Ping Server.");
+		JRadioButton downloadUpdate = new JRadioButton("Download Update File.");
 		JButton go = new JButton("Continue");
 		ButtonGroup options = new ButtonGroup();
 
 		options.add(ping);
 		options.add(launcher);
 		options.add(extract);
+		options.add(downloadUpdate);
 
 		Color rbc = new Color(220, 255, 255); // Hex value: dcffff
 
 		JPanel pingPanel = new RoundedPanel(10, rbc);
 		JPanel launcherPanel = new RoundedPanel(10, rbc);
 		JPanel extractPanel = new RoundedPanel(10, rbc);
+		JPanel updatePanel = new RoundedPanel(10, rbc);
 
 		Container c = frame.getContentPane();
 
@@ -287,6 +293,7 @@ public class installOptions extends Install {
 		ping.setBackground(rbc);
 		launcher.setBackground(rbc);
 		extract.setBackground(rbc);
+		downloadUpdate.setBackground(rbc);
 
 		ActionListener radioButtonEvent = new ActionListener() {
 
@@ -298,19 +305,30 @@ public class installOptions extends Install {
 					extract.setEnabled(false);
 					launcher.setEnabled(false);
 					ping.setEnabled(false);
+					downloadUpdate.setEnabled(false);
 					selectedOption = 1;
 				}
 				if (selection.equals("Set Memory.")) {
 					extract.setEnabled(false);
 					launcher.setEnabled(false);
 					ping.setEnabled(false);
+					downloadUpdate.setEnabled(false);
 					selectedOption = 2;
 				}
 				if (selection.equals("Ping Server.")) {
 					extract.setEnabled(false);
 					launcher.setEnabled(false);
 					ping.setEnabled(false);
+					downloadUpdate.setEnabled(false);
 					selectedOption = 3;
+				}
+				if (selection.equals("Download Update File.")) {
+					extract.setEnabled(false);
+					launcher.setEnabled(false);
+					ping.setEnabled(false);
+					downloadUpdate.setEnabled(false);
+					selectedOption = 4;
+
 				}
 			}
 		};
@@ -329,6 +347,21 @@ public class installOptions extends Install {
 					System.out.println(" Pinging Server...");
 					serverPing();
 				}
+				if (selectedOption == 4) {
+					Driver.updateTime = true;
+					ArrayList<String> versions = new ArrayList<>();
+					String baseLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Updates/";
+					websiteReader.siteReader("https://sites.google.com/view/aubreys-modpack-info/home/latest-version",
+							false, 2, versions);
+					String versionPreTrim = (Arrays.toString(versions.toArray()).replace('[', ' ').replace(']', ' '));
+					String currentVersion = versionPreTrim.trim();
+
+					try {
+						Downloader.Download(new URL(baseLink + currentVersion + ".zip"), currentVersion + ".zip");
+					} catch (MalformedURLException u) {
+						GUI.errors.setText("Bastiodon");
+					}
+				}
 			}
 		};
 
@@ -345,6 +378,7 @@ public class installOptions extends Install {
 		ping.addActionListener(radioButtonEvent);
 		launcher.addActionListener(radioButtonEvent);
 		extract.addActionListener(radioButtonEvent);
+		downloadUpdate.addActionListener(radioButtonEvent);
 
 		go.addActionListener(buttonEvent);
 
@@ -357,12 +391,16 @@ public class installOptions extends Install {
 		launcher.setBounds(78, 125, 150, 15);
 		launcherPanel.setBounds(73, 120, 175, 25);
 
+		downloadUpdate.setBounds(78, 160, 150, 15);
+		updatePanel.setBounds(73, 155, 175, 25);
+
 		go.setBounds(100, 210, 100, 20);
 
 		ping.setFont(pretty);
 		launcher.setFont(pretty);
 		extract.setFont(pretty);
 		go.setFont(pretty);
+		downloadUpdate.setFont(pretty);
 
 		frame.add(ping);
 		frame.add(pingPanel);
@@ -372,6 +410,9 @@ public class installOptions extends Install {
 
 		frame.add(extract);
 		frame.add(extractPanel);
+
+		frame.add(downloadUpdate);
+		frame.add(updatePanel);
 
 		frame.add(go);
 		frame.setSize(320, 320);
@@ -388,7 +429,7 @@ public class installOptions extends Install {
 		ArrayList<String> modsDirList = new ArrayList<>();
 
 		File modsDir = new File(Driver.getMinecraftInstall() + q + "mods");
-		StringBuilder modName = new StringBuilder();
+		StringBuffer modName = new StringBuffer();
 
 		List<File> files = (List<File>) FileUtils.listFiles(modsDir, null, true);
 

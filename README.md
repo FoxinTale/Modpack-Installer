@@ -12,8 +12,8 @@ on your desktop named "Minecraft stuff" It does this even if the folders are emp
 and moves the extracted files over to the minecraft folder. 
 
 This then completes the installation process. All the user needs to do is verify they have the proper version of forge for 1.7.10 installed.
-The version being 1.7.10 - 10.13.4.1614, and set their Minecraft Launcher to that, and update their allocated RAM to Minecraft, if needed. 
-And that's it! Modpack fully installed.
+The version being 1.7.10 - 10.13.4.1614, and set their Minecraft Launcher to that, and update their allocated RAM to Minecraft, if desired.
+And that's it! Modpack fully installed. 
 
 ## Well, what's this got?
 ##### Oh, this little thing does quite a lot.
@@ -29,6 +29,7 @@ And that's it! Modpack fully installed.
 - An aesthetically pleasing user interface.
 - It also has the ability to download updates for the modpack too!
 - Multiple "failsafes" so it should be hard to break.
+- Over 1700 lines of code!
 
 
 ### Major Update 7-5-2019
@@ -69,15 +70,18 @@ You can redistribute it and/or modify it under the terms of the Do What The Fuck
 - installOptions : 463
 - osDetect : 136
 - RoundedPanel : 56
-- Updater : 121
-- websiteReader : 133
-- Total lines of code : 1751
+- Updater : 122
+- websiteReader : 138
+- Total lines of code : 1754
+
+##### What is the "Other projects" folder?
+This is, as it says. The smaller components that I made on their own to verify that they work on their own, before combining into this. It is how I decided to go about this project. Feel free to look at each one to see how it works.
 
 #### To do list:
 - Optimize the code, if possible.
 - Document the source code.
 - Bug fix as needed.
-- Put sources for the code I gathered from various places around the internet.
+- Possibly put sources for the code I gathered from various places around the internet, if I get bored enough.
 
 
 

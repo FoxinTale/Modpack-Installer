@@ -68,7 +68,7 @@ public class websiteReader {
 			Document doc = Jsoup.connect(siteLink).get();
 			String title = doc.title();
 			Jsoup.parse(title);
-			StringBuilder fullText = new StringBuilder(doc.body().text());
+			StringBuffer fullText = new StringBuffer(doc.body().text());
 
 			int listStart = fullText.indexOf("-----");
 
@@ -76,12 +76,14 @@ public class websiteReader {
 			int listEnd = fullText.indexOf("-----");
 			int length;
 			length = fullText.length();
+
 			fullText.delete(listEnd, length);
+
 			length = fullText.length();
 			char[] data = new char[length];
 			fullText.getChars(0, length, data, 0);
 			String obj;
-			StringBuilder s = new StringBuilder();
+			StringBuffer s = new StringBuffer();
 
 			for (int i = 0; i < data.length; i++) {
 
@@ -97,9 +99,10 @@ public class websiteReader {
 					obj = s.toString();
 					obj = obj.replaceAll("\\s+", "");
 					list.add(obj);
-					s.delete(0, s.length());
+					s.delete(0, s.length() - 1);
 				}
 			}
+
 			if (toPrint == true) {
 				Object[] array = list.toArray();
 				for (int i = 0; i < array.length; i++) {
@@ -128,6 +131,8 @@ public class websiteReader {
 
 		} catch (IOException e) {
 			GUI.errors.setText("Wobbuffet");
+		} catch (ArrayIndexOutOfBoundsException e) {
+
 		}
 	}
 }

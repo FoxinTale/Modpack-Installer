@@ -55,7 +55,7 @@ public class GUI {
 		JLabel errorsLabel = new JLabel("Errors: ");
 		ButtonGroup options = new ButtonGroup();
 		
-		JLabel installerVersion = new JLabel("Version 2.0.1");
+		JLabel installerVersion = new JLabel("Version 2.0.2");
 
 		consoleOutput.setLineWrap(true);
 
@@ -118,7 +118,6 @@ public class GUI {
 						validPack = true;
 					}
 					if (selection.equals("Install.")) {
-
 						modpackOne.setEnabled(false);
 						downloadOption.setEnabled(false);
 						updateOption.setEnabled(false);
