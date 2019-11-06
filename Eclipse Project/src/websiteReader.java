@@ -68,7 +68,7 @@ public class websiteReader {
 			Document doc = Jsoup.connect(siteLink).get();
 			String title = doc.title();
 			Jsoup.parse(title);
-			StringBuffer fullText = new StringBuffer(doc.body().text());
+			StringBuilder fullText = new StringBuilder(doc.body().text());
 
 			int listStart = fullText.indexOf("-----");
 
@@ -83,7 +83,7 @@ public class websiteReader {
 			char[] data = new char[length];
 			fullText.getChars(0, length, data, 0);
 			String obj;
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 
 			for (int i = 0; i < data.length; i++) {
 
@@ -96,6 +96,9 @@ public class websiteReader {
 				if (data[i] == '*') {
 					data[i] = '\n';
 					s.deleteCharAt(s.length() - 1);
+					if (ops == 1) {
+						s.deleteCharAt(0);
+					}
 					obj = s.toString();
 					obj = obj.replaceAll("\\s+", "");
 					list.add(obj);

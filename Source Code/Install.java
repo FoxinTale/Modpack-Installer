@@ -54,7 +54,7 @@ public class Install {
 		if (!Updater.versionFile.exists()) {
 			Updater.versionFile();
 		}
-
+		installOptions.backup();
 		Driver.folderCreate(minecraftFlans);
 		Driver.folderCreate(minecraftConfig);
 		Driver.folderCreate(minecraftMods);
@@ -68,16 +68,17 @@ public class Install {
 		System.out.println(" Verifying install.");
 		if (installOptions.verifyInstall()) {
 			System.out.println(" Install successful.");
-			String t = "Would you like the installer to adjust your Java aruments in the launcher? This will also allow you to configure the amount of ram you allocate to Minecraft.";
-			int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Server Test", JOptionPane.YES_NO_OPTION);
+			String t = "Would you like the installer to adjust your Java arguments in the launcher? This will also allow you to configure the amount of ram you allocate to Minecraft.";
+			int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Java Arguments", JOptionPane.YES_NO_OPTION);
 			if (o == JOptionPane.YES_OPTION) {
-				installOptions.sliderGUI();
+				installOptions.backup();
+				Memory.sliderGUI();
 			}
 			if (o == JOptionPane.NO_OPTION) {
 				installFinalize();
 			}
 		}
-		if(!installOptions.verifyInstall()) {
+		if (!installOptions.verifyInstall()) {
 			GUI.errors.setText("Ehrm...Installer broke");
 		}
 	}
@@ -92,21 +93,26 @@ public class Install {
 			serverPing();
 		}
 		if (o == JOptionPane.NO_OPTION) {
-		 end();
+			resourcePack();
 		}
 	}
 
 	public static void serverPing() {
 		try {
 			Socket server = new Socket();
-			server.connect(new InetSocketAddress("IP ADDRESS", 25525), 10000);
+			server.connect(new InetSocketAddress("24.164.81.166", 25525), 10000);
 			// Not putting my IP address out there for all to see.
 			// If ran as is, it will throw the UnknownHostException below, but if changed to
 			// a proper IP that error should never be thrown.
-			String notification = "The server is up! Get on it and have fun!";
+			String notification = "The server is up, Yay!";
 			JOptionPane.showMessageDialog(new JFrame(), notification, "Server Up!", JOptionPane.INFORMATION_MESSAGE);
 			server.close();
-			end();
+			if (!featuresUsed) {
+				resourcePack();
+			}
+			if (featuresUsed) {
+				installOptions.again();
+			}
 
 		} catch (UnknownHostException h) {
 			// This should never happen.
@@ -117,7 +123,12 @@ public class Install {
 			JOptionPane.showMessageDialog(new JFrame(), notification, "Server Down", JOptionPane.ERROR_MESSAGE);
 			// This is an error that must be caught, as the server sometimes crashes without
 			// my knowing.
-			end();
+			if (!featuresUsed) {
+				resourcePack();
+			}
+			if (featuresUsed) {
+				installOptions.again();
+			}
 		}
 	}
 
@@ -141,8 +152,25 @@ public class Install {
 		}
 	}
 
+	public static void resourcePack() {
+		String t = "While you're at it, would you like to download and install the resource pack? ";
+		int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Resource Pack Install", JOptionPane.YES_NO_OPTION);
+		if (o == JOptionPane.YES_OPTION) {
+			resourcePacks.packGUI();
+		}
+		if (o == JOptionPane.NO_OPTION) {
+			end();
+		}
+	}
+
 	public static void end() {
-		String endMessage = "That's everything! Go have fun.";
+		String endMessage = "Thanks for using the installer! Now, go have fun.";
+		JOptionPane.showMessageDialog(new JFrame(), endMessage, "All Done!", JOptionPane.INFORMATION_MESSAGE);
+		System.exit(0);
+	}
+	
+	public static void resourceEnd(){
+		String endMessage = "Resource pack installed. Now, go have fun!";
 		JOptionPane.showMessageDialog(new JFrame(), endMessage, "All Done!", JOptionPane.INFORMATION_MESSAGE);
 		System.exit(0);
 	}

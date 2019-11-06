@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 public class osDetect {
 
 	static String username = System.getProperty("user.name");
+	static File loc;
 
 	public static void isWindows() {
 		File downloads = new File("C:\\Users\\" + username + "\\Downloads");
@@ -18,17 +19,20 @@ public class osDetect {
 		if (!downloads.exists()) {
 			String message = "Unable to locate downloads folder.";
 			JOptionPane.showMessageDialog(new JFrame(), message, "Downloads not Found.", JOptionPane.ERROR_MESSAGE);
+
 			Driver.setDownloadsLocation(
 					findFolder(downloads.getPath(), "Where is the pack going to go?", "Pack home search cancelled"));
 		}
 		if (minecraftDefaultPath.exists()) {
 			Driver.setMinecraftInstall(minecraftDefaultPath.getAbsolutePath());
+			Driver.setMinecraftInstallLocation(minecraftDefaultPath);
 		}
 		if (!minecraftDefaultPath.exists()) {
 			String message = "Unable to locate Minecraft install directory. Click OK to manually locate it";
 			JOptionPane.showMessageDialog(new JFrame(), message, "Minecraft Not Found.", JOptionPane.ERROR_MESSAGE);
 			Driver.setMinecraftInstall(findFolder(minecraftDefaultPath.getPath(),
 					"Cannot continue without Minecraft install!", "Install Search Cancelled"));
+			Driver.setMinecraftInstallLocation(loc);
 		}
 
 		if (desktop.exists()) {
@@ -60,12 +64,14 @@ public class osDetect {
 		}
 		if (minecraftDefaultPath.exists()) {
 			Driver.setMinecraftInstall(minecraftDefaultPath.getAbsolutePath());
+			Driver.setMinecraftInstallLocation(minecraftDefaultPath);
 		}
 		if (!minecraftDefaultPath.exists()) {
 			String message = "Unable to locate Minecraft install directory. Click OK to manually locate it";
 			JOptionPane.showMessageDialog(new JFrame(), message, "Minecraft Not Found.", JOptionPane.ERROR_MESSAGE);
 			Driver.setMinecraftInstall(findFolder(minecraftDefaultPath.getPath(),
 					"Cannot continue without Minecraft install!", "Install Search Cancelled"));
+			Driver.setMinecraftInstallLocation(loc);
 		}
 
 		if (desktop.exists()) {
@@ -97,12 +103,14 @@ public class osDetect {
 		}
 		if (minecraftDefaultPath.exists()) {
 			Driver.setMinecraftInstall(minecraftDefaultPath.getAbsolutePath());
+			Driver.setMinecraftInstallLocation(minecraftDefaultPath);
 		}
 		if (!minecraftDefaultPath.exists()) {
 			String message = "Unable to locate Minecraft install directory. Click OK to manually locate it";
 			JOptionPane.showMessageDialog(new JFrame(), message, "Minecraft Not Found.", JOptionPane.ERROR_MESSAGE);
 			Driver.setMinecraftInstall(findFolder(minecraftDefaultPath.getPath(),
 					"Cannot continue without Minecraft install!", "Install Search Cancelled"));
+			Driver.setMinecraftInstallLocation(loc);
 
 		}
 		if (desktop.exists()) {
@@ -125,11 +133,12 @@ public class osDetect {
 		whereFolder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int op = whereFolder.showOpenDialog(null);
 		if (op == JFileChooser.APPROVE_OPTION) {
+			loc = whereFolder.getSelectedFile();
 			folder = whereFolder.getSelectedFile().getPath();
 		} else {
 			JOptionPane.showMessageDialog(new JFrame(), message, title, JOptionPane.INFORMATION_MESSAGE);
 			findFolder(folder, message, title);
-			count =+ 1;
+			count = +1;
 		}
 		return folder;
 	}

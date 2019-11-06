@@ -21,10 +21,12 @@ import javax.swing.JOptionPane;
  */
 
 public class Driver {
+
 	static String zipFile = "Modpack.zip";
 	static int installProgress = 0;
-	static int selectedOption = 0;
+	static int selectedOption;
 	static Boolean updateTime = false;
+	static Boolean musicPack = false;
 
 	private static File minecraftInstallLocation = null;
 	private static String minecraftInstall = null;
@@ -73,6 +75,14 @@ public class Driver {
 		Driver.minecraftDefaultInstall = minecraftDefaultInstall;
 	}
 
+	public static int getSelectedOption() {
+		return selectedOption;
+	}
+
+	public static void setSelectedOption(int selectedOption) {
+		Driver.selectedOption = selectedOption;
+	}
+	
 	@SuppressWarnings("unused")
 	private static PrintStream standardOut; // This sets the outputs.
 //This the main. This starts everything.
@@ -134,6 +144,7 @@ public class Driver {
 			folder.mkdir();
 		}
 	}
+	
 	public static void folderCheck() {
 		if(installOptions.resourceCheck()) {
 			GUI.launchGUI();

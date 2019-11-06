@@ -46,7 +46,7 @@ public class Updater {
 			System.out.println("Seems as if a new version has been released.");
 			System.out.println("Downloading update file");
 			try {
-				Downloader.Download(new URL(baseLink + currentVersion + ".zip"), currentVersion + ".zip");
+				Downloader.Download(new URL(baseLink + currentVersion + ".zip"), currentVersion + ".zip", 1);
 			} catch (MalformedURLException e) {
 				GUI.errors.setText("Bastiodon");
 			}
@@ -118,5 +118,6 @@ public class Updater {
 
 		String updateMessage = "Update installed!";
 		JOptionPane.showMessageDialog(new JFrame(), updateMessage, "Update done.", JOptionPane.INFORMATION_MESSAGE);
+		Install.end();
 	}
 }
