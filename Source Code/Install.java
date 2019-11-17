@@ -65,21 +65,26 @@ public class Install {
 		copyFiles(modpackConfig, minecraftConfig);
 		copyFiles(modpackFlans, minecraftFlans);
 
+		installOptions.verifyInstall();
 		System.out.println(" Verifying install.");
-		if (installOptions.verifyInstall()) {
-			System.out.println(" Install successful.");
-			String t = "Would you like the installer to adjust your Java arguments in the launcher? This will also allow you to configure the amount of ram you allocate to Minecraft.";
-			int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Java Arguments", JOptionPane.YES_NO_OPTION);
-			if (o == JOptionPane.YES_OPTION) {
-				installOptions.backup();
-				Memory.sliderGUI();
-			}
-			if (o == JOptionPane.NO_OPTION) {
-				installFinalize();
-			}
+		if (installOptions.packGood) {
+			
+			// String t = "Would you like the installer to adjust your Java arguments in the
+			// launcher? This will also allow you to configure the amount of ram you
+			// allocate to Minecraft.";
+			// int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Java Arguments",
+			// JOptionPane.YES_NO_OPTION);
+			// if (o == JOptionPane.YES_OPTION) {
+			// installOptions.backup();
+			// Memory.sliderGUI();
+			// }
+			// if (o == JOptionPane.NO_OPTION) {
+			installFinalize();
+			// }
 		}
-		if (!installOptions.verifyInstall()) {
+		if (!installOptions.packGood) {
 			GUI.errors.setText("Ehrm...Installer broke");
+			installOptions.verifyInstall();
 		}
 	}
 
@@ -100,7 +105,7 @@ public class Install {
 	public static void serverPing() {
 		try {
 			Socket server = new Socket();
-			server.connect(new InetSocketAddress("24.164.81.166", 25525), 10000);
+			server.connect(new InetSocketAddress("IP ADDRESS", 25525), 10000);
 			// Not putting my IP address out there for all to see.
 			// If ran as is, it will throw the UnknownHostException below, but if changed to
 			// a proper IP that error should never be thrown.
@@ -165,12 +170,6 @@ public class Install {
 
 	public static void end() {
 		String endMessage = "Thanks for using the installer! Now, go have fun.";
-		JOptionPane.showMessageDialog(new JFrame(), endMessage, "All Done!", JOptionPane.INFORMATION_MESSAGE);
-		System.exit(0);
-	}
-	
-	public static void resourceEnd(){
-		String endMessage = "Resource pack installed. Now, go have fun!";
 		JOptionPane.showMessageDialog(new JFrame(), endMessage, "All Done!", JOptionPane.INFORMATION_MESSAGE);
 		System.exit(0);
 	}

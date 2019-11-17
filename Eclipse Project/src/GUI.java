@@ -56,7 +56,7 @@ public class GUI {
 		JLabel errorsLabel = new JLabel("Errors: ");
 		ButtonGroup options = new ButtonGroup();
 
-		JLabel installerVersion = new JLabel("Version 3.0.0");
+		JLabel installerVersion = new JLabel("Version 3.1.0");
 
 		consoleOutput.setLineWrap(true);
 
@@ -127,6 +127,7 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				int op = Driver.getSelectedOption();
 				if (op == 1) {
+					///*
 					System.out.println(" Downloading modpack. Please wait.");
 					modpackOne.setEnabled(false);
 					downloadOption.setEnabled(false);
@@ -138,12 +139,15 @@ public class GUI {
 						URL modpackOneLink = new URL(
 								"https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
 						Downloader.Download(modpackOneLink, "Modpack.zip", 0);
+						button.setEnabled(false);
 					} catch (MalformedURLException f) {
 						errors.setText("Fuck you Java.");
 						System.out.println("Shaymin");
 					}
-					
+					//*/
 					// installOptions.verifyInstall();
+					// System.out.println(" Verifying...Hopefully.");
+					// Install.install();
 				}
 
 				if (op == 2) {

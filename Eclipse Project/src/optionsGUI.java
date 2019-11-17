@@ -16,6 +16,7 @@ import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -30,6 +31,9 @@ public class optionsGUI extends installOptions {
 		JRadioButton restoreSettings = new JRadioButton("Restore Settings.");
 		JButton go = new JButton("Continue");
 		ButtonGroup options = new ButtonGroup();
+		
+		JLabel info1 = new JLabel("There was something here.");
+		JLabel info2 = new JLabel("But it is really broken.");
 
 		options.add(ping);
 		options.add(launcher);
@@ -162,14 +166,14 @@ public class optionsGUI extends installOptions {
 		pingPanel.setBounds(73, 65, 175, 25);
 		ping.setBounds(78, 70, 150, 15);
 
-		launcherPanel.setBounds(73, 100, 175, 25);
-		launcher.setBounds(78, 105, 150, 15);
+		// launcherPanel.setBounds(73, 100, 175, 25);
+		info1.setBounds(78, 105, 200, 15); // Launcher (Memory Set) 
 
 		updatePanel.setBounds(73, 135, 175, 25);
 		downloadUpdate.setBounds(78, 140, 150, 15);
 
-		restorePanel.setBounds(73, 170, 175, 25);
-		restoreSettings.setBounds(78, 175, 150, 15);
+		// restorePanel.setBounds(73, 170, 175, 25);
+		info2.setBounds(78, 175, 200, 15); // Restore settings, Width 150.
 
 		go.setBounds(100, 220, 100, 20);
 
@@ -179,12 +183,14 @@ public class optionsGUI extends installOptions {
 		go.setFont(pretty);
 		downloadUpdate.setFont(pretty);
 		restoreSettings.setFont(pretty);
+		info1.setFont(pretty);
+		info2.setFont(pretty);
 
 		frame.add(ping);
 		frame.add(pingPanel);
 
-		frame.add(launcher);
-		frame.add(launcherPanel);
+		// frame.add(launcher);
+		// frame.add(launcherPanel);
 
 		// frame.add(extract);
 		// frame.add(extractPanel);
@@ -192,8 +198,11 @@ public class optionsGUI extends installOptions {
 		frame.add(downloadUpdate);
 		frame.add(updatePanel);
 
-		frame.add(restoreSettings);
-		frame.add(restorePanel);
+		// frame.add(restoreSettings);
+		// frame.add(restorePanel);
+		
+		frame.add(info1);
+		frame.add(info2);
 
 		frame.add(go);
 		frame.setSize(320, 320);

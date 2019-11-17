@@ -41,17 +41,17 @@ public class assetCredits extends resourcePacks {
 		JHyperlink packFiveC = new JHyperlink("Check it out here.",
 				"https://www.planetminecraft.com/texture_pack/flutterstorms-ponycraft/");
 
-		JLabel packSixA = new JLabel(" Pack #6");
-		JLabel packSixB = new JLabel(" Created by:  [creator]");
-		JHyperlink packSixC = new JHyperlink("Check it out here.", "");
+		JLabel packSixA = new JLabel(" Pencil Pack");
+		JLabel packSixB = new JLabel(" Created by:  jonoww");
+		JHyperlink packSixC = new JHyperlink("Check it out here.", "https://www.planetminecraft.com/texture_pack/pencil-pack-hand-drawn/");
 
-		JLabel packSevenA = new JLabel(" Pack #7");
-		JLabel packSevenB = new JLabel(" Created by:  [creator]");
-		JHyperlink packSevenC = new JHyperlink("Check it out here.", "");
+		JLabel packSevenA = new JLabel(" Rainbow Animated");
+		JLabel packSevenB = new JLabel(" Created by:  Blazik3n");
+		JHyperlink packSevenC = new JHyperlink("Check it out here.", "https://www.planetminecraft.com/texture_pack/animated-rainbow-1-14-pvp-pack-64x/");
 
-		JLabel packEightA = new JLabel(" Pack #8");
-		JLabel packEightB = new JLabel(" Created by:  [creator]");
-		JHyperlink packEightC = new JHyperlink("Check it out here.", "");
+		JLabel packEightA = new JLabel(" Nellik's GUIs");
+		JLabel packEightB = new JLabel(" Created by:  ScottKillen");
+		JHyperlink packEightC = new JHyperlink("Check it out here.", "https://www.curseforge.com/minecraft/texture-packs/nelliks-highdef-guis");
 
 		Color rbc = new Color(220, 255, 255); // Hex value: dcffff
 		JPanel packOnePanel = new RoundedPanel(10, rbc);

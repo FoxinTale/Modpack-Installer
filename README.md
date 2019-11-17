@@ -55,6 +55,10 @@ Added a feature that automatically backs up the launcher settings, in case somet
 
 Rearranged the main options. Split the downloader and file verification. Added contact information for bug reports. Added ability to select between the multiple resource packs, and also included a credits window that pops up while the pack is downloading. Oh, and over 1,000 lines of additional code. Redid how the main options were chosen. And, finally..fixed a few grammatical errors.
 
+### Minor update 11-17-2019
+Removed the usage of the memory adjuster, as it seems to not work anymore. It is still there, but unused while I fix it.
+Redid the modpack installation verification. 
+
 #### What is the WTFPL?
 This program is free software. It comes without any warranty, to the extent permitted by applicable law. 
 You can redistribute it and/or modify it under the terms of the Do What The Fuck You Want To Public License, Version 2, as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.

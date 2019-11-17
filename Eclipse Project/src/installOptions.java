@@ -5,12 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -24,6 +22,7 @@ public class installOptions extends Install {
 	static int ramSizeGb;
 	static Font pretty;
 	static String q = File.separator;
+	static Boolean packGood = false;
 
 	public static void launcherSettings() {
 		File launcherSettings = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
@@ -80,60 +79,45 @@ public class installOptions extends Install {
 		}
 	}
 
-	public static Boolean verifyInstall() {
-		String fullLink = "https://sites.google.com/view/aubreys-modpack-info/home/modlist-full";
-		ArrayList<String> fullMods = new ArrayList<>();
-		ArrayList<String> modsDirList = new ArrayList<>();
+	public static void verifyInstall() {
+		String dirName = Driver.getDownloadsLocation() + q + "Modpack" + q + "mods" + q;
+		String dirTwo = Driver.getMinecraftInstallLocation() + q + "mods" + q;
+		ArrayList<String> contents = new ArrayList<>();
+		ArrayList<String> contentsTwo = new ArrayList<>();
 
-		File modsDir = new File(Driver.getMinecraftInstall() + q + "mods");
-		StringBuffer modName = new StringBuffer();
+		Set<Object> listOne = new HashSet<Object>();
+		Set<Object> listTwo = new HashSet<Object>();
 
-		List<File> files = (List<File>) FileUtils.listFiles(modsDir, null, true);
+		try {
+			Files.list(new File(dirName).toPath()).forEach(path -> {
+				contents.add(path.getFileName().toString());
+			});
 
-		websiteReader.siteReader(fullLink, false, 1, fullMods);
+			Files.list(new File(dirTwo).toPath()).forEach(item -> {
+				contentsTwo.add(item.getFileName().toString());
+			});
 
-		String name = "";
+			listOne.addAll(contents);
+			listTwo.addAll(contentsTwo);
 
-		if (files.size() == 0) {
-			// Do nothing, just catching stuff, really.
-		}
-		if (files.size() != 0) {
-			for (int i = files.size() - 1; i > 0; i--) {
-				String folders = modsDir.toString();
-				name = files.get(i).getAbsolutePath();
-				modName.append(name);
-				modName.delete(0, folders.length() + 1);
-				modsDirList.add(modName.toString());
-				modName.delete(0, modName.length());
-				name = "";
+			Set<Object> fileCheck = new HashSet<Object>(listOne);
+			fileCheck.removeAll(listTwo);
+			ArrayList<Object> missing = new ArrayList<Object>(fileCheck);
+
+			if (fileCheck.isEmpty() || fileCheck.size() == 0) {
+				packGood = true;
+				System.out.println(" All's good.");
 			}
-			Collections.sort(modsDirList);
-			Collections.sort(fullMods);
-
-			Set<String> modsSet = new HashSet<String>(modsDirList);
-			Set<String> siteSet = new HashSet<String>(fullMods);
-
-			List<String> modsSorted = modsSet.stream().collect(Collectors.toList());
-			List<String> siteModsSorted = siteSet.stream().collect(Collectors.toList());
-
-			Set<String> mods = new HashSet<>(siteModsSorted);
-			mods.removeAll(modsSorted);
-
-			mods.remove("mcheli");
-			mods.remove("Gammabrightv3.3[MC1.7.10].litemod");
-			ArrayList<String> missing = new ArrayList<>(mods);
-			if (!mods.isEmpty() || mods.size() != 0) {
-				for (int i = mods.size(); i > 0; i--) {
-					System.out.println("Missing mod(s): " + missing.remove(i - 1));
-					// fixMods(q + missing.remove(i - 1));
+			if (!fileCheck.isEmpty()|| fileCheck.size() != 0) {
+				System.out.println(" All's not good.");
+				for (int i = fileCheck.size(); i > 0; i--) {
+					fixMods(q + missing.remove(i - 1));
 				}
+				verifyInstall();
 			}
-
-			if (mods.isEmpty() || mods.size() == 0) {
-				return true;
-			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return false;
 	}
 
 	public static void fixMods(String missingMod) {
@@ -180,7 +164,7 @@ public class installOptions extends Install {
 			FileUtils.forceDelete(launcherProfiles);
 			FileUtils.copyFileToDirectory(oldProfile, Driver.getMinecraftInstallLocation());
 			System.out.println(" Launcher Settings restored.");
-			if(featuresUsed) {
+			if (featuresUsed) {
 				again();
 			}
 		} catch (IOException e) {

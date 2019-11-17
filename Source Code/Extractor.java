@@ -55,7 +55,8 @@ public class Extractor {
 		}
 
 		if (op == 2) {
-			Install.resourceEnd();
+			System.out.println(" Resource pack installed.");
+			Install.end();
 		}
 	}
 }

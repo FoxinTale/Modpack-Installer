@@ -95,13 +95,15 @@ public class Updater {
 
 	public static void removeStuff() {
 		File modsDirectory = new File(Driver.getMinecraftInstall() + q + "mods");
-		File begone;
+		
 		if (removal.contains("None")) {
 			// Do nothing. Literally.
 		}
 		for (int i = removal.size(); i > 0; i--) {
+			File begone;
 			begone = new File(modsDirectory.toString() + q + removal.get(i - 1));
 			begone.delete();
+			
 		}
 	}
 

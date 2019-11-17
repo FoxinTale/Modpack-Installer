@@ -52,6 +52,8 @@ public class resourcePacks {
 		frame.getContentPane().add(scroll);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll.setBorder(new LineBorder(Color.black, 1, true));
+		
+		packInfo.setEditable(false);
 
 		options.add(gameMusic);
 		options.add(musicTex);
