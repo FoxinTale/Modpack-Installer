@@ -24,7 +24,7 @@ public class Driver {
 
 	static String zipFile = "Modpack.zip";
 	static int installProgress = 0;
-	static int selectedOption;
+	static int selectedOption = 0;
 	static Boolean updateTime = false;
 	static Boolean musicPack = false;
 
@@ -106,7 +106,6 @@ public class Driver {
 			String message = "Why are you still using this computer?";
 			JOptionPane.showMessageDialog(new JFrame(), message, "Outdated OS", JOptionPane.ERROR_MESSAGE);
 			// For older Windows systems. Which, frankly, why are you still using?
-			GUI.errors.setText("Old Windows being used");
 			System.exit(0);
 		}
 

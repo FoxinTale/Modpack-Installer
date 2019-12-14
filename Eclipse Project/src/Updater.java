@@ -6,32 +6,20 @@ import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Updater {
-
-	static ArrayList<String> versions = new ArrayList<>();
-	static ArrayList<String> removal = new ArrayList<>();
-	static ArrayList<String> version;
-
+	static ArrayList<String> removal = Json.getToRemove();
 	static File versionFile = new File(Driver.getMinecraftInstallLocation() + File.separator + "Modpack_Version.txt");
 	static String installedVersion = "";
 	static String currentVersion = "";
-
-	static String removalLink = "https://sites.google.com/view/aubreys-modpack-info/home/to-delete";
 	static String baseLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Updates/";
 	static String q = File.separator;
 
 	public static void updater() {
-
-		websiteReader.siteReader("https://sites.google.com/view/aubreys-modpack-info/home/latest-version", false, 2,
-				versions);
-		websiteReader.siteReader(removalLink, false, 4, removal);
-		String versionPreTrim = (Arrays.toString(versions.toArray()).replace('[', ' ').replace(']', ' '));
-		currentVersion = versionPreTrim.trim();
+		currentVersion = Json.getCurrentVersion();
 
 		if (!versionFile.exists()) {
 			versionFile();
@@ -56,8 +44,7 @@ public class Updater {
 	public static void versionFile() {
 		try {
 			PrintWriter writer = new PrintWriter(versionFile);
-			String versionInfo = Arrays.toString(versions.toArray()).replace('[', ' ').replace(']', ' ');
-			writer.println(versionInfo.trim());
+			writer.println(currentVersion);
 			writer.println("Please do not delete this file. this is how the installer knows if there is an update.");
 			writer.close();
 			versionFile.setReadOnly();
@@ -95,15 +82,13 @@ public class Updater {
 
 	public static void removeStuff() {
 		File modsDirectory = new File(Driver.getMinecraftInstall() + q + "mods");
-		
-		if (removal.contains("None")) {
+		if (removal.isEmpty() || removal.size() == 0) {
 			// Do nothing. Literally.
 		}
 		for (int i = removal.size(); i > 0; i--) {
 			File begone;
 			begone = new File(modsDirectory.toString() + q + removal.get(i - 1));
 			begone.delete();
-			
 		}
 	}
 

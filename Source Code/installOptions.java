@@ -29,7 +29,6 @@ public class installOptions extends Install {
 		if (launcherSettings.exists()) {
 			ArrayList<String> launcherData = new ArrayList<>();
 			try {
-
 				BufferedReader reader = new BufferedReader(new FileReader(launcherSettings));
 				String s = "";
 				String line = "";
@@ -80,43 +79,48 @@ public class installOptions extends Install {
 	}
 
 	public static void verifyInstall() {
-		String dirName = Driver.getDownloadsLocation() + q + "Modpack" + q + "mods" + q;
-		String dirTwo = Driver.getMinecraftInstallLocation() + q + "mods" + q;
-		ArrayList<String> contents = new ArrayList<>();
-		ArrayList<String> contentsTwo = new ArrayList<>();
+		String downloadedMods = Driver.getDownloadsLocation() + q + "Modpack" + q + "mods" + q;
+		String minecraftMods = Driver.getMinecraftInstallLocation() + q + "mods" + q;
+		ArrayList<String> modList = Json.getModlist();
+		
+		ArrayList<String> minecraftModsList = new ArrayList<>();
+		ArrayList<String> downloadedModsList = new ArrayList<>();
+		
 
 		Set<Object> listOne = new HashSet<Object>();
 		Set<Object> listTwo = new HashSet<Object>();
 
 		try {
-			Files.list(new File(dirName).toPath()).forEach(path -> {
-				contents.add(path.getFileName().toString());
+			Files.list(new File(downloadedMods).toPath()).forEach(path -> {
+				downloadedModsList.add(path.getFileName().toString());
+			 });
+
+			Files.list(new File(minecraftMods).toPath()).forEach(item -> {
+				minecraftModsList.add(item.getFileName().toString());
 			});
 
-			Files.list(new File(dirTwo).toPath()).forEach(item -> {
-				contentsTwo.add(item.getFileName().toString());
-			});
+			listOne.addAll(minecraftModsList);
+			listTwo.addAll(modList);
 
-			listOne.addAll(contents);
-			listTwo.addAll(contentsTwo);
-
-			Set<Object> fileCheck = new HashSet<Object>(listOne);
-			fileCheck.removeAll(listTwo);
+			Set<Object> fileCheck = new HashSet<Object>(listTwo);
+			fileCheck.removeAll(listOne);
+			fileCheck.remove("gammabright");
+			fileCheck.remove("1.7.10");
+			fileCheck.remove("mcheli");
 			ArrayList<Object> missing = new ArrayList<Object>(fileCheck);
-
+			
 			if (fileCheck.isEmpty() || fileCheck.size() == 0) {
 				packGood = true;
-				System.out.println(" All's good.");
 			}
 			if (!fileCheck.isEmpty()|| fileCheck.size() != 0) {
-				System.out.println(" All's not good.");
 				for (int i = fileCheck.size(); i > 0; i--) {
 					fixMods(q + missing.remove(i - 1));
 				}
 				verifyInstall();
 			}
+		
 		} catch (IOException e) {
-			e.printStackTrace();
+			GUI.errors.setText("Mantyke");
 		}
 	}
 

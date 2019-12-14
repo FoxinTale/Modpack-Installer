@@ -9,8 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
@@ -43,10 +41,10 @@ public class optionsGUI extends installOptions {
 		Color rbc = new Color(220, 255, 255); // Hex value: dcffff
 
 		JPanel pingPanel = new RoundedPanel(10, rbc);
-		JPanel launcherPanel = new RoundedPanel(10, rbc);
+		// JPanel launcherPanel = new RoundedPanel(10, rbc);
 		JPanel extractPanel = new RoundedPanel(10, rbc);
 		JPanel updatePanel = new RoundedPanel(10, rbc);
-		JPanel restorePanel = new RoundedPanel(10, rbc);
+		// JPanel restorePanel = new RoundedPanel(10, rbc);
 
 		Container c = frame.getContentPane();
 
@@ -117,12 +115,8 @@ public class optionsGUI extends installOptions {
 					downloadUpdate.setEnabled(false);
 					restoreSettings.setEnabled(false);
 					Driver.updateTime = true;
-					ArrayList<String> versions = new ArrayList<>();
 					String baseLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Updates/";
-					websiteReader.siteReader("https://sites.google.com/view/aubreys-modpack-info/home/latest-version",
-							false, 2, versions);
-					String versionPreTrim = (Arrays.toString(versions.toArray()).replace('[', ' ').replace(']', ' '));
-					String currentVersion = versionPreTrim.trim();
+					String currentVersion = Json.getCurrentVersion();
 
 					try {
 						Downloader.Download(new URL(baseLink + currentVersion + ".zip"), currentVersion + ".zip", 1);

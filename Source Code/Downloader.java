@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.swing.SwingUtilities;
@@ -54,9 +55,7 @@ public class Downloader {
 					}
 					bout.close();
 					in.close();
-					// zipFile needs to be set somehow. Or, some kind of actual file name needs to
-					// be set.
-					// Currently, the zipFile is null. Obviously, that's going to cause issues.
+			
 					System.out.println(" Download Complete!");
 					GUI.progress.setValue(0);
 					zipFile = new File(q + Driver.getDownloadsLocation() + q + zipName);
@@ -75,7 +74,6 @@ public class Downloader {
 						if(Install.featuresUsed) {
 							installOptions.again();
 						}
-						// Extract and move or copy the update files to the mod directory.
 					}
 
 					if (whatIs == 2) {
@@ -93,5 +91,20 @@ public class Downloader {
 			}
 		};
 		new Thread(updatethread).start();
+	}
+	
+	public static void redownloadModpack() {
+		URL modpackOneLink;
+		try {
+			System.out.println(" Verification failed. Redownloading.");
+			System.out.println(" If this happens more than three times,");
+			System.out.println(" tell me. It means I forgot to update the sums.");
+			modpackOneLink = new URL("https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
+			Download(modpackOneLink, "Modpack.zip", 0);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

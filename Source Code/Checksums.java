@@ -27,9 +27,7 @@ public class Checksums {
 	static File resourcePackDir = new File(Driver.getMinecraftInstall() + q + "resourcepacks");
 
 	public static void checksum(File zipFile, String zipName) {
-		ArrayList<String> checksums = new ArrayList<>();
-		String checkPage = "https://sites.google.com/view/aubreys-modpack-info/home/checksums";
-		websiteReader.siteReader(checkPage, false, 3, checksums);
+		ArrayList<String> checksums = Json.getChecksums();
 
 		try {
 			md5Digest = MessageDigest.getInstance("MD5");
@@ -38,86 +36,82 @@ public class Checksums {
 			System.out.println(" Verifying integrity of file");
 			zipFile = new File(Driver.getDownloadsLocation() + q + zipName);
 			if (zipName.equals("Modpack.zip")) {
-				modpackSum = siteSums(modpackSum, 0);
+				modpackSum = checksums.get(0);
 				cModpackSum = getFileChecksum(md5Digest, zipFile);
 				if (checkSums(modpackSum, cModpackSum)) {
 					System.out.println(" File verification passed!");
 					Extractor.Extract(q + Driver.getDownloadsLocation() + q + Driver.zipFile, "Modpack", 0);
 				}
+				if (!checkSums(modpackSum, cModpackSum)) {
+					Downloader.redownloadModpack();
+				}
 			}
 
 			if (zipName.equals("ACRP-TO.zip")) {
-				resourcesSum = siteSums(resourcesSum, 1);
+				resourcesSum = checksums.get(1);
 				cResourcesSum = getFileChecksum(md5Digest, zipFile);
 				if (checkSums(resourcesSum, cResourcesSum)) {
 					verifyFinish(zipName, "ACRP-TO");
 				}
 				if (!checkSums(resourcesSum, cResourcesSum)) {
-					System.out.println("Verification Failed.");
+					System.out.println(" Verification Failed...Redownloading.");
 				}
 			}
 
 			if (zipName.equals("ACRP-MS.zip")) {
-				resourcesSum = siteSums(resourcesSum, 2);
+				resourcesSum = checksums.get(2);
 				cResourcesSum = getFileChecksum(md5Digest, zipFile);
 				if (checkSums(resourcesSum, cResourcesSum)) {
 					verifyFinish(zipName, "ACRP-MS");
 				}
 				if (!checkSums(resourcesSum, cResourcesSum)) {
-					System.out.println("Verification Failed.");
+					System.out.println(" Verification Failed...Redownloading.");
 				}
 			}
 
 			if (zipName.equals("ACRP-MST.zip")) {
-				resourcesSum = siteSums(resourcesSum, 3);
+				resourcesSum = checksums.get(3);
 				cResourcesSum = getFileChecksum(md5Digest, zipFile);
 				if (checkSums(resourcesSum, cResourcesSum)) {
 					verifyFinish(zipName, "ACRP-MST");
 				}
 				if (!checkSums(resourcesSum, cResourcesSum)) {
-					System.out.println("Verification Failed.");
+					System.out.println(" Verification Failed...Redownloading.");
 				}
 			}
 
 			if (zipName.equals("ACRP-AS.zip")) {
-				resourcesSum = siteSums(resourcesSum, 4);
+				resourcesSum = checksums.get(4);
 				cResourcesSum = getFileChecksum(md5Digest, zipFile);
 				if (checkSums(resourcesSum, cResourcesSum)) {
 					verifyFinish(zipName, "ACRP-AS");
 				}
+				if (!checkSums(resourcesSum, cResourcesSum)) {
+					System.out.println(" Verification Failed...Redownloading.");
+				}
 			}
 
 			if (zipName.equals("ACRP-E.zip")) {
-				resourcesSum = siteSums(resourcesSum, 5);
+				resourcesSum = checksums.get(5);
 				cResourcesSum = getFileChecksum(md5Digest, zipFile);
 				if (checkSums(resourcesSum, cResourcesSum)) {
 					verifyFinish(zipName, "ACRP-E");
 				}
 				if (!checkSums(resourcesSum, cResourcesSum)) {
-					System.out.println("Verification Failed.");
+					System.out.println(" Verification Failed...Redownloading.");
 				}
 			}
 
 		} catch (NoSuchAlgorithmException e) {
 			// This should never, ever happen. Java required this catch.
 			GUI.errors.setText("Blastoise");
+			Errors.init();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			GUI.errors.setText("Glameow");
+			Errors.init();
 		}
 	}
 
-	public static String siteSums(String itemSum, int pos) throws IOException {
-		Object[] sumCharArray = websiteReader.getChecksums().toArray();
-		StringBuilder actualSum = new StringBuilder();
-		actualSum.append(sumCharArray[pos]);
-		if (pos != 0) {
-			actualSum.deleteCharAt(0);
-
-		}
-		itemSum = actualSum.toString().trim();
-		return itemSum;
-	}
 
 	public static String getFileChecksum(MessageDigest digest, File file) throws IOException {
 		FileInputStream fis = new FileInputStream(file); // Get file input stream for reading the file content
@@ -166,8 +160,8 @@ public class Checksums {
 
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			GUI.errors.setText("Luxray");
+			Errors.init();
 		}
 	}
 }

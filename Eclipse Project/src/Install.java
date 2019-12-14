@@ -83,7 +83,7 @@ public class Install {
 			// }
 		}
 		if (!installOptions.packGood) {
-			GUI.errors.setText("Ehrm...Installer broke");
+			GUI.errors.setText("Chikorita");
 			installOptions.verifyInstall();
 		}
 	}
@@ -122,7 +122,7 @@ public class Install {
 		} catch (UnknownHostException h) {
 			// This should never happen.
 			// EVER
-			GUI.errors.setText("Something's fucky.");
+			GUI.errors.setText("Marill");
 		} catch (IOException i) {
 			String notification = "It isn't up, please let me know, and I'll get on it as soon as I can.";
 			JOptionPane.showMessageDialog(new JFrame(), notification, "Server Down", JOptionPane.ERROR_MESSAGE);
@@ -141,17 +141,21 @@ public class Install {
 		String minecraftVersions = Driver.getMinecraftInstall() + q + "versions" + q;
 		File vanillaMinecraft = new File(minecraftVersions + "1.7.10" + q + "1.7.10.jar");
 		File vanillaMinecraftConfig = new File(minecraftVersions + "1.7.10" + q + "1.7.10.json");
+	
 		File moddedMinecraftConfig = new File(
 				minecraftVersions + q + "1.7.10-Forge10.13.4.1614-1.7.10" + q + "1.7.10-Forge10.13.4.1614-1.7.10.json");
 
-		if (!vanillaMinecraft.exists() || !vanillaMinecraftConfig.exists()) {
+		boolean modConfig = moddedMinecraftConfig.exists();
+		boolean vanilla = vanillaMinecraft.exists();
+		boolean vanillaConfig = vanillaMinecraftConfig.exists();
+		if (!vanilla || !vanillaConfig) {
 			String noVanilla = "Please run Vanilla Minecraft 1.7.10 at least once before continuing.";
 			JOptionPane.showMessageDialog(new JFrame(), noVanilla, "Vanilla not Found", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 
 		}
-		if (!moddedMinecraftConfig.exists()) {
-			String noMod = "Please install Forge before continuing!";
+		if (!modConfig) {
+			String noMod = "Please install the latest version of Forge for 1.7.10 before continuing!";
 			JOptionPane.showMessageDialog(new JFrame(), noMod, "Forge not Found", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		}
