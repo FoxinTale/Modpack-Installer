@@ -33,7 +33,8 @@ public class Memory extends installOptions {
 			ramSizeMb = setRamSize(ram);
 			ramSizeGb = ramSizeMb / 1024;
 		} catch (SigarException s) {
-
+			//Usually, this would be a pretty bad error.
+			// Currently, since this whole thing is unused, who cares!
 		}
 
 		JButton next = new JButton("Continue");
@@ -119,14 +120,6 @@ public class Memory extends installOptions {
 		frame.setVisible(true);
 	}
 
-	public static int getRamSizeChosen() {
-		return ramSizeChosen;
-	}
-
-	public static void setRamSizeChosen(int ramSizeChosen) {
-		installOptions.ramSizeChosen = ramSizeChosen;
-	}
-
 	public static int setRamSize(int ram) {
 		int totalRam = 0;
 		if (ram >= 16384) {
@@ -134,41 +127,33 @@ public class Memory extends installOptions {
 			// Higher than 16 Gb. No need to allocate more than this to Minecraft on its
 			// own.
 		}
-		if (ram <= 16384 && ram > 14366) {
+		if (ram <= 16384 && ram > 14366) {	// 16 Gb.
 			totalRam = 16384;
-			// 16 Gb.
 		}
-		if (ram <= 14336 && ram > 12288) {
+		if (ram <= 14336 && ram > 12288) {	// 14 Gb.
 			totalRam = 14366;
-			// 14 Gb.
 		}
-		if (ram <= 12288 && ram > 10240) {
+		if (ram <= 12288 && ram > 10240) {	// 12 Gb.
 			totalRam = 12288;
-			// 12 Gb.
 		}
-		if (ram <= 10240 && ram > 9216) {
+		if (ram <= 10240 && ram > 9216) {	// 10 Gb.
 			totalRam = 10240;
-			// 10 Gb.
 		}
-		if (ram <= 9216 && ram > 8192) {
+		if (ram <= 9216 && ram > 8192) {	// 9 Gb.
 			totalRam = 9216;
-			// 9 Gb.
 		}
-		if (ram <= 8192 && ram > 6144) {
+		if (ram <= 8192 && ram > 6144) {	// 8 Gb.
 			totalRam = 8192;
-			// 8 Gb.
 		}
-		if (ram <= 6144 && ram > 5120) {
+		if (ram <= 6144 && ram > 5120) {	// 6 Gb.
 			totalRam = 6144;
-			// 6 Gb.
 		}
-		if (ram <= 5120 && ram > 4096) {
+		if (ram <= 5120 && ram > 4096) { 	// 5 Gb.
 			totalRam = 5120;
-			// 5 Gb.
 		}
-		if (ram <= 4096 && ram > 3072) {
+		if (ram <= 4096 && ram > 3072) {	// 4 Gb.
 			totalRam = 4096;
-			// 4 Gb.
+
 		}
 		if (ram <= 3072) {
 			totalRam = 2048;
@@ -178,5 +163,13 @@ public class Memory extends installOptions {
 			// Error catching stuff, essentially.
 		}
 		return totalRam;
+	}
+	
+	public static int getRamSizeChosen() {
+		return ramSizeChosen;
+	}
+
+	public static void setRamSizeChosen(int ramSizeChosen) {
+		installOptions.ramSizeChosen = ramSizeChosen;
 	}
 }

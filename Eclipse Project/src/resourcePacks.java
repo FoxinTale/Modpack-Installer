@@ -328,14 +328,6 @@ public class resourcePacks {
 		frame.setVisible(true);
 	}
 
-	public static int getSelectedPack() {
-		return selectedPack;
-	}
-
-	public static void setSelectedPack(int selectedPack) {
-		resourcePacks.selectedPack = selectedPack;
-	}
-
 	public static void bigPack() {
 		JFrame frame = new JFrame("Large pack option");
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -405,5 +397,13 @@ public class resourcePacks {
 
 		frame.setLayout(null);// using no layout managers
 		frame.setVisible(true);
+	}
+	
+	public static int getSelectedPack() {
+		return selectedPack;
+	}
+
+	public static void setSelectedPack(int selectedPack) {
+		resourcePacks.selectedPack = selectedPack;
 	}
 }

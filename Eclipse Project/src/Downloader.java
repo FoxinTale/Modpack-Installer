@@ -18,7 +18,6 @@ public class Downloader {
 		 * whatIs determines what to do with the downloaded file. 0 is for the Modpack 1
 		 * is for the Update 2 is for the Resource Packs
 		 */
-
 		/*
 		 * Resource Pack Naming! Aubrey's Custom Resource Pack (ACRP)
 		 * 
@@ -26,7 +25,6 @@ public class Downloader {
 		 * Music, Sounds and Textures ACRP-AS = Ambiance Music and Sounds ACRP-E =
 		 * Everything
 		 */
-
 		Runnable updatethread = new Runnable() {
 			public void run() {
 				try {
@@ -60,13 +58,11 @@ public class Downloader {
 					GUI.progress.setValue(0);
 					zipFile = new File(q + Driver.getDownloadsLocation() + q + zipName);
 					if (whatIs == 0) {
-						// Checksum it.
-						Checksums.checksum(zipFile, "Modpack.zip");
+						Checksums.checksum(zipFile, "Modpack.zip");	// Checksum it.
 					}
 
 					if (whatIs == 1) {
-						// Update
-						if (!Install.featuresUsed) {
+						if (!Install.featuresUsed) {	// Update
 							String updateZip = Driver.getDownloadsLocation() + q + Updater.currentVersion + ".zip";
 							String updateFolder = Driver.getDownloadsLocation() + q + Updater.currentVersion;
 							Extractor.Extract(updateZip, updateFolder, 1);
@@ -75,14 +71,11 @@ public class Downloader {
 							installOptions.again();
 						}
 					}
-
-					if (whatIs == 2) {
-						// Resource Packs
+					if (whatIs == 2) {						// Resource Packs
 						resourcePacks.creditsFrame.setVisible(false);
 						Checksums.checksum(zipFile, zipName);
 					}
 				}
-
 				catch (FileNotFoundException e) {
 					GUI.errors.setText("Roserade");
 				} catch (IOException e) {
@@ -98,13 +91,12 @@ public class Downloader {
 		try {
 			System.out.println(" Verification failed. Redownloading.");
 			System.out.println(" If this happens more than three times,");
-			System.out.println(" tell me. It means I forgot to update the sums.");
+			System.out.println(" tell me. It means I forgot to update things.");
 			modpackOneLink = new URL("https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
 			Download(modpackOneLink, "Modpack.zip", 0);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 }

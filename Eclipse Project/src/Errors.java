@@ -100,7 +100,6 @@ public class Errors {
 					}
 				}
 			}
-
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

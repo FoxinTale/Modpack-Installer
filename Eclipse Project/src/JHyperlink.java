@@ -52,9 +52,7 @@ public class JHyperlink extends JLabel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-
 					Desktop.getDesktop().browse(new URI(JHyperlink.this.url));
-
 				} catch (IOException | URISyntaxException e1) {
 					JOptionPane.showMessageDialog(JHyperlink.this,
 							"Could not open the hyperlink. Error: " + e1.getMessage(), "Error",
@@ -62,6 +60,5 @@ public class JHyperlink extends JLabel {
 				}
 			}
 		});
-
 	}
 }

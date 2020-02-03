@@ -34,6 +34,78 @@ public class Driver {
 	private static String desktopLocation = null;
 	private static String minecraftDefaultInstall = null;
 
+	@SuppressWarnings("unused")
+	private static PrintStream standardOut; // This sets the outputs.
+//This the main. This starts everything.
+
+	public static void main(String[] args) {
+		// Creating the custom output stream.
+		PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
+		standardOut = System.out;
+		System.setOut(printStream);
+		System.setErr(printStream);
+		Boolean validOS = false;
+		String OS = System.getProperty("os.name"); // This gets the name of the current operating system.
+		if (OS.equals("Windows 10") || OS.equals("Windows 8.1") || OS.equals("Windows 7")) {
+			// For modern Windows systems
+			validOS = true;
+			osDetect.isWindows();
+			Install.checkForMinecraftandForge();
+			folderCheck();
+		}
+		
+		if (OS.equals("Windows Vista") || OS.equals("Windows XP")) {
+			String message = "Why are you still using this computer?";
+			JOptionPane.showMessageDialog(new JFrame(), message, "Outdated OS", JOptionPane.ERROR_MESSAGE);
+			// For older Windows systems. Which, frankly, why are you still using?
+			System.exit(0);
+		}
+
+		if (OS.equals("Linux") || OS.equals("Unix")) {
+			// Good on you for using Linux!
+			validOS = true;
+			osDetect.isLinux();
+			Install.checkForMinecraftandForge();
+			folderCheck();
+		}
+
+		if (OS.equals("Mac")) {
+			// Big oof.
+			validOS = true;
+			osDetect.isMac();
+			Install.checkForMinecraftandForge();
+			folderCheck();
+		}
+
+		if (validOS == false) {
+			// If you see this, well... why are you trying to run this on an unsupported OS?
+			// Except Solaris..Which is really uncommon. If you're running that, I'd like to
+			// know why.
+			String message = "Your OS is not supported by this installer.";
+			JOptionPane.showMessageDialog(new JFrame(), message, "Unknown Operating System", JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+		}
+	}
+
+	// This explains itself. I decided on a function because otherwise this would
+	// have been repeated many times, taking up space in the code.
+	public static void folderCreate(File folder) {
+		if (!folder.exists()) {
+			folder.mkdir();
+		}
+	}
+
+	public static void folderCheck() {
+		if (installOptions.resourceCheck()) {
+			GUI.launchGUI();
+		}
+		if (!installOptions.resourceCheck()) {
+			String message = "Please put this back in the folder it was originally in.";
+			JOptionPane.showMessageDialog(new JFrame(), message, "Resources not found.", JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+		}
+	}
+
 	// Just your average getters and setters... Nothing interesting to see.
 	public static File getMinecraftInstallLocation() {
 		return minecraftInstallLocation;
@@ -81,77 +153,5 @@ public class Driver {
 
 	public static void setSelectedOption(int selectedOption) {
 		Driver.selectedOption = selectedOption;
-	}
-	
-	@SuppressWarnings("unused")
-	private static PrintStream standardOut; // This sets the outputs.
-//This the main. This starts everything.
-
-	public static void main(String[] args) {
-		// Creating the custom output stream.
-		PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
-		standardOut = System.out;
-		System.setOut(printStream);
-		System.setErr(printStream);
-		Boolean validOS = false;
-		String OS = System.getProperty("os.name"); // This gets the name of the current operating system.
-		if (OS.equals("Windows 10") || OS.equals("Windows 8.1") || OS.equals("Windows 7")) {
-			// For modern Windows systems
-			validOS = true;
-			osDetect.isWindows();
-			Install.checkForMinecraftandForge();
-			folderCheck();
-		}
-		if (OS.equals("Windows Vista") || OS.equals("Windows XP")) {
-			String message = "Why are you still using this computer?";
-			JOptionPane.showMessageDialog(new JFrame(), message, "Outdated OS", JOptionPane.ERROR_MESSAGE);
-			// For older Windows systems. Which, frankly, why are you still using?
-			System.exit(0);
-		}
-
-		if (OS.equals("Linux") || OS.equals("Unix")) {
-			// Good on you for using Linux!
-			validOS = true;
-			osDetect.isLinux();
-			Install.checkForMinecraftandForge();
-			folderCheck();
-		}
-
-		if (OS.equals("Mac")) {
-			// Big oof.
-			validOS = true;
-			osDetect.isMac();
-			Install.checkForMinecraftandForge();
-			folderCheck();
-		}
-
-		if (validOS == false) {
-			// If you see this, well... why are you trying to run this on an unsupported OS?
-			// Except Solaris..Which is really uncommon. If you're running that, I'd like to
-			// know why.
-			String message = "Your OS is not supported by this installer.";
-			JOptionPane.showMessageDialog(new JFrame(), message, "Unknown Operating System", JOptionPane.ERROR_MESSAGE);
-			GUI.errors.setText("Operating System not supported");
-			System.exit(0);
-		}
-	}
-
-	// This explains itself. I decided on a function because otherwise this would
-	// have been repeated many times, taking up space in the code.
-	public static void folderCreate(File folder) {
-		if (!folder.exists()) {
-			folder.mkdir();
-		}
-	}
-	
-	public static void folderCheck() {
-		if(installOptions.resourceCheck()) {
-			GUI.launchGUI();
-		}
-		if(!installOptions.resourceCheck()) {
-			String message = "Please put this back in the folder it was originally in.";
-			JOptionPane.showMessageDialog(new JFrame(), message, "Resources not found.", JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
-		}
 	}
 }

@@ -68,7 +68,7 @@ public class Install {
 		installOptions.verifyInstall();
 		System.out.println(" Verifying install.");
 		if (installOptions.packGood) {
-			
+
 			// String t = "Would you like the installer to adjust your Java arguments in the
 			// launcher? This will also allow you to configure the amount of ram you
 			// allocate to Minecraft.";
@@ -118,7 +118,6 @@ public class Install {
 			if (featuresUsed) {
 				installOptions.again();
 			}
-
 		} catch (UnknownHostException h) {
 			// This should never happen.
 			// EVER
@@ -141,7 +140,7 @@ public class Install {
 		String minecraftVersions = Driver.getMinecraftInstall() + q + "versions" + q;
 		File vanillaMinecraft = new File(minecraftVersions + "1.7.10" + q + "1.7.10.jar");
 		File vanillaMinecraftConfig = new File(minecraftVersions + "1.7.10" + q + "1.7.10.json");
-	
+
 		File moddedMinecraftConfig = new File(
 				minecraftVersions + q + "1.7.10-Forge10.13.4.1614-1.7.10" + q + "1.7.10-Forge10.13.4.1614-1.7.10.json");
 
@@ -168,6 +167,18 @@ public class Install {
 			resourcePacks.packGUI();
 		}
 		if (o == JOptionPane.NO_OPTION) {
+			optionalMods();
+		}
+	}
+
+	public static void optionalMods() {
+		String question = "Final question. Would you like to install XBox controller support and/or additional ambient mods?";
+		int modsAsk = JOptionPane.showConfirmDialog(new JFrame(), question, "Optional Mods Install",
+				JOptionPane.YES_NO_OPTION);
+		if (modsAsk == JOptionPane.YES_OPTION) {
+			modOptions.modOptionsGui();
+		}
+		if (modsAsk == JOptionPane.NO_OPTION) {
 			end();
 		}
 	}

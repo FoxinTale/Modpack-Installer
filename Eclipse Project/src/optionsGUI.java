@@ -22,14 +22,16 @@ public class optionsGUI extends installOptions {
 	public static void otherOptionsGUI() {
 		JFrame frame = new JFrame("Options");
 
+		JFrame.setDefaultLookAndFeelDecorated(true);
 		JRadioButton extract = new JRadioButton("Extract.");
 		JRadioButton launcher = new JRadioButton("Set Memory.");
 		JRadioButton ping = new JRadioButton("Ping Server.");
 		JRadioButton downloadUpdate = new JRadioButton("Download Update File.");
 		JRadioButton restoreSettings = new JRadioButton("Restore Settings.");
+		JRadioButton optionalMods = new JRadioButton("Optional Mods");
 		JButton go = new JButton("Continue");
 		ButtonGroup options = new ButtonGroup();
-		
+
 		JLabel info1 = new JLabel("There was something here.");
 		JLabel info2 = new JLabel("But it is really broken.");
 
@@ -37,6 +39,7 @@ public class optionsGUI extends installOptions {
 		options.add(launcher);
 		options.add(extract);
 		options.add(downloadUpdate);
+		options.add(optionalMods);
 
 		Color rbc = new Color(220, 255, 255); // Hex value: dcffff
 
@@ -45,6 +48,7 @@ public class optionsGUI extends installOptions {
 		JPanel extractPanel = new RoundedPanel(10, rbc);
 		JPanel updatePanel = new RoundedPanel(10, rbc);
 		// JPanel restorePanel = new RoundedPanel(10, rbc);
+		JPanel modPanel = new RoundedPanel(10, rbc);
 
 		Container c = frame.getContentPane();
 
@@ -55,6 +59,7 @@ public class optionsGUI extends installOptions {
 		extract.setBackground(rbc);
 		downloadUpdate.setBackground(rbc);
 		restoreSettings.setBackground(rbc);
+		optionalMods.setBackground(rbc);
 
 		ActionListener radioButtonEvent = new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
@@ -77,6 +82,9 @@ public class optionsGUI extends installOptions {
 				if (selection.equals("Restore Settings.")) {
 					selectedOption = 5;
 				}
+				if (selection.equals("Optional Mods")) {
+					selectedOption = 6;
+				}
 			}
 		};
 
@@ -88,6 +96,7 @@ public class optionsGUI extends installOptions {
 					ping.setEnabled(false);
 					downloadUpdate.setEnabled(false);
 					restoreSettings.setEnabled(false);
+					optionalMods.setEnabled(false);
 					System.out.println(" Extracting File...");
 					Extractor.Extract(q + Driver.getDownloadsLocation() + q + Driver.zipFile, "Modpack", 0);
 				}
@@ -97,6 +106,7 @@ public class optionsGUI extends installOptions {
 					ping.setEnabled(false);
 					downloadUpdate.setEnabled(false);
 					restoreSettings.setEnabled(false);
+					optionalMods.setEnabled(false);
 					Memory.sliderGUI();
 				}
 				if (selectedOption == 3) {
@@ -105,6 +115,7 @@ public class optionsGUI extends installOptions {
 					ping.setEnabled(false);
 					downloadUpdate.setEnabled(false);
 					restoreSettings.setEnabled(false);
+					optionalMods.setEnabled(false);
 					System.out.println(" Pinging Server...");
 					serverPing();
 				}
@@ -114,6 +125,7 @@ public class optionsGUI extends installOptions {
 					ping.setEnabled(false);
 					downloadUpdate.setEnabled(false);
 					restoreSettings.setEnabled(false);
+					optionalMods.setEnabled(false);
 					Driver.updateTime = true;
 					String baseLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Updates/";
 					String currentVersion = Json.getCurrentVersion();
@@ -131,7 +143,18 @@ public class optionsGUI extends installOptions {
 					ping.setEnabled(false);
 					downloadUpdate.setEnabled(false);
 					restoreSettings.setEnabled(false);
+					optionalMods.setEnabled(false);
 					restore();
+				}
+
+				if (selectedOption == 6) {
+					extract.setEnabled(false);
+					launcher.setEnabled(false);
+					ping.setEnabled(false);
+					downloadUpdate.setEnabled(false);
+					restoreSettings.setEnabled(false);
+					optionalMods.setEnabled(false);
+					modOptions.modOptionsGui();
 				}
 			}
 		};
@@ -151,6 +174,7 @@ public class optionsGUI extends installOptions {
 		extract.addActionListener(radioButtonEvent);
 		downloadUpdate.addActionListener(radioButtonEvent);
 		restoreSettings.addActionListener(radioButtonEvent);
+		optionalMods.addActionListener(radioButtonEvent);
 
 		go.addActionListener(buttonEvent);
 
@@ -161,7 +185,7 @@ public class optionsGUI extends installOptions {
 		ping.setBounds(78, 70, 150, 15);
 
 		// launcherPanel.setBounds(73, 100, 175, 25);
-		info1.setBounds(78, 105, 200, 15); // Launcher (Memory Set) 
+		info1.setBounds(78, 105, 200, 15); // Launcher (Memory Set)
 
 		updatePanel.setBounds(73, 135, 175, 25);
 		downloadUpdate.setBounds(78, 140, 150, 15);
@@ -169,7 +193,10 @@ public class optionsGUI extends installOptions {
 		// restorePanel.setBounds(73, 170, 175, 25);
 		info2.setBounds(78, 175, 200, 15); // Restore settings, Width 150.
 
-		go.setBounds(100, 220, 100, 20);
+		modPanel.setBounds(73, 205, 175, 25);
+		optionalMods.setBounds(78, 210, 150, 15);
+
+		go.setBounds(100, 300, 100, 30);
 
 		ping.setFont(pretty);
 		launcher.setFont(pretty);
@@ -179,6 +206,7 @@ public class optionsGUI extends installOptions {
 		restoreSettings.setFont(pretty);
 		info1.setFont(pretty);
 		info2.setFont(pretty);
+		optionalMods.setFont(pretty);
 
 		frame.add(ping);
 		frame.add(pingPanel);
@@ -194,12 +222,14 @@ public class optionsGUI extends installOptions {
 
 		// frame.add(restoreSettings);
 		// frame.add(restorePanel);
-		
+
 		frame.add(info1);
 		frame.add(info2);
+		frame.add(optionalMods);
+		frame.add(modPanel);
 
 		frame.add(go);
-		frame.setSize(320, 320);
+		frame.setSize(320, 400);
 		frame.setResizable(false);
 
 		frame.setLayout(null);// using no layout managers

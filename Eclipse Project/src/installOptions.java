@@ -23,6 +23,7 @@ public class installOptions extends Install {
 	static Font pretty;
 	static String q = File.separator;
 	static Boolean packGood = false;
+	static String modpackOptions = Driver.getDownloadsLocation() + q + "Modpack" + q + "options" + q;
 
 	public static void launcherSettings() {
 		File launcherSettings = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
@@ -65,7 +66,6 @@ public class installOptions extends Install {
 				if (featuresUsed) {
 					again();
 				}
-
 			} catch (IOException e1) {
 				GUI.errors.setText("Chansey");
 
@@ -82,10 +82,8 @@ public class installOptions extends Install {
 		String downloadedMods = Driver.getDownloadsLocation() + q + "Modpack" + q + "mods" + q;
 		String minecraftMods = Driver.getMinecraftInstallLocation() + q + "mods" + q;
 		ArrayList<String> modList = Json.getModlist();
-		
 		ArrayList<String> minecraftModsList = new ArrayList<>();
 		ArrayList<String> downloadedModsList = new ArrayList<>();
-		
 
 		Set<Object> listOne = new HashSet<Object>();
 		Set<Object> listTwo = new HashSet<Object>();
@@ -93,7 +91,7 @@ public class installOptions extends Install {
 		try {
 			Files.list(new File(downloadedMods).toPath()).forEach(path -> {
 				downloadedModsList.add(path.getFileName().toString());
-			 });
+			});
 
 			Files.list(new File(minecraftMods).toPath()).forEach(item -> {
 				minecraftModsList.add(item.getFileName().toString());
@@ -108,17 +106,16 @@ public class installOptions extends Install {
 			fileCheck.remove("1.7.10");
 			fileCheck.remove("mcheli");
 			ArrayList<Object> missing = new ArrayList<Object>(fileCheck);
-			
+
 			if (fileCheck.isEmpty() || fileCheck.size() == 0) {
 				packGood = true;
 			}
-			if (!fileCheck.isEmpty()|| fileCheck.size() != 0) {
+			if (!fileCheck.isEmpty() || fileCheck.size() != 0) {
 				for (int i = fileCheck.size(); i > 0; i--) {
 					fixMods(q + missing.remove(i - 1));
 				}
 				verifyInstall();
 			}
-		
 		} catch (IOException e) {
 			GUI.errors.setText("Mantyke");
 		}
@@ -139,8 +136,7 @@ public class installOptions extends Install {
 	public static Boolean resourceCheck() {
 		String home = System.getProperty("user.dir");
 		File libsDir = new File(home + q + "Modpack-Installer_lib");
-		File resourceDir = new File(home + q + "resources");
-		if (libsDir.exists() && resourceDir.exists()) {
+		if (libsDir.exists()) {
 			return true;
 		}
 		return false;
@@ -177,7 +173,7 @@ public class installOptions extends Install {
 	}
 
 	public static void again() {
-		String t = "Would you like yo use another option? Selecting no exits the program.";
+		String t = "Would you like to use another option? Selecting no exits the program.";
 		int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Another option?", JOptionPane.YES_NO_OPTION);
 		if (o == JOptionPane.YES_OPTION) {
 			optionsGUI.otherOptionsGUI();

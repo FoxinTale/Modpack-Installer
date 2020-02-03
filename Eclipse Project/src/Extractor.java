@@ -14,29 +14,25 @@ public class Extractor {
 			// This deletes a modpack folder in the downloads if it exists already.
 			// If this wasn't done, the extract would fail.
 		}
+		
 		String folderPath = Driver.getDownloadsLocation() + q + name + q;
 		String password = "";
 
-		if (op == 0) {
-			// For the modpack
+		if (op == 0) {// Modpack
 			System.out.println(" Extracting modpack. Expect system lag.");
 			unzip(fileLocation, folderPath, password, op);
 		}
-
-		if (op == 1) {
+		if (op == 1) {// Update
 			unzip(fileLocation, name, password, op);
 		}
-
-		if (op == 2) {
+		if (op == 2) { // Resource pack.
 			System.out.println(" Extracting resource pack. Expect system lag.");
 			unzip(fileLocation, name, password, op);
 		}
 	}
 
 	public static void unzip(String zipFilePath, String extractFolder, String password, int op) {
-		/*
-		 * 0 is the modpack 1 is an update 2 is the ambiance pack
-		 */
+		 // 0 is the modpack, 1 is an update, and 2 is the resource pack.
 		try {
 			ZipFile zipFile = new ZipFile(zipFilePath);
 			if (zipFile.isEncrypted()) {
@@ -54,7 +50,6 @@ public class Extractor {
 		if (op == 1) {
 			Updater.installUpdate();
 		}
-
 		if (op == 2) {
 			System.out.println(" Resource pack installed.");
 			Install.end();

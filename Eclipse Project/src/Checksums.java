@@ -16,7 +16,6 @@ public class Checksums {
 
 	static String cModpackSum;
 	static String cResourcesSum;
-
 	static String modpackSum;
 	static String resourcesSum;
 
@@ -120,12 +119,10 @@ public class Checksums {
 		// Read file data and update in message digest
 		while ((bytesCount = fis.read(byteArray)) != -1) {
 			digest.update(byteArray, 0, bytesCount);
-		}
-		;
+		};
 		fis.close(); // close the stream; We don't need it now.
 		// Get the hash's bytes
 		byte[] bytes = digest.digest(); // This bytes[] has bytes in decimal format;
-
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < bytes.length; i++) { // Convert it to hexadecimal format
 			sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
@@ -143,6 +140,8 @@ public class Checksums {
 		}
 		return good;
 	}
+	
+	
 
 	public static void verifyFinish(String zipName, String folderName) {
 		System.out.println(" File verification passed.");
@@ -157,7 +156,6 @@ public class Checksums {
 			}
 			if (o == JOptionPane.NO_OPTION) {
 				FileUtils.copyFileToDirectory(Downloader.zipFile, resourcePackDir);
-
 			}
 		} catch (IOException e) {
 			GUI.errors.setText("Luxray");
