@@ -14,7 +14,6 @@ import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -32,8 +31,8 @@ public class optionsGUI extends installOptions {
 		JButton go = new JButton("Continue");
 		ButtonGroup options = new ButtonGroup();
 
-		JLabel info1 = new JLabel("There was something here.");
-		JLabel info2 = new JLabel("But it is really broken.");
+		// JLabel info1 = new JLabel("There was something here.");
+		// JLabel info2 = new JLabel("But it is really broken.");
 
 		options.add(ping);
 		options.add(launcher);
@@ -44,10 +43,10 @@ public class optionsGUI extends installOptions {
 		Color rbc = new Color(220, 255, 255); // Hex value: dcffff
 
 		JPanel pingPanel = new RoundedPanel(10, rbc);
-		// JPanel launcherPanel = new RoundedPanel(10, rbc);
+		JPanel launcherPanel = new RoundedPanel(10, rbc);
 		JPanel extractPanel = new RoundedPanel(10, rbc);
 		JPanel updatePanel = new RoundedPanel(10, rbc);
-		// JPanel restorePanel = new RoundedPanel(10, rbc);
+		JPanel restorePanel = new RoundedPanel(10, rbc);
 		JPanel modPanel = new RoundedPanel(10, rbc);
 
 		Container c = frame.getContentPane();
@@ -184,14 +183,14 @@ public class optionsGUI extends installOptions {
 		pingPanel.setBounds(73, 65, 175, 25);
 		ping.setBounds(78, 70, 150, 15);
 
-		// launcherPanel.setBounds(73, 100, 175, 25);
-		info1.setBounds(78, 105, 200, 15); // Launcher (Memory Set)
+		launcherPanel.setBounds(73, 100, 175, 25);
+		// info1.setBounds(78, 105, 200, 15); // Launcher (Memory Set)
 
 		updatePanel.setBounds(73, 135, 175, 25);
 		downloadUpdate.setBounds(78, 140, 150, 15);
 
-		// restorePanel.setBounds(73, 170, 175, 25);
-		info2.setBounds(78, 175, 200, 15); // Restore settings, Width 150.
+		restorePanel.setBounds(73, 170, 175, 25);
+		// info2.setBounds(78, 175, 200, 15); // Restore settings, Width 150.
 
 		modPanel.setBounds(73, 205, 175, 25);
 		optionalMods.setBounds(78, 210, 150, 15);
@@ -204,15 +203,15 @@ public class optionsGUI extends installOptions {
 		go.setFont(pretty);
 		downloadUpdate.setFont(pretty);
 		restoreSettings.setFont(pretty);
-		info1.setFont(pretty);
-		info2.setFont(pretty);
+		// info1.setFont(pretty);
+		// info2.setFont(pretty);
 		optionalMods.setFont(pretty);
 
 		frame.add(ping);
 		frame.add(pingPanel);
 
-		// frame.add(launcher);
-		// frame.add(launcherPanel);
+		frame.add(launcher);
+		frame.add(launcherPanel);
 
 		// frame.add(extract);
 		// frame.add(extractPanel);
@@ -220,11 +219,11 @@ public class optionsGUI extends installOptions {
 		frame.add(downloadUpdate);
 		frame.add(updatePanel);
 
-		// frame.add(restoreSettings);
-		// frame.add(restorePanel);
+		frame.add(restoreSettings);
+		frame.add(restorePanel);
 
-		frame.add(info1);
-		frame.add(info2);
+		// frame.add(info1);
+		// frame.add(info2);
 		frame.add(optionalMods);
 		frame.add(modPanel);
 

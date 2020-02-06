@@ -1,3 +1,5 @@
+package jsonRead;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,79 +13,40 @@ import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class Json {
-	static ArrayList<String> modlist = new ArrayList<>();
-	static ArrayList<String> toRemove = new ArrayList<>();
+public class Driver {
+
 	static ArrayList<String> checksums = new ArrayList<>();
-
+	static ArrayList<String> toRemove = new ArrayList<>();
 	static String currentVersion;
-	static String q = File.separator;
 
-	public static void readLists() {
+	public static void main(String[] args) {
+		System.setProperty("http.agent", "Netscape 1.0");
+		readProfileData();
+	}
+
+	public static void readJsonFromURL() {
 		try {
 			URL fileLink = new URL("https://raw.githubusercontent.com/FoxinTale/Modpack-Installer/master/data.json");
 			JSONObject data = (JSONObject) new JSONTokener(fileLink.openStream()).nextValue();
 			currentVersion = (String) data.get("currentVersion");
-			setCurrentVersion(currentVersion);
 			JSONArray checksumArray = (JSONArray) data.get("checksums");
-			JSONArray modArray = (JSONArray) data.get("modList");
-
-			jsonArrayRead(checksumArray, checksums, false, 0);
-			jsonArrayRead(modArray, modlist, false, 1);
-
+			jsonArrayRead(checksumArray, checksums, true);
 		} catch (FileNotFoundException e) {
-			GUI.errors.setText("Zebstrika");
-			Errors.init();
+			// GUI.errors.setText("Zebstrika");
 		} catch (IOException e) {
-			GUI.errors.setText("Litwick");
-			Errors.init();
+			// GUI.errors.setText("Litwick");
 		} catch (JSONException e) {
-			GUI.errors.setText("Sylveon");
-			Errors.init();
-		}
-	}
-
-	public static void jsonArrayRead(JSONArray arr, ArrayList<String> list, Boolean toPrint, int op) {
-		for (int i = 0; i < arr.length(); i++) {
-			JSONObject item = null;
-			StringBuilder s = new StringBuilder();
-			try {
-				item = arr.getJSONObject(i);
-				int place = item.toString().indexOf(":");
-				s.append(item);
-				s.delete(0, place + 2);
-				list.add(s.toString().replace('{', ' ').replace('}', ' ').replace('"', ' ').trim());
-				s.delete(0, s.length() - 1);
-			} catch (JSONException e) {
-				GUI.errors.setText("Sylveon");
-				Errors.init();
-			}
-		}
-
-		if (toPrint) {
-			Object[] array = list.toArray();
-			for (int i = 0; i < array.length; i++) {
-				System.out.println(array[i] + "\n");
-			}
-		}
-		if (op == 0) {
-			setChecksums(list);
-		}
-		if (op == 1) {
-			setModlist(list);
-		}
-		if (op == 2) {
-			setToRemove(list);
+			// GUI.errors.setText("Sylveon");
 		}
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static void readProfileData(int mem) {
+	public static void readProfileData() {
 		File launcherSettings = new File("/home/aubrey/Shared/launcher_profiles.json");
 		if (launcherSettings.exists()) {
 			try {
@@ -91,10 +54,13 @@ public class Json {
 				JSONObject launcherData = (JSONObject) fileData;
 				Map profileData = ((Map) launcherData.get("profiles"));
 
+				int mem = 6144; // This will be fed into the function once complete.
+
 				for (Map.Entry pair : (Iterable<Map.Entry>) profileData.entrySet()) {
 					if (pair.getKey().equals("Forge")) {
 						Map forgeData = ((Map) profileData.get("Forge"));
-
+						// Key = lastVersionId
+						// Value = 1.7.10-Forge10.13.4.1614-1.7.10
 						for (Map.Entry forgePair : (Iterable<Map.Entry>) forgeData.entrySet()) {
 							Object versionId = forgePair.getKey();
 							Object versionValue = forgePair.getValue();
@@ -112,9 +78,29 @@ public class Json {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void jsonArrayRead(JSONArray arr, ArrayList<String> list, Boolean toPrint) {
+		for (int i = 0; i < arr.length(); i++) {
+			org.json.JSONObject item = null;
+			StringBuilder s = new StringBuilder();
+			try {
+				item = arr.getJSONObject(i);
+				int place = item.toString().indexOf(":");
+				s.append(item);
+				s.delete(0, place + 2);
+				list.add(s.toString().replace('{', ' ').replace('}', ' ').replace('"', ' ').trim());
+				s.delete(0, s.length() - 1);
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// GUI.errors.setText("Sylveon");
+			}
+		}
+		if (toPrint) {
+			Object[] array = list.toArray();
+			for (Object o : array) {
+				System.out.println(o + "\n");
 			}
 		}
 	}
@@ -161,7 +147,7 @@ public class Json {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void launcherJsonWrite(String newArgs) {
 		try {
-			File launcherInfo = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
+			File launcherInfo = new File("/home/aubrey/Shared/launcher_profiles.json");
 			Object fileData = new JSONParser().parse(new FileReader(launcherInfo));
 			JSONObject launcherData = (JSONObject) fileData;
 			JSONObject newLauncher = new JSONObject();
@@ -236,9 +222,6 @@ public class Json {
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 
@@ -267,14 +250,17 @@ public class Json {
 				sb.insert(sb.length(), ",\n");
 				sb.deleteCharAt(sb.length() - 1);
 			}
+
 			sb.insert(0, '\t');
 		}
 		return sb.toString();
 	}
 
 	public static String profileRestructure(StringBuilder sb) {
+
 		int startBracket;
 		startBracket = sb.indexOf("{");
+
 		sb.insert(startBracket + 1, "\n\t");
 		for (int i = 1; i < sb.length(); i++) {
 			if (sb.charAt(i - 1) == ',') {
@@ -295,37 +281,5 @@ public class Json {
 		sb.insert(endBracket + 1, "\n");
 		sb.insert(endBracket + 3, ',');
 		return sb.toString();
-	}
-
-	public static ArrayList<String> getModlist() {
-		return modlist;
-	}
-
-	public static void setModlist(ArrayList<String> modlist) {
-		Json.modlist = modlist;
-	}
-
-	public static ArrayList<String> getToRemove() {
-		return toRemove;
-	}
-
-	public static void setToRemove(ArrayList<String> toRemove) {
-		Json.toRemove = toRemove;
-	}
-
-	public static ArrayList<String> getChecksums() {
-		return checksums;
-	}
-
-	public static void setChecksums(ArrayList<String> checksums) {
-		Json.checksums = checksums;
-	}
-
-	public static String getCurrentVersion() {
-		return currentVersion;
-	}
-
-	public static void setCurrentVersion(String currentVersion) {
-		Json.currentVersion = currentVersion;
 	}
 }

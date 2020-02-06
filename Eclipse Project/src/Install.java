@@ -69,18 +69,15 @@ public class Install {
 		System.out.println(" Verifying install.");
 		if (installOptions.packGood) {
 
-			// String t = "Would you like the installer to adjust your Java arguments in the
-			// launcher? This will also allow you to configure the amount of ram you
-			// allocate to Minecraft.";
-			// int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Java Arguments",
-			// JOptionPane.YES_NO_OPTION);
-			// if (o == JOptionPane.YES_OPTION) {
-			// installOptions.backup();
-			// Memory.sliderGUI();
-			// }
-			// if (o == JOptionPane.NO_OPTION) {
-			installFinalize();
-			// }
+			String t = "Would you like the installer to adjust your Java arguments in the launcher? This will also allow you to configure the amount of ram youallocate to Minecraft.";
+			int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Java Arguments", JOptionPane.YES_NO_OPTION);
+			if (o == JOptionPane.YES_OPTION) {
+				installOptions.backup();
+				Memory.sliderGUI();
+			}
+			if (o == JOptionPane.NO_OPTION) {
+				installFinalize();
+			}
 		}
 		if (!installOptions.packGood) {
 			GUI.errors.setText("Chikorita");

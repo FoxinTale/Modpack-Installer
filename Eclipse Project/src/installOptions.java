@@ -1,9 +1,5 @@
-
 import java.awt.Font;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -24,59 +20,6 @@ public class installOptions extends Install {
 	static String q = File.separator;
 	static Boolean packGood = false;
 	static String modpackOptions = Driver.getDownloadsLocation() + q + "Modpack" + q + "options" + q;
-
-	public static void launcherSettings() {
-		File launcherSettings = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
-		if (launcherSettings.exists()) {
-			ArrayList<String> launcherData = new ArrayList<>();
-			try {
-				BufferedReader reader = new BufferedReader(new FileReader(launcherSettings));
-				String s = "";
-				String line = "";
-				StringBuffer content = new StringBuffer();
-				while ((s = reader.readLine()) != null) {
-					content.append(s);
-					content.trimToSize();
-					line = content.toString().trim();
-					line.trim();
-					launcherData.add(line);
-					content.delete(0, content.length());
-				}
-				reader.close();
-
-				String chosenRamSize = "-Xmx" + Integer.toString(ramSizeChosen) + "M";
-				int versionPos = launcherData.indexOf("\"lastVersionId\" : \"1.7.10-Forge10.13.4.1614-1.7.10\",");
-				int argsPos = versionPos - 2;
-				String newArgs = "\"javaArgs\" :\"-XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump -XX:+UseG1GC -XX:+UseConcMarkSweepGC"
-						+ chosenRamSize
-						+ " -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M\",";
-				launcherData.set(argsPos, newArgs);
-				Object[] settingsArray = launcherData.toArray();
-
-				launcherSettings.delete();
-				FileWriter newSettings = new FileWriter(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
-				for (int i = 0; i < settingsArray.length; i++) {
-					newSettings.write(settingsArray[i] + "\n");
-				}
-				newSettings.close();
-				System.out.println(" Launcher settings changed and memory set.");
-				if (!featuresUsed) {
-					installFinalize();
-				}
-				if (featuresUsed) {
-					again();
-				}
-			} catch (IOException e1) {
-				GUI.errors.setText("Chansey");
-
-			} catch (ArrayIndexOutOfBoundsException a) {
-				GUI.errors.setText("Skitty");
-			}
-		}
-		if (!launcherSettings.exists()) {
-			installFinalize();
-		}
-	}
 
 	public static void verifyInstall() {
 		String downloadedMods = Driver.getDownloadsLocation() + q + "Modpack" + q + "mods" + q;

@@ -10,7 +10,7 @@ public class osDetect {
 	static File loc;
 
 	public static void isWindows() {
-		// Meh. Windows is windows.
+		// Meh. Windows is wondows.
 		File downloads = new File("C:\\Users\\" + username + "\\Downloads");
 		File minecraftDefaultPath = new File("C:\\Users\\" + username + "\\AppData\\Roaming\\.minecraft");
 		File desktop = new File("C:\\Users\\" + username + "\\Desktop");
@@ -19,7 +19,7 @@ public class osDetect {
 	}
 
 	public static void isLinux() {
-		// Hello Linux user! You have made a good choice.
+		// Hello Linux user! You have made a good choice. This program was developed on a Linux system.
 		File downloads = new File("/home/" + username + "/Downloads/");
 		File minecraftDefaultPath = new File("/home/" + username + "/.minecraft/");
 		File desktop = new File("/home/" + username + "/Desktop");
@@ -73,7 +73,9 @@ public class osDetect {
 		JOptionPane.showMessageDialog(new JFrame(), message, "Minecraft Not Found.", JOptionPane.ERROR_MESSAGE);
 		Driver.setMinecraftInstall(findFolder(minecraftDefaultPath.getPath(),
 				"Cannot continue without Minecraft install!", "Install Search Cancelled"));
+		
 		Driver.setMinecraftInstallLocation(loc);
+		
 	}
 
 	public static void noDesktop(File desktop) {
@@ -93,7 +95,7 @@ public class osDetect {
 			folder = whereFolder.getSelectedFile().getPath();
 		} else {
 			JOptionPane.showMessageDialog(new JFrame(), message, title, JOptionPane.INFORMATION_MESSAGE);
-			findFolder(folder, message, title);
+			System.exit(0);
 		}
 		return folder;
 	}

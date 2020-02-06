@@ -33,7 +33,7 @@ public class Memory extends installOptions {
 			ramSizeMb = setRamSize(ram);
 			ramSizeGb = ramSizeMb / 1024;
 		} catch (SigarException s) {
-			//Usually, this would be a pretty bad error.
+			// Usually, this would be a pretty bad error.
 			// Currently, since this whole thing is unused, who cares!
 		}
 
@@ -99,7 +99,7 @@ public class Memory extends installOptions {
 				ramSizeChosen = selection;
 				setRamSize(selection);
 				frame.setVisible(false);
-				launcherSettings();
+				Json.readProfileData(ramSizeChosen);
 			}
 		};
 		next.addActionListener(buttonEvent);
@@ -127,31 +127,31 @@ public class Memory extends installOptions {
 			// Higher than 16 Gb. No need to allocate more than this to Minecraft on its
 			// own.
 		}
-		if (ram <= 16384 && ram > 14366) {	// 16 Gb.
+		if (ram <= 16384 && ram > 14366) { // 16 Gb.
 			totalRam = 16384;
 		}
-		if (ram <= 14336 && ram > 12288) {	// 14 Gb.
+		if (ram <= 14336 && ram > 12288) { // 14 Gb.
 			totalRam = 14366;
 		}
-		if (ram <= 12288 && ram > 10240) {	// 12 Gb.
+		if (ram <= 12288 && ram > 10240) { // 12 Gb.
 			totalRam = 12288;
 		}
-		if (ram <= 10240 && ram > 9216) {	// 10 Gb.
+		if (ram <= 10240 && ram > 9216) { // 10 Gb.
 			totalRam = 10240;
 		}
-		if (ram <= 9216 && ram > 8192) {	// 9 Gb.
+		if (ram <= 9216 && ram > 8192) { // 9 Gb.
 			totalRam = 9216;
 		}
-		if (ram <= 8192 && ram > 6144) {	// 8 Gb.
+		if (ram <= 8192 && ram > 6144) { // 8 Gb.
 			totalRam = 8192;
 		}
-		if (ram <= 6144 && ram > 5120) {	// 6 Gb.
+		if (ram <= 6144 && ram > 5120) { // 6 Gb.
 			totalRam = 6144;
 		}
-		if (ram <= 5120 && ram > 4096) { 	// 5 Gb.
+		if (ram <= 5120 && ram > 4096) { // 5 Gb.
 			totalRam = 5120;
 		}
-		if (ram <= 4096 && ram > 3072) {	// 4 Gb.
+		if (ram <= 4096 && ram > 3072) { // 4 Gb.
 			totalRam = 4096;
 
 		}
@@ -164,7 +164,7 @@ public class Memory extends installOptions {
 		}
 		return totalRam;
 	}
-	
+
 	public static int getRamSizeChosen() {
 		return ramSizeChosen;
 	}
