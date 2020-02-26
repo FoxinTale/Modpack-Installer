@@ -53,39 +53,43 @@ public class Downloader {
 					}
 					bout.close();
 					in.close();
-			
+
 					System.out.println(" Download Complete!");
 					GUI.progress.setValue(0);
 					zipFile = new File(q + Driver.getDownloadsLocation() + q + zipName);
-					if (whatIs == 0) {
-						Checksums.checksum(zipFile, "Modpack.zip");	// Checksum it.
-					}
-
-					if (whatIs == 1) {
-						if (!Install.featuresUsed) {	// Update
+					switch (whatIs) {
+					case 0:
+						Checksums.checksum(zipFile, "Modpack.zip"); // Checksum it.
+						break;
+					case 1:
+						if (!Install.featuresUsed) { // Update
 							String updateZip = Driver.getDownloadsLocation() + q + Updater.currentVersion + ".zip";
 							String updateFolder = Driver.getDownloadsLocation() + q + Updater.currentVersion;
 							Extractor.Extract(updateZip, updateFolder, 1);
 						}
-						if(Install.featuresUsed) {
+						if (Install.featuresUsed) {
 							installOptions.again();
 						}
-					}
-					if (whatIs == 2) {						// Resource Packs
+						break;
+					case 2:
 						resourcePacks.creditsFrame.setVisible(false);
 						Checksums.checksum(zipFile, zipName);
+						break;
+					default:
+						break;
 					}
-				}
-				catch (FileNotFoundException e) {
+				} catch (FileNotFoundException e) {
+					// If the zip file could not be found.
 					GUI.errors.setText("Roserade");
 				} catch (IOException e) {
+					// Generic IO error. Who knows what broke here.
 					GUI.errors.setText("Jumpluff");
 				}
 			}
 		};
 		new Thread(updatethread).start();
 	}
-	
+
 	public static void redownloadModpack() {
 		URL modpackOneLink;
 		try {
@@ -95,7 +99,7 @@ public class Downloader {
 			modpackOneLink = new URL("https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
 			Download(modpackOneLink, "Modpack.zip", 0);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+			// This...shouldn't happen, as the URL is preset and cannot be entered by the user.
 			e.printStackTrace();
 		}
 	}

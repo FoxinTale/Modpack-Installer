@@ -56,7 +56,7 @@ public class GUI {
 		JLabel errorsLabel = new JLabel("Errors: ");
 		ButtonGroup options = new ButtonGroup();
 
-		JLabel installerVersion = new JLabel("Version 4.0.0");
+		JLabel installerVersion = new JLabel("Version 5.0.0");
 
 		consoleOutput.setLineWrap(true);
 
@@ -68,7 +68,7 @@ public class GUI {
 		scroll.setBorder(new LineBorder(Color.black, 1, true));
 
 		Color rbc = new Color(220, 255, 255); // Hex value: dcffff
-		Color lightRed = new Color(255,129,127);
+		Color lightRed = new Color(255, 129, 127);
 
 		options.add(modpackOne);
 		options.add(downloadOption);
@@ -89,32 +89,35 @@ public class GUI {
 				AbstractButton absButton = (AbstractButton) ae.getSource();
 				String selection = absButton.getText();
 				Boolean validPack = null;
-				if (selection.equals("Do it for me.")) {
+				switch (selection) {
+				case "Do it for me.":
 					validPack = true;
 					Driver.setSelectedOption(1);
 					button.setText("Download");
-				}
-				if (selection.equals("Just download the zip file.")) {
+					break;
+				case "Just download the zip file.":
 					Driver.setSelectedOption(2);
 					button.setText("Download");
 					validPack = true;
-				}
-				if (selection.equals("Update.")) {
+					break;
+				case "Update.":
 					Driver.updateTime = true;
 					Driver.setSelectedOption(3);
 					button.setText("Download");
 					validPack = true;
-				}
-
-				if (selection.equals("Other Features.")) {
+					break;
+				case "Other Features.":
 					Driver.setSelectedOption(4);
 					button.setText("Next");
 					validPack = true;
-				}
-				if (selection.equals("Get Resource Pack.")) {
+					break;
+				case "Get Resource Pack.":
 					Driver.setSelectedOption(5);
 					button.setText("Next");
 					validPack = true;
+					break;
+				default:
+					break;
 				}
 				if (validPack == false) {
 					errors.setText(" Garchomp");
@@ -122,100 +125,60 @@ public class GUI {
 				}
 			}
 		};
-
 		ActionListener buttonEvent = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int op = Driver.getSelectedOption();
-				
-				if (op == 1) {
-					modpackOne.setEnabled(false);
-					downloadOption.setEnabled(false);
-					updateOption.setEnabled(false);
-					otherOptions.setEnabled(false);
-					resourceOption.setEnabled(false);
+				switch (op) {
+				case 1:
+					radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
 					Json.readLists();
-					
-					try {
-						URL modpackOneLink = new URL(
-								"https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
-						Downloader.Download(modpackOneLink, "Modpack.zip", 0);
-						button.setEnabled(false);
-					} catch (MalformedURLException f) {
-						errors.setText("Shaymin");
-						System.out.println("Fuck you Java.");
-						Errors.init();
-					}
-					// debug();
-				}
-
-				if (op == 2) {
-					modpackOne.setEnabled(false);
-					downloadOption.setEnabled(false);
-					updateOption.setEnabled(false);
-					otherOptions.setEnabled(false);
-					resourceOption.setEnabled(false);
+					beginDownload(button);
+					break;
+				case 2:
+					radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
 					Json.readLists();
-					 try {
-						URL modpackTwoLink = new URL(
-								"https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
-						packDownloadOnly = true;
-						Downloader.Download(modpackTwoLink, "Modpack.zip", 0);
-					} catch (MalformedURLException g) {
-						errors.setText("Shaymin");
-						System.out.println("Fuck you Java.");
-						Errors.init();
-					}
-				}
-
-				if (op == 3) {
-					modpackOne.setEnabled(false);
-					downloadOption.setEnabled(false);
-					updateOption.setEnabled(false);
-					otherOptions.setEnabled(false);
-					resourceOption.setEnabled(false);
+					beginDownload(button);
+					break;
+				case 3:
+					radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
 					Json.readLists();
 					Updater.updater();
-				}
-				if (op == 4) {
-					modpackOne.setEnabled(false);
-					downloadOption.setEnabled(false);
-					updateOption.setEnabled(false);
-					otherOptions.setEnabled(false);
-					resourceOption.setEnabled(false);
+					break;
+				case 4:
+					radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
 					Json.readLists();
 					optionsGUI.otherOptionsGUI();
 					Install.featuresUsed = true;
-				}
-				if (op == 5) {
-					modpackOne.setEnabled(false);
-					downloadOption.setEnabled(false);
-					updateOption.setEnabled(false);
-					otherOptions.setEnabled(false);
-					resourceOption.setEnabled(false);
+					break;
+				case 5:
+					radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
 					Json.readLists();
 					resourcePacks.packGUI();
+					break;
+				default:
+					break;
 				}
 			}
 		};
-		
-		ActionListener errorsEvent = new ActionListener() {
 
+		ActionListener errorsEvent = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(" Opening errors dilogue...");
 				Errors.makeGUI();
 			}
 		};
+
 		try {
 			pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")).deriveFont(16f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")));
 		} catch (IOException e) {
-
+			// Oh look. A wild error in its habitat.
 		} catch (FontFormatException e) {
 			GUI.errors.setText("Uxie");
 			Errors.init();
 		}
-
+/*
 		frame.setFont(pretty);
 		consoleOutput.setFont(pretty);
 		modpackOne.setFont(pretty);
@@ -227,13 +190,11 @@ public class GUI {
 		button.setFont(pretty);
 		installerVersion.setFont(pretty);
 		resourceOption.setFont(pretty);
-
-		frame.setTitle("Modpack Installer by Aubrey");
-		
-		errorLookup.setBounds(415, 300, 50, 50);
-
+*/
 		errorLookup.setBackground(lightRed);
-		// x axis, y axis, width, height
+		frame.setTitle("Modpack Installer by Aubrey");
+
+		errorLookup.setBounds(415, 300, 50, 50); // x axis, y axis, width, height
 		scroll.setBounds(30, 20, 400, 200);
 
 		modpackOne.setBounds(120, 235, 200, 15);
@@ -273,9 +234,9 @@ public class GUI {
 		consoleOutput.setEditable(false);
 		errors.setEditable(false);
 
-		System.out.println(" Welcome to the installer!");
-		System.out.println(" Please report any issues or bugs to Aubrey #2376. ");
-		System.out.println(" Select an option from below to continue.\n");
+		// System.out.println(" Welcome to the installer!");
+		// System.out.println(" Please report any issues or bugs to Aubrey #2376. ");
+		// System.out.println(" Select an option from below to continue.\n");
 
 		modpackOne.addActionListener(radioButtonEvent);
 		downloadOption.addActionListener(radioButtonEvent);
@@ -293,7 +254,7 @@ public class GUI {
 		JLabel backgroundImage = new JLabel(background);
 		backgroundImage.setBounds(0, 0, 480, 575);
 
-		frame.add(button);// adding button in JFrame
+		frame.add(button);
 		frame.add(scroll);
 		frame.add(progress);
 		frame.add(errors);
@@ -315,11 +276,11 @@ public class GUI {
 
 		frame.add(resourceOption);
 		frame.add(resourcePanel);
-		
+
 		frame.add(errorLookup);
 		errorLookup.setVisible(false);
 
-		frame.add(backgroundImage);
+		// frame.add(backgroundImage);
 
 		frame.setSize(480, 575);
 		frame.setResizable(false);
@@ -327,15 +288,24 @@ public class GUI {
 		frame.setLayout(null);// using no layout managers
 		frame.setVisible(true);// making the frame visible
 	}
-	
-	public static void debug() {
-		//System.out.println(" Verifying...Hopefully.");
-		// installOptions.verifyInstall();
-		
-		 System.out.println(" Running checksum verification.");
-		 String zipName = "Modpack.zip";
-			File zipFile = new File(q + Driver.getDownloadsLocation() + q + zipName);
-		 Checksums.checksum(zipFile, zipName);
-		 // Install.install();
+
+	public static void radioSet(JRadioButton a, JRadioButton b, JRadioButton c, JRadioButton d, JRadioButton e) {
+		a.setEnabled(false);
+		b.setEnabled(false);
+		c.setEnabled(false);
+		d.setEnabled(false);
+		e.setEnabled(false);
+	}
+
+	public static void beginDownload(JButton button) {
+		try {
+			URL modpackOneLink = new URL("https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
+			Downloader.Download(modpackOneLink, "Modpack.zip", 0);
+			button.setEnabled(false);
+		} catch (MalformedURLException f) {
+			errors.setText("Shaymin");
+			System.out.println("Fuck you Java.");
+			Errors.init();
+		}
 	}
 }

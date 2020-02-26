@@ -7,6 +7,7 @@ import java.util.Hashtable;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
@@ -23,7 +24,8 @@ public class Memory extends installOptions {
 		JPanel sliderPanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
 		GridLayout format = new GridLayout(2, 1);
-
+		boolean sigarGood = resourceCheck.sigarCheck();
+		if(sigarGood) {
 		try {
 			Sigar memInfo = new Sigar();
 			Mem memory = new Mem();
@@ -33,7 +35,8 @@ public class Memory extends installOptions {
 			ramSizeMb = setRamSize(ram);
 			ramSizeGb = ramSizeMb / 1024;
 		} catch (SigarException s) {
-
+			// This would usually happen if the libraries are not found.
+			// This shouldn't happen, as I've implemented checks already. 
 		}
 
 		JButton next = new JButton("Continue");
@@ -89,7 +92,7 @@ public class Memory extends installOptions {
 				position.put(14336, new JLabel("14"));
 				break;
 			default:
-
+				break;
 			}
 		}
 		ActionListener buttonEvent = new ActionListener() {
@@ -98,7 +101,7 @@ public class Memory extends installOptions {
 				ramSizeChosen = selection;
 				setRamSize(selection);
 				frame.setVisible(false);
-				launcherSettings();
+				Json.readProfileData(ramSizeChosen);
 			}
 		};
 		next.addActionListener(buttonEvent);
@@ -117,58 +120,47 @@ public class Memory extends installOptions {
 		frame.setLayout(format);
 		frame.setResizable(false);
 		frame.setVisible(true);
-	}
-
-	public static int getRamSizeChosen() {
-		return ramSizeChosen;
-	}
-
-	public static void setRamSizeChosen(int ramSizeChosen) {
-		installOptions.ramSizeChosen = ramSizeChosen;
+		}
+		if(!sigarGood) {
+			String noSigar = "The libraries used to determine system memory could not be found. ";
+			JOptionPane.showMessageDialog(new JFrame(), noSigar, "System Information Libraries not found.", JOptionPane.ERROR_MESSAGE);
+			// System.exit(0);
+			
+		}
 	}
 
 	public static int setRamSize(int ram) {
 		int totalRam = 0;
 		if (ram >= 16384) {
 			totalRam = 16384;
-			// Higher than 16 Gb. No need to allocate more than this to Minecraft on its
-			// own.
 		}
-		if (ram <= 16384 && ram > 14366) {
+		if (ram <= 16384 && ram > 14366) { // 16 Gb.
 			totalRam = 16384;
-			// 16 Gb.
 		}
-		if (ram <= 14336 && ram > 12288) {
+		if (ram <= 14336 && ram > 12288) { // 14 Gb.
 			totalRam = 14366;
-			// 14 Gb.
 		}
-		if (ram <= 12288 && ram > 10240) {
+		if (ram <= 12288 && ram > 10240) { // 12 Gb.
 			totalRam = 12288;
-			// 12 Gb.
 		}
-		if (ram <= 10240 && ram > 9216) {
+		if (ram <= 10240 && ram > 9216) { // 10 Gb.
 			totalRam = 10240;
-			// 10 Gb.
 		}
-		if (ram <= 9216 && ram > 8192) {
+		if (ram <= 9216 && ram > 8192) { // 9 Gb.
 			totalRam = 9216;
-			// 9 Gb.
 		}
-		if (ram <= 8192 && ram > 6144) {
+		if (ram <= 8192 && ram > 6144) { // 8 Gb.
 			totalRam = 8192;
-			// 8 Gb.
 		}
-		if (ram <= 6144 && ram > 5120) {
+		if (ram <= 6144 && ram > 5120) { // 6 Gb.
 			totalRam = 6144;
-			// 6 Gb.
 		}
-		if (ram <= 5120 && ram > 4096) {
+		if (ram <= 5120 && ram > 4096) { // 5 Gb.
 			totalRam = 5120;
-			// 5 Gb.
 		}
-		if (ram <= 4096 && ram > 3072) {
+		if (ram <= 4096 && ram > 3072) { // 4 Gb.
 			totalRam = 4096;
-			// 4 Gb.
+
 		}
 		if (ram <= 3072) {
 			totalRam = 2048;
@@ -178,5 +170,13 @@ public class Memory extends installOptions {
 			// Error catching stuff, essentially.
 		}
 		return totalRam;
+	}
+
+	public static int getRamSizeChosen() {
+		return ramSizeChosen;
+	}
+
+	public static void setRamSizeChosen(int ramSizeChosen) {
+		installOptions.ramSizeChosen = ramSizeChosen;
 	}
 }

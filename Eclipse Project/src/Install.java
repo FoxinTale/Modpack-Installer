@@ -81,6 +81,7 @@ public class Install {
 		}
 		if (!installOptions.packGood) {
 			GUI.errors.setText("Chikorita");
+			//Installation failed to verify somehow.
 			installOptions.verifyInstall();
 		}
 	}
@@ -135,11 +136,11 @@ public class Install {
 
 	public static void checkForMinecraftandForge() {
 		String minecraftVersions = Driver.getMinecraftInstall() + q + "versions" + q;
+		String moddedJson = minecraftVersions + "1.7.10-Forge10.13.4.1614-1.7.10" + q + "1.7.10-Forge10.13.4.1614-1.7.10.json";
 		File vanillaMinecraft = new File(minecraftVersions + "1.7.10" + q + "1.7.10.jar");
 		File vanillaMinecraftConfig = new File(minecraftVersions + "1.7.10" + q + "1.7.10.json");
 
-		File moddedMinecraftConfig = new File(
-				minecraftVersions + q + "1.7.10-Forge10.13.4.1614-1.7.10" + q + "1.7.10-Forge10.13.4.1614-1.7.10.json");
+		File moddedMinecraftConfig = new File(moddedJson);
 
 		boolean modConfig = moddedMinecraftConfig.exists();
 		boolean vanilla = vanillaMinecraft.exists();
@@ -148,7 +149,6 @@ public class Install {
 			String noVanilla = "Please run Vanilla Minecraft 1.7.10 at least once before continuing.";
 			JOptionPane.showMessageDialog(new JFrame(), noVanilla, "Vanilla not Found", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
-
 		}
 		if (!modConfig) {
 			String noMod = "Please install the latest version of Forge for 1.7.10 before continuing!";
@@ -169,7 +169,7 @@ public class Install {
 	}
 
 	public static void optionalMods() {
-		String question = "Final question. Would you like to install XBox controller support and/or additional ambient mods?";
+		String question = "Final question. Would you like to install controller support and/or additional ambient mods?";
 		int modsAsk = JOptionPane.showConfirmDialog(new JFrame(), question, "Optional Mods Install",
 				JOptionPane.YES_NO_OPTION);
 		if (modsAsk == JOptionPane.YES_OPTION) {

@@ -7,6 +7,7 @@ import java.util.Hashtable;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
@@ -23,7 +24,8 @@ public class Memory extends installOptions {
 		JPanel sliderPanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
 		GridLayout format = new GridLayout(2, 1);
-
+		boolean sigarGood = resourceCheck.sigarCheck();
+		if(sigarGood) {
 		try {
 			Sigar memInfo = new Sigar();
 			Mem memory = new Mem();
@@ -33,8 +35,8 @@ public class Memory extends installOptions {
 			ramSizeMb = setRamSize(ram);
 			ramSizeGb = ramSizeMb / 1024;
 		} catch (SigarException s) {
-			// Usually, this would be a pretty bad error.
-			// Currently, since this whole thing is unused, who cares!
+			// This would usually happen if the libraries are not found.
+			// This shouldn't happen, as I've implemented checks already. 
 		}
 
 		JButton next = new JButton("Continue");
@@ -90,7 +92,7 @@ public class Memory extends installOptions {
 				position.put(14336, new JLabel("14"));
 				break;
 			default:
-
+				break;
 			}
 		}
 		ActionListener buttonEvent = new ActionListener() {
@@ -118,14 +120,19 @@ public class Memory extends installOptions {
 		frame.setLayout(format);
 		frame.setResizable(false);
 		frame.setVisible(true);
+		}
+		if(!sigarGood) {
+			String noSigar = "The libraries used to determine system memory could not be found. ";
+			JOptionPane.showMessageDialog(new JFrame(), noSigar, "System Information Libraries not found.", JOptionPane.ERROR_MESSAGE);
+			// System.exit(0);
+			
+		}
 	}
 
 	public static int setRamSize(int ram) {
 		int totalRam = 0;
 		if (ram >= 16384) {
 			totalRam = 16384;
-			// Higher than 16 Gb. No need to allocate more than this to Minecraft on its
-			// own.
 		}
 		if (ram <= 16384 && ram > 14366) { // 16 Gb.
 			totalRam = 16384;

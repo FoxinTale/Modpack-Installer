@@ -1,0 +1,28 @@
+{
+	"sigar": {
+		"freebsd64": "libsigar-amd64-freebsd-6.so",
+		"linux64": "libsigar-amd64-linux.so",
+		"solaris64": "libsigar-amd64-solaris.so",
+		"hpuxia": "libsigar-ia64-hpux-11.sl",
+		"linuxia": "libsigar-ia64-linux.so",
+		"hpuxpa": "libsigar-pa-hpux-11.sl",
+		"ppcaix64": "libsigar-ppc64-aix-5.so",
+		"ppclinux64": "libsigar-ppc64-linux.so",
+		"ppcaix": "libsigar-ppc-aix-5.so",
+		"ppclinux": "libsigar-ppc-linux.so",
+		"linuxx390": "libsigar-s390x-linux.so",
+		"solarixsparc64": "libsigar-sparc64-solaris.so",
+		"solarissparc": "libsigar-sparc-solaris.so",
+		"macosx64": "libsigar-universal64-macosx.dylib",
+		"macosx": "libsigar-universal-macosx.dylib",
+		"freebes586": "libsigar-x86-freebsd-5.so",
+		"freebsd686": "libsigar-x86-freebsd-6.so",
+		"linux86": "libsigar-x86-linux.so",
+		"solaris86": "libsigar-x86-solaris.so",
+		"log4j": "log4j.jar",
+		"win64": "sigar-amd64-winnt.dll",
+		"sigar": "sigar.jar",
+		"win86dll": "sigar-x86-winnt.dll",
+		"win86": "sigar-x86-winnt.lib"
+	}
+}

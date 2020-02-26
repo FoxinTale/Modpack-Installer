@@ -1,9 +1,5 @@
-
 import java.awt.Font;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -23,69 +19,14 @@ public class installOptions extends Install {
 	static Font pretty;
 	static String q = File.separator;
 	static Boolean packGood = false;
-
-	public static void launcherSettings() {
-		File launcherSettings = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
-		if (launcherSettings.exists()) {
-			ArrayList<String> launcherData = new ArrayList<>();
-			try {
-				BufferedReader reader = new BufferedReader(new FileReader(launcherSettings));
-				String s = "";
-				String line = "";
-				StringBuffer content = new StringBuffer();
-				while ((s = reader.readLine()) != null) {
-					content.append(s);
-					content.trimToSize();
-					line = content.toString().trim();
-					line.trim();
-					launcherData.add(line);
-					content.delete(0, content.length());
-				}
-				reader.close();
-
-				String chosenRamSize = "-Xmx" + Integer.toString(ramSizeChosen) + "M";
-				int versionPos = launcherData.indexOf("\"lastVersionId\" : \"1.7.10-Forge10.13.4.1614-1.7.10\",");
-				int argsPos = versionPos - 2;
-				String newArgs = "\"javaArgs\" :\"-XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump -XX:+UseG1GC -XX:+UseConcMarkSweepGC"
-						+ chosenRamSize
-						+ " -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M\",";
-				launcherData.set(argsPos, newArgs);
-				Object[] settingsArray = launcherData.toArray();
-
-				launcherSettings.delete();
-				FileWriter newSettings = new FileWriter(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
-				for (int i = 0; i < settingsArray.length; i++) {
-					newSettings.write(settingsArray[i] + "\n");
-				}
-				newSettings.close();
-				System.out.println(" Launcher settings changed and memory set.");
-				if (!featuresUsed) {
-					installFinalize();
-				}
-				if (featuresUsed) {
-					again();
-				}
-
-			} catch (IOException e1) {
-				GUI.errors.setText("Chansey");
-
-			} catch (ArrayIndexOutOfBoundsException a) {
-				GUI.errors.setText("Skitty");
-			}
-		}
-		if (!launcherSettings.exists()) {
-			installFinalize();
-		}
-	}
+	static String modpackOptions = Driver.getDownloadsLocation() + q + "Modpack" + q + "options" + q;
 
 	public static void verifyInstall() {
 		String downloadedMods = Driver.getDownloadsLocation() + q + "Modpack" + q + "mods" + q;
 		String minecraftMods = Driver.getMinecraftInstallLocation() + q + "mods" + q;
 		ArrayList<String> modList = Json.getModlist();
-		
 		ArrayList<String> minecraftModsList = new ArrayList<>();
 		ArrayList<String> downloadedModsList = new ArrayList<>();
-		
 
 		Set<Object> listOne = new HashSet<Object>();
 		Set<Object> listTwo = new HashSet<Object>();
@@ -93,7 +34,7 @@ public class installOptions extends Install {
 		try {
 			Files.list(new File(downloadedMods).toPath()).forEach(path -> {
 				downloadedModsList.add(path.getFileName().toString());
-			 });
+			});
 
 			Files.list(new File(minecraftMods).toPath()).forEach(item -> {
 				minecraftModsList.add(item.getFileName().toString());
@@ -108,18 +49,18 @@ public class installOptions extends Install {
 			fileCheck.remove("1.7.10");
 			fileCheck.remove("mcheli");
 			ArrayList<Object> missing = new ArrayList<Object>(fileCheck);
-			
+
 			if (fileCheck.isEmpty() || fileCheck.size() == 0) {
 				packGood = true;
 			}
-			if (!fileCheck.isEmpty()|| fileCheck.size() != 0) {
+			if (!fileCheck.isEmpty() || fileCheck.size() != 0) {
 				for (int i = fileCheck.size(); i > 0; i--) {
 					fixMods(q + missing.remove(i - 1));
 				}
 				verifyInstall();
 			}
-		
 		} catch (IOException e) {
+			// Mod file could not be found to copy over.
 			GUI.errors.setText("Mantyke");
 		}
 	}
@@ -132,15 +73,16 @@ public class installOptions extends Install {
 			missingModFile = new File(packDirectory + missingMod);
 			FileUtils.copyFileToDirectory(missingModFile, modsDirectory);
 		} catch (IOException e) {
+			// Generic IO exception while copying mods.
 			GUI.errors.setText("Lapras");
 		}
 	}
 
 	public static Boolean resourceCheck() {
+		System.out.println("Checking resources");
 		String home = System.getProperty("user.dir");
 		File libsDir = new File(home + q + "Modpack-Installer_lib");
-		File resourceDir = new File(home + q + "resources");
-		if (libsDir.exists() && resourceDir.exists()) {
+		if (libsDir.exists()) {
 			return true;
 		}
 		return false;
@@ -172,12 +114,13 @@ public class installOptions extends Install {
 				again();
 			}
 		} catch (IOException e) {
+			// If the backed up profile could not be found.
 			e.printStackTrace();
 		}
 	}
 
 	public static void again() {
-		String t = "Would you like yo use another option? Selecting no exits the program.";
+		String t = "Would you like to use another option? Selecting no exits the program.";
 		int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Another option?", JOptionPane.YES_NO_OPTION);
 		if (o == JOptionPane.YES_OPTION) {
 			optionsGUI.otherOptionsGUI();

@@ -52,7 +52,7 @@ public class resourcePacks {
 		frame.getContentPane().add(scroll);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll.setBorder(new LineBorder(Color.black, 1, true));
-		
+
 		packInfo.setEditable(false);
 
 		options.add(gameMusic);
@@ -86,8 +86,8 @@ public class resourcePacks {
 			public void actionPerformed(ActionEvent ae) {
 				AbstractButton absButton = (AbstractButton) ae.getSource();
 				String selection = absButton.getText();
-
-				if (selection.equals("One.")) {
+				switch (selection) {
+				case "One.":
 					packInfo.setText(null);
 					downloadSize.setText(null);
 					selectedOption = 1;
@@ -96,9 +96,9 @@ public class resourcePacks {
 							+ " This does not include any \n" + " music replacements, \n"
 							+ " sounds or ambiance music. ");
 					downloadSize.setText("90 Mb");
-				}
+					break;
+				case "Two.":
 
-				if (selection.equals("Two.")) {
 					packInfo.setText(null);
 					downloadSize.setText(null);
 					selectedOption = 2;
@@ -106,8 +106,8 @@ public class resourcePacks {
 							+ " No ambiance music. Only \n" + " replacing the games' music\n"
 							+ "  and realistic sounds.");
 					downloadSize.setText("210 Mb");
-				}
-				if (selection.equals("Three.")) {
+					break;
+				case "Three":
 					packInfo.setText(null);
 					downloadSize.setText(null);
 					selectedOption = 3;
@@ -115,18 +115,17 @@ public class resourcePacks {
 							" This pack is game music \n" + " sounds and textures. \n" + " No ambiance music. Only \n"
 									+ " replacing the games' music, \n" + " realistic sounds \n" + " and textures.");
 					downloadSize.setText("255 Mb");
-				}
+					break;
 
-				if (selection.equals("Four.")) {
+				case "Four.":
 					packInfo.setText(null);
 					downloadSize.setText(null);
 					selectedOption = 4;
 					packInfo.setText(
 							" This pack is ambiance \n" + " music, music disks and \n" + " sounds. No textures.");
 					downloadSize.setText("400 Mb");
-				}
-
-				if (selection.equals("Five.")) {
+					break;
+				case "Five.":
 					packInfo.setText(null);
 					downloadSize.setText(null);
 					selectedOption = 5;
@@ -135,9 +134,9 @@ public class resourcePacks {
 							+ " disks. Note: This will \n" + " also extract the pack, due \n"
 							+ " its size, to lessen load \n" + " times.");
 					downloadSize.setText("550 Mb");
-				}
+					break;
+				case "Six.":
 
-				if (selection.equals("Six.")) {
 					packInfo.setText(null);
 					downloadSize.setText(null);
 					selectedOption = 6;
@@ -148,7 +147,9 @@ public class resourcePacks {
 							+ " to download from within \n" + " your browser. ");
 
 					downloadSize.setText("Huge.");
-
+					break;
+				default:
+					break;
 				}
 			}
 		};
@@ -156,83 +157,52 @@ public class resourcePacks {
 		ActionListener buttonEvent = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (selectedOption == 1) {
-						ambiance.setEnabled(false);
-						gameMusic.setEnabled(false);
-						musicTex.setEnabled(false);
-						textures.setEnabled(false);
-						everything.setEnabled(false);
-						extra.setEnabled(false);
+					switch (selectedOption) {
+					case 1:
+						radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
 						setSelectedPack(1);
 						packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-TO.zip";
 						Downloader.Download(new URL(packLink), "ACRP-TO.zip", 2);
 						assetCredits.credits();
-					}
-
-					if (selectedOption == 2) {
-						ambiance.setEnabled(false);
-						gameMusic.setEnabled(false);
-						musicTex.setEnabled(false);
-						textures.setEnabled(false);
-						everything.setEnabled(false);
-						extra.setEnabled(false);
+						break;
+					case 2:
+						radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
 						setSelectedPack(2);
 						packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-MS.zip";
 						Downloader.Download(new URL(packLink), "ACRP-MS.zip", 2);
 						assetCredits.credits();
-					}
-
-					if (selectedOption == 3) {
-						ambiance.setEnabled(false);
-						gameMusic.setEnabled(false);
-						musicTex.setEnabled(false);
-						textures.setEnabled(false);
-						everything.setEnabled(false);
-						extra.setEnabled(false);
+						break;
+					case 3:
+						radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
 						setSelectedPack(3);
 						packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-MST.zip";
 						Downloader.Download(new URL(packLink), "ACRP-MST.zip", 2);
 						assetCredits.credits();
-					}
-
-					if (selectedOption == 4) {
-						ambiance.setEnabled(false);
-						gameMusic.setEnabled(false);
-						musicTex.setEnabled(false);
-						textures.setEnabled(false);
-						everything.setEnabled(false);
-						extra.setEnabled(false);
+						break;
+					case 4:
+						radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
 						setSelectedPack(4);
 						packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-AS.zip";
 						Downloader.Download(new URL(packLink), "ACRP-AS.zip", 2);
 						assetCredits.credits();
-					}
-
-					if (selectedOption == 5) {
-						ambiance.setEnabled(false);
-						gameMusic.setEnabled(false);
-						musicTex.setEnabled(false);
-						textures.setEnabled(false);
-						everything.setEnabled(false);
-						extra.setEnabled(false);
+						break;
+					case 5:
+						radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
 						setSelectedPack(5);
 						packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-E.zip";
 						Downloader.Download(new URL(packLink), "ACRP-E.zip", 2);
 						assetCredits.credits();
-					}
-
-					if (selectedOption == 6) {
-						ambiance.setEnabled(false);
-						gameMusic.setEnabled(false);
-						musicTex.setEnabled(false);
-						textures.setEnabled(false);
-						everything.setEnabled(false);
-						extra.setEnabled(false);
+						break;
+					case 6:
+						radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
 						setSelectedPack(6);
 						bigPack();
+						break;
+					default:
+						break;
 					}
 				} catch (MalformedURLException u) {
-
+					// Handle this somehow.
 				}
 			}
 		};
@@ -328,26 +298,32 @@ public class resourcePacks {
 		frame.setVisible(true);
 	}
 
-	public static int getSelectedPack() {
-		return selectedPack;
-	}
-
-	public static void setSelectedPack(int selectedPack) {
-		resourcePacks.selectedPack = selectedPack;
+	public static void radioSet(JRadioButton a, JRadioButton b, JRadioButton c, JRadioButton d, JRadioButton e,
+			JRadioButton f) {
+		a.setEnabled(false);
+		b.setEnabled(false);
+		c.setEnabled(false);
+		d.setEnabled(false);
+		e.setEnabled(false);
+		f.setEnabled(false);
 	}
 
 	public static void bigPack() {
+		JTextArea info = new JTextArea();
+		JScrollPane scroll2 = new JScrollPane(info);
+
 		JFrame frame = new JFrame("Large pack option");
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-		JLabel lineOne = new JLabel("Seriously, this is a massive pack, ");
-		JLabel lineTwo = new JLabel("and is not required. For further ");
-		JLabel lineThree = new JLabel("information, go to the below link. ");
-		JLabel lineFour = new JLabel("It will direct you to my site, ");
-		JLabel lineFive = new JLabel("which contains more information.");
-		JLabel lineSix = new JLabel("The link may take time to load.");
-		JLabel lineSeven = new JLabel("  ");
-		JLabel lineEight = new JLabel("Closing this will exit the program.");
+		info.setLineWrap(true);
+		frame.getContentPane().add(scroll2);
+		scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll2.setBorder(new LineBorder(Color.black, 1, true));
+
+		String text = " Seriously, this is a massive pack \n" + " and is not required. For further \n"
+				+ " information, go to the below link. \n" + " It will direct you to my site \n"
+				+ " which contains more information.\n" + " The link may take time to load.\n" + "\n"
+				+ " Closing this will exit the program.";
 
 		Color rbc = new Color(220, 255, 255); // Hex value: dcffff
 
@@ -368,42 +344,29 @@ public class resourcePacks {
 			GUI.errors.setText("Screwy font");
 		}
 
-		textPanel.setBounds(40, 5, 240, 240);
-		lineOne.setBounds(50, 10, 300, 20);
-		lineTwo.setBounds(50, 30, 300, 20);
-		lineThree.setBounds(50, 50, 300, 20);
-		lineFour.setBounds(50, 70, 300, 20);
-		lineFive.setBounds(50, 90, 300, 20);
-		lineSix.setBounds(50, 110, 300, 20);
-		lineSeven.setBounds(50, 130, 300, 20);
-		lineEight.setBounds(50, 150, 300, 20);
-		link.setBounds(70, 210, 300, 20);
+		info.setText(text);
+		info.setFont(pretty);
+		info.setEditable(false);
+		textPanel.setBounds(15, 10, 280, 250);
+		scroll2.setBounds(25, 20, 260, 175);
+		link.setBounds(60, 225, 200, 20);
 
-		lineOne.setFont(pretty);
-		lineTwo.setFont(pretty);
-		lineThree.setFont(pretty);
-		lineFour.setFont(pretty);
-		lineFive.setFont(pretty);
-		lineSix.setFont(pretty);
-		lineSeven.setFont(pretty);
-		lineEight.setFont(pretty);
 		link.setFont(pretty);
-
-		frame.add(lineOne);
-		frame.add(lineTwo);
-		frame.add(lineThree);
-		frame.add(lineFour);
-		frame.add(lineFive);
-		frame.add(lineSix);
-		frame.add(lineSeven);
-		frame.add(lineEight);
+		frame.add(scroll2);
 		frame.add(link);
 		frame.add(textPanel);
 
 		frame.setSize(320, 320);
 		frame.setResizable(false);
-
 		frame.setLayout(null);// using no layout managers
 		frame.setVisible(true);
+	}
+
+	public static int getSelectedPack() {
+		return selectedPack;
+	}
+
+	public static void setSelectedPack(int selectedPack) {
+		resourcePacks.selectedPack = selectedPack;
 	}
 }

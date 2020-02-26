@@ -35,15 +35,14 @@ public class Driver {
 	private static String minecraftDefaultInstall = null;
 
 	@SuppressWarnings("unused")
-	private static PrintStream standardOut; // This sets the outputs.
-//This the main. This starts everything.
-
+	// private static PrintStream standardOut; // This sets the outputs.
+	
 	public static void main(String[] args) {
 		// Creating the custom output stream.
-		PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
-		standardOut = System.out;
-		System.setOut(printStream);
-		System.setErr(printStream);
+		// PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
+		// standardOut = System.out;
+		// System.setOut(printStream);
+		// System.setErr(printStream);
 		Boolean validOS = false;
 		String OS = System.getProperty("os.name"); // This gets the name of the current operating system.
 		if (OS.equals("Windows 10") || OS.equals("Windows 8.1") || OS.equals("Windows 7")) {
@@ -95,9 +94,13 @@ public class Driver {
 		}
 	}
 
+	//This checks to see if the library folder is there, as it is needed to run the installer.
 	public static void folderCheck() {
 		if (installOptions.resourceCheck()) {
-			GUI.launchGUI();
+			// GUI.launchGUI();
+			System.out.println("Check passed, now doing the thing.");
+			InstallerSanityChecks.check(4);
+			// resourceCheck.sigarCheck();
 		}
 		if (!installOptions.resourceCheck()) {
 			String message = "Please put this back in the folder it was originally in.";

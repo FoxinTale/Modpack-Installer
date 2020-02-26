@@ -60,6 +60,7 @@ public class installOptions extends Install {
 				verifyInstall();
 			}
 		} catch (IOException e) {
+			// Mod file could not be found to copy over.
 			GUI.errors.setText("Mantyke");
 		}
 	}
@@ -72,11 +73,13 @@ public class installOptions extends Install {
 			missingModFile = new File(packDirectory + missingMod);
 			FileUtils.copyFileToDirectory(missingModFile, modsDirectory);
 		} catch (IOException e) {
+			// Generic IO exception while copying mods.
 			GUI.errors.setText("Lapras");
 		}
 	}
 
 	public static Boolean resourceCheck() {
+		System.out.println("Checking resources");
 		String home = System.getProperty("user.dir");
 		File libsDir = new File(home + q + "Modpack-Installer_lib");
 		if (libsDir.exists()) {
@@ -111,6 +114,7 @@ public class installOptions extends Install {
 				again();
 			}
 		} catch (IOException e) {
+			// If the backed up profile could not be found.
 			e.printStackTrace();
 		}
 	}

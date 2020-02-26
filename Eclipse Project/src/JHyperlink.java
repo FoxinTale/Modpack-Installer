@@ -10,9 +10,9 @@ import java.net.URISyntaxException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-@SuppressWarnings("serial")
-public class JHyperlink extends JLabel {
 
+public class JHyperlink extends JLabel {
+    private static final long serialVersionUID = 0;
 	private String url;
 	private String html = "<html><a href=''>%s</a></html>";
 

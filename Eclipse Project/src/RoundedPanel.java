@@ -7,8 +7,9 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
-@SuppressWarnings("serial")
+
 public class RoundedPanel extends JPanel {
+    private static final long serialVersionUID = 0;
 	private Color backgroundColor;
 	private int cornerRadius = 15;
 
