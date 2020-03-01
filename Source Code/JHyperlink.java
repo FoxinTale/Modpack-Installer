@@ -10,9 +10,9 @@ import java.net.URISyntaxException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-@SuppressWarnings("serial")
-public class JHyperlink extends JLabel {
 
+public class JHyperlink extends JLabel {
+    private static final long serialVersionUID = 0;
 	private String url;
 	private String html = "<html><a href=''>%s</a></html>";
 
@@ -52,9 +52,7 @@ public class JHyperlink extends JLabel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-
 					Desktop.getDesktop().browse(new URI(JHyperlink.this.url));
-
 				} catch (IOException | URISyntaxException e1) {
 					JOptionPane.showMessageDialog(JHyperlink.this,
 							"Could not open the hyperlink. Error: " + e1.getMessage(), "Error",
@@ -62,6 +60,5 @@ public class JHyperlink extends JLabel {
 				}
 			}
 		});
-
 	}
 }

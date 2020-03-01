@@ -13,7 +13,6 @@ public class CustomOutputStream extends OutputStream {
 	public CustomOutputStream(JTextArea consoleOutput) {
 		this.consoleOutput = consoleOutput;
 	}
-
 	@Override
 	public void write(int b) {
 		consoleOutput.append(String.valueOf((char) b));

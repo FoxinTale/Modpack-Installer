@@ -1,0 +1,816 @@
+{
+	"mod1": {
+		"modName": "Treecapitator",
+		"modAuthor": "bspkrs",
+		"licenseLink": "https://www.curseforge.com/project/59216/license",
+		"licenseType": "CC",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/treecapitator",
+		"modType": "Utility",
+		"MD5": "c9a8f77274a63745d2d0e1f026dffdbc",
+		"filename": " "
+	},
+
+	"mod2": {
+		"modName": "Aether Legacy",
+		"modAuthor": "user_10599132",
+		"licenseLink": "https://www.curseforge.com/project/255308/license",
+		"licenseType": "GPL",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/the-aether",
+		"modType": "Dimension",
+		"MD5": "8fcec6f1b3b159d4ed18b056aee608a7",
+		"filename": " "
+	},
+
+	"mod3": {
+		"modName": "Bad Mobs",
+		"modAuthor": "DarkhaxDev",
+		"licenseLink": "https://www.curseforge.com/project/233258/license",
+		"licenseType": "MIT",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/bad-mobs",
+		"modType": "Utility",
+		"MD5": "ec6883a2d63270e83c6c7de4d521865c",
+		"filename": " "
+	},
+
+	"mod4": {
+		"modName": "Better Sleeping",
+		"modAuthor": "CallMeFoxie",
+		"licenseLink": "https://www.curseforge.com/project/227114/license",
+		"licenseType": "Modpack Usage Permitted",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/better-sleeping",
+		"modType": "Utility",
+		"MD5": "6d06b1f9c125c6fb7b8977f788f155e4",
+		"filename": " "
+	},
+
+	"mod5": {
+		"modName": "BiomesOPlenty",
+		"modAuthor": "TheAdubbz",
+		"licenseLink": "https://www.curseforge.com/project/220318/license",
+		"licenseType": "CC BY-NC-ND 4.0",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/biomes-o-plenty",
+		"modType": "World Generation",
+		"MD5": "f75940b9771988f4188cfd5cfcd55b97",
+		"filename": " "
+	},
+	"mod6": {
+		"modName": "Botania",
+		"modAuthor": "Vazkii",
+		"licenseLink": "CC - Modified",
+		"modPage": "https://botaniamod.net/modpacks.php",
+		"modType": "Main",
+		"MD5": "757cfb6db285068b617c382fc7a1e9ed",
+		"filename": " "
+	},
+	"mod7": {
+		"modName": "Carpenters Blocks",
+		"modAuthor": "Mineshopper",
+		"licenseLink": "https://www.curseforge.com/minecraft/mc-mods/carpenters-blocks",
+		"licenseType": "GPL",
+		"modPage": "https://www.carpentersblocks.com",
+		"modType": "Blocks",
+		"MD5": "03a331f79857c07e85d19867398f249e",
+		"filename": " "
+	},
+	"mod8": {
+		"modName": "Chest Transporter",
+		"modAuthor": " cubex2",
+		"licenseLink": "https://www.curseforge.com/project/78778/license",
+		"licenseType": "Modpack usage Permitted",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/chest-transporter",
+		"modType": "Utility",
+		"MD5": "ab9145d6805a35bda9c0b263e68b194a",
+		"filename": " "
+	},
+	"mod9": {
+		"modName": "Chisel",
+		"modAuthor": "Drullkus & minecreatr",
+		"licenseLink": "https://www.curseforge.com/project/235279/license",
+		"licenseType": "GPL",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/chisel",
+		"modType": "Blocks",
+		"MD5": "c76378129307ab7b371bb9b3b8631fce",
+		"filename": " "
+	},
+	"mod10": {
+		"modName": "CloneCraft",
+		"modAuthor": "Jamezo97",
+		"licenseLink": "https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/1281105-clonecraft-vb3-0-11-mc-1-7-10-adds-npc-humans-for",
+		"licenseType": "CC",
+		"modPage": "https://github.com/Jamezo97/CloneCraft/releases/tag/v3.0.15-beta-mc-1.7.10",
+		"modType": "NPCs",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod11": {
+		"modName": "CraftGuide",
+		"modAuthor": "Uristqwerty",
+		"licenseLink": "https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/1277913-craftguide-v1-7-1-1#modpacks",
+		"licenseType": "MIT",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/craftguide",
+		"modType": "Utility",
+		"MD5": "44338699dae1813ae51f85cc5dbc6cde",
+		"filename": " "
+	},
+
+	"mod12": {
+		"modName": "CrashLogAdditions",
+		"modAuthor": "Dyonovan",
+		"licenseLink": "https://www.curseforge.com/project/247499/license",
+		"licenseType": "CC-A-SA-NC-ND",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/crash-log-additions",
+		"modType": "Utility",
+		"MD5": "21fad056944a09ffc075544dad30b353",
+		"filename": " "
+	},
+
+	"mod13": {
+		"modName": "Twilight Forest",
+		"modAuthor": "Benimatic",
+		"licenseLink": "https://www.curseforge.com/project/227639/license",
+		"licenseType": "GPL",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/the-twilight-forest",
+		"modType": "Dimension",
+		"MD5": "7602ffcdcd8ee2f012caeed1e4d22655",
+		"filename": " "
+	},
+
+	"mod14": {
+		"modName": "Custom NPCs",
+		"modAuthor": "Noppes",
+		"licenseLink": "https://www.curseforge.com/project/221826/license",
+		"licenseType": "CCPL",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/custom-npcs",
+		"modType": "NPCs",
+		"MD5": "486eb501ae87b3efcdc6b08823c7d7c9",
+		"filename": " "
+	},
+
+	"mod15": {
+		"modName": "Damage Indicators",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod16": {
+		"modName": "Dense Ores",
+		"modAuthor": "RWTema",
+		"licenseLink": "https://www.curseforge.com/project/224942/license",
+		"licenseType": "CC-SA",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/dense-ores",
+		"modType": "World Generation",
+		"MD5": "aab8a8aad4385de5367987d64317562c",
+		"filename": " "
+	},
+	"mod17": {
+		"modName": "Dark Core",
+		"modAuthor": "DarkholmeTenk",
+		"licenseLink": "https://www.curseforge.com/project/230156/license",
+		"licenseType": "CC",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/darkcore",
+		"modType": "Coremod",
+		"MD5": "c06a275e846eec1d58a3ec32424e94e3",
+		"filename": " "
+	},
+	"mod18": {
+		"modName": "Enchanting Plus",
+		"modAuthor": "MCModDev",
+		"licenseLink": " https://www.curseforge.com/project/59413/license",
+		"licenseType": "GPL",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/enchanting-plus",
+		"modType": "Utility",
+		"MD5": "8e53d1eb0306ac6a3311e6fdb4234469",
+		"filename": " "
+	},
+	"mod19": {
+		"modName": "EnderCore",
+		"modAuthor": "tterrag1098",
+		"licenseLink": "https://www.curseforge.com/project/231868/license",
+		"licenseType": "Public Domain",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/endercore",
+		"modType": "Coremod",
+		"MD5": "e6c8b5dc1ae0f01e34673ba608f8ffd9",
+		"filename": " "
+	},
+	"mod20": {
+		"modName": "EnderIO",
+		"modAuthor": "tterrag1098",
+		"licenseLink": "https://www.curseforge.com/project/64578/license",
+		"licenseType": "Public Domain",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/ender-io",
+		"modType": "Utility",
+		"MD5": "37089c0fd0769f27298fbc14665bafad",
+		"filename": " "
+
+	},
+	"mod21": {
+		"modName": "EnderStorage",
+		"modAuthor": "Chicken_Bones",
+		"licenseLink": "https://www.curseforge.com/project/229306/license",
+		"licenseType": "Custom",
+		"modPage": "https://www.curseforge.com/minecraft/mc-mods/ender-storage",
+		"modType": "Utility",
+		"MD5": "0d3dcb31d90eb2eb748d5e0a901c20a6",
+		"filename": " "
+	},
+
+	"mod22": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+
+	"mod23": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+
+	"mod24": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+
+	"mod25": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod26": {
+		"modName": "",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod27": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod28": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod29": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod30": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " ",
+	},
+
+	"mod31": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod32": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod33": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod34": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod35": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod36": {
+		"modName": "",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod37": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod38": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod39": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod40": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+
+	},
+	"mod41": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod42": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod43": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod44": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod45": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod46": {
+		"modName": "",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod47": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod48": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod49": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod50": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod51": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod52": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod53": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod54": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod55": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod56": {
+		"modName": "",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod57": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod58": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod59": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod60": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod61": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod62": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod63": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod64": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod65": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod66": {
+		"modName": "",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod67": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod68": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod69": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod70": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod71": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod72": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod73": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod74": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod75": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod76": {
+		"modName": "",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod77": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod78": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod79": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	},
+	"mod80": {
+		"modName": " ",
+		"modAuthor": " ",
+		"licenseLink": " ",
+		"licenseType": " ",
+		"modPage": " ",
+		"modType": " ",
+		"MD5": " ",
+		"filename": " "
+	}
+}

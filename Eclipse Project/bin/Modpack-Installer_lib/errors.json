@@ -1,0 +1,79 @@
+{
+	"Garchomp": {
+		"severity": "Unknown.",
+		"cause": "Somehow, the selection was invalid.",
+		"fix": "Contact me, saying exactly waht you did to make this happen."
+	},
+
+	"Sylveon": {
+		"severity": "Severe",
+		"cause": "The JSON file is improperly formatted.",
+		"fix": "There's not really much you can do."
+	},
+
+	"Shaymin": {
+		"severity": "Minor",
+		"cause": "The file could not be found on the server.",
+		"fix": "Notify me. I likely forgot to set the file as public.."
+	},
+	"Uxie": {
+		"severity": "Minor",
+		"cause": "The font used is in an invalid format",
+		"fix": "Delete the font in the resources folder."
+	},
+	"Roserade": {
+		"severity": "Severe",
+		"cause": "The installer could not find the downloaded file.",
+		"fix": "If the file is not in your downloads, put it there. Else, notify me."
+	},
+	"Jumpluff": {
+		"severity": "Unknown",
+		"cause": "A generic IO error...",
+		"fix": "Try putting the file in the downloads folder. "
+	},
+	"Blastoise": {
+		"severity": "Severe",
+		"cause": "The algorithm used for verifying files is invalid.",
+		"fix": "You're screwed. There is no fix."
+	},
+	"Glameow": {
+		"severity": "Severe",
+		"cause": "The installer could not find the file for verification.",
+		"fix": "If the file is not in your downloads, put it there. Else, notify me."
+	},
+	"Luxray": {
+		"severity": "Severe",
+		"cause": "The installer could not find the file for extraction.",
+		"fix": "If the file is not in your downloads, put it there. Else, notify me."
+	},
+	"Kyogre": {
+		"severity": "Moderate",
+		"cause": "The zip file is corrupted or in an invalid format.",
+		"fix": "Redownload the file."
+	},
+	"Chikorita": {
+		"severity": "Minor",
+		"cause": "The installer failed to verify everything installed correctly.",
+		"fix": "Ignore it."
+	},
+	"Marill": {
+		"severity": "Severe",
+		"cause": "The hostname for the server is invalid.",
+		"fix": "Notify me immediately. This should not happen."
+	},
+	"Mantyke": {
+		"severity": "Minor",
+		"cause": "While verifying the pack installed, a file could not be found.",
+		"fix": "Ignore it, unless a mod rejection occurs on connection."
+	},
+	"Zebstrika": {
+		"severity": "Severe",
+		"cause": "Somehow, the Json file on Github could not be found.",
+		"fix": "Notify me."
+	},
+	"Litwick": {
+		"severity": "Moderate",
+		"cause": "Generic IO error while handling the Json file.",
+		"fix": "No idea. This shouldn't happen."
+	}
+}

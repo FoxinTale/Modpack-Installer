@@ -68,22 +68,20 @@ public class Install {
 		installOptions.verifyInstall();
 		System.out.println(" Verifying install.");
 		if (installOptions.packGood) {
-			
-			// String t = "Would you like the installer to adjust your Java arguments in the
-			// launcher? This will also allow you to configure the amount of ram you
-			// allocate to Minecraft.";
-			// int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Java Arguments",
-			// JOptionPane.YES_NO_OPTION);
-			// if (o == JOptionPane.YES_OPTION) {
-			// installOptions.backup();
-			// Memory.sliderGUI();
-			// }
-			// if (o == JOptionPane.NO_OPTION) {
-			installFinalize();
-			// }
+
+			String t = "Would you like the installer to adjust your Java arguments in the launcher? This will also allow you to configure the amount of ram youallocate to Minecraft.";
+			int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Java Arguments", JOptionPane.YES_NO_OPTION);
+			if (o == JOptionPane.YES_OPTION) {
+				installOptions.backup();
+				Memory.sliderGUI();
+			}
+			if (o == JOptionPane.NO_OPTION) {
+				installFinalize();
+			}
 		}
 		if (!installOptions.packGood) {
 			GUI.errors.setText("Chikorita");
+			//Installation failed to verify somehow.
 			installOptions.verifyInstall();
 		}
 	}
@@ -118,7 +116,6 @@ public class Install {
 			if (featuresUsed) {
 				installOptions.again();
 			}
-
 		} catch (UnknownHostException h) {
 			// This should never happen.
 			// EVER
@@ -139,11 +136,11 @@ public class Install {
 
 	public static void checkForMinecraftandForge() {
 		String minecraftVersions = Driver.getMinecraftInstall() + q + "versions" + q;
+		String moddedJson = minecraftVersions + "1.7.10-Forge10.13.4.1614-1.7.10" + q + "1.7.10-Forge10.13.4.1614-1.7.10.json";
 		File vanillaMinecraft = new File(minecraftVersions + "1.7.10" + q + "1.7.10.jar");
 		File vanillaMinecraftConfig = new File(minecraftVersions + "1.7.10" + q + "1.7.10.json");
-	
-		File moddedMinecraftConfig = new File(
-				minecraftVersions + q + "1.7.10-Forge10.13.4.1614-1.7.10" + q + "1.7.10-Forge10.13.4.1614-1.7.10.json");
+
+		File moddedMinecraftConfig = new File(moddedJson);
 
 		boolean modConfig = moddedMinecraftConfig.exists();
 		boolean vanilla = vanillaMinecraft.exists();
@@ -152,7 +149,6 @@ public class Install {
 			String noVanilla = "Please run Vanilla Minecraft 1.7.10 at least once before continuing.";
 			JOptionPane.showMessageDialog(new JFrame(), noVanilla, "Vanilla not Found", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
-
 		}
 		if (!modConfig) {
 			String noMod = "Please install the latest version of Forge for 1.7.10 before continuing!";
@@ -168,6 +164,18 @@ public class Install {
 			resourcePacks.packGUI();
 		}
 		if (o == JOptionPane.NO_OPTION) {
+			optionalMods();
+		}
+	}
+
+	public static void optionalMods() {
+		String question = "Final question. Would you like to install controller support and/or additional ambient mods?";
+		int modsAsk = JOptionPane.showConfirmDialog(new JFrame(), question, "Optional Mods Install",
+				JOptionPane.YES_NO_OPTION);
+		if (modsAsk == JOptionPane.YES_OPTION) {
+			modOptions.modOptionsGui();
+		}
+		if (modsAsk == JOptionPane.NO_OPTION) {
 			end();
 		}
 	}

@@ -1,0 +1,11 @@
+{
+ 	"analyticsFailCount": 0,
+ 	"analyticsToken": "8d5a19f9520973d3b4c8c7f3be696407",
+ 	"clientToken": "d03eea5db75a05c748ac4b72a2920ad5",
+	"launcherVersion":{
+		"format":21,
+		"name":"2.1.2481",
+		"profilesFormat":2
+	},
+{"profile":{"d0e24d0b770a432f96cf0c8bbf0dbd80":{"lastUsed":"2019-08-08T21:13:15.308Z","lastVersionId":"1.10.2","created":"2019-04-02T21:42:07.598Z","name":"","type":"custom"},"19bbcf0ac1dda56f36033e8a50695a7c":{"lastUsed":"2019-04-02T21:41:42.428Z","lastVersionId":"1.12.2","created":"2019-02-07T21:32:01.444Z","name":"","type":"custom"},"Forge":{"lastUsed":"2019-08-13T19:23:53.935Z","lastVersionId":"1.7.10-Forge10.13.4.1614-1.7.10","javaArgs":"-XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump -XX:+UseG1GC -XX:+UseConcMarkSweepGC-Xmx6144M -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M","icon":"Furnace","name":"","type":""},"7d6112fce955c2fe0cd4e9bd8dcc118a":{"lastUsed":"1970-01-01T00:00:00.001Z","lastVersionId":"latest-release","icon":"Grass","name":"","type":"latest-release"},"f2e94d29395d588570af78016f54fa1d":{"lastUsed":"2019-08-08T21:08:39.510Z","lastVersionId":"1.7.10","created":"2019-08-08T21:08:34.792Z","icon":"Furnace","name":"1.7.10","type":"custom"},"55f6a91a3216901e5132514c51adb4a2":{"lastUsed":"1970-01-01T00:00:00.000Z","lastVersionId":"latest-snapshot","icon":"Crafting_Table","name":"","type":"latest-snapshot"}}}	"settings":{"enableAnalytics":true,"enableAdvanced":false,"enableSnapshots":false,"channel":"release","enableHistorical":false,"enableReleases":true,"locale":"en-us","showGameLog":true,"keepLauncherOpen":false,"soundOn":false,"showMenu":true,"profileSorting":"ByLastPlayed","crashAssistance":true}}
+}
