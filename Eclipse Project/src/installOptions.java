@@ -79,7 +79,6 @@ public class installOptions extends Install {
 	}
 
 	public static Boolean resourceCheck() {
-		System.out.println("Checking resources");
 		String home = System.getProperty("user.dir");
 		File libsDir = new File(home + q + "Modpack-Installer_lib");
 		if (libsDir.exists()) {

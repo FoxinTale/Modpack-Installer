@@ -15,7 +15,7 @@
 		"solarissparc": "libsigar-sparc-solaris.so",
 		"macosx64": "libsigar-universal64-macosx.dylib",
 		"macosx": "libsigar-universal-macosx.dylib",
-		"freebes586": "libsigar-x86-freebsd-5.so",
+		"freebsd586": "libsigar-x86-freebsd-5.so",
 		"freebsd686": "libsigar-x86-freebsd-6.so",
 		"linux86": "libsigar-x86-linux.so",
 		"solaris86": "libsigar-x86-solaris.so",

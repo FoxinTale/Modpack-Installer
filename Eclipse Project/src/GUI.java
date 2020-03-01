@@ -172,13 +172,13 @@ public class GUI {
 			pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")).deriveFont(16f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")));
-		} catch (IOException e) {
+		} catch (IOException ioe) {
 			// Oh look. A wild error in its habitat.
-		} catch (FontFormatException e) {
+		} catch (FontFormatException ffe) {
 			GUI.errors.setText("Uxie");
 			Errors.init();
 		}
-/*
+
 		frame.setFont(pretty);
 		consoleOutput.setFont(pretty);
 		modpackOne.setFont(pretty);
@@ -190,7 +190,7 @@ public class GUI {
 		button.setFont(pretty);
 		installerVersion.setFont(pretty);
 		resourceOption.setFont(pretty);
-*/
+
 		errorLookup.setBackground(lightRed);
 		frame.setTitle("Modpack Installer by Aubrey");
 
@@ -234,9 +234,9 @@ public class GUI {
 		consoleOutput.setEditable(false);
 		errors.setEditable(false);
 
-		// System.out.println(" Welcome to the installer!");
-		// System.out.println(" Please report any issues or bugs to Aubrey #2376. ");
-		// System.out.println(" Select an option from below to continue.\n");
+		System.out.println(" Welcome to the installer!");
+		System.out.println(" Please report any issues or bugs to Aubrey #2376. ");
+		System.out.println(" Select an option from below to continue.\n");
 
 		modpackOne.addActionListener(radioButtonEvent);
 		downloadOption.addActionListener(radioButtonEvent);
@@ -280,7 +280,7 @@ public class GUI {
 		frame.add(errorLookup);
 		errorLookup.setVisible(false);
 
-		// frame.add(backgroundImage);
+		frame.add(backgroundImage);
 
 		frame.setSize(480, 575);
 		frame.setResizable(false);
@@ -302,7 +302,7 @@ public class GUI {
 			URL modpackOneLink = new URL("https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
 			Downloader.Download(modpackOneLink, "Modpack.zip", 0);
 			button.setEnabled(false);
-		} catch (MalformedURLException f) {
+		} catch (MalformedURLException mue) {
 			errors.setText("Shaymin");
 			System.out.println("Fuck you Java.");
 			Errors.init();
