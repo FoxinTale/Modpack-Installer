@@ -9,7 +9,6 @@ import java.net.URL;
 import javax.swing.SwingUtilities;
 
 public class Downloader {
-
 	static String q = File.separator;
 	static File zipFile;
 
@@ -17,8 +16,7 @@ public class Downloader {
 		/*
 		 * whatIs determines what to do with the downloaded file. 0 is for the Modpack 1
 		 * is for the Update 2 is for the Resource Packs
-		 */
-		/*
+		 * 
 		 * Resource Pack Naming! Aubrey's Custom Resource Pack (ACRP)
 		 * 
 		 * ACRP-TO = Textures Only ACRP-MS - Game Music and Sounds ACRP-MST = Game

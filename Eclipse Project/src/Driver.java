@@ -98,7 +98,7 @@ public class Driver {
 	public static void folderCheck() {
 		if (installOptions.resourceCheck()) {
 			GUI.launchGUI();
-			// InstallerSanityChecks.check(9);
+			// InstallerSanityChecks.check(10);
 			resourceCheck.sigarCheck();
 		}
 		if (!installOptions.resourceCheck()) {

@@ -17,10 +17,10 @@ import javax.swing.border.LineBorder;
 
 public class modOptions extends installOptions {
 
-	static JCheckBox controllerCheck, musicCheck, surroundingsCheck, footstepCheck, filterCheck, animatedCheck,
-			autofishCheck, noteblockCheck, brightCheck;
-	static boolean useController, useMusic, useSurroundings, useFootsteps, useFilters, useAnimated, useAutofish,
-			useNoteblock, useBright;
+	static JCheckBox controllerCheck, musicCheck, surroundingsCheck, footstepCheck, filterCheck, autofishCheck,
+			noteblockCheck, brightCheck;
+	static boolean useController, useMusic, useSurroundings, useFootsteps, useFilters, useAutofish, useNoteblock,
+			useBright;
 	static JTextArea modInfo = new JTextArea();
 	static JScrollPane scroll = new JScrollPane(modInfo);
 	static Font pretty;
@@ -32,14 +32,13 @@ public class modOptions extends installOptions {
 	public static void modOptionsGui() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		frame.setTitle("Optional mod installation");
 		controllerCheck = new JCheckBox("Controller Support.");
 		musicCheck = new JCheckBox("Custom Ambiance Music.");
 		surroundingsCheck = new JCheckBox("Dynamic Surroundings.");
 		footstepCheck = new JCheckBox("Presence Footsteps.");
 		filterCheck = new JCheckBox("Sound Filters.");
-		animatedCheck = new JCheckBox("Animated Player");
 		autofishCheck = new JCheckBox("Auto Fishing");
 		noteblockCheck = new JCheckBox("Noteblock Display");
 		brightCheck = new JCheckBox("Gammabright");
@@ -61,7 +60,6 @@ public class modOptions extends installOptions {
 		useSurroundings = false;
 		useFootsteps = false;
 		useFilters = false;
-		useAnimated = false;
 		useAutofish = false;
 		useNoteblock = false;
 		useBright = false;
@@ -105,13 +103,7 @@ public class modOptions extends installOptions {
 				selectionDo(surroundings, useSurroundings, s);
 			}
 		};
-		ActionListener animatedEvent = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JCheckBox animated = (JCheckBox) e.getSource();
-				s = " Detailed player animations.\n" + " Crawiling, ladders,  \n" + " animated flying and more.";
-				selectionDo(animated, useAnimated, s);
-			}
-		};
+
 		ActionListener autofishEvent = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JCheckBox autofish = (JCheckBox) e.getSource();
@@ -146,7 +138,7 @@ public class modOptions extends installOptions {
 				String utility = modpackOptions + "utility" + q;
 				if (useController) {
 					System.out.println(" Controller support installed");
-					modInstall(modpackOptions + "controller" + q, "JoypadMod-1.7.10.jar");
+					modInstall(utility, "JoypadMod-1.7.10.jar");
 				}
 				if (useMusic) {
 					System.out.println(" Music installed");
@@ -164,10 +156,7 @@ public class modOptions extends installOptions {
 					System.out.println(" Filters installed");
 					modInstall(ambiance, "SoundFilters-0.8_for_1.7.X.jar");
 				}
-				if (useAnimated) {
-					System.out.println(" Animations installed");
-					animatedInstall();
-				}
+
 				if (useAutofish) {
 					System.out.println(" Autofish installed");
 					modInstall(utility, "mod_Autofish_0.4.9_mc1.7.10.litemod");
@@ -202,7 +191,6 @@ public class modOptions extends installOptions {
 		surroundingsCheck.setFont(pretty);
 		filterCheck.setFont(pretty);
 		footstepCheck.setFont(pretty);
-		animatedCheck.setFont(pretty);
 		autofishCheck.setFont(pretty);
 		brightCheck.setFont(pretty);
 		noteblockCheck.setFont(pretty);
@@ -215,7 +203,7 @@ public class modOptions extends installOptions {
 		surroundingsCheck.addActionListener(surroundingsEvent);
 		filterCheck.addActionListener(filtersEvent);
 		footstepCheck.addActionListener(footstepsEvent);
-		animatedCheck.addActionListener(animatedEvent);
+		;
 		autofishCheck.addActionListener(autofishEvent);
 		noteblockCheck.addActionListener(noteblockEvent);
 		brightCheck.addActionListener(brightEvent);
@@ -225,7 +213,6 @@ public class modOptions extends installOptions {
 		surroundingsCheck.setBounds(20, 75, 200, 20);
 		footstepCheck.setBounds(20, 100, 200, 20);
 		filterCheck.setBounds(20, 125, 200, 20);
-		animatedCheck.setBounds(20, 150, 200, 20);
 		autofishCheck.setBounds(20, 175, 200, 20);
 		noteblockCheck.setBounds(20, 200, 200, 20);
 		brightCheck.setBounds(20, 225, 200, 20);
@@ -241,7 +228,6 @@ public class modOptions extends installOptions {
 		frame.add(surroundingsCheck);
 		frame.add(footstepCheck);
 		frame.add(filterCheck);
-		frame.add(animatedCheck);
 		frame.add(autofishCheck);
 		frame.add(brightCheck);
 		frame.add(noteblockCheck);

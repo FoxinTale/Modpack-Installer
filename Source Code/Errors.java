@@ -9,7 +9,7 @@ public class Errors {
 	static Object fix;
 	static Object cause;
 	static Object severity;
-	static Object errorCode;
+	static String errorCode;
 	static String q = File.separator;
 
 	public static void init() {
@@ -24,7 +24,7 @@ public class Errors {
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-		JLabel errorLabel = new JLabel("\" Error \" Code: ");
+		JLabel errorLabel = new JLabel("\"Error\" Code: ");
 		JLabel severityLabel = new JLabel("Severity: ");
 		JLabel causeLabel = new JLabel("Cause: ");
 		JLabel fixLabel = new JLabel("Fix: ");
@@ -34,12 +34,12 @@ public class Errors {
 		JLabel causeBox = new JLabel(cause.toString());
 		JLabel fixBox = new JLabel(fix.toString());
 
-		errorLabel.setBounds(20, 25, 100, 36);
+		errorLabel.setBounds(20, 25, 150, 36);
 		severityLabel.setBounds(20, 50, 100, 36);
 		causeLabel.setBounds(20, 75, 100, 36);
 		fixLabel.setBounds(20, 100, 100, 36);
 
-		errorBox.setBounds(120, 25, 300, 36);
+		errorBox.setBounds(120, 25, 350, 36);
 		severityBox.setBounds(120, 50, 300, 36);
 		causeBox.setBounds(120, 75, 300, 36);
 		fixBox.setBounds(120, 100, 500, 36);

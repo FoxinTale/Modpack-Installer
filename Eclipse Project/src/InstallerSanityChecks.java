@@ -59,6 +59,8 @@ public class InstallerSanityChecks {
 			String jsonDir = dir + q + "json" + q;
 			File libData = new File(jsonDir + "libraries.json");
 			Json.libRead(libData, list);
+		case 10:
+			Json.readLists();
 		default:
 			break;
 		}

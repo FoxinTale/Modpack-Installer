@@ -102,6 +102,7 @@ public class Memory extends installOptions {
 				setRamSize(selection);
 				frame.setVisible(false);
 				Json.readProfileData(ramSizeChosen);
+				System.out.println(" Memory adjusted!");
 			}
 		};
 		next.addActionListener(buttonEvent);

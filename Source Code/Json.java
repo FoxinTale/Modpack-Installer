@@ -31,9 +31,9 @@ public class Json {
 			setCurrentVersion(currentVersion);
 			JSONArray checksumArray = (JSONArray) data.get("checksums");
 			JSONArray modArray = (JSONArray) data.get("modList");
-
 			jsonArrayRead(checksumArray, checksums, false, 0);
 			jsonArrayRead(modArray, modlist, false, 1);
+
 		} catch (FileNotFoundException e) {
 			GUI.errors.setText("Zebstrika");
 			Errors.init();
@@ -86,13 +86,12 @@ public class Json {
 
 	public static void readProfileData(int mem) {
 		File launcherSettings = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
-		// installOptions.backup();
+		installOptions.backup();
 		if (launcherSettings.exists()) {
 			try {
 				JSONTokener fileData = new JSONTokener(new FileReader(launcherSettings));
 				JSONObject launcherData = new JSONObject(fileData);
 				JSONObject profilesObject = launcherData.getJSONObject("profiles");
-
 				JSONArray keys = profilesObject.names();
 				boolean forgeFound = false;
 				boolean versionIdFound = false;
@@ -102,20 +101,16 @@ public class Json {
 						forgePoint = j;
 					}
 				}
-
 				if (forgeFound) {
 					JSONObject forgeObject = profilesObject.getJSONObject("Forge");
 					JSONArray forgeKeys = forgeObject.names();
 					for (int k = 0; k < forgeKeys.length(); k++) {
 						if (forgeKeys.get(k).equals("lastVersionId")) {
 							versionIdFound = true;
-						}
-
-						else if (forgeKeys.get(k).equals("javaArgs")) {
+						} else if (forgeKeys.get(k).equals("javaArgs")) {
 							argsPoint = k;
 						}
 					}
-
 					if (versionIdFound) {
 						Object versionValue = forgeObject.get("lastVersionId");
 						if (versionValue.equals("1.7.10-Forge10.13.4.1614-1.7.10")) {
@@ -124,12 +119,15 @@ public class Json {
 					}
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				// launcher_profiles not found.
 				e.printStackTrace();
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
+				// Something's broken about the launcher Json.
 				e.printStackTrace();
 			}
+		}
+		else {
+			System.out.println(" OOF");
 		}
 	}
 
@@ -158,7 +156,6 @@ public class Json {
 				if (values.charAt(values.length() - 1) == 'M') {
 					values = sb.substring(posArg, posArg + 11);
 				}
-
 				StringBuilder valueMod = new StringBuilder(values);
 				int posOfX = values.indexOf('x');
 				int posOfM = values.indexOf('M') + 1;
@@ -176,16 +173,18 @@ public class Json {
 				argsValue = sb.toString();
 				launcherJsonWrite(argsValue.toString());
 			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (JSONException je) {
+			// Something broken about the Launcher json.
+			je.printStackTrace();
 		}
 	}
 
 	public static void launcherJsonWrite(String newArgs) {
 		try {
 			File launcherInfo = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
-
+			// String args = "-Xmx4G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC
+			// -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50
+			// -XX:G1HeapRegionSize=32M";
 			JSONTokener fileData = new JSONTokener(new FileReader(launcherInfo));
 			JSONObject launcherData = new JSONObject(fileData);
 			JSONObject newLauncher = launcherData.getJSONObject("profiles");
@@ -195,27 +194,23 @@ public class Json {
 			JSONObject version = launcherData.getJSONObject("launcherVersion");
 			JSONObject userData = launcherData.getJSONObject("selectedUser");
 
-			String pwd = System.getProperty("user.dir");
-			// String json = Driver.getMinecraftInstall() + q + "launcher_profiles.json";
-			String json = pwd + q + "test.json";
+			String json = Driver.getMinecraftInstall() + q + "launcher_profiles.json";
 			PrintWriter launcherJson = new PrintWriter(json);
-			// launcherInfo.delete();
+
 			JSONObject newForge = newLauncher.getJSONObject("Forge");
 			newForge.put("javaArgs", newArgs);
 			newLauncher.put("Forge", newForge);
 
 			launcherJson.write("{");
-			launcherJson.write(restructure("authenticationDatabase", authData, true, 0));
+			launcherJson.write(restructure("authenticationDatabase", authData, true));
 			launcherJson.write(" \t\"clientToken\"" + ": " + "\"" + clientToken + "\",\n");
-			launcherJson.write(restructure("launcherVersion", version, true, 0));
-			launcherJson.write(restructure("profiles", newLauncher, true, 0));
-			launcherJson.write(restructure("selectedUser", userData, true, 0));
-			launcherJson.write(restructure("settings", settings, false, 0));
+			launcherJson.write(restructure("launcherVersion", version, true));
+			launcherJson.write(restructure("profiles", newLauncher, true));
+			launcherJson.write(restructure("selectedUser", userData, true));
+			launcherJson.write(restructure("settings", settings, false));
 			launcherJson.write("\n}");
 			launcherJson.flush();
 			launcherJson.close();
-
-			// Back up the original, of course.
 		} catch (FileNotFoundException fnfe) {
 			// Launcher profile could not be found.
 			fnfe.printStackTrace();
@@ -225,65 +220,38 @@ public class Json {
 		}
 	}
 
-	public static String restructure(String header, JSONObject jo, boolean addComma, int op) {
+	public static String restructure(String header, JSONObject jo, boolean addComma) {
+		String returnVal = null;
 		StringBuilder sb = new StringBuilder();
-		sb.append(jo);
-		sb.deleteCharAt(0); // This deletes the opening bracket from the object.
-		for (int i = 1; i < sb.length(); i++) {
-			if (sb.charAt(i - 1) == ',') {
-				sb.insert(i, "\n");
-			} else if (sb.charAt(i) == '}') {
-				sb.insert(i + 1, "\n");
-			} else if (sb.charAt(i - 1) == '{') {
-				sb.insert(i, "\n");
+		try {
+			sb.append(jo.toString(1));
+			sb.deleteCharAt(0); // This deletes the opening bracket from the object.
+			if (addComma) {
+				sb.insert(sb.length(), ",\n");
 			}
+			String newHeader = "\"" + header + "\"" + ": " + "{";
+			returnVal = newHeader + sb.toString();
+		} catch (JSONException je) {
+			// The json is fucked.
+			je.printStackTrace();
 		}
-
-		if (addComma) {
-			sb.insert(sb.length(), ",\n");
-		}
-		
-		sb.insert(0, '\t');
-		String newHeader = "\t\n" + "\"" + header + "\"" + ": " + "{";
-		sb.insert(0, newHeader);
-		return sb.toString();
+		return returnVal;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static void errorRead(Object errorCode) {
+	public static void errorRead(String errorCode) {
 		String pwd = System.getProperty("user.dir");
-		File errorsData = new File(pwd + q + "Modpack-Installer_lib" + q + "errors.json");
+		File errorsDataFile = new File(pwd + q + "Modpack-Installer_lib" + q + "json" + q + "errors.json");
 		try {
-			Object fileData = new JSONTokener(new FileReader(errorsData));
-			JSONObject data = (JSONObject) fileData;
-			Object keyVal;
-			Iterator<Map.Entry> itr1 = ((Map) data).entrySet().iterator();
-			while (itr1.hasNext()) {
-				Map.Entry pair = itr1.next();
-				keyVal = pair.getKey();
-				if (keyVal.equals(errorCode)) {
-					Map errorData = ((Map) data.get("errorCode"));
-					Iterator<Map.Entry> errorItr = errorData.entrySet().iterator();
-					while (errorItr.hasNext()) {
-						Map.Entry errorPair = errorItr.next();
-						if (errorPair.getKey().equals("severity")) {
-							Errors.setSeverity(errorPair.getValue());
-						}
-						if (errorPair.getKey().equals("cause")) {
-							Errors.setCause(errorPair.getValue());
-						}
-						if (errorPair.getKey().equals("fix")) {
-							Errors.setFix(errorPair.getValue());
-						}
-					}
-				}
-			}
-		} catch (FileNotFoundException e) {
-			// If the Json file itself could not be found. This shouldn't happen.
-			e.printStackTrace();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JSONTokener fileData = new JSONTokener(new FileReader(errorsDataFile));
+			JSONObject launcherData = new JSONObject(fileData);
+			JSONObject errorInfo = launcherData.getJSONObject(errorCode);
+			Errors.severity = errorInfo.get("severity");
+			Errors.fix = errorInfo.get("fix");
+			Errors.cause = errorInfo.get("cause");
+		} catch (FileNotFoundException fnfe) {
+			GUI.errors.setText("Errors data file not found.");
+		} catch (JSONException je) {
+			GUI.errors.setText("The errors errored.");
 		}
 		Errors.makeGUI();
 	}
@@ -291,21 +259,25 @@ public class Json {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void libRead(File libData, ArrayList<String> list) {
 		try {
-			Object dataObj = new JSONTokener(new FileReader(libData));
-			JSONObject dataJson = (JSONObject) dataObj;
-			Map sigarData = ((Map) dataJson.get("sigar"));
-			Iterator<Map.Entry> itr1 = ((Map) sigarData).entrySet().iterator();
-			while (itr1.hasNext()) {
-				Map.Entry pair = itr1.next();
-				list.add((String) pair.getValue());
+			JSONTokener libFile = new JSONTokener(new FileReader(libData));
+			JSONObject libJson = new JSONObject(libFile);
+			JSONObject sigarObj = libJson.getJSONObject("sigar");
+			Iterator<Map.Entry> sigarItr = sigarObj.keys();
+			ArrayList<Object> namesArr = new ArrayList<Object>();
+			while (sigarItr.hasNext()) {
+				namesArr.add(sigarItr.next());
+			}
+			for (int i = 0; i < namesArr.size(); i++) {
+				Object key = namesArr.get(i);
+				list.add(sigarObj.get(key.toString()).toString());
 			}
 			resourceCheck.setSigarFiles(list);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (FileNotFoundException fnfe) {
+			// Libraries information file not found.
+			fnfe.printStackTrace();
+		} catch (JSONException je) {
+			// Json error while reading the file list.
+			je.printStackTrace();
 		}
 	}
 
