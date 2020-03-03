@@ -1,7 +1,7 @@
 {
 	"currentVersion": "4.0.0",
 	"checksums": [{
-		"modpack": "c889fed7efbfbb6c3626984c4321b660"
+		"modpack": "1c91196477e52bd1044b0d55d077b6fa"
 	}, {
 		"textures": "a4da0d75e5d43d6f08359d8ece912fd4"
 	}, {
@@ -234,5 +234,11 @@
 		"remove": "ThermalFoundation-[1.7.10]1.2.6-118.jar"
 	}, {
 		"remove": "twilightforest-1.7.10-2.3.7.jar"
+	}, {
+		"remove": "SmartRender-1.7.10-2.1.jar"
+	}, {
+		"remove": "SmartMoving-1.7.10-15.6.jar"
+	}, {
+		"remove": "PlayerAPI-1.7.10-1.4.jar"
 	}]
 }
