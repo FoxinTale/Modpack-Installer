@@ -10,31 +10,38 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectId" id="1VRPbjedkyLZ4kt61L5om1e8zhR" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modpack-Installer.ipr" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\JsonUtils" />
+      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\ZipFileUtility\Util" />
+      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\ZipUtils\Tasks" />
+      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\ZipUtils\Model" />
+      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\ZipUtils\IO\Output" />
+    </key>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -49,21 +56,21 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="481" y="292" width="307" height="217" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1577213032801">
-      <screen x="0" y="27" width="1280" height="747" />
+    <state x="605" y="136" key="#com.intellij.ide.util.MemberChooser" timestamp="1606679798914">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="481" y="292" width="307" height="217" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.27.1280.747@0.27.1280.747" timestamp="1577213032801" />
-    <state x="390" y="115" width="480" height="571" key="DetectedRootsChooserDialog" timestamp="1577213311255">
-      <screen x="0" y="27" width="1280" height="747" />
+    <state x="605" y="136" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606679798914" />
+    <state x="441" y="273" width="433" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606618659920">
+      <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state x="390" y="115" width="480" height="571" key="DetectedRootsChooserDialog/0.27.1280.747@0.27.1280.747" timestamp="1577213311255" />
-    <state x="270" y="143" width="719" height="515" key="FileChooserDialogImpl" timestamp="1577213309098">
-      <screen x="0" y="27" width="1280" height="747" />
+    <state x="441" y="273" width="433" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.760@0.0.1280.760" timestamp="1606618659920" />
+    <state x="643" y="187" key="refactoring.ChangeSignatureDialog" timestamp="1606678998340">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="270" y="143" width="719" height="515" key="FileChooserDialogImpl/0.27.1280.747@0.27.1280.747" timestamp="1577213309098" />
-    <state x="123" y="27" width="1024" height="747" key="SettingsEditor" timestamp="1577213313977">
-      <screen x="0" y="27" width="1280" height="747" />
+    <state x="643" y="187" key="refactoring.ChangeSignatureDialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606678998340" />
+    <state x="456" y="198" key="run.anything.popup" timestamp="1606676662569">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="123" y="27" width="1024" height="747" key="SettingsEditor/0.27.1280.747@0.27.1280.747" timestamp="1577213313977" />
+    <state x="456" y="198" key="run.anything.popup/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606676662569" />
   </component>
 </project>

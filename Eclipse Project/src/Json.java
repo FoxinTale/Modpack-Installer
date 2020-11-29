@@ -1,17 +1,11 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import JsonUtils.JSONArray;
+import JsonUtils.JSONException;
+import JsonUtils.JSONObject;
+import JsonUtils.JSONTokener;
+
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 
 public class Json {
 	static ArrayList<String> modlist = new ArrayList<>();
@@ -182,9 +176,6 @@ public class Json {
 	public static void launcherJsonWrite(String newArgs) {
 		try {
 			File launcherInfo = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
-			// String args = "-Xmx4G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC
-			// -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50
-			// -XX:G1HeapRegionSize=32M";
 			JSONTokener fileData = new JSONTokener(new FileReader(launcherInfo));
 			JSONObject launcherData = new JSONObject(fileData);
 			JSONObject newLauncher = launcherData.getJSONObject("profiles");
@@ -256,21 +247,20 @@ public class Json {
 		Errors.makeGUI();
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void libRead(File libData, ArrayList<String> list) {
 		try {
 			JSONTokener libFile = new JSONTokener(new FileReader(libData));
 			JSONObject libJson = new JSONObject(libFile);
 			JSONObject sigarObj = libJson.getJSONObject("sigar");
-			Iterator<Map.Entry> sigarItr = sigarObj.keys();
+			//Iterator<Map.Entry> sigarItr = sigarObj.keys();
 			ArrayList<Object> namesArr = new ArrayList<Object>();
-			while (sigarItr.hasNext()) {
-				namesArr.add(sigarItr.next());
-			}
-			for (int i = 0; i < namesArr.size(); i++) {
-				Object key = namesArr.get(i);
-				list.add(sigarObj.get(key.toString()).toString());
-			}
+			//while (sigarItr.hasNext()) {
+			//	namesArr.add(sigarItr.next());
+			//}
+			//for (int i = 0; i < namesArr.size(); i++) {
+			//	Object key = namesArr.get(i);
+			//	list.add(sigarObj.get(key.toString()).toString());
+			//}
 			resourceCheck.setSigarFiles(list);
 		} catch (FileNotFoundException fnfe) {
 			// Libraries information file not found.

@@ -9,7 +9,6 @@ import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import org.apache.commons.io.FileUtils;
 
 public class installOptions extends Install {
 	static int ramSizeChosen = 0;
@@ -71,7 +70,7 @@ public class installOptions extends Install {
 		File missingModFile;
 		try {
 			missingModFile = new File(packDirectory + missingMod);
-			FileUtils.copyFileToDirectory(missingModFile, modsDirectory);
+			Utils.copyFileToDirectory(missingModFile, modsDirectory, false);
 		} catch (IOException e) {
 			// Generic IO exception while copying mods.
 			GUI.errors.setText("Lapras");
@@ -93,7 +92,7 @@ public class installOptions extends Install {
 		if (!profileBackup.exists()) {
 			profileBackup.mkdir();
 			try {
-				FileUtils.copyFileToDirectory(launcherProfiles, profileBackup);
+				Utils.copyFileToDirectory(launcherProfiles, profileBackup, false);
 				System.out.println("Launcher Profiles backed up.");
 			} catch (IOException e) {
 				// Eh, do nothing here.
@@ -106,8 +105,8 @@ public class installOptions extends Install {
 		File launcherProfiles = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
 		File oldProfile = new File(profileBackup + File.separator + "launcher_profiles.json");
 		try {
-			FileUtils.forceDelete(launcherProfiles);
-			FileUtils.copyFileToDirectory(oldProfile, Driver.getMinecraftInstallLocation());
+			Utils.forceDelete(launcherProfiles);
+			Utils.copyFileToDirectory(oldProfile, Driver.getMinecraftInstallLocation(), false);
 			System.out.println(" Launcher Settings restored.");
 			if (featuresUsed) {
 				again();

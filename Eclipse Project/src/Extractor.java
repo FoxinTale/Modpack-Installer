@@ -1,7 +1,7 @@
-import java.io.File;
+import ZipFileUtility.ZipException;
+import ZipFileUtility.ZipFile;
 
-import net.lingala.zip4j.core.ZipFile;
-import net.lingala.zip4j.exception.ZipException;
+import java.io.File;
 
 public class Extractor {
 	static String q = File.separator;
@@ -16,31 +16,27 @@ public class Extractor {
 		}
 
 		String folderPath = Driver.getDownloadsLocation() + q + name + q;
-		String password = "";
 		switch (op) {
 		case 0: // Modpack
 			System.out.println(" Extracting modpack. Expect system lag.");
-			unzip(fileLocation, folderPath, password, op);
+			unzip(fileLocation, folderPath, op);
 			break;
 		case 1: // Update
-			unzip(fileLocation, name, password, op);
+			unzip(fileLocation, name, op);
 			break;
 		case 2: // Resource Pack
 			System.out.println(" Extracting resource pack. Expect system lag.");
-			unzip(fileLocation, name, password, op);
+			unzip(fileLocation, name, op);
 			break;
 		default:
 			break;
 		}
 	}
 
-	public static void unzip(String zipFilePath, String extractFolder, String password, int op) {
+	public static void unzip(String zipFilePath, String extractFolder, int op) {
 		// 0 is the modpack, 1 is an update, and 2 is the resource pack.
 		try {
 			ZipFile zipFile = new ZipFile(zipFilePath);
-			if (zipFile.isEncrypted()) {
-				zipFile.setPassword(password);
-			}
 			zipFile.extractAll(extractFolder);
 		} catch (ZipException e) {
 			GUI.errors.setText("Kyogre");

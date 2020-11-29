@@ -203,7 +203,7 @@ public class Install {
 		if (dirOne.exists()) {
 			if (dirTwo.exists()) {
 				try {
-					FileUtils.copyDirectory(dirOne, dirTwo);
+					ZipFileUtility.copyDirectory(dirOne, dirTwo);
 				} catch (IOException a) {
 					// Do nothing. Java complained if I didn't put this here.
 				}

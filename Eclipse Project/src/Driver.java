@@ -1,8 +1,7 @@
 
+import javax.swing.*;
 import java.io.File;
 import java.io.PrintStream;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /*
  * This program is free software. It comes without any warranty, to the extent
@@ -34,7 +33,6 @@ public class Driver {
 	private static String desktopLocation = null;
 	private static String minecraftDefaultInstall = null;
 
-	@SuppressWarnings("unused")
 	private static PrintStream standardOut; // This sets the outputs.
 	
 	public static void main(String[] args) {
