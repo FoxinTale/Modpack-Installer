@@ -35,103 +35,75 @@ public abstract class AbstractFileHeader extends ZipHeader {
   public byte[] getGeneralPurposeFlag() {
     return generalPurposeFlag;
   }
-
   public void setGeneralPurposeFlag(byte[] generalPurposeFlag) {
     this.generalPurposeFlag = generalPurposeFlag;
   }
-
   public CompressionMethod getCompressionMethod() {
     return compressionMethod;
   }
-
   public void setCompressionMethod(CompressionMethod compressionMethod) {
     this.compressionMethod = compressionMethod;
   }
-
   public long getLastModifiedTime() {
     return lastModifiedTime;
   }
-
   public void setLastModifiedTime(long lastModifiedTime) {
     this.lastModifiedTime = lastModifiedTime;
   }
-
-/*  public long getLastModifiedTimeEpoch() {
-    return Zip4jUtil.dosToExtendedEpochTme(lastModifiedTime);
-  }*/
-
   public long getCrc() {
     return crc;
   }
-
   public void setCrc(long crc) {
     this.crc = crc;
   }
-
   public byte[] getCrcRawData() {
     return crcRawData;
   }
-
   public void setCrcRawData(byte[] crcRawData) {
     this.crcRawData = crcRawData;
   }
-
   public long getCompressedSize() {
     return compressedSize;
   }
-
   public void setCompressedSize(long compressedSize) {
     this.compressedSize = compressedSize;
   }
-
   public long getUncompressedSize() {
     return uncompressedSize;
   }
-
   public void setUncompressedSize(long uncompressedSize) {
     this.uncompressedSize = uncompressedSize;
   }
-
   public int getFileNameLength() {
     return fileNameLength;
   }
-
   public void setFileNameLength(int fileNameLength) {
     this.fileNameLength = fileNameLength;
   }
-
   public int getExtraFieldLength() {
     return extraFieldLength;
   }
-
   public void setExtraFieldLength(int extraFieldLength) {
     this.extraFieldLength = extraFieldLength;
   }
-
   public String getFileName() {
     return fileName;
   }
-
   public void setFileName(String fileName) {
     this.fileName = fileName;
   }
-
   public boolean isEncrypted() {
     return isEncrypted;
   }
-
   public void setEncrypted(boolean encrypted) {
     isEncrypted = encrypted;
   }
-
   public EncryptionMethod getEncryptionMethod() {
     return encryptionMethod;
   }
-
   public void setEncryptionMethod(EncryptionMethod encryptionMethod) {
     this.encryptionMethod = encryptionMethod;
   }
-
   public boolean isDataDescriptorExists() {
     return dataDescriptorExists;
   }
@@ -143,11 +115,9 @@ public abstract class AbstractFileHeader extends ZipHeader {
   public Zip64ExtendedInfo getZip64ExtendedInfo() {
     return zip64ExtendedInfo;
   }
-
   public void setZip64ExtendedInfo(Zip64ExtendedInfo zip64ExtendedInfo) {
     this.zip64ExtendedInfo = zip64ExtendedInfo;
   }
-
   public AESExtraDataRecord getAesExtraDataRecord() {
     return aesExtraDataRecord;
   }
@@ -159,23 +129,18 @@ public abstract class AbstractFileHeader extends ZipHeader {
   public boolean isFileNameUTF8Encoded() {
     return fileNameUTF8Encoded;
   }
-
   public void setFileNameUTF8Encoded(boolean fileNameUTF8Encoded) {
     this.fileNameUTF8Encoded = fileNameUTF8Encoded;
   }
-
   public List<ExtraDataRecord> getExtraDataRecords() {
     return extraDataRecords;
   }
-
   public void setExtraDataRecords(List<ExtraDataRecord> extraDataRecords) {
     this.extraDataRecords = extraDataRecords;
   }
-
   public boolean isDirectory() {
     return isDirectory;
   }
-
   public void setDirectory(boolean directory) {
     isDirectory = directory;
   }

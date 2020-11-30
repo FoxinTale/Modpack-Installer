@@ -8,9 +8,9 @@ import java.util.concurrent.ExecutorService;
 
 public abstract class AsyncZipTask<T> {
 
-  private final ProgressMonitor progressMonitor;
-  private final boolean runInThread;
-  private final ExecutorService executorService;
+  private ProgressMonitor progressMonitor;
+  private boolean runInThread;
+  private ExecutorService executorService;
 
   public AsyncZipTask(AsyncTaskParameters asyncTaskParameters) {
     this.progressMonitor = asyncTaskParameters.progressMonitor;
@@ -31,7 +31,6 @@ public abstract class AsyncZipTask<T> {
         try {
           performTaskWithErrorHandling(taskParameters, progressMonitor);
         } catch (ZipException e) {
-          //Do nothing. Exception will be passed through progress monitor
         } finally {
           executorService.shutdown();
         }

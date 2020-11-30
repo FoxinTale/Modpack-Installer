@@ -18,39 +18,30 @@ public class Zip64ExtendedInfo extends ZipHeader {
   public int getSize() {
     return size;
   }
-
   public void setSize(int size) {
     this.size = size;
   }
-
   public long getCompressedSize() {
     return compressedSize;
   }
-
   public void setCompressedSize(long compressedSize) {
     this.compressedSize = compressedSize;
   }
-
   public long getUncompressedSize() {
     return uncompressedSize;
   }
-
   public void setUncompressedSize(long uncompressedSize) {
     this.uncompressedSize = uncompressedSize;
   }
-
   public long getOffsetLocalHeader() {
     return offsetLocalHeader;
   }
-
   public void setOffsetLocalHeader(long offsetLocalHeader) {
     this.offsetLocalHeader = offsetLocalHeader;
   }
-
   public int getDiskNumberStart() {
     return diskNumberStart;
   }
-
   public void setDiskNumberStart(int diskNumberStart) {
     this.diskNumberStart = diskNumberStart;
   }

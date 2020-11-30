@@ -1,6 +1,5 @@
 package ZipFileUtility.Util;
 
-import ZipFileUtility.Model.ExcludeFileFilter;
 import ZipFileUtility.Model.ZipParameters;
 import ZipFileUtility.ProgressMonitor;
 import ZipFileUtility.ZipException;
@@ -13,7 +12,10 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.attribute.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static java.nio.file.attribute.PosixFilePermission.*;
 
@@ -71,46 +73,6 @@ public class FileUtils {
     }
   }
 
-/*  public static List<File> getFilesInDirectoryRecursive(File path, boolean readHiddenFiles, boolean readHiddenFolders) throws ZipException {
-    return getFilesInDirectoryRecursive(path, readHiddenFiles, readHiddenFolders, null);
-  }*/
-
-  public static List<File> getFilesInDirectoryRecursive(File path, boolean readHiddenFiles, boolean readHiddenFolders, ExcludeFileFilter excludedFiles)
-      throws ZipException {
-
-    if (path == null) {
-      throw new ZipException("input path is null, cannot read files in the directory");
-    }
-
-    List<File> result = new ArrayList<>();
-    File[] filesAndDirs = path.listFiles();
-
-    if (!path.isDirectory() || !path.canRead() || filesAndDirs == null) {
-      return result;
-    }
-
-    for (File file : filesAndDirs) {
-      if (excludedFiles != null && excludedFiles.isExcluded(file)) {
-        continue;
-      }
-
-      if (file.isHidden()) {
-        if (file.isDirectory()) {
-          if (!readHiddenFolders) {
-            continue;
-          }
-        } else if (!readHiddenFiles) {
-          continue;
-        }
-      }
-      result.add(file);
-      if (file.isDirectory()) {
-        result.addAll(getFilesInDirectoryRecursive(file, readHiddenFiles, readHiddenFolders, excludedFiles));
-      }
-    }
-
-    return result;
-  }
 
   public static String getFileNameWithoutExtension(String fileName) {
     int pos = fileName.lastIndexOf(".");
@@ -135,52 +97,6 @@ public class FileUtils {
     }
     return tmpFileName;
   }
-
-/*  public static List<File> getSplitZipFiles(ZipModel zipModel) throws ZipException {
-    if (zipModel == null) {
-      throw new ZipException("cannot get split zip files: zipmodel is null");
-    }
-
-    if (zipModel.getEndOfCentralDirectoryRecord() == null) {
-      return null;
-    }
-
-    if (!zipModel.getZipFile().exists()) {
-      throw new ZipException("zip file does not exist");
-    }
-
-    List<File> splitZipFiles = new ArrayList<>();
-    File currZipFile = zipModel.getZipFile();
-    String partFile;
-
-    if (!zipModel.isSplitArchive()) {
-      splitZipFiles.add(currZipFile);
-      return splitZipFiles;
-    }
-
-    int numberOfThisDisk = zipModel.getEndOfCentralDirectoryRecord().getNumberOfThisDisk();
-
-    if (numberOfThisDisk == 0) {
-      splitZipFiles.add(currZipFile);
-      return splitZipFiles;
-    } else {
-      for (int i = 0; i <= numberOfThisDisk; i++) {
-        if (i == numberOfThisDisk) {
-          splitZipFiles.add(zipModel.getZipFile());
-        } else {
-          String fileExt = ".z0";
-          if (i >= 9) {
-            fileExt = ".z";
-          }
-          partFile = (currZipFile.getName().contains("."))
-              ? currZipFile.getPath().substring(0, currZipFile.getPath().lastIndexOf(".")) : currZipFile.getPath();
-          partFile = partFile + fileExt + (i + 1);
-          splitZipFiles.add(new File(partFile));
-        }
-      }
-    }
-    return splitZipFiles;
-  }*/
 
   public static String getRelativeFileName(File fileToAdd, ZipParameters zipParameters) throws ZipException {
 
@@ -254,10 +170,6 @@ public class FileUtils {
     }
 
     return fileToAdd.getName();
-  }
-
-  public static boolean isZipEntryDirectory(String fileNameInZip) {
-    return fileNameInZip.endsWith("/") || fileNameInZip.endsWith("\\");
   }
 
   public static void copyFile(RandomAccessFile randomAccessFile, OutputStream outputStream, long start, long end,
@@ -407,7 +319,6 @@ public class FileUtils {
 
   private static void applyWindowsFileAttributes(Path file, byte[] fileAttributes) {
     if (fileAttributes[0] == 0) {
-      // No file attributes defined in the archive
       return;
     }
 
@@ -500,7 +411,7 @@ public class FileUtils {
       fileAttributes[2] = setBitIfApplicable(posixFilePermissions.contains(OTHERS_WRITE), fileAttributes[2], 1);
       fileAttributes[2] = setBitIfApplicable(posixFilePermissions.contains(OTHERS_EXECUTE), fileAttributes[2], 0);
     } catch (IOException e) {
-      // Ignore
+
     }
 
     return fileAttributes;

@@ -180,10 +180,6 @@ public class SplitOutputStream extends OutputStream implements OutputStreamWithS
     return splitLength != -1;
   }
 
-  public long getSplitLength() {
-    return splitLength;
-  }
-
   @Override
   public int getCurrentSplitFileCounter() {
     return currSplitFileCounter;

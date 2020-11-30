@@ -1,19 +1,3 @@
-/*
- * Copyright 2010 Srikanth Reddy Lingala
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package ZipFileUtility.IO.Input;
 
 import ZipFileUtility.Headers.HeaderReader;
@@ -44,19 +28,6 @@ public class ZipInputStream extends InputStream {
   private boolean canSkipExtendedLocalFileHeader = false;
   private Charset charset;
 
-/*
-  public ZipInputStream(InputStream inputStream) {
-    this(inputStream, null, InternalZipConstants.CHARSET_UTF_8);
-  }
-
-  public ZipInputStream(InputStream inputStream, Charset charset) {
-    this(inputStream, null, charset);
-  }
-
-  public ZipInputStream(InputStream inputStream, char[] password) {
-    this(inputStream, password, InternalZipConstants.CHARSET_UTF_8);
-  }
-*/
 
   public ZipInputStream(InputStream inputStream, char[] password, Charset charset) {
     if(charset == null) {
@@ -67,10 +38,6 @@ public class ZipInputStream extends InputStream {
     this.password = password;
     this.charset = charset;
   }
-
-/*  public LocalFileHeader getNextEntry() throws IOException {
-    return getNextEntry(null);
-  }*/
 
   public LocalFileHeader getNextEntry(FileHeader fileHeader) throws IOException {
     if (localFileHeader != null) {
@@ -127,8 +94,6 @@ public class ZipInputStream extends InputStream {
     }
 
     if (localFileHeader == null) {
-      // localfileheader can be null when end of compressed data is reached.  If null check is missing, read method will
-      // throw a NPE when end of compressed data is reached and read is called again.
       return -1;
     }
 
@@ -159,18 +124,9 @@ public class ZipInputStream extends InputStream {
     }
   }
 
-/*  public int getAvailableBytesInPushBackInputStream() throws IOException {
-    return inputStream.available();
-  }*/
-
   private void endOfCompressedDataReached() throws IOException {
-    //With inflater, without knowing the compressed or uncompressed size, we over read necessary data
-    //In such cases, we have to push back the inputstream to the end of data
     decompressedInputStream.pushBackInputStreamIfNecessary(inputStream);
-
-    //First signal the end of data for this entry so that ciphers can read any header data if applicable
     decompressedInputStream.endOfEntryReached(inputStream);
-
     readExtendedLocalFileHeaderIfPresent();
     verifyCrc();
     resetFields();
@@ -245,7 +201,6 @@ public class ZipInputStream extends InputStream {
   private void verifyCrc() throws IOException {
     if (localFileHeader.getEncryptionMethod() == EncryptionMethod.AES
         && localFileHeader.getAesExtraDataRecord().getAesVersion().equals(AesVersion.TWO)) {
-      // Verification will be done in this case by AesCipherInputStream
       return;
     }
 

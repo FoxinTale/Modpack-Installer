@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
 
 public class ExtractAllFilesTask extends AbstractExtractFileTask<ExtractAllFilesTask.ExtractAllFilesTaskParameters> {
 
-  private final char[] password;
+  private char[] password;
   private SplitInputStream splitInputStream;
 
   public ExtractAllFilesTask(ZipModel zipModel, char[] password, AsyncTaskParameters asyncTaskParameters) {

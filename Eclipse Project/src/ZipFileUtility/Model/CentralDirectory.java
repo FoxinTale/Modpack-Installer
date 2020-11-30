@@ -20,9 +20,5 @@ public class CentralDirectory {
     return digitalSignature;
   }
 
-  public void setDigitalSignature(DigitalSignature digitalSignature) {
-    this.digitalSignature = digitalSignature;
-  }
-
 
 }

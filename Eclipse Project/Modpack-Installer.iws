@@ -25,6 +25,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="JavaMethodFindUsagesOptions.isSearchForTextOccurrences" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Modpack-Installer.ipr" />
@@ -56,14 +57,23 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="605" y="136" key="#com.intellij.ide.util.MemberChooser" timestamp="1606679798914">
+    <state x="605" y="136" key="#com.intellij.ide.util.MemberChooser" timestamp="1606690113062">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="605" y="136" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606679798914" />
-    <state x="441" y="273" width="433" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606618659920">
-      <screen x="0" y="0" width="1280" height="760" />
+    <state x="605" y="136" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606690113062" />
+    <state x="551" y="309" width="433" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606689526167">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="441" y="273" width="433" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.760@0.0.1280.760" timestamp="1606618659920" />
+    <state x="551" y="309" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606689526167" />
+    <state x="229" y="0" key="#org.jetbrains.kotlin.idea.refactoring.safeDelete.KotlinOverridingDialog" timestamp="1606689281513">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="229" y="0" key="#org.jetbrains.kotlin.idea.refactoring.safeDelete.KotlinOverridingDialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606689281513" />
+    <state x="305" y="194" key="caller.chooser.dialog" timestamp="1606690925636">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="305" y="194" key="caller.chooser.dialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606690925636" />
     <state x="643" y="187" key="refactoring.ChangeSignatureDialog" timestamp="1606678998340">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

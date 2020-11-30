@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ExtractFileTask extends AbstractExtractFileTask<ExtractFileTask.ExtractFileTaskParameters> {
 
-  private final char[] password;
+  private char[] password;
   private SplitInputStream splitInputStream;
 
   public ExtractFileTask(ZipModel zipModel, char[] password, AsyncTaskParameters asyncTaskParameters) {

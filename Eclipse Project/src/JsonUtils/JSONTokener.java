@@ -231,36 +231,6 @@ public class JSONTokener {
         }
     }
 
-/*    public String nextTo(char delimiter) throws JSONException {
-        StringBuilder sb = new StringBuilder();
-        for (;;) {
-            char c = this.next();
-            if (c == delimiter || c == 0 || c == '\n' || c == '\r') {
-                if (c != 0) {
-                    this.back();
-                }
-                return sb.toString().trim();
-            }
-            sb.append(c);
-        }
-    }*/
-
-
-/*    public String nextTo(String delimiters) throws JSONException {
-        char c;
-        StringBuilder sb = new StringBuilder();
-        for (;;) {
-            c = this.next();
-            if (delimiters.indexOf(c) >= 0 || c == 0 ||
-                    c == '\n' || c == '\r') {
-                if (c != 0) {
-                    this.back();
-                }
-                return sb.toString().trim();
-            }
-            sb.append(c);
-        }
-    }*/
 
     public Object nextValue() throws JSONException {
         char c = this.nextClean();
@@ -292,31 +262,6 @@ public class JSONTokener {
         }
         return JSONObject.stringToValue(string);
     }
-
-/*    public char skipTo(char to) throws JSONException {
-        char c;
-        try {
-            long startIndex = this.index;
-            long startCharacter = this.character;
-            long startLine = this.line;
-            this.reader.mark(1000000);
-            do {
-                c = this.next();
-                if (c == 0) {
-                    this.reader.reset();
-                    this.index = startIndex;
-                    this.character = startCharacter;
-                    this.line = startLine;
-                    return 0;
-                }
-            } while (c != to);
-            this.reader.mark(1);
-        } catch (IOException exception) {
-            throw new JSONException(exception);
-        }
-        this.back();
-        return c;
-    }*/
 
     public JSONException syntaxError(String message) {
         return new JSONException(message + this.toString());

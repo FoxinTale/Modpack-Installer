@@ -96,43 +96,6 @@ public class XML {
             )
         ;
     }
-/*
-
-
-    public static String unescape(String string) {
-        StringBuilder sb = new StringBuilder(string.length());
-        for (int i = 0, length = string.length(); i < length; i++) {
-            char c = string.charAt(i);
-            if (c == '&') {
-                final int semic = string.indexOf(';', i);
-                if (semic > i) {
-                    final String entity = string.substring(i + 1, semic);
-                    sb.append(XMLTokener.unescapeEntity(entity));
-                    i += entity.length() + 1;
-                } else {
-                    sb.append(c);
-                }
-            } else {
-                sb.append(c);
-            }
-        }
-        return sb.toString();
-    }
-
-
-    public static void noSpace(String string) throws JSONException {
-        int i, length = string.length();
-        if (length == 0) {
-            throw new JSONException("Empty string.");
-        }
-        for (i = 0; i < length; i += 1) {
-            if (Character.isWhitespace(string.charAt(i))) {
-                throw new JSONException("'" + string
-                        + "' contains a space character.");
-            }
-        }
-    }
-*/
 
 
     private static boolean parse(XMLTokener x, JSONObject context, String name, XMLParserConfiguration config)

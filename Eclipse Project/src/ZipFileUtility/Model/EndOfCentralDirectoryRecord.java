@@ -34,10 +34,6 @@ public class EndOfCentralDirectoryRecord extends ZipHeader {
     this.numberOfThisDiskStartOfCentralDir = numberOfThisDiskStartOfCentralDir;
   }
 
-  public int getTotalNumberOfEntriesInCentralDirectoryOnThisDisk() {
-    return totalNumberOfEntriesInCentralDirectoryOnThisDisk;
-  }
-
   public void setTotalNumberOfEntriesInCentralDirectoryOnThisDisk(
       int totalNumberOfEntriesInCentralDirectoryOnThisDisk) {
     this.totalNumberOfEntriesInCentralDirectoryOnThisDisk = totalNumberOfEntriesInCentralDirectoryOnThisDisk;
@@ -50,12 +46,6 @@ public class EndOfCentralDirectoryRecord extends ZipHeader {
   public void setTotalNumberOfEntriesInCentralDirectory(int totNoOfEntrisInCentralDir) {
     this.totalNumberOfEntriesInCentralDirectory = totNoOfEntrisInCentralDir;
   }
-
-/*
-  public int getSizeOfCentralDirectory() {
-    return sizeOfCentralDirectory;
-  }
-*/
 
   public void setSizeOfCentralDirectory(int sizeOfCentralDirectory) {
     this.sizeOfCentralDirectory = sizeOfCentralDirectory;

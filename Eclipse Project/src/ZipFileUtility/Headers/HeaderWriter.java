@@ -107,34 +107,6 @@ public class HeaderWriter {
         }
     }
 
-    public void writeExtendedLocalHeader(LocalFileHeader localFileHeader, OutputStream outputStream)
-            throws IOException {
-
-        if (localFileHeader == null || outputStream == null) {
-            throw new ZipException("input parameters is null, cannot write extended local header");
-        }
-
-        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
-            rawIO.writeIntLittleEndian(byteArrayOutputStream, (int) HeaderSignature.EXTRA_DATA_RECORD.getValue());
-
-            rawIO.writeLongLittleEndian(longBuff, 0, localFileHeader.getCrc());
-            byteArrayOutputStream.write(longBuff, 0, 4);
-
-            if (localFileHeader.isWriteCompressedSizeInZip64ExtraRecord()) {
-                rawIO.writeLongLittleEndian(byteArrayOutputStream, localFileHeader.getCompressedSize());
-                rawIO.writeLongLittleEndian(byteArrayOutputStream, localFileHeader.getUncompressedSize());
-            } else {
-                rawIO.writeLongLittleEndian(longBuff, 0, localFileHeader.getCompressedSize());
-                byteArrayOutputStream.write(longBuff, 0, 4);
-
-                rawIO.writeLongLittleEndian(longBuff, 0, localFileHeader.getUncompressedSize());
-                byteArrayOutputStream.write(longBuff, 0, 4);
-            }
-
-            outputStream.write(byteArrayOutputStream.toByteArray());
-        }
-    }
-
     public void finalizeZipFile(ZipModel zipModel, OutputStream outputStream, Charset charset) throws IOException {
         if (zipModel == null || outputStream == null) {
             throw new ZipException("input parameters is null, cannot finalize zip file");

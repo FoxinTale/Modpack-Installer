@@ -77,31 +77,13 @@ public class XMLParserConfiguration {
         return this.cDataTagName;
     }
 
-/*    public XMLParserConfiguration withcDataTagName(final String newVal) {
-        XMLParserConfiguration newConfig = this.clone();
-        newConfig.cDataTagName = newVal;
-        return newConfig;
-    }*/
-
     public boolean isConvertNilAttributeToNull() {
         return this.convertNilAttributeToNull;
     }
-
-/*    public XMLParserConfiguration withConvertNilAttributeToNull(final boolean newVal) {
-        XMLParserConfiguration newConfig = this.clone();
-        newConfig.convertNilAttributeToNull = newVal;
-        return newConfig;
-    }*/
 
     public Map<String, XMLXsiTypeConverter<?>> getXsiTypeMap() {
         return this.xsiTypeMap;
     }
 
 
-  /*  public XMLParserConfiguration withXsiTypeMap(final Map<String, XMLXsiTypeConverter<?>> xsiTypeMap) {
-        XMLParserConfiguration newConfig = this.clone();
-        Map<String, XMLXsiTypeConverter<?>> cloneXsiTypeMap = new HashMap<String, XMLXsiTypeConverter<?>>(xsiTypeMap);
-        newConfig.xsiTypeMap = Collections.unmodifiableMap(cloneXsiTypeMap);
-        return newConfig;
-    }*/
 }

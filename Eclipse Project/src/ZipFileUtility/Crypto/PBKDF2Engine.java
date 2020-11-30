@@ -35,34 +35,12 @@ public class PBKDF2Engine {
         return PBKDF2(prf, parameters.getSalt(), parameters.getIterationCount(), dkLen);
     }
 
-/*    public boolean verifyKey(char[] inputPassword) {
-        byte[] referenceKey = getParameters().getDerivedKey();
-        if (referenceKey == null || referenceKey.length == 0) {
-            return false;
-        }
-        byte[] inputKey = deriveKey(inputPassword, referenceKey.length);
-
-        if (inputKey == null || inputKey.length != referenceKey.length) {
-            return false;
-        }
-        for (int i = 0; i < inputKey.length; i++) {
-            if (inputKey[i] != referenceKey[i]) {
-                return false;
-            }
-        }
-        return true;
-    }*/
-
     private void assertPRF(byte[] P) {
         if (prf == null) {
             prf = new MacBasedPRF(parameters.getHashAlgorithm());
         }
         prf.init(P);
     }
-
-/*    public PRF getPseudoRandomFunction() {
-        return prf;
-    }*/
 
     private byte[] PBKDF2(PRF prf, byte[] S, int c, int dkLen) {
         if (S == null) {
@@ -122,15 +100,4 @@ public class PBKDF2Engine {
         dest[offset + 3] = (byte) (i);
     }
 
-/*    public PBKDF2Parameters getParameters() {
-        return parameters;
-    }
-
-    public void setParameters(PBKDF2Parameters parameters) {
-        this.parameters = parameters;
-    }
-
-    public void setPseudoRandomFunction(PRF prf) {
-        this.prf = prf;
-    }*/
 }

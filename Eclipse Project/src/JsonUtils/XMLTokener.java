@@ -20,10 +20,6 @@ public class XMLTokener extends JSONTokener {
     }
 
 
-/*    public XMLTokener(String s) {
-        super(s);
-    }*/
-
     public String nextCDATA() throws JSONException {
         char         c;
         int          i;

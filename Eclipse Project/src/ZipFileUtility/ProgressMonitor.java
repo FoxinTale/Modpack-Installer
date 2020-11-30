@@ -3,9 +3,8 @@ package ZipFileUtility;
 public class ProgressMonitor {
 
     public enum State { READY, BUSY }
-    //public enum Result { SUCCESS, WORK_IN_PROGRESS, ERROR, CANCELLED }
     public enum Result { SUCCESS, ERROR, CANCELLED }
-    public enum Task { NONE, ADD_ENTRY, REMOVE_ENTRY, CALCULATE_CRC, EXTRACT_ENTRY, MERGE_ZIP_FILES, SET_COMMENT, RENAME_FILE}
+    public enum Task { NONE, REMOVE_ENTRY, EXTRACT_ENTRY, MERGE_ZIP_FILES, SET_COMMENT, RENAME_FILE}
 
     private State state;
     private long totalWork;
@@ -73,36 +72,15 @@ public class ProgressMonitor {
     public void setState(State state) {
         this.state = state;
     }
-/*
-    public long getTotalWork() {
-        return totalWork;
-    }
-*/
-
     public void setTotalWork(long totalWork) {
         this.totalWork = totalWork;
     }
-
-/*    public long getWorkCompleted() {
-        return workCompleted;
-    }*/
-
     public int getPercentDone() {
         return percentDone;
     }
-
-/*    public void setPercentDone(int percentDone) {
-        this.percentDone = percentDone;
-    }
-
-    public Task getCurrentTask() {
-        return currentTask;
-    }*/
-
     public void setCurrentTask(Task currentTask) {
         this.currentTask = currentTask;
     }
-
     public String getFileName() {
         return fileName;
     }
@@ -130,14 +108,6 @@ public class ProgressMonitor {
     public boolean isCancelAllTasks() {
         return cancelAllTasks;
     }
-
-/*    public void setCancelAllTasks(boolean cancelAllTasks) {
-        this.cancelAllTasks = cancelAllTasks;
-    }
-
-    public boolean isPause() {
-        return pause;
-    }*/
 
     public void setPause(boolean pause) {
         this.pause = pause;

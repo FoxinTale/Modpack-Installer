@@ -39,33 +39,9 @@ public class CountingOutputStream extends OutputStream implements OutputStreamWi
     return 0;
   }
 
-  public long getOffsetForNextEntry() throws IOException {
-    if (outputStream instanceof SplitOutputStream) {
-      return ((SplitOutputStream) outputStream).getFilePointer();
-    }
-
-    return numberOfBytesWritten;
-  }
-
-  public long getSplitLength() {
-    if (isSplitZipFile()) {
-      return ((SplitOutputStream) outputStream).getSplitLength();
-    }
-
-    return 0;
-  }
-
   public boolean isSplitZipFile() {
     return outputStream instanceof SplitOutputStream
         && ((SplitOutputStream)outputStream).isSplitZipFile();
-  }
-
-  public long getNumberOfBytesWritten() throws IOException {
-    if (outputStream instanceof SplitOutputStream) {
-      return ((SplitOutputStream) outputStream).getFilePointer();
-    }
-
-    return numberOfBytesWritten;
   }
 
   public boolean checkBuffSizeAndStartNextSplitFile(int bufferSize) throws ZipException {

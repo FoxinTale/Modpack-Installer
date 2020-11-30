@@ -8,17 +8,9 @@ public class DigitalSignature  extends ZipHeader {
   public int getSizeOfData() {
     return sizeOfData;
   }
-
   public void setSizeOfData(int sizeOfData) {
     this.sizeOfData = sizeOfData;
   }
-
-/*
-  public String getSignatureData() {
-    return signatureData;
-  }
-*/
-
   public void setSignatureData(String signatureData) {
     this.signatureData = signatureData;
   }
