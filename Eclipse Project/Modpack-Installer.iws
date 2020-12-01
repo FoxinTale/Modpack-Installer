@@ -25,7 +25,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="JavaMethodFindUsagesOptions.isSearchForTextOccurrences" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Modpack-Installer.ipr" />
@@ -35,11 +39,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\SetUtils\Base" />
+      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\SetUtils\Collections" />
+      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\SetUtils\Annotations" />
+      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\SetUtils" />
       <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\JsonUtils" />
-      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\ZipFileUtility\Util" />
-      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\ZipUtils\Tasks" />
-      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\ZipUtils\Model" />
-      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\ZipUtils\IO\Output" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
@@ -66,14 +70,22 @@
     </state>
     <state x="441" y="273" width="433" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.760@0.0.1280.760" timestamp="1606618659920" />
     <state x="551" y="309" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606689526167" />
-    <state x="229" y="0" key="#org.jetbrains.kotlin.idea.refactoring.safeDelete.KotlinOverridingDialog" timestamp="1606689281513">
+    <state x="530" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606849831682">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="229" y="0" key="#org.jetbrains.kotlin.idea.refactoring.safeDelete.KotlinOverridingDialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606689281513" />
-    <state x="305" y="194" key="caller.chooser.dialog" timestamp="1606690925636">
+    <state x="530" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606849831682" />
+    <state x="229" y="0" key="#org.jetbrains.kotlin.idea.refactoring.safeDelete.KotlinOverridingDialog" timestamp="1606849649187">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="305" y="194" key="caller.chooser.dialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606690925636" />
+    <state x="229" y="0" key="#org.jetbrains.kotlin.idea.refactoring.safeDelete.KotlinOverridingDialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606849649187" />
+    <state x="145" y="319" width="1308" height="504" key="caller.chooser.dialog" timestamp="1606850068238">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="145" y="319" width="1308" height="504" key="caller.chooser.dialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606850068238" />
+    <state x="504" y="322" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1606848278510">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="504" y="322" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606848278510" />
     <state x="643" y="187" key="refactoring.ChangeSignatureDialog" timestamp="1606678998340">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

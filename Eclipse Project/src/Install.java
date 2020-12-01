@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -5,11 +6,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import org.apache.commons.io.FileUtils;
 
 public class Install {
 	static String q = File.separator;
@@ -203,7 +199,7 @@ public class Install {
 		if (dirOne.exists()) {
 			if (dirTwo.exists()) {
 				try {
-					ZipFileUtility.copyDirectory(dirOne, dirTwo);
+					Utils.copyDirectory(dirOne, dirTwo);
 				} catch (IOException a) {
 					// Do nothing. Java complained if I didn't put this here.
 				}

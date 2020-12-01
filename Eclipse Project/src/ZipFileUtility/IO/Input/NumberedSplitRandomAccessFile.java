@@ -17,10 +17,6 @@ public class NumberedSplitRandomAccessFile extends RandomAccessFile {
   private int currentOpenSplitFileCounter = 0;
   private String rwMode;
 
-  public NumberedSplitRandomAccessFile(String name, String mode) throws IOException {
-    this(new File(name), mode);
-  }
-
   public NumberedSplitRandomAccessFile(File file, String mode) throws IOException {
     this(file, mode, FileUtils.getAllSortedNumberedSplitFiles(file));
   }

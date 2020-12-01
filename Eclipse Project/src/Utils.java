@@ -3,6 +3,8 @@ import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Utils {
@@ -118,5 +120,82 @@ public class Utils {
             }
         }
         return count;
+    }
+
+    public static void copyDirectory(final File srcDir, final File destDir) throws IOException {
+        copyDirectory(srcDir, destDir, true);
+    }
+
+    public static void copyDirectory(final File srcDir, final File destDir,
+                                     final boolean preserveFileDate) throws IOException {
+        copyDirectory(srcDir, destDir, null, preserveFileDate);
+    }
+
+    public static void copyDirectory(final File srcDir, final File destDir, final FileFilter filter,
+                                     final boolean preserveFileDate) throws IOException {
+        copyDirectory(srcDir, destDir, filter, preserveFileDate, StandardCopyOption.REPLACE_EXISTING);
+    }
+
+
+    public static void copyDirectory(final File srcDir, final File destDir, final FileFilter filter,
+                                     final boolean preserveFileDate, final CopyOption... copyOptions) throws IOException {
+        checkFileRequirements(srcDir, destDir);
+        if (!srcDir.isDirectory()) {
+            throw new IOException("Source '" + srcDir + "' exists but is not a directory");
+        }
+        final String srcDirCanonicalPath = srcDir.getCanonicalPath();
+        final String destDirCanonicalPath = destDir.getCanonicalPath();
+        if (srcDirCanonicalPath.equals(destDirCanonicalPath)) {
+            throw new IOException("Source '" + srcDir + "' and destination '" + destDir + "' are the same");
+        }
+
+        List<String> exclusionList = null;
+        if (destDirCanonicalPath.startsWith(srcDirCanonicalPath)) {
+            final File[] srcFiles = filter == null ? srcDir.listFiles() : srcDir.listFiles(filter);
+            if (srcFiles != null && srcFiles.length > 0) {
+                exclusionList = new ArrayList<>(srcFiles.length);
+                for (final File srcFile : srcFiles) {
+                    final File copiedFile = new File(destDir, srcFile.getName());
+                    exclusionList.add(copiedFile.getCanonicalPath());
+                }
+            }
+        }
+        doCopyDirectory(srcDir, destDir, filter, preserveFileDate, exclusionList, copyOptions);
+    }
+
+    private static void doCopyDirectory(final File srcDir, final File destDir, final FileFilter filter,
+                                        final boolean preserveFileDate, final List<String> exclusionList, final CopyOption... copyOptions)
+            throws IOException {
+        final File[] srcFiles = filter == null ? srcDir.listFiles() : srcDir.listFiles(filter);
+        if (srcFiles == null) {  // null if abstract pathname does not denote a directory, or if an I/O error occurs
+            throw new IOException("Failed to list contents of " + srcDir);
+        }
+        if (destDir.exists()) {
+            if (destDir.isDirectory() == false) {
+                throw new IOException("Destination '" + destDir + "' exists but is not a directory");
+            }
+        } else {
+            if (!destDir.mkdirs() && !destDir.isDirectory()) {
+                throw new IOException("Destination '" + destDir + "' directory cannot be created");
+            }
+        }
+        if (destDir.canWrite() == false) {
+            throw new IOException("Destination '" + destDir + "' cannot be written to");
+        }
+        for (final File srcFile : srcFiles) {
+            final File dstFile = new File(destDir, srcFile.getName());
+            if (exclusionList == null || !exclusionList.contains(srcFile.getCanonicalPath())) {
+                if (srcFile.isDirectory()) {
+                    doCopyDirectory(srcFile, dstFile, filter, preserveFileDate, exclusionList, copyOptions);
+                } else {
+                    doCopyFile(srcFile, dstFile, preserveFileDate, copyOptions);
+                }
+            }
+        }
+
+        // Do this last, as the above has probably affected directory metadata
+        if (preserveFileDate) {
+            setLastModified(srcDir, destDir);
+        }
     }
 }

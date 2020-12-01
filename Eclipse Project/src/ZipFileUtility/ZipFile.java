@@ -73,11 +73,6 @@ public class ZipFile {
     }
 
 
-    public void extractFile(FileHeader fileHeader, String destinationPath) throws ZipException {
-        extractFile(fileHeader, destinationPath, null);
-    }
-
-
     public void extractFile(FileHeader fileHeader, String destinationPath, String newFileName) throws ZipException {
         if (fileHeader == null) {
             throw new ZipException("input file header is null, cannot extract file");

@@ -57,10 +57,6 @@ public class ZipParameters {
   }
 
 
-  public long getEntrySize() {
-    return entrySize;
-  }
-
   public void setEntrySize(long entrySize) {
     this.entrySize = entrySize;
   }
@@ -70,9 +66,5 @@ public class ZipParameters {
     return rootFolderNameInZip;
   }
 
-
-  public boolean isUnixMode() {
-    return unixMode;
-  }
 
 }

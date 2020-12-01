@@ -1,6 +1,7 @@
-import java.io.OutputStream;
+package GUI;
 
-import javax.swing.JTextArea;
+import javax.swing.*;
+import java.io.OutputStream;
 
 /*
 What this does, is it redirects and and all System.out and System.err calls

@@ -109,7 +109,4 @@ public class ProgressMonitor {
         return cancelAllTasks;
     }
 
-    public void setPause(boolean pause) {
-        this.pause = pause;
-    }
 }
