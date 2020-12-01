@@ -72,9 +72,6 @@ public class HeaderWriter {
             if (writeZip64Header) {
                 extraFieldLength += ZIP64_EXTRA_DATA_RECORD_SIZE_LFH + 4; // 4 for signature + size of record
             }
-            if (localFileHeader.getAesExtraDataRecord() != null) {
-                extraFieldLength += AES_EXTRA_DATA_RECORD_SIZE;
-            }
             rawIO.writeShortLittleEndian(byteArrayOutputStream, extraFieldLength);
 
             if (fileNameBytes.length > 0) {
@@ -89,19 +86,7 @@ public class HeaderWriter {
                 rawIO.writeLongLittleEndian(byteArrayOutputStream, localFileHeader.getCompressedSize());
             }
 
-            if (localFileHeader.getAesExtraDataRecord() != null) {
-                AESExtraDataRecord aesExtraDataRecord = localFileHeader.getAesExtraDataRecord();
-                rawIO.writeShortLittleEndian(byteArrayOutputStream, (int) aesExtraDataRecord.getSignature().getValue());
-                rawIO.writeShortLittleEndian(byteArrayOutputStream, aesExtraDataRecord.getDataSize());
-                rawIO.writeShortLittleEndian(byteArrayOutputStream, aesExtraDataRecord.getAesVersion().getVersionNumber());
-                byteArrayOutputStream.write(aesExtraDataRecord.getVendorID().getBytes());
 
-                byte[] aesStrengthBytes = new byte[1];
-                aesStrengthBytes[0] = (byte) aesExtraDataRecord.getAesKeyStrength().getRawCode();
-                byteArrayOutputStream.write(aesStrengthBytes);
-
-                rawIO.writeShortLittleEndian(byteArrayOutputStream, aesExtraDataRecord.getCompressionMethod().getCode());
-            }
 
             outputStream.write(byteArrayOutputStream.toByteArray());
         }
@@ -414,21 +399,6 @@ public class HeaderWriter {
                 rawIO.writeLongLittleEndian(byteArrayOutputStream, fileHeader.getOffsetLocalHeader());
                 rawIO.writeIntLittleEndian(byteArrayOutputStream, fileHeader.getDiskNumberStart());
             }
-
-            if (fileHeader.getAesExtraDataRecord() != null) {
-                AESExtraDataRecord aesExtraDataRecord = fileHeader.getAesExtraDataRecord();
-                rawIO.writeShortLittleEndian(byteArrayOutputStream, (int) aesExtraDataRecord.getSignature().getValue());
-                rawIO.writeShortLittleEndian(byteArrayOutputStream, aesExtraDataRecord.getDataSize());
-                rawIO.writeShortLittleEndian(byteArrayOutputStream, aesExtraDataRecord.getAesVersion().getVersionNumber());
-                byteArrayOutputStream.write(aesExtraDataRecord.getVendorID().getBytes());
-
-                byte[] aesStrengthBytes = new byte[1];
-                aesStrengthBytes[0] = (byte) aesExtraDataRecord.getAesKeyStrength().getRawCode();
-                byteArrayOutputStream.write(aesStrengthBytes);
-
-                rawIO.writeShortLittleEndian(byteArrayOutputStream, aesExtraDataRecord.getCompressionMethod().getCode());
-            }
-
             writeRemainingExtraDataRecordsIfPresent(fileHeader, byteArrayOutputStream);
 
             if (fileCommentBytes.length > 0) {
@@ -444,10 +414,6 @@ public class HeaderWriter {
 
         if (writeZip64ExtendedInfo) {
             extraFieldLength += ZIP64_EXTRA_DATA_RECORD_SIZE_FH + 4; // 4 for signature + size of record
-        }
-
-        if (fileHeader.getAesExtraDataRecord() != null) {
-            extraFieldLength += AES_EXTRA_DATA_RECORD_SIZE;
         }
 
         if (fileHeader.getExtraDataRecords() != null) {

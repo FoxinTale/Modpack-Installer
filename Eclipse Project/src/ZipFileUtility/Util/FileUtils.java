@@ -21,7 +21,6 @@ import static java.nio.file.attribute.PosixFilePermission.*;
 
 
 public class FileUtils {
-
   public static final byte[] DEFAULT_POSIX_FILE_ATTRIBUTES = new byte[] {0, 0, -128, -127}; //-rw-------
   public static final byte[] DEFAULT_POSIX_FOLDER_ATTRIBUTES = new byte[] {0, 0, -128, 65}; //drw-------
 
@@ -29,7 +28,6 @@ public class FileUtils {
     if (fileAttributes == null || fileAttributes.length == 0) {
       return;
     }
-
     if (isWindows()) {
       applyWindowsFileAttributes(file, fileAttributes);
     } else if (isMac() || isUnix()) {
@@ -41,11 +39,10 @@ public class FileUtils {
     if (lastModifiedTime <= 0 || !Files.exists(file)) {
       return;
     }
-
     try {
       Files.setLastModifiedTime(file, FileTime.fromMillis(Zip4jUtil.dosToExtendedEpochTme(lastModifiedTime)));
     } catch (Exception e) {
-      // Ignore
+
     }
   }
 
@@ -79,7 +76,6 @@ public class FileUtils {
     if (pos == -1) {
       return fileName;
     }
-
     return fileName.substring(0, pos);
   }
 
@@ -91,7 +87,6 @@ public class FileUtils {
     if (zipFile.contains(System.getProperty("file.separator"))) {
       tmpFileName = zipFile.substring(zipFile.lastIndexOf(System.getProperty("file.separator")) + 1);
     }
-
     if (tmpFileName.endsWith(".zip")) {
       tmpFileName = tmpFileName.substring(0, tmpFileName.lastIndexOf("."));
     }
@@ -99,33 +94,26 @@ public class FileUtils {
   }
 
   public static String getRelativeFileName(File fileToAdd, ZipParameters zipParameters) throws ZipException {
-
     String fileName;
     try {
       String fileCanonicalPath = fileToAdd.getCanonicalPath();
       if (Zip4jUtil.isStringNotNullAndNotEmpty(zipParameters.getDefaultFolderPath())) {
         File rootFolderFile = new File(zipParameters.getDefaultFolderPath());
         String rootFolderFileRef = rootFolderFile.getCanonicalPath();
-
         if (!rootFolderFileRef.endsWith(InternalZipConstants.FILE_SEPARATOR)) {
           rootFolderFileRef += InternalZipConstants.FILE_SEPARATOR;
         }
-
         String tmpFileName;
-
         if (isSymbolicLink(fileToAdd)) {
           String rootPath = new File(fileToAdd.getParentFile().getCanonicalFile().getPath() + File.separator + fileToAdd.getCanonicalFile().getName()).getPath();
           tmpFileName = rootPath.substring(rootFolderFileRef.length());
         } else {
            tmpFileName = fileCanonicalPath.substring(rootFolderFileRef.length());
         }
-
         if (tmpFileName.startsWith(System.getProperty("file.separator"))) {
           tmpFileName = tmpFileName.substring(1);
         }
-
         File tmpFile = new File(fileCanonicalPath);
-
         if (tmpFile.isDirectory()) {
           tmpFileName = tmpFileName.replaceAll("\\\\", "/");
           tmpFileName += InternalZipConstants.ZIP_FILE_SEPARATOR;
@@ -134,7 +122,6 @@ public class FileUtils {
           bkFileName = bkFileName.replaceAll("\\\\", "/");
           tmpFileName = bkFileName + getNameOfFileInZip(tmpFile, zipParameters.getFileNameInZip());
         }
-
         fileName = tmpFileName;
       } else {
         File relFile = new File(fileCanonicalPath);
@@ -146,17 +133,14 @@ public class FileUtils {
     } catch (IOException e) {
       throw new ZipException(e);
     }
-
     String rootFolderNameInZip = zipParameters.getRootFolderNameInZip();
     if (Zip4jUtil.isStringNotNullAndNotEmpty(rootFolderNameInZip)) {
       if (!rootFolderNameInZip.endsWith("\\") && !rootFolderNameInZip.endsWith("/")) {
         rootFolderNameInZip = rootFolderNameInZip + InternalZipConstants.FILE_SEPARATOR;
       }
-
       rootFolderNameInZip = rootFolderNameInZip.replaceAll("\\\\", InternalZipConstants.ZIP_FILE_SEPARATOR);
       fileName = rootFolderNameInZip + fileName;
     }
-
     return fileName;
   }
 
@@ -164,50 +148,39 @@ public class FileUtils {
     if (Zip4jUtil.isStringNotNullAndNotEmpty(fileNameInZip)) {
       return fileNameInZip;
     }
-
     if (isSymbolicLink(fileToAdd)) {
       return fileToAdd.toPath().toRealPath(LinkOption.NOFOLLOW_LINKS).getFileName().toString();
     }
-
     return fileToAdd.getName();
   }
 
   public static void copyFile(RandomAccessFile randomAccessFile, OutputStream outputStream, long start, long end,
                               ProgressMonitor progressMonitor) throws ZipException {
-
     if (start < 0 || end < 0 || start > end) {
       throw new ZipException("invalid offsets");
     }
-
     if (start == end) {
       return;
     }
-
     try {
       randomAccessFile.seek(start);
-
       int readLen;
       byte[] buff;
       long bytesRead = 0;
       long bytesToRead = end - start;
-
       if ((end - start) < InternalZipConstants.BUFF_SIZE) {
         buff = new byte[(int) bytesToRead];
       } else {
         buff = new byte[InternalZipConstants.BUFF_SIZE];
       }
-
       while ((readLen = randomAccessFile.read(buff)) != -1) {
         outputStream.write(buff, 0, readLen);
-
         progressMonitor.updateWorkCompleted(readLen);
         if (progressMonitor.isCancelAllTasks()) {
           progressMonitor.setResult(ProgressMonitor.Result.CANCELLED);
           return;
         }
-
         bytesRead += readLen;
-
         if (bytesRead == bytesToRead) {
           break;
         } else if (bytesRead + buff.length > bytesToRead) {

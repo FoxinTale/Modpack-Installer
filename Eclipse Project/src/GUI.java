@@ -1,30 +1,12 @@
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
-import java.awt.Image;
+import GUI.RoundedPanel;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JEditorPane;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.border.LineBorder;
 
 /*
  * Let's be honest, this class does document itself, for the most part.
@@ -130,16 +112,12 @@ public class GUI {
 				int op = Driver.getSelectedOption();
 				switch (op) {
 				case 1:
-					radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
+					case 2:
+						radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
 					Json.readLists();
-					beginDownload(button);
+					//beginDownload(button);
 					break;
-				case 2:
-					radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
-					Json.readLists();
-					beginDownload(button);
-					break;
-				case 3:
+					case 3:
 					radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
 					Json.readLists();
 					Updater.updater();
@@ -297,7 +275,7 @@ public class GUI {
 		e.setEnabled(false);
 	}
 
-	public static void beginDownload(JButton button) {
+/*	public static void beginDownload(JButton button) {
 		try {
 			URL modpackOneLink = new URL("https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
 			Downloader.Download(modpackOneLink, "Modpack.zip", 0);
@@ -307,5 +285,5 @@ public class GUI {
 			System.out.println("Fuck you Java.");
 			Errors.init();
 		}
-	}
+	}*/
 }

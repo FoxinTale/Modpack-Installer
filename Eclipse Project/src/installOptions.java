@@ -1,14 +1,13 @@
-import java.awt.Font;
+import FileUtils.FileUtils;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 
 public class installOptions extends Install {
 	static int ramSizeChosen = 0;
@@ -27,9 +26,6 @@ public class installOptions extends Install {
 		ArrayList<String> minecraftModsList = new ArrayList<>();
 		ArrayList<String> downloadedModsList = new ArrayList<>();
 
-		Set<Object> listOne = new HashSet<Object>();
-		Set<Object> listTwo = new HashSet<Object>();
-
 		try {
 			Files.list(new File(downloadedMods).toPath()).forEach(path -> {
 				downloadedModsList.add(path.getFileName().toString());
@@ -39,20 +35,19 @@ public class installOptions extends Install {
 				minecraftModsList.add(item.getFileName().toString());
 			});
 
-			listOne.addAll(minecraftModsList);
-			listTwo.addAll(modList);
+			Set<Object> listOne = new HashSet<Object>(minecraftModsList);
+			Set<Object> listTwo = new HashSet<Object>(modList);
 
 			Set<Object> fileCheck = new HashSet<Object>(listTwo);
 			fileCheck.removeAll(listOne);
 			fileCheck.remove("gammabright");
 			fileCheck.remove("1.7.10");
-			fileCheck.remove("mcheli");
 			ArrayList<Object> missing = new ArrayList<Object>(fileCheck);
 
-			if (fileCheck.isEmpty() || fileCheck.size() == 0) {
+			if (fileCheck.isEmpty()) {
 				packGood = true;
 			}
-			if (!fileCheck.isEmpty() || fileCheck.size() != 0) {
+			if (fileCheck.size() != 0) {
 				for (int i = fileCheck.size(); i > 0; i--) {
 					fixMods(q + missing.remove(i - 1));
 				}
@@ -70,7 +65,8 @@ public class installOptions extends Install {
 		File missingModFile;
 		try {
 			missingModFile = new File(packDirectory + missingMod);
-			Utils.copyFileToDirectory(missingModFile, modsDirectory, false);
+			FileUtils.copyFileToDirectory(missingModFile, modsDirectory, false);
+
 		} catch (IOException e) {
 			// Generic IO exception while copying mods.
 			GUI.errors.setText("Lapras");
@@ -80,10 +76,7 @@ public class installOptions extends Install {
 	public static Boolean resourceCheck() {
 		String home = System.getProperty("user.dir");
 		File libsDir = new File(home + q + "Modpack-Installer_lib");
-		if (libsDir.exists()) {
-			return true;
-		}
-		return false;
+		return libsDir.exists();
 	}
 
 	public static void backup() {
@@ -92,7 +85,7 @@ public class installOptions extends Install {
 		if (!profileBackup.exists()) {
 			profileBackup.mkdir();
 			try {
-				Utils.copyFileToDirectory(launcherProfiles, profileBackup, false);
+				FileUtils.copyFileToDirectory(launcherProfiles, profileBackup);
 				System.out.println("Launcher Profiles backed up.");
 			} catch (IOException e) {
 				// Eh, do nothing here.
@@ -105,8 +98,8 @@ public class installOptions extends Install {
 		File launcherProfiles = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
 		File oldProfile = new File(profileBackup + File.separator + "launcher_profiles.json");
 		try {
-			Utils.forceDelete(launcherProfiles);
-			Utils.copyFileToDirectory(oldProfile, Driver.getMinecraftInstallLocation(), false);
+			FileUtils.forceDelete(launcherProfiles);
+			FileUtils.copyFileToDirectory(oldProfile, Driver.getMinecraftInstallLocation());
 			System.out.println(" Launcher Settings restored.");
 			if (featuresUsed) {
 				again();

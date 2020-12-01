@@ -1,4 +1,4 @@
-//import FileUtils.FileUtils;
+import FileUtils.FileUtils;
 
 import javax.swing.*;
 import java.io.File;
@@ -116,11 +116,11 @@ public class Checksums {
 		try {
 			if (o == JOptionPane.YES_OPTION) { // Copy and Extract.
 				String baseLocation = resourcePackDir.getAbsolutePath() + File.separator;
-				Utils.copyFileToDirectory(Downloader.zipFile, resourcePackDir, false);
+				FileUtils.copyFileToDirectory(Downloader.zipFile, resourcePackDir, false);
 				Extractor.Extract(baseLocation + zipName, baseLocation + folderName, 2);
 			}
 			if (o == JOptionPane.NO_OPTION) {
-				Utils.copyFileToDirectory(Downloader.zipFile, resourcePackDir, false);
+				FileUtils.copyFileToDirectory(Downloader.zipFile, resourcePackDir, false);
 			}
 		} catch (IOException e) {
 			GUI.errors.setText("Luxray");

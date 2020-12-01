@@ -1,19 +1,12 @@
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-
-import org.hyperic.sigar.Mem;
-import org.hyperic.sigar.Sigar;
-import org.hyperic.sigar.SigarException;
+//import org.hyperic.sigar.Mem;
+//import org.hyperic.sigar.Sigar;
+//import org.hyperic.sigar.SigarException;
 
 public class Memory extends installOptions {
 	public static void sliderGUI() {
@@ -25,7 +18,7 @@ public class Memory extends installOptions {
 		JPanel buttonPanel = new JPanel();
 		GridLayout format = new GridLayout(2, 1);
 		boolean sigarGood = resourceCheck.sigarCheck();
-		if(sigarGood) {
+/*		if(sigarGood) {
 		try {
 			Sigar memInfo = new Sigar();
 			Mem memory = new Mem();
@@ -36,8 +29,8 @@ public class Memory extends installOptions {
 			ramSizeGb = ramSizeMb / 1024;
 		} catch (SigarException s) {
 			// This would usually happen if the libraries are not found.
-			// This shouldn't happen, as I've implemented checks already. 
-		}
+			// This shouldn't happen, as I've implemented checks already.
+		}*/
 
 		JButton next = new JButton("Continue");
 		JSlider allocatedRam = new JSlider();
@@ -122,13 +115,13 @@ public class Memory extends installOptions {
 		frame.setResizable(false);
 		frame.setVisible(true);
 		}
-		if(!sigarGood) {
+/*		if(!sigarGood) {
 			String noSigar = "The libraries used to determine system memory could not be found. ";
 			JOptionPane.showMessageDialog(new JFrame(), noSigar, "System Information Libraries not found.", JOptionPane.ERROR_MESSAGE);
 			// System.exit(0);
 			
-		}
-	}
+		}*/
+
 
 	public static int setRamSize(int ram) {
 		int totalRam = 0;

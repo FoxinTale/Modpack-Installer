@@ -1,8 +1,9 @@
 
+import GUI.CustomOutputStream;
+
 import javax.swing.*;
 import java.io.File;
 import java.io.PrintStream;
-
 /*
  * This program is free software. It comes without any warranty, to the extent
  * permitted by applicable law. You can redistribute it and/or modify it under
@@ -74,7 +75,7 @@ public class Driver {
 			folderCheck();
 		}
 
-		if (validOS == false) {
+		if (!validOS) {
 			// If you see this, well... why are you trying to run this on an unsupported OS?
 			// Except Solaris..Which is really uncommon. If you're running that, I'd like to
 			// know why.

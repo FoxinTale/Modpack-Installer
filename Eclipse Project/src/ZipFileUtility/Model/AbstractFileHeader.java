@@ -9,7 +9,6 @@ public abstract class AbstractFileHeader extends ZipHeader {
   private CompressionMethod compressionMethod;
   private long lastModifiedTime;
   private long crc = 0;
-  private byte[] crcRawData;
   private long compressedSize = 0;
   private long uncompressedSize = 0;
   private int fileNameLength;
@@ -19,7 +18,6 @@ public abstract class AbstractFileHeader extends ZipHeader {
   private EncryptionMethod encryptionMethod = EncryptionMethod.NONE;
   private boolean dataDescriptorExists;
   private Zip64ExtendedInfo zip64ExtendedInfo;
-  private AESExtraDataRecord aesExtraDataRecord;
   private boolean fileNameUTF8Encoded;
   private List<ExtraDataRecord> extraDataRecords;
   private boolean isDirectory;
@@ -55,12 +53,6 @@ public abstract class AbstractFileHeader extends ZipHeader {
   }
   public void setCrc(long crc) {
     this.crc = crc;
-  }
-  public byte[] getCrcRawData() {
-    return crcRawData;
-  }
-  public void setCrcRawData(byte[] crcRawData) {
-    this.crcRawData = crcRawData;
   }
   public long getCompressedSize() {
     return compressedSize;
@@ -118,14 +110,6 @@ public abstract class AbstractFileHeader extends ZipHeader {
   public void setZip64ExtendedInfo(Zip64ExtendedInfo zip64ExtendedInfo) {
     this.zip64ExtendedInfo = zip64ExtendedInfo;
   }
-  public AESExtraDataRecord getAesExtraDataRecord() {
-    return aesExtraDataRecord;
-  }
-
-  public void setAesExtraDataRecord(AESExtraDataRecord aesExtraDataRecord) {
-    this.aesExtraDataRecord = aesExtraDataRecord;
-  }
-
   public boolean isFileNameUTF8Encoded() {
     return fileNameUTF8Encoded;
   }

@@ -14,22 +14,17 @@ public class ZipParameters {
   private String fileNameInZip;
   private long entrySize = -1;
   private String rootFolderNameInZip;
-  private ExcludeFileFilter excludeFileFilter;
   private boolean unixMode;
 
-  public ZipParameters(long entryCRC, String defaultFolderPath, String fileNameInZip, String rootFolderNameInZip, ExcludeFileFilter excludeFileFilter, boolean unixMode) {
+  public ZipParameters(long entryCRC, String defaultFolderPath, String fileNameInZip, String rootFolderNameInZip, boolean unixMode) {
     this.entryCRC = entryCRC;
     this.defaultFolderPath = defaultFolderPath;
     this.fileNameInZip = fileNameInZip;
     this.rootFolderNameInZip = rootFolderNameInZip;
-    this.excludeFileFilter = excludeFileFilter;
     this.unixMode = unixMode;
   }
 
 
-  public CompressionMethod getCompressionMethod() {
-    return compressionMethod;
-  }
   public void setCompressionMethod(CompressionMethod compressionMethod) {
     this.compressionMethod = compressionMethod;
   }

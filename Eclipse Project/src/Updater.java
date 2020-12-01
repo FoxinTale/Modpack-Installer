@@ -1,14 +1,8 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import javax.swing.*;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class Updater {
 	static ArrayList<String> removal = Json.getToRemove();

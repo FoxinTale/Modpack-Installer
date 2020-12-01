@@ -1,3 +1,5 @@
+import FileUtils.FileUtils;
+
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
@@ -199,7 +201,7 @@ public class Install {
 		if (dirOne.exists()) {
 			if (dirTwo.exists()) {
 				try {
-					Utils.copyDirectory(dirOne, dirTwo);
+					FileUtils.copyDirectory(dirOne, dirTwo);
 				} catch (IOException a) {
 					// Do nothing. Java complained if I didn't put this here.
 				}

@@ -1,14 +1,10 @@
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
+import GUI.JHyperlink;
+import GUI.RoundedPanel;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class assetCredits extends resourcePacks {
 	public static void credits() {

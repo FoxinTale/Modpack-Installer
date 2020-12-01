@@ -1,26 +1,20 @@
 package ZipFileUtility.IO.Input;
 
 import ZipFileUtility.Headers.HeaderReader;
-import ZipFileUtility.Headers.HeaderSignature;
 import ZipFileUtility.Model.*;
 import ZipFileUtility.Util.InternalZipConstants;
-import ZipFileUtility.Util.Zip4jUtil;
-import ZipFileUtility.ZipException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PushbackInputStream;
 import java.nio.charset.Charset;
-import java.util.List;
 import java.util.zip.CRC32;
-import java.util.zip.DataFormatException;
 
 
 public class ZipInputStream extends InputStream {
 
-  private PushbackInputStream inputStream;
-  private DecompressedInputStream decompressedInputStream;
-  private HeaderReader headerReader = new HeaderReader();
+  private final PushbackInputStream inputStream;
+  private final HeaderReader headerReader = new HeaderReader();
   private char[] password;
   private LocalFileHeader localFileHeader;
   private CRC32 crc32 = new CRC32();
@@ -52,7 +46,6 @@ public class ZipInputStream extends InputStream {
 
     verifyLocalFileHeader(localFileHeader);
     crc32.reset();
-
     if (fileHeader != null) {
       localFileHeader.setCrc(fileHeader.getCrc());
       localFileHeader.setCompressedSize(fileHeader.getCompressedSize());
@@ -61,8 +54,6 @@ public class ZipInputStream extends InputStream {
     } else {
       canSkipExtendedLocalFileHeader = false;
     }
-
-    this.decompressedInputStream = initializeEntryInputStream(localFileHeader);
     return localFileHeader;
   }
 
@@ -83,97 +74,12 @@ public class ZipInputStream extends InputStream {
     return read(b, 0, b.length);
   }
 
-  @Override
-  public int read(byte[] b, int off, int len) throws IOException {
-    if (len < 0) {
-      throw new IllegalArgumentException("Negative read length");
-    }
-
-    if (len == 0) {
-      return 0;
-    }
-
-    if (localFileHeader == null) {
-      return -1;
-    }
-
-    try {
-      int readLen = decompressedInputStream.read(b, off, len);
-
-      if (readLen == -1) {
-        endOfCompressedDataReached();
-      } else {
-        crc32.update(b, off, readLen);
-      }
-
-      return readLen;
-    } catch (IOException e) {
-      if (e.getCause() != null && e.getCause() instanceof DataFormatException
-          && isEncryptionMethodZipStandard(localFileHeader)) {
-        throw new ZipException(e.getMessage(), e.getCause(), ZipException.Type.WRONG_PASSWORD);
-      }
-
-      throw e;
-    }
-  }
-
-  @Override
+/*  @Override
   public void close() throws IOException {
     if (decompressedInputStream != null) {
       decompressedInputStream.close();
     }
-  }
-
-  private void endOfCompressedDataReached() throws IOException {
-    decompressedInputStream.pushBackInputStreamIfNecessary(inputStream);
-    decompressedInputStream.endOfEntryReached(inputStream);
-    readExtendedLocalFileHeaderIfPresent();
-    verifyCrc();
-    resetFields();
-  }
-
-  private DecompressedInputStream initializeEntryInputStream(LocalFileHeader localFileHeader) throws IOException {
-    ZipEntryInputStream zipEntryInputStream = new ZipEntryInputStream(inputStream, getCompressedSize(localFileHeader));
-    CipherInputStream cipherInputStream = initializeCipherInputStream(zipEntryInputStream, localFileHeader);
-    return initializeDecompressorForThisEntry(cipherInputStream, localFileHeader);
-  }
-
-  private CipherInputStream initializeCipherInputStream(ZipEntryInputStream zipEntryInputStream, LocalFileHeader localFileHeader) throws IOException {
-    if (!localFileHeader.isEncrypted()) {
-      return new NoCipherInputStream(zipEntryInputStream, localFileHeader, password);
-    }
-
-    if (localFileHeader.getEncryptionMethod() == EncryptionMethod.AES) {
-      return new AesCipherInputStream(zipEntryInputStream, localFileHeader, password);
-    } else if (localFileHeader.getEncryptionMethod() == EncryptionMethod.ZIP_STANDARD) {
-      return new ZipStandardCipherInputStream(zipEntryInputStream, localFileHeader, password);
-    } else {
-      final String message = String.format("Entry [%s] Strong Encryption not supported", localFileHeader.getFileName());
-      throw new ZipException(message, ZipException.Type.UNSUPPORTED_ENCRYPTION);
-    }
-  }
-
-  private DecompressedInputStream initializeDecompressorForThisEntry(CipherInputStream cipherInputStream, LocalFileHeader localFileHeader) {
-    CompressionMethod compressionMethod = Zip4jUtil.getCompressionMethod(localFileHeader);
-
-    if (compressionMethod == CompressionMethod.DEFLATE) {
-      return new InflaterInputStream(cipherInputStream);
-    }
-
-    return new StoreInputStream(cipherInputStream);
-  }
-
-  private void readExtendedLocalFileHeaderIfPresent() throws IOException {
-    if (!localFileHeader.isDataDescriptorExists() || canSkipExtendedLocalFileHeader) {
-      return;
-    }
-
-    DataDescriptor dataDescriptor = headerReader.readDataDescriptor(inputStream,
-        checkIfZip64ExtraDataRecordPresentInLFH(localFileHeader.getExtraDataRecords()));
-    localFileHeader.setCompressedSize(dataDescriptor.getCompressedSize());
-    localFileHeader.setUncompressedSize(dataDescriptor.getUncompressedSize());
-    localFileHeader.setCrc(dataDescriptor.getCrc());
-  }
+  }*/
 
   private void verifyLocalFileHeader(LocalFileHeader localFileHeader) throws IOException {
     if (!isEntryDirectory(localFileHeader.getFileName())
@@ -184,87 +90,16 @@ public class ZipInputStream extends InputStream {
     }
   }
 
-  private boolean checkIfZip64ExtraDataRecordPresentInLFH(List<ExtraDataRecord> extraDataRecords) {
-    if (extraDataRecords == null) {
-      return false;
-    }
-
-    for (ExtraDataRecord extraDataRecord : extraDataRecords) {
-      if (extraDataRecord.getHeader() == HeaderSignature.ZIP64_EXTRA_FIELD_SIGNATURE.getValue()) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  private void verifyCrc() throws IOException {
-    if (localFileHeader.getEncryptionMethod() == EncryptionMethod.AES
-        && localFileHeader.getAesExtraDataRecord().getAesVersion().equals(AesVersion.TWO)) {
-      return;
-    }
-
-    if (localFileHeader.getCrc() != crc32.getValue()) {
-      ZipException.Type exceptionType = ZipException.Type.CHECKSUM_MISMATCH;
-
-      if (isEncryptionMethodZipStandard(localFileHeader)) {
-        exceptionType = ZipException.Type.WRONG_PASSWORD;
-      }
-
-      throw new ZipException("Reached end of entry, but crc verification failed for " + localFileHeader.getFileName(),
-          exceptionType);
-    }
-  }
-
-  private void resetFields() {
-    localFileHeader = null;
-    crc32.reset();
-  }
-
   private boolean isEntryDirectory(String entryName) {
     return entryName.endsWith("/") || entryName.endsWith("\\");
   }
 
-  private long getCompressedSize(LocalFileHeader localFileHeader) {
-    if (Zip4jUtil.getCompressionMethod(localFileHeader).equals(CompressionMethod.STORE)) {
-      return localFileHeader.getUncompressedSize();
-    }
-
-    if (localFileHeader.isDataDescriptorExists() && !canSkipExtendedLocalFileHeader) {
-      return -1;
-    }
-
-    return localFileHeader.getCompressedSize() - getEncryptionHeaderSize(localFileHeader);
-  }
-
-  private int getEncryptionHeaderSize(LocalFileHeader localFileHeader) {
-    if (!localFileHeader.isEncrypted()) {
-      return 0;
-    }
-
-    if (localFileHeader.getEncryptionMethod().equals(EncryptionMethod.AES)) {
-      return InternalZipConstants.AES_AUTH_LENGTH + InternalZipConstants.AES_PASSWORD_VERIFIER_LENGTH
-          + localFileHeader.getAesExtraDataRecord().getAesKeyStrength().getSaltLength();
-    } else if (localFileHeader.getEncryptionMethod().equals(EncryptionMethod.ZIP_STANDARD)) {
-      return InternalZipConstants.STD_DEC_HDR_SIZE;
-    } else {
-      return 0;
-    }
-  }
-
-  private void readUntilEndOfEntry() throws IOException {
+  private void readUntilEndOfEntry() {
     if (localFileHeader.isDirectory() || localFileHeader.getCompressedSize() == 0) {
       return;
     }
-
     if (endOfEntryBuffer == null) {
       endOfEntryBuffer = new byte[512];
     }
-
-    while (read(endOfEntryBuffer) != -1);
-  }
-
-  private boolean isEncryptionMethodZipStandard(LocalFileHeader localFileHeader) {
-    return localFileHeader.isEncrypted() && EncryptionMethod.ZIP_STANDARD.equals(localFileHeader.getEncryptionMethod());
   }
 }
