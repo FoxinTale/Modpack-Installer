@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class InstallerSanityChecks {
@@ -19,7 +20,7 @@ public class InstallerSanityChecks {
 		Maybe rework the update to have a json file within it, so it knows what to remove specifically.
 	*/
 
-	public static void check(int option) {
+	public static void check(int option) throws IOException {
 		switch (option) {
 		case 0:
 			optionsGUI.otherOptionsGUI();

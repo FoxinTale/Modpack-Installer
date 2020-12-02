@@ -13,9 +13,11 @@ public class Json {
 	static ArrayList<String> checksums = new ArrayList<>();
 
 	static String currentVersion;
+
 	static String q = File.separator;
 
 	static int forgePoint, argsPoint;
+
 
 	public static void readLists() {
 		try {

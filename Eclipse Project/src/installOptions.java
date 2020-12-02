@@ -73,11 +73,11 @@ public class installOptions extends Install {
 		}
 	}
 
-	public static Boolean resourceCheck() {
+/*	public static Boolean resourceCheck() {
 		String home = System.getProperty("user.dir");
 		File libsDir = new File(home + q + "Modpack-Installer_lib");
 		return libsDir.exists();
-	}
+	}*/
 
 	public static void backup() {
 		File profileBackup = new File(Driver.getMinecraftInstall() + q + "profilebackup");

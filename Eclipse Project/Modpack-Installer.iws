@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Modpack-Installer:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +38,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Modpack-Installer.ipr" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
@@ -79,6 +84,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="605" y="136" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606690113062" />
+    <state x="530" y="220" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1606864027388">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="530" y="220" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606864027388" />
     <state x="551" y="309" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606862140459">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -92,30 +101,38 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="229" y="0" key="#org.jetbrains.kotlin.idea.refactoring.safeDelete.KotlinOverridingDialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606860240084" />
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1606863515465">
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1606868178670">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606863515465" />
-    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1606863515464">
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606868178670" />
+    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1606868178669">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606863515464" />
-    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1606863515464">
+    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606868178669" />
+    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1606868178669">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606863515464" />
-    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1606863515465">
+    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606868178669" />
+    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1606868178669">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606863515465" />
-    <state x="175" y="144" width="1308" height="504" key="caller.chooser.dialog" timestamp="1606863337975">
+    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606868178669" />
+    <state x="280" y="4" key="SettingsEditor" timestamp="1606864141760">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="175" y="144" width="1308" height="504" key="caller.chooser.dialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606863337975" />
+    <state x="280" y="4" key="SettingsEditor/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606864141760" />
+    <state x="175" y="144" width="1308" height="504" key="caller.chooser.dialog" timestamp="1606868167345">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="175" y="144" width="1308" height="504" key="caller.chooser.dialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606868167345" />
     <state x="504" y="322" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1606848278510">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="504" y="322" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606848278510" />
+    <state x="507" y="29" width="585" height="801" key="find.popup" timestamp="1606865984461">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="507" y="29" width="585" height="801" key="find.popup/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606865984461" />
     <state x="643" y="187" key="refactoring.ChangeSignatureDialog" timestamp="1606857220229">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

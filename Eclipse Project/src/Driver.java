@@ -3,6 +3,7 @@ import GUI.CustomOutputStream;
 
 import javax.swing.*;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 /*
  * This program is free software. It comes without any warranty, to the extent
@@ -36,7 +37,7 @@ public class Driver {
 
 	private static PrintStream standardOut; // This sets the outputs.
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// Creating the custom output stream.
 		PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
 		standardOut = System.out;
@@ -48,9 +49,9 @@ public class Driver {
 			// For modern Windows systems
 			validOS = true;
 			osDetect.isWindows();
-			Install.checkForMinecraftandForge();
-			folderCheck();
-		}
+			//Install.checkForMinecraftandForge();\
+			//Json.installerUpdateCheck();
+			GUI.launchGUI(); }
 		
 		if (OS.equals("Windows Vista") || OS.equals("Windows XP")) {
 			String message = "Why are you still using this computer?";
@@ -63,16 +64,16 @@ public class Driver {
 			// Good on you for using Linux!
 			validOS = true;
 			osDetect.isLinux();
-			Install.checkForMinecraftandForge();
-			folderCheck();
+			//Install.checkForMinecraftandForge();
+			GUI.launchGUI();
 		}
 
 		if (OS.equals("Mac")) {
 			// Big oof.
 			validOS = true;
 			osDetect.isMac();
-			Install.checkForMinecraftandForge();
-			folderCheck();
+			//Install.checkForMinecraftandForge();
+			GUI.launchGUI();
 		}
 
 		if (!validOS) {
@@ -90,20 +91,6 @@ public class Driver {
 	public static void folderCreate(File folder) {
 		if (!folder.exists()) {
 			folder.mkdir();
-		}
-	}
-
-	//This checks to see if the library folder is there, as it is needed to run the installer.
-	public static void folderCheck() {
-		if (installOptions.resourceCheck()) {
-			GUI.launchGUI();
-			// InstallerSanityChecks.check(10);
-			resourceCheck.sigarCheck();
-		}
-		if (!installOptions.resourceCheck()) {
-			String message = "Please put this back in the folder it was originally in.";
-			JOptionPane.showMessageDialog(new JFrame(), message, "Resources not found.", JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
 		}
 	}
 

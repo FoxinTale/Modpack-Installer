@@ -22,6 +22,7 @@ public class GUI {
 	static Font pretty;
 	static String q = File.separator;
 	static JButton errorLookup = new JButton("!!!");
+	static String installerVersionValue = "1.0";
 
 	public static void launchGUI() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
@@ -38,7 +39,7 @@ public class GUI {
 		JLabel errorsLabel = new JLabel("Errors: ");
 		ButtonGroup options = new ButtonGroup();
 
-		JLabel installerVersion = new JLabel("Version 5.0.0");
+		JLabel installerVersion = new JLabel("Version " + installerVersionValue);
 
 		consoleOutput.setLineWrap(true);
 
@@ -66,7 +67,6 @@ public class GUI {
 		JPanel resourcePanel = new RoundedPanel(10, rbc);
 
 		ActionListener radioButtonEvent = new ActionListener() {
-
 			public void actionPerformed(ActionEvent ae) {
 				AbstractButton absButton = (AbstractButton) ae.getSource();
 				String selection = absButton.getText();
@@ -101,7 +101,7 @@ public class GUI {
 				default:
 					break;
 				}
-				if (validPack == false) {
+				if (!validPack) {
 					errors.setText(" Garchomp");
 					Errors.init();
 				}
@@ -157,7 +157,7 @@ public class GUI {
 			Errors.init();
 		}
 
-		frame.setFont(pretty);
+/*		frame.setFont(pretty);
 		consoleOutput.setFont(pretty);
 		modpackOne.setFont(pretty);
 		downloadOption.setFont(pretty);
@@ -167,7 +167,7 @@ public class GUI {
 		errorsLabel.setFont(pretty);
 		button.setFont(pretty);
 		installerVersion.setFont(pretty);
-		resourceOption.setFont(pretty);
+		resourceOption.setFont(pretty);*/
 
 		errorLookup.setBackground(lightRed);
 		frame.setTitle("Modpack Installer by Aubrey");
@@ -213,7 +213,12 @@ public class GUI {
 		errors.setEditable(false);
 
 		System.out.println(" Welcome to the installer!");
-		System.out.println(" Please report any issues or bugs to Aubrey #2376. ");
+		try {
+			Updater.installerUpdateCheck();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(" Please report any issues or bugs to Aubrey Jane #7563.");
 		System.out.println(" Select an option from below to continue.\n");
 
 		modpackOne.addActionListener(radioButtonEvent);
@@ -225,12 +230,12 @@ public class GUI {
 		button.addActionListener(buttonEvent);
 		errorLookup.addActionListener(errorsEvent);
 
-		ImageIcon background = new ImageIcon("resources" + q + "Background.png");
+/*		ImageIcon background = new ImageIcon("resources" + q + "Background.png");
 		Image bg = background.getImage();
 		Image bgImg = bg.getScaledInstance(480, 575, Image.SCALE_SMOOTH);
 		background = new ImageIcon(bgImg);
 		JLabel backgroundImage = new JLabel(background);
-		backgroundImage.setBounds(0, 0, 480, 575);
+		backgroundImage.setBounds(0, 0, 480, 575);*/
 
 		frame.add(button);
 		frame.add(scroll);
@@ -258,7 +263,7 @@ public class GUI {
 		frame.add(errorLookup);
 		errorLookup.setVisible(false);
 
-		frame.add(backgroundImage);
+		//frame.add(backgroundImage);
 
 		frame.setSize(480, 575);
 		frame.setResizable(false);

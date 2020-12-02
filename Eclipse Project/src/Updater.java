@@ -1,3 +1,6 @@
+import JsonUtils.JSONObject;
+import JsonUtils.JSONTokener;
+
 import javax.swing.*;
 import java.io.*;
 import java.net.MalformedURLException;
@@ -11,6 +14,7 @@ public class Updater {
 	static String currentVersion = "";
 	static String baseLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Updates/";
 	static String q = File.separator;
+	static String installerVersion;
 
 	public static void updater() {
 		currentVersion = Json.getCurrentVersion();
@@ -32,6 +36,26 @@ public class Updater {
 			} catch (MalformedURLException e) {
 				GUI.errors.setText("Bastiodon");
 			}
+		}
+	}
+
+	public static void installerUpdateCheck() throws IOException {
+		URL installerLatest = new URL("https://api.github.com/repos/foxintale/modpack-installer/releases/latest");
+		JSONObject installerPage = (JSONObject) new JSONTokener(installerLatest.openStream()).nextValue();
+		installerVersion = (String) installerPage.get("tag_name");
+		//JSONArray assetsArray
+		if(!GUI.installerVersionValue.equals(installerVersion)){
+			String t = "There's an update available for the installer. Would you like to download it?";
+			int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Installer update", JOptionPane.YES_NO_OPTION);
+			if (o == JOptionPane.YES_OPTION) {
+
+			}
+			if (o == JOptionPane.NO_OPTION) {
+				System.exit(0);
+			}
+		}
+		else{
+			System.out.println(" The installer is up to date.");
 		}
 	}
 
