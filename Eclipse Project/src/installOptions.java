@@ -66,18 +66,11 @@ public class installOptions extends Install {
         try {
             missingModFile = new File(packDirectory + missingMod);
             FileUtils.copyFileToDirectory(missingModFile, modsDirectory, false);
-
         } catch (IOException e) {
             // Generic IO exception while copying mods.
             GUI.errors.setText("Lapras");
         }
     }
-
-/*	public static Boolean resourceCheck() {
-		String home = System.getProperty("user.dir");
-		File libsDir = new File(home + q + "Modpack-Installer_lib");
-		return libsDir.exists();
-	}*/
 
     public static void backup() {
         File profileBackup = new File(Driver.getMinecraftInstall() + q + "profilebackup");
@@ -86,7 +79,7 @@ public class installOptions extends Install {
             profileBackup.mkdir();
             try {
                 FileUtils.copyFileToDirectory(launcherProfiles, profileBackup);
-                System.out.println("Launcher Profiles backed up.");
+                System.out.println(Strings.installerBackupProfile);
             } catch (IOException e) {
                 // Eh, do nothing here.
             }
@@ -100,7 +93,7 @@ public class installOptions extends Install {
         try {
             FileUtils.forceDelete(launcherProfiles);
             FileUtils.copyFileToDirectory(oldProfile, Driver.getMinecraftInstallLocation());
-            System.out.println(" Launcher Settings restored.");
+            System.out.println(Strings.installerRestoreProfile);
             if (featuresUsed) {
                 again();
             }
@@ -111,8 +104,7 @@ public class installOptions extends Install {
     }
 
     public static void again() {
-        String t = "Would you like to use another option? Selecting no exits the program.";
-        int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Another option?", JOptionPane.YES_NO_OPTION);
+        int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerAgainMessage, Strings.installerAgainTitle, JOptionPane.YES_NO_OPTION);
         if (o == JOptionPane.YES_OPTION) {
             optionsGUI.otherOptionsGUI();
         }

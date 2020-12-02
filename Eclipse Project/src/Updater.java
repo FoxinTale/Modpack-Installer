@@ -48,7 +48,6 @@ public class Updater {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public static void modpackUpdateCheck() {
@@ -58,7 +57,6 @@ public class Updater {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
     }
 
     public static void removeStuff() {
@@ -77,7 +75,6 @@ public class Updater {
         removeStuff();
         File modsDirectory = new File(Driver.getMinecraftInstall() + q + "mods");
         File configDirectory = new File(Driver.getMinecraftInstall() + q + "config");
-
         File updateMods = new File(Driver.getDownloadsLocation() + q + currentVersion + q + "mods");
         File updateConfig = new File(Driver.getDownloadsLocation() + q + currentVersion + q + "config");
 

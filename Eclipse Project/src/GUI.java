@@ -5,21 +5,15 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 /*
  * Let's be honest, this class does document itself, for the most part.
  */
 public class GUI {
     static JProgressBar progress = new JProgressBar();
-    //static JEditorPane pane = new JEditorPane();
     static JTextArea consoleOutput = new JTextArea();
     static JScrollPane scroll = new JScrollPane(consoleOutput);
     static JTextField errors = new JTextField(Strings.installerErrorsDefault);
-    //static Boolean packDownloadOnly = false;
-    //static Boolean updateOnly = false;
-    static Font pretty;
-    static String q = File.separator;
     static JButton errorLookup = new JButton("!!!");
     static String installerVersionValue = "1.0";
 
@@ -29,11 +23,8 @@ public class GUI {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JRadioButton modpackOne = new JRadioButton(Strings.installerOptionOne);
         JRadioButton downloadOption = new JRadioButton(Strings.installerOptionTwo);
-        //JRadioButton updateOption = new JRadioButton("Update.");
         JRadioButton otherOptions = new JRadioButton(Strings.installerOptionThree);
         JRadioButton resourceOption = new JRadioButton(Strings.installerOptionFour);
-        //JRadioButton extractOption = new JRadioButton("");
-
         JButton button = new JButton("...");
         JLabel errorsLabel = new JLabel(Strings.installerErrorsLabelText);
         ButtonGroup options = new ButtonGroup();
@@ -53,8 +44,6 @@ public class GUI {
 
         options.add(modpackOne);
         options.add(downloadOption);
-        //options.add(updateOption);
-        //options.add(extractOption);
         options.add(otherOptions);
         options.add(resourceOption);
 
@@ -111,26 +100,22 @@ public class GUI {
                 switch (op) {
                     case 1:
                     case 2:
-                        //radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
                         radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
                         Json.readLists();
                         //beginDownload(button);
                         break;
                     case 3:
-                        //radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
                         radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
                         Json.readLists();
                         Updater.updater();
                         break;
                     case 4:
-                        //radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
                         radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
                         Json.readLists();
                         optionsGUI.otherOptionsGUI();
                         Install.featuresUsed = true;
                         break;
                     case 5:
-                        //radioSet(modpackOne, downloadOption, updateOption, otherOptions, resourceOption);
                         radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
                         Json.readLists();
                         resourcePacks.packGUI();
@@ -148,32 +133,6 @@ public class GUI {
             }
         };
 
-/*
-        try {
-            pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")).deriveFont(16f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")));
-        } catch (IOException ioe) {
-            // Oh look. A wild error in its habitat.
-        } catch (FontFormatException ffe) {
-            GUI.errors.setText("Uxie");
-            Errors.init();
-        }
-*/
-
-/*
-        frame.setFont(pretty);
-		consoleOutput.setFont(pretty);
-		modpackOne.setFont(pretty);
-		downloadOption.setFont(pretty);
-		otherOptions.setFont(pretty);
-		updateOption.setFont(pretty);
-		errors.setFont(pretty);
-		errorsLabel.setFont(pretty);
-		button.setFont(pretty);
-		installerVersion.setFont(pretty);
-		resourceOption.setFont(pretty);
-	*/
 
         errorLookup.setBackground(lightRed);
         frame.setTitle(Strings.installerWindowTitle);
@@ -187,16 +146,11 @@ public class GUI {
         downloadOption.setBounds(120, 270, 200, 15);
         downloadPanel.setBounds(115, 265, 250, 25);
 
-        //updateOption.setBounds(120, 305, 200, 15);
         updatePanel.setBounds(115, 300, 250, 25);
 
         resourceOption.setBounds(120, 305, 200, 15);
-        //resourceOption.setBounds(120, 340, 200, 15);
         resourcePanel.setBounds(115, 335, 250, 25);
-
         otherOptions.setBounds(120, 340, 200, 15);
-        //otherOptions.setBounds(120, 375, 200, 15);
-        //optionsPanel.setBounds(115, 370, 250, 25);
 
         progress.setBounds(25, 475, 275, 25); // X, Y, Width, Height
         installerVersion.setBounds(195, 510, 100, 20); // 190
@@ -209,13 +163,11 @@ public class GUI {
         modpackOne.setBackground(rbc);
         downloadOption.setBackground(rbc);
         otherOptions.setBackground(rbc);
-        //updateOption.setBackground(rbc);
         resourceOption.setBackground(rbc);
 
         modpackPanel.add(modpackOne);
         downloadPanel.add(downloadOption);
         optionsPanel.add(otherOptions);
-       // updatePanel.add(updateOption);
 
         consoleOutput.setEditable(false);
         errors.setEditable(false);
@@ -228,19 +180,10 @@ public class GUI {
 
         modpackOne.addActionListener(radioButtonEvent);
         downloadOption.addActionListener(radioButtonEvent);
-        //updateOption.addActionListener(radioButtonEvent);
-        //extractOption.addActionListener(radioButtonEvent);
         otherOptions.addActionListener(radioButtonEvent);
         resourceOption.addActionListener(radioButtonEvent);
         button.addActionListener(buttonEvent);
         errorLookup.addActionListener(errorsEvent);
-
-/*		ImageIcon background = new ImageIcon("resources" + q + "Background.png");
-		Image bg = background.getImage();
-		Image bgImg = bg.getScaledInstance(480, 575, Image.SCALE_SMOOTH);
-		background = new ImageIcon(bgImg);
-		JLabel backgroundImage = new JLabel(background);
-		backgroundImage.setBounds(0, 0, 480, 575);*/
 
         frame.add(button);
         frame.add(scroll);
@@ -248,27 +191,19 @@ public class GUI {
         frame.add(errors);
         frame.add(errorsLabel);
         frame.add(modpackOne);
-
         frame.add(downloadOption);
-
-        //frame.add(updateOption);
         frame.add(otherOptions);
-
         frame.add(modpackPanel);
         frame.add(downloadPanel);
-
         frame.add(optionsPanel);
         frame.add(updatePanel);
-
         frame.add(installerVersion);
-
         frame.add(resourceOption);
         frame.add(resourcePanel);
-
         frame.add(errorLookup);
+
         errorLookup.setVisible(false);
 
-        //frame.add(backgroundImage);
 
         frame.setSize(480, 575);
         frame.setResizable(false);
@@ -277,13 +212,6 @@ public class GUI {
         frame.setVisible(true);// making the frame visible
     }
 
-/*    public static void radioSet(JRadioButton a, JRadioButton b, JRadioButton c, JRadioButton d, JRadioButton e) {
-        a.setEnabled(false);
-        b.setEnabled(false);
-        c.setEnabled(false);
-        d.setEnabled(false);
-        e.setEnabled(false);
-    }*/
 
     public static void radioSet(JRadioButton a, JRadioButton b, JRadioButton c, JRadioButton d) {
         a.setEnabled(false);

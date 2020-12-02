@@ -10,10 +10,9 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
 public class Install {
-    static String q = File.separator;
     static int selectedOption = 0;
     static Boolean featuresUsed = false;
-    static File modpackLocation = new File(Driver.getDownloadsLocation() + q + "Modpack");
+    static File modpackLocation = new File(Driver.getDownloadsLocation() + Strings.q + "Modpack");
 
     public static void install() {
 
@@ -21,36 +20,24 @@ public class Install {
         modpackLocation.deleteOnExit();
 
         String minecraftPath = Driver.getMinecraftInstall();
-
-        File minecraftMods = new File(minecraftPath + q + "mods");
-        File minecraftConfig = new File(minecraftPath + q + "config");
-       // File minecraftFlans = new File(minecraftPath + q + "Flan");
-
-        File backups = new File(Driver.getDesktopLocation() + q + "Minecraft Stuff");
+        File minecraftMods = new File(minecraftPath + Strings.q + "mods");
+        File minecraftConfig = new File(minecraftPath + Strings.q + "config");
+        File backups = new File(Driver.getDesktopLocation() + Strings.q + "Minecraft Stuff");
         String backupsLocation = backups.getAbsolutePath();
-        File backupMods = new File(backupsLocation + q + "Mods");
-        File backupConfig = new File(backupsLocation + q + "Config");
-       // File backupFlans = new File(backupsLocation + q + "Flans");
 
-        File modpackMods = new File(modpackLocation + q + "mods");
-        File modpackConfig = new File(modpackLocation + q + "config");
-        //File modpackFlans = new File(modpackLocation + q + "Flan");
+        File backupMods = new File(backupsLocation + Strings.q + "Mods");
+        File backupConfig = new File(backupsLocation + Strings.q + "Config");
+        File modpackMods = new File(modpackLocation + Strings.q + "mods");
+        File modpackConfig = new File(modpackLocation + Strings.q + "config");
 
         Driver.folderCreate(backups);
         Driver.folderCreate(backupMods);
         Driver.folderCreate(backupConfig);
-        //Driver.folderCreate(backupFlans);
 
         moveFiles(minecraftMods, backupMods, Strings.installerBackupMods);
         moveFiles(minecraftConfig, backupConfig, Strings.installerBackupConfig);
-        //moveFiles(minecraftFlans, backupFlans, " Backing up any Flans related items");
-
-      /*  if (minecraftFlans.exists()) {
-            minecraftFlans.delete();
-        }*/
 
         installOptions.backup();
-        //Driver.folderCreate(minecraftFlans);
         Driver.folderCreate(minecraftConfig);
         Driver.folderCreate(minecraftMods);
 
@@ -58,14 +45,12 @@ public class Install {
 
         copyFiles(modpackMods, minecraftMods);
         copyFiles(modpackConfig, minecraftConfig);
-        //copyFiles(modpackFlans, minecraftFlans);
 
         installOptions.verifyInstall();
-        System.out.println(" Verifying install.");
-        if (installOptions.packGood) {
+        System.out.println(Strings.installerModsVerification);
 
-            String t = "Would you like the installer to adjust your Java arguments in the launcher? This will also allow you to configure the amount of ram youallocate to Minecraft.";
-            int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerExtractResourceMessage, "Java Arguments", JOptionPane.YES_NO_OPTION);
+        if (installOptions.packGood) {
+            int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerMemoryAdjustMessage, Strings.installerMemoryAdjustTitle, JOptionPane.YES_NO_OPTION);
             if (o == JOptionPane.YES_OPTION) {
                 installOptions.backup();
                 Memory.sliderGUI();
@@ -82,11 +67,9 @@ public class Install {
     }
 
     public static void installFinalize() {
-        String message = "Your pre-existing mods and configs have been moved to a folder on the desktop named 'Minecraft Stuff'.";
-        JOptionPane.showMessageDialog(new JFrame(), message, "Info", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(new JFrame(), Strings.installerStuffBackupMessage, Strings.installerStuffBackupTitle, JOptionPane.INFORMATION_MESSAGE);
 
-        String t = "Would you like the installer to check if the server is up?";
-        int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Server Test", JOptionPane.YES_NO_OPTION);
+        int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerPingServerMessage, Strings.installerPingServerTitle, JOptionPane.YES_NO_OPTION);
         if (o == JOptionPane.YES_OPTION) {
             serverPing();
         }
@@ -102,8 +85,7 @@ public class Install {
             // Not putting my IP address out there for all to see.
             // If ran as is, it will throw the UnknownHostException below, but if changed to
             // a proper IP that error should never be thrown.
-            String notification = "The server is up, Yay!";
-            JOptionPane.showMessageDialog(new JFrame(), notification, "Server Up!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), Strings.serverUpMessage, Strings.serverUpTitle, JOptionPane.INFORMATION_MESSAGE);
             server.close();
             if (!featuresUsed) {
                 resourcePack();
@@ -112,14 +94,11 @@ public class Install {
                 installOptions.again();
             }
         } catch (UnknownHostException h) {
-            // This should never happen.
-            // EVER
+            // This should never happen EVER.
             GUI.errors.setText("Marill");
         } catch (IOException i) {
-            String notification = "It isn't up, please let me know, and I'll get on it as soon as I can.";
-            JOptionPane.showMessageDialog(new JFrame(), notification, "Server Down", JOptionPane.ERROR_MESSAGE);
-            // This is an error that must be caught, as the server sometimes crashes without
-            // my knowing.
+            JOptionPane.showMessageDialog(new JFrame(), Strings.serverNotReachableMessage, Strings.serverNotReachableTitle, JOptionPane.ERROR_MESSAGE);
+            // This is an error that must be caught, as the server sometimes crashes without my knowing.
             if (!featuresUsed) {
                 resourcePack();
             }
@@ -130,10 +109,10 @@ public class Install {
     }
 
     public static void checkForMinecraftandForge() {
-        String minecraftVersions = Driver.getMinecraftInstall() + q + "versions" + q;
-        String moddedJson = minecraftVersions + "1.7.10-Forge10.13.4.1614-1.7.10" + q + "1.7.10-Forge10.13.4.1614-1.7.10.json";
-        File vanillaMinecraft = new File(minecraftVersions + "1.7.10" + q + "1.7.10.jar");
-        File vanillaMinecraftConfig = new File(minecraftVersions + "1.7.10" + q + "1.7.10.json");
+        String minecraftVersions = Driver.getMinecraftInstall() + Strings.q + "versions" + Strings.q;
+        String moddedJson = minecraftVersions + "1.7.10-Forge10.13.4.1614-1.7.10" + Strings.q + "1.7.10-Forge10.13.4.1614-1.7.10.json";
+        File vanillaMinecraft = new File(minecraftVersions + "1.7.10" + Strings.q + "1.7.10.jar");
+        File vanillaMinecraftConfig = new File(minecraftVersions + "1.7.10" + Strings.q + "1.7.10.json");
 
         File moddedMinecraftConfig = new File(moddedJson);
 
@@ -151,8 +130,7 @@ public class Install {
     }
 
     public static void resourcePack() {
-        String t = "While you're at it, would you like to download and install the resource pack? ";
-        int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Resource Pack Install", JOptionPane.YES_NO_OPTION);
+        int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerResourceMessage, Strings.installerResourceTitle, JOptionPane.YES_NO_OPTION);
         if (o == JOptionPane.YES_OPTION) {
             resourcePacks.packGUI();
         }
@@ -162,9 +140,7 @@ public class Install {
     }
 
     public static void optionalMods() {
-        String question = "Final question. Would you like to install controller support and/or additional ambient mods?";
-        int modsAsk = JOptionPane.showConfirmDialog(new JFrame(), question, "Optional Mods Install",
-                JOptionPane.YES_NO_OPTION);
+        int modsAsk = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerOptionalModsMessage, Strings.installerOptionalModsTitle, JOptionPane.YES_NO_OPTION);
         if (modsAsk == JOptionPane.YES_OPTION) {
             modOptions.modOptionsGui();
         }

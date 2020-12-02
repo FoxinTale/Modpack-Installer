@@ -57,16 +57,6 @@ public class assetCredits extends resourcePacks {
         JPanel packSevenPanel = new RoundedPanel(10, rbc);
         JPanel packEightPanel = new RoundedPanel(10, rbc);
 
-    /*    try {
-            pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")).deriveFont(16f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")));
-        } catch (IOException e) {
-
-        } catch (FontFormatException e) {
-            GUI.errors.setText("Screwy font");
-        }*/
-
         packOneA.setBounds(30, 30, 300, 20);
         packOneB.setBounds(30, 50, 300, 20);
         packOneC.setBounds(235, 50, 150, 20);
@@ -106,40 +96,6 @@ public class assetCredits extends resourcePacks {
         packEightB.setBounds(390, 230, 300, 20);
         packEightC.setBounds(600, 230, 300, 20);
         packEightPanel.setBounds(385, 205, 345, 50);
-
-      /*  packOneA.setFont(pretty);
-        packOneB.setFont(pretty);
-        packOneC.setFont(pretty);
-
-        packTwoA.setFont(pretty);
-        packTwoB.setFont(pretty);
-        packTwoC.setFont(pretty);
-
-        packThreeA.setFont(pretty);
-        packThreeB.setFont(pretty);
-        packThreeC.setFont(pretty);
-
-        packFourA.setFont(pretty);
-        packFourB.setFont(pretty);
-        packFourC.setFont(pretty);
-
-        packFiveA.setFont(pretty);
-        packFiveB.setFont(pretty);
-        packFiveC.setFont(pretty);
-
-        packSixA.setFont(pretty);
-        packSixB.setFont(pretty);
-        packSixC.setFont(pretty);
-
-        packSevenA.setFont(pretty);
-        packSevenB.setFont(pretty);
-        packSevenC.setFont(pretty);
-
-        info.setFont(pretty);
-
-        packEightA.setFont(pretty);
-        packEightB.setFont(pretty);
-        packEightC.setFont(pretty);*/
 
         Container c = creditsFrame.getContentPane();
 

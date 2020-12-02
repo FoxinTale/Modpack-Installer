@@ -1,8 +1,10 @@
-
+import java.io.File;
 
 public class Strings {
     // Purpose of putting all the strings here is to make it easier for translations to be made.
     // If you're doing a translation, the space in front of the word must be there. The text looks squished otherwise.
+
+
 
     // Text for the GUI elements, aside from the options.
     static String downloadText = "Download.";
@@ -23,6 +25,9 @@ public class Strings {
     static String installerVerificationRedownlaoding3 = " tell me. It means I forgot to update things.";
     static String installerExtractNotice = " Extracting modpack. Expect system lag.";
     static String installerInstallNotice = " Installing the Modpack now.";
+    static String installerBackupProfile = " Launcher Profiles backed up.";
+    static String installerRestoreProfile = " Launcher Settings restored.";
+    static String installerModsVerification = " Verifying mods installed correctly.";
     static String installerBackupMods = " Backing up any Mods";
     static String installerBackupConfig = " Backing up any existing configs";
     static String installerInstalling = " Installing...";
@@ -55,11 +60,34 @@ public class Strings {
     // Installer options messages and titles.
     static String installerExtractResourceMessage = "Would you like to extract the resource pack in order to improve load times on Minecraft? ";
     static String installerExtractResourceTitle = "Extract resource pack?";
+    static String installerDownloadLocationMessage = "The download has finished. You can find the file in your downloads folder. Have fun!";
+    static String installerDownloadLocationTitle = "Download finished.";
+    static String serverNotReachableMessage = "It isn't up, please let me know, and I'll get on it as soon as I can.";
+    static String serverNotReachableTitle = "Server Down";
+    static String serverUpMessage = "The server is up, Yay!";
+    static String serverUpTitle = "Server up.";
+    static String installerMemoryAdjustMessage = "Would you like the installer to adjust your Java arguments in the launcher? This will also allow you to configure the amount of ram you allocate to Minecraft.";
+    static String installerMemoryAdjustTitle = "Adjust or change Java arguments";
+    static String installerStuffBackupMessage = "Your pre-existing mods and configs have been moved to a folder on the desktop named 'Minecraft Stuff'.";
+    static String installerStuffBackupTitle = "Your stuff has bee backed up.";
+    static String installerPingServerMessage = "Would you like to check if the server is up?";
+    static String installerPingServerTitle = "Ping server?";
+    static String installerResourceMessage = "While you're at it, would you like to download and install the optional resource pack? ";
+    static String installerResourceTitle = "Resource Pack Install";
+    static String installerOptionalModsMessage = "Final question. Would you like to install controller support and/or additional ambience mods?";
+    static String installerOptionalModsTitle = "Install optional mods?";
+    static String installerAgainMessage = "Would you like to use another option? Selecting no exits the program.";
+    static String installerAgainTitle = "Use another option?";
 
-    // Resource pack options GUI Text.
+    // Options Text
+    static String optionsTitle = "Options";
+    static String optionsOne = "Extract.";
+    static String optionsTwo = "Set Memory.";
+    static String optionsThree = "Ping Server.";
+    static String optionsFour = "Restore Settings";
+    static String optionsFive = "Optional Mods";
 
-
-    // Asset Credits Elements.
+    //  Resource pack options GUI Text.
     static String assetCreditsLabel = "Asset Credits";
     static String resourcePackTitle = "Resource Pack Options";
     static String resourceDownloadSize = "Download Size: ";
@@ -106,6 +134,11 @@ public class Strings {
             + " information, go to the below link. \n" + " It will direct you to my site \n"
             + " which contains more information.\n" + " The link may take time to load.\n" + "\n"
             + " Closing this will exit the program.";
+
+
+    //Other.
+    static String q = File.separator;
+
 
     // Finalizing the installation.
     static String installerThanksMessage = "Thanks for using the installer! Now, go have fun.";
