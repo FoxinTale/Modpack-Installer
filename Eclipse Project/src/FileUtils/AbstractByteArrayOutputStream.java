@@ -30,8 +30,8 @@ public abstract class AbstractByteArrayOutputStream extends OutputStream {
                 filledBufferSum = 0;
             } else {
                 newBufferSize = Math.max(
-                    currentBuffer.length << 1,
-                    newcount - filledBufferSum);
+                        currentBuffer.length << 1,
+                        newcount - filledBufferSum);
                 filledBufferSum += currentBuffer.length;
             }
             currentBufferIndex++;

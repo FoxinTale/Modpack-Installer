@@ -22,7 +22,7 @@ public class JSONTokener {
     public JSONTokener(Reader reader) {
         this.reader = reader.markSupported()
                 ? reader
-                        : new BufferedReader(reader);
+                : new BufferedReader(reader);
         this.eof = false;
         this.usePrevious = false;
         this.previous = 0;
@@ -36,6 +36,7 @@ public class JSONTokener {
     public JSONTokener(InputStream inputStream) {
         this(new InputStreamReader(inputStream));
     }
+
     public JSONTokener(String s) {
         this(new StringReader(s));
     }
@@ -51,33 +52,20 @@ public class JSONTokener {
 
     private void decrementIndexes() {
         this.index--;
-        if(this.previous=='\r' || this.previous == '\n') {
+        if (this.previous == '\r' || this.previous == '\n') {
             this.line--;
-            this.character=this.characterPreviousLine ;
-        } else if(this.character > 0){
+            this.character = this.characterPreviousLine;
+        } else if (this.character > 0) {
             this.character--;
         }
     }
-
-/*    public static int dehexchar(char c) {
-        if (c >= '0' && c <= '9') {
-            return c - '0';
-        }
-        if (c >= 'A' && c <= 'F') {
-            return c - ('A' - 10);
-        }
-        if (c >= 'a' && c <= 'f') {
-            return c - ('a' - 10);
-        }
-        return -1;
-    }*/
 
     public boolean end() {
         return this.eof && !this.usePrevious;
     }
 
     public boolean more() throws JSONException {
-        if(this.usePrevious) {
+        if (this.usePrevious) {
             return true;
         }
         try {
@@ -86,7 +74,7 @@ public class JSONTokener {
             throw new JSONException("Unable to preserve stream position", e);
         }
         try {
-            if(this.reader.read() <= 0) {
+            if (this.reader.read() <= 0) {
                 this.eof = true;
                 return false;
             }
@@ -119,18 +107,18 @@ public class JSONTokener {
     }
 
     private void incrementIndexes(int c) {
-        if(c > 0) {
+        if (c > 0) {
             this.index++;
-            if(c=='\r') {
+            if (c == '\r') {
                 this.line++;
                 this.characterPreviousLine = this.character;
-                this.character=0;
-            }else if (c=='\n') {
-                if(this.previous != '\r') {
+                this.character = 0;
+            } else if (c == '\n') {
+                if (this.previous != '\r') {
                     this.line++;
                     this.characterPreviousLine = this.character;
                 }
-                this.character=0;
+                this.character = 0;
             } else {
                 this.character++;
             }
@@ -141,7 +129,7 @@ public class JSONTokener {
     public char next(char c) throws JSONException {
         char n = this.next();
         if (n != c) {
-            if(n > 0) {
+            if (n > 0) {
                 throw this.syntaxError("Expected '" + c + "' and instead saw '" +
                         n + "'");
             }
@@ -169,7 +157,7 @@ public class JSONTokener {
     }
 
     public char nextClean() throws JSONException {
-        for (;;) {
+        for (; ; ) {
             char c = this.next();
             if (c == 0 || c > ' ') {
                 return c;
@@ -180,53 +168,53 @@ public class JSONTokener {
     public String nextString(char quote) throws JSONException {
         char c;
         StringBuilder sb = new StringBuilder();
-        for (;;) {
+        for (; ; ) {
             c = this.next();
             switch (c) {
-            case 0:
-            case '\n':
-            case '\r':
-                throw this.syntaxError("Unterminated string");
-            case '\\':
-                c = this.next();
-                switch (c) {
-                case 'b':
-                    sb.append('\b');
-                    break;
-                case 't':
-                    sb.append('\t');
-                    break;
-                case 'n':
-                    sb.append('\n');
-                    break;
-                case 'f':
-                    sb.append('\f');
-                    break;
-                case 'r':
-                    sb.append('\r');
-                    break;
-                case 'u':
-                    try {
-                        sb.append((char)Integer.parseInt(this.next(4), 16));
-                    } catch (NumberFormatException e) {
-                        throw this.syntaxError("Illegal escape.", e);
+                case 0:
+                case '\n':
+                case '\r':
+                    throw this.syntaxError("Unterminated string");
+                case '\\':
+                    c = this.next();
+                    switch (c) {
+                        case 'b':
+                            sb.append('\b');
+                            break;
+                        case 't':
+                            sb.append('\t');
+                            break;
+                        case 'n':
+                            sb.append('\n');
+                            break;
+                        case 'f':
+                            sb.append('\f');
+                            break;
+                        case 'r':
+                            sb.append('\r');
+                            break;
+                        case 'u':
+                            try {
+                                sb.append((char) Integer.parseInt(this.next(4), 16));
+                            } catch (NumberFormatException e) {
+                                throw this.syntaxError("Illegal escape.", e);
+                            }
+                            break;
+                        case '"':
+                        case '\'':
+                        case '\\':
+                        case '/':
+                            sb.append(c);
+                            break;
+                        default:
+                            throw this.syntaxError("Illegal escape.");
                     }
                     break;
-                case '"':
-                case '\'':
-                case '\\':
-                case '/':
-                    sb.append(c);
-                    break;
                 default:
-                    throw this.syntaxError("Illegal escape.");
-                }
-                break;
-            default:
-                if (c == quote) {
-                    return sb.toString();
-                }
-                sb.append(c);
+                    if (c == quote) {
+                        return sb.toString();
+                    }
+                    sb.append(c);
             }
         }
     }
@@ -237,15 +225,15 @@ public class JSONTokener {
         String string;
 
         switch (c) {
-        case '"':
-        case '\'':
-            return this.nextString(c);
-        case '{':
-            this.back();
-            return new JSONObject(this);
-        case '[':
-            this.back();
-            return new JSONArray(this);
+            case '"':
+            case '\'':
+                return this.nextString(c);
+            case '{':
+                this.back();
+                return new JSONObject(this);
+            case '[':
+                this.back();
+                return new JSONArray(this);
         }
         StringBuilder sb = new StringBuilder();
         while (c >= ' ' && ",:]}/\\\"[{;=#".indexOf(c) < 0) {

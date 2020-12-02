@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Iterator;
 
-@SuppressWarnings("boxing")
 public class XML {
 
     public static final Character AMP = '&';

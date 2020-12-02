@@ -13,84 +13,85 @@ import java.util.Iterator;
 @GwtCompatible(serializable = true)
 public abstract class Optional<T> implements Serializable {
 
-  public static <T> Optional<T> absent() {
-    return Absent.withType();
-  }
+    public static <T> Optional<T> absent() {
+        return Absent.withType();
+    }
 
-  public static <T> Optional<T> of(T reference) {
-    return new Present<T>(Preconditions.checkNotNull(reference));
-  }
-
-
-  public static <T> Optional<T> fromNullable(@Nullable T nullableReference) {
-    return (nullableReference == null) ? Optional.<T>absent() : new Present<T>(nullableReference);
-  }
-
-  public static <T> @Nullable Optional<T> fromJavaUtil(
-      java.util.@Nullable Optional<T> javaUtilOptional) {
-    return (javaUtilOptional == null) ? null : fromNullable(javaUtilOptional.orElse(null));
-  }
+    public static <T> Optional<T> of(T reference) {
+        return new Present<T>(Preconditions.checkNotNull(reference));
+    }
 
 
-  public static <T> java.util.@Nullable Optional<T> toJavaUtil(
-      @Nullable Optional<T> googleOptional) {
-    return googleOptional == null ? null : googleOptional.toJavaUtil();
-  }
+    public static <T> Optional<T> fromNullable(@Nullable T nullableReference) {
+        return (nullableReference == null) ? Optional.<T>absent() : new Present<T>(nullableReference);
+    }
+
+    public static <T> @Nullable Optional<T> fromJavaUtil(
+            java.util.@Nullable Optional<T> javaUtilOptional) {
+        return (javaUtilOptional == null) ? null : fromNullable(javaUtilOptional.orElse(null));
+    }
 
 
-  public java.util.Optional<T> toJavaUtil() {
-    return java.util.Optional.ofNullable(orNull());
-  }
+    public static <T> java.util.@Nullable Optional<T> toJavaUtil(
+            @Nullable Optional<T> googleOptional) {
+        return googleOptional == null ? null : googleOptional.toJavaUtil();
+    }
 
-  Optional() {}
 
-  public abstract boolean isPresent();
+    public java.util.Optional<T> toJavaUtil() {
+        return java.util.Optional.ofNullable(orNull());
+    }
 
-  public abstract T get();
+    Optional() {
+    }
 
-  public abstract T or(T defaultValue);
+    public abstract boolean isPresent();
 
-  public abstract Optional<T> or(Optional<? extends T> secondChoice);
+    public abstract T get();
 
-  @Beta
-  public abstract T or(Supplier<? extends T> supplier);
+    public abstract T or(T defaultValue);
 
-  public abstract @Nullable T orNull();
+    public abstract Optional<T> or(Optional<? extends T> secondChoice);
 
-  @Override
-  public abstract boolean equals(@Nullable Object object);
+    @Beta
+    public abstract T or(Supplier<? extends T> supplier);
 
-  @Override
-  public abstract int hashCode();
+    public abstract @Nullable T orNull();
 
-  @Override
-  public abstract String toString();
+    @Override
+    public abstract boolean equals(@Nullable Object object);
 
-  @Beta
-  public static <T> Iterable<T> presentInstances(
-      final Iterable<? extends Optional<? extends T>> optionals) {
-    Preconditions.checkNotNull(optionals);
-    return new Iterable<T>() {
-      @Override
-      public Iterator<T> iterator() {
-        return new AbstractIterator<T>() {
-          private final Iterator<? extends Optional<? extends T>> iterator =
-              Preconditions.checkNotNull(optionals.iterator());
+    @Override
+    public abstract int hashCode();
 
-          @Override
-          protected T computeNext() {
-            while (iterator.hasNext()) {
-              Optional<? extends T> optional = iterator.next();
-              if (optional.isPresent()) {
-                return optional.get();
-              }
+    @Override
+    public abstract String toString();
+
+    @Beta
+    public static <T> Iterable<T> presentInstances(
+            final Iterable<? extends Optional<? extends T>> optionals) {
+        Preconditions.checkNotNull(optionals);
+        return new Iterable<T>() {
+            @Override
+            public Iterator<T> iterator() {
+                return new AbstractIterator<T>() {
+                    private final Iterator<? extends Optional<? extends T>> iterator =
+                            Preconditions.checkNotNull(optionals.iterator());
+
+                    @Override
+                    protected T computeNext() {
+                        while (iterator.hasNext()) {
+                            Optional<? extends T> optional = iterator.next();
+                            if (optional.isPresent()) {
+                                return optional.get();
+                            }
+                        }
+                        return endOfData();
+                    }
+                };
             }
-            return endOfData();
-          }
         };
-      }
-    };
-  }
+    }
 
-  private static final long serialVersionUID = 0;
+    private static final long serialVersionUID = 0;
 }

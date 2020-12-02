@@ -22,152 +22,152 @@ import java.util.regex.Matcher;
 
 public abstract class AbstractExtractFileTask<T> extends AsyncZipTask<T> {
 
-  private final ZipModel zipModel;
-  private final byte[] buff = new byte[InternalZipConstants.BUFF_SIZE];
+    private final ZipModel zipModel;
+    private final byte[] buff = new byte[InternalZipConstants.BUFF_SIZE];
 
-  public AbstractExtractFileTask(ZipModel zipModel, AsyncTaskParameters asyncTaskParameters) {
-    super(asyncTaskParameters);
-    this.zipModel = zipModel;
-  }
-
-  protected void extractFile(ZipInputStream zipInputStream, FileHeader fileHeader, String outputPath,
-                             String newFileName, ProgressMonitor progressMonitor) throws IOException {
-
-    if (!outputPath.endsWith(InternalZipConstants.FILE_SEPARATOR)) {
-      outputPath += InternalZipConstants.FILE_SEPARATOR;
+    public AbstractExtractFileTask(ZipModel zipModel, AsyncTaskParameters asyncTaskParameters) {
+        super(asyncTaskParameters);
+        this.zipModel = zipModel;
     }
 
-    File outputFile = determineOutputFile(fileHeader, outputPath, newFileName);
-    progressMonitor.setFileName(outputFile.getAbsolutePath());
-    String outputCanonicalPath = (new File(outputPath).getCanonicalPath()) + File.separator;
-    if (!outputFile.getCanonicalPath().startsWith(outputCanonicalPath)) {
-      throw new ZipException("illegal file name that breaks out of the target directory: "
-          + fileHeader.getFileName());
-    }
+    protected void extractFile(ZipInputStream zipInputStream, FileHeader fileHeader, String outputPath,
+                               String newFileName, ProgressMonitor progressMonitor) throws IOException {
 
-    verifyNextEntry(zipInputStream, fileHeader);
-
-    if (fileHeader.isDirectory()) {
-      if (!outputFile.exists()) {
-        if (!outputFile.mkdirs()) {
-          throw new ZipException("Could not create directory: " + outputFile);
+        if (!outputPath.endsWith(InternalZipConstants.FILE_SEPARATOR)) {
+            outputPath += InternalZipConstants.FILE_SEPARATOR;
         }
-      }
-    } else if (isSymbolicLink(fileHeader)) {
-      createSymLink(zipInputStream, fileHeader, outputFile, progressMonitor);
-    } else {
-      checkOutputDirectoryStructure(outputFile);
-      unzipFile(zipInputStream, fileHeader, outputFile, progressMonitor);
-    }
-  }
 
-  private boolean isSymbolicLink(FileHeader fileHeader) {
-    byte[] externalFileAttributes = fileHeader.getExternalFileAttributes();
+        File outputFile = determineOutputFile(fileHeader, outputPath, newFileName);
+        progressMonitor.setFileName(outputFile.getAbsolutePath());
+        String outputCanonicalPath = (new File(outputPath).getCanonicalPath()) + File.separator;
+        if (!outputFile.getCanonicalPath().startsWith(outputCanonicalPath)) {
+            throw new ZipException("illegal file name that breaks out of the target directory: "
+                    + fileHeader.getFileName());
+        }
 
-    if (externalFileAttributes == null || externalFileAttributes.length < 4) {
-      return false;
-    }
+        verifyNextEntry(zipInputStream, fileHeader);
 
-    return BitUtils.isBitSet(externalFileAttributes[3], 5);
-  }
-
-  private void unzipFile(ZipInputStream inputStream, FileHeader fileHeader, File outputFile,
-                         ProgressMonitor progressMonitor) throws IOException {
-    int readLength;
-    try (OutputStream outputStream = new FileOutputStream(outputFile)) {
-      while ((readLength = inputStream.read(buff)) != -1) {
-        outputStream.write(buff, 0, readLength);
-        progressMonitor.updateWorkCompleted(readLength);
-        verifyIfTaskIsCancelled();
-      }
-    } catch (Exception e) {
-      if (outputFile.exists()) {
-        outputFile.delete();
-      }
-      throw  e;
+        if (fileHeader.isDirectory()) {
+            if (!outputFile.exists()) {
+                if (!outputFile.mkdirs()) {
+                    throw new ZipException("Could not create directory: " + outputFile);
+                }
+            }
+        } else if (isSymbolicLink(fileHeader)) {
+            createSymLink(zipInputStream, fileHeader, outputFile, progressMonitor);
+        } else {
+            checkOutputDirectoryStructure(outputFile);
+            unzipFile(zipInputStream, fileHeader, outputFile, progressMonitor);
+        }
     }
 
-    UnzipUtil.applyFileAttributes(fileHeader, outputFile);
-  }
+    private boolean isSymbolicLink(FileHeader fileHeader) {
+        byte[] externalFileAttributes = fileHeader.getExternalFileAttributes();
 
-  private void createSymLink(ZipInputStream zipInputStream, FileHeader fileHeader, File outputFile,
-                             ProgressMonitor progressMonitor) throws IOException {
+        if (externalFileAttributes == null || externalFileAttributes.length < 4) {
+            return false;
+        }
 
-    String symLinkPath = new String(readCompleteEntry(zipInputStream, fileHeader, progressMonitor));
-
-    if (!outputFile.getParentFile().exists() && !outputFile.getParentFile().mkdirs()) {
-      throw new ZipException("Could not create parent directories");
+        return BitUtils.isBitSet(externalFileAttributes[3], 5);
     }
 
-    try {
-      Path linkTarget = Paths.get(symLinkPath);
-      Files.createSymbolicLink(outputFile.toPath(), linkTarget);
-      UnzipUtil.applyFileAttributes(fileHeader, outputFile);
-    } catch (NoSuchMethodError error) {
-      try (OutputStream outputStream = new FileOutputStream(outputFile)) {
-        outputStream.write(symLinkPath.getBytes());
-      }
-    }
-  }
+    private void unzipFile(ZipInputStream inputStream, FileHeader fileHeader, File outputFile,
+                           ProgressMonitor progressMonitor) throws IOException {
+        int readLength;
+        try (OutputStream outputStream = new FileOutputStream(outputFile)) {
+            while ((readLength = inputStream.read(buff)) != -1) {
+                outputStream.write(buff, 0, readLength);
+                progressMonitor.updateWorkCompleted(readLength);
+                verifyIfTaskIsCancelled();
+            }
+        } catch (Exception e) {
+            if (outputFile.exists()) {
+                outputFile.delete();
+            }
+            throw e;
+        }
 
-  private byte[] readCompleteEntry(ZipInputStream zipInputStream, FileHeader fileHeader,
-                                   ProgressMonitor progressMonitor) throws IOException {
-    byte[] b = new byte[(int) fileHeader.getUncompressedSize()];
-    int readLength = zipInputStream.read(b);
-
-    if (readLength != b.length) {
-      throw new ZipException("Could not read complete entry");
-    }
-
-    progressMonitor.updateWorkCompleted(b.length);
-    return b;
-  }
-
-  private void verifyNextEntry(ZipInputStream zipInputStream, FileHeader fileHeader) throws IOException {
-    if (BitUtils.isBitSet(fileHeader.getGeneralPurposeFlag()[0], 6)) {
-      throw new ZipException("Entry with name " + fileHeader.getFileName() + " is encrypted with Strong Encryption. " +
-          "Zip4j does not support Strong Encryption, as this is patented.");
+        UnzipUtil.applyFileAttributes(fileHeader, outputFile);
     }
 
-    LocalFileHeader localFileHeader = zipInputStream.getNextEntry(fileHeader);
+    private void createSymLink(ZipInputStream zipInputStream, FileHeader fileHeader, File outputFile,
+                               ProgressMonitor progressMonitor) throws IOException {
 
-    if (localFileHeader == null) {
-      throw new ZipException("Could not read corresponding local file header for file header: "
-          + fileHeader.getFileName());
+        String symLinkPath = new String(readCompleteEntry(zipInputStream, fileHeader, progressMonitor));
+
+        if (!outputFile.getParentFile().exists() && !outputFile.getParentFile().mkdirs()) {
+            throw new ZipException("Could not create parent directories");
+        }
+
+        try {
+            Path linkTarget = Paths.get(symLinkPath);
+            Files.createSymbolicLink(outputFile.toPath(), linkTarget);
+            UnzipUtil.applyFileAttributes(fileHeader, outputFile);
+        } catch (NoSuchMethodError error) {
+            try (OutputStream outputStream = new FileOutputStream(outputFile)) {
+                outputStream.write(symLinkPath.getBytes());
+            }
+        }
     }
 
-    if (!fileHeader.getFileName().equals(localFileHeader.getFileName())) {
-      throw new ZipException("File header and local file header mismatch");
-    }
-  }
+    private byte[] readCompleteEntry(ZipInputStream zipInputStream, FileHeader fileHeader,
+                                     ProgressMonitor progressMonitor) throws IOException {
+        byte[] b = new byte[(int) fileHeader.getUncompressedSize()];
+        int readLength = zipInputStream.read(b);
 
-  private void checkOutputDirectoryStructure(File outputFile) throws ZipException {
-    if (!outputFile.getParentFile().exists() && !outputFile.getParentFile().mkdirs()) {
-      throw new ZipException("Unable to create parent directories: " + outputFile.getParentFile());
-    }
-  }
+        if (readLength != b.length) {
+            throw new ZipException("Could not read complete entry");
+        }
 
-  private File determineOutputFile(FileHeader fileHeader, String outputPath, String newFileName) {
-    String outputFileName;
-    if (Zip4jUtil.isStringNotNullAndNotEmpty(newFileName)) {
-      outputFileName = newFileName;
-    } else {
-      outputFileName = getFileNameWithSystemFileSeparators(fileHeader.getFileName()); // replace all slashes with file separator
+        progressMonitor.updateWorkCompleted(b.length);
+        return b;
     }
 
-    return new File(outputPath + InternalZipConstants.FILE_SEPARATOR + outputFileName);
-  }
+    private void verifyNextEntry(ZipInputStream zipInputStream, FileHeader fileHeader) throws IOException {
+        if (BitUtils.isBitSet(fileHeader.getGeneralPurposeFlag()[0], 6)) {
+            throw new ZipException("Entry with name " + fileHeader.getFileName() + " is encrypted with Strong Encryption. " +
+                    "Zip4j does not support Strong Encryption, as this is patented.");
+        }
 
-  private String getFileNameWithSystemFileSeparators(String fileNameToReplace) {
-    return fileNameToReplace.replaceAll("[/\\\\]", Matcher.quoteReplacement(InternalZipConstants.FILE_SEPARATOR));
-  }
+        LocalFileHeader localFileHeader = zipInputStream.getNextEntry(fileHeader);
 
-  @Override
-  protected ProgressMonitor.Task getTask() {
-    return ProgressMonitor.Task.EXTRACT_ENTRY;
-  }
+        if (localFileHeader == null) {
+            throw new ZipException("Could not read corresponding local file header for file header: "
+                    + fileHeader.getFileName());
+        }
 
-  public ZipModel getZipModel() {
-    return zipModel;
-  }
+        if (!fileHeader.getFileName().equals(localFileHeader.getFileName())) {
+            throw new ZipException("File header and local file header mismatch");
+        }
+    }
+
+    private void checkOutputDirectoryStructure(File outputFile) throws ZipException {
+        if (!outputFile.getParentFile().exists() && !outputFile.getParentFile().mkdirs()) {
+            throw new ZipException("Unable to create parent directories: " + outputFile.getParentFile());
+        }
+    }
+
+    private File determineOutputFile(FileHeader fileHeader, String outputPath, String newFileName) {
+        String outputFileName;
+        if (Zip4jUtil.isStringNotNullAndNotEmpty(newFileName)) {
+            outputFileName = newFileName;
+        } else {
+            outputFileName = getFileNameWithSystemFileSeparators(fileHeader.getFileName()); // replace all slashes with file separator
+        }
+
+        return new File(outputPath + InternalZipConstants.FILE_SEPARATOR + outputFileName);
+    }
+
+    private String getFileNameWithSystemFileSeparators(String fileNameToReplace) {
+        return fileNameToReplace.replaceAll("[/\\\\]", Matcher.quoteReplacement(InternalZipConstants.FILE_SEPARATOR));
+    }
+
+    @Override
+    protected ProgressMonitor.Task getTask() {
+        return ProgressMonitor.Task.EXTRACT_ENTRY;
+    }
+
+    public ZipModel getZipModel() {
+        return zipModel;
+    }
 }

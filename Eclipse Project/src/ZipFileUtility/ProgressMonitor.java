@@ -2,9 +2,11 @@ package ZipFileUtility;
 
 public class ProgressMonitor {
 
-    public enum State { READY, BUSY }
-    public enum Result { SUCCESS, ERROR, CANCELLED }
-    public enum Task { NONE, REMOVE_ENTRY, EXTRACT_ENTRY, MERGE_ZIP_FILES, SET_COMMENT, RENAME_FILE}
+    public enum State {READY, BUSY}
+
+    public enum Result {SUCCESS, ERROR, CANCELLED}
+
+    public enum Task {NONE, REMOVE_ENTRY, EXTRACT_ENTRY, MERGE_ZIP_FILES, SET_COMMENT, RENAME_FILE}
 
     private State state;
     private long totalWork;
@@ -72,15 +74,19 @@ public class ProgressMonitor {
     public void setState(State state) {
         this.state = state;
     }
+
     public void setTotalWork(long totalWork) {
         this.totalWork = totalWork;
     }
+
     public int getPercentDone() {
         return percentDone;
     }
+
     public void setCurrentTask(Task currentTask) {
         this.currentTask = currentTask;
     }
+
     public String getFileName() {
         return fileName;
     }

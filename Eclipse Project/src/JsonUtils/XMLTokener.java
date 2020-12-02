@@ -1,19 +1,20 @@
 package JsonUtils;
+
 import java.io.Reader;
 
 public class XMLTokener extends JSONTokener {
 
 
-   public static final java.util.HashMap<String, Character> entity;
+    public static final java.util.HashMap<String, Character> entity;
 
-   static {
-       entity = new java.util.HashMap<String, Character>(8);
-       entity.put("amp",  XML.AMP);
-       entity.put("apos", XML.APOS);
-       entity.put("gt",   XML.GT);
-       entity.put("lt",   XML.LT);
-       entity.put("quot", XML.QUOT);
-   }
+    static {
+        entity = new java.util.HashMap<String, Character>(8);
+        entity.put("amp", XML.AMP);
+        entity.put("apos", XML.APOS);
+        entity.put("gt", XML.GT);
+        entity.put("lt", XML.LT);
+        entity.put("quot", XML.QUOT);
+    }
 
     public XMLTokener(Reader r) {
         super(r);
@@ -21,15 +22,15 @@ public class XMLTokener extends JSONTokener {
 
 
     public String nextCDATA() throws JSONException {
-        char         c;
-        int          i;
+        char c;
+        int i;
         StringBuilder sb = new StringBuilder();
         while (more()) {
             c = next();
             sb.append(c);
             i = sb.length() - 3;
             if (i >= 0 && sb.charAt(i) == ']' &&
-                          sb.charAt(i + 1) == ']' && sb.charAt(i + 2) == '>') {
+                    sb.charAt(i + 1) == ']' && sb.charAt(i + 2) == '>') {
                 sb.setLength(i);
                 return sb.toString();
             }
@@ -38,7 +39,7 @@ public class XMLTokener extends JSONTokener {
     }
 
     public Object nextContent() throws JSONException {
-        char         c;
+        char c;
         StringBuilder sb;
         do {
             c = next();
@@ -50,7 +51,7 @@ public class XMLTokener extends JSONTokener {
             return XML.LT;
         }
         sb = new StringBuilder();
-        for (;;) {
+        for (; ; ) {
             if (c == 0) {
                 return sb.toString().trim();
             }
@@ -70,7 +71,7 @@ public class XMLTokener extends JSONTokener {
 
     public Object nextEntity(@SuppressWarnings("unused") char ampersand) throws JSONException {
         StringBuilder sb = new StringBuilder();
-        for (;;) {
+        for (; ; ) {
             char c = next();
             if (Character.isLetterOrDigit(c) || c == '#') {
                 sb.append(Character.toLowerCase(c));
@@ -95,10 +96,10 @@ public class XMLTokener extends JSONTokener {
             } else {
                 cp = Integer.parseInt(e.substring(1));
             }
-            return new String(new int[] {cp},0,1);
-        } 
+            return new String(new int[]{cp}, 0, 1);
+        }
         Character knownEntity = entity.get(e);
-        if(knownEntity==null) {
+        if (knownEntity == null) {
             return '&' + e + ';';
         }
         return knownEntity.toString();
@@ -111,53 +112,53 @@ public class XMLTokener extends JSONTokener {
             c = next();
         } while (Character.isWhitespace(c));
         switch (c) {
-        case 0:
-            throw syntaxError("Misshaped meta tag");
-        case '<':
-            return XML.LT;
-        case '>':
-            return XML.GT;
-        case '/':
-            return XML.SLASH;
-        case '=':
-            return XML.EQ;
-        case '!':
-            return XML.BANG;
-        case '?':
-            return XML.QUEST;
-        case '"':
-        case '\'':
-            q = c;
-            for (;;) {
-                c = next();
-                if (c == 0) {
-                    throw syntaxError("Unterminated string");
+            case 0:
+                throw syntaxError("Misshaped meta tag");
+            case '<':
+                return XML.LT;
+            case '>':
+                return XML.GT;
+            case '/':
+                return XML.SLASH;
+            case '=':
+                return XML.EQ;
+            case '!':
+                return XML.BANG;
+            case '?':
+                return XML.QUEST;
+            case '"':
+            case '\'':
+                q = c;
+                for (; ; ) {
+                    c = next();
+                    if (c == 0) {
+                        throw syntaxError("Unterminated string");
+                    }
+                    if (c == q) {
+                        return Boolean.TRUE;
+                    }
                 }
-                if (c == q) {
-                    return Boolean.TRUE;
+            default:
+                for (; ; ) {
+                    c = next();
+                    if (Character.isWhitespace(c)) {
+                        return Boolean.TRUE;
+                    }
+                    switch (c) {
+                        case 0:
+                            throw syntaxError("Unterminated string");
+                        case '<':
+                        case '>':
+                        case '/':
+                        case '=':
+                        case '!':
+                        case '?':
+                        case '"':
+                        case '\'':
+                            back();
+                            return Boolean.TRUE;
+                    }
                 }
-            }
-        default:
-            for (;;) {
-                c = next();
-                if (Character.isWhitespace(c)) {
-                    return Boolean.TRUE;
-                }
-                switch (c) {
-                case 0:
-                    throw syntaxError("Unterminated string");
-                case '<':
-                case '>':
-                case '/':
-                case '=':
-                case '!':
-                case '?':
-                case '"':
-                case '\'':
-                    back();
-                    return Boolean.TRUE;
-                }
-            }
         }
     }
 
@@ -169,64 +170,64 @@ public class XMLTokener extends JSONTokener {
             c = next();
         } while (Character.isWhitespace(c));
         switch (c) {
-        case 0:
-            throw syntaxError("Misshaped element");
-        case '<':
-            throw syntaxError("Misplaced '<'");
-        case '>':
-            return XML.GT;
-        case '/':
-            return XML.SLASH;
-        case '=':
-            return XML.EQ;
-        case '!':
-            return XML.BANG;
-        case '?':
-            return XML.QUEST;
-        case '"':
-        case '\'':
-            q = c;
-            sb = new StringBuilder();
-            for (;;) {
-                c = next();
-                if (c == 0) {
-                    throw syntaxError("Unterminated string");
+            case 0:
+                throw syntaxError("Misshaped element");
+            case '<':
+                throw syntaxError("Misplaced '<'");
+            case '>':
+                return XML.GT;
+            case '/':
+                return XML.SLASH;
+            case '=':
+                return XML.EQ;
+            case '!':
+                return XML.BANG;
+            case '?':
+                return XML.QUEST;
+            case '"':
+            case '\'':
+                q = c;
+                sb = new StringBuilder();
+                for (; ; ) {
+                    c = next();
+                    if (c == 0) {
+                        throw syntaxError("Unterminated string");
+                    }
+                    if (c == q) {
+                        return sb.toString();
+                    }
+                    if (c == '&') {
+                        sb.append(nextEntity(c));
+                    } else {
+                        sb.append(c);
+                    }
                 }
-                if (c == q) {
-                    return sb.toString();
-                }
-                if (c == '&') {
-                    sb.append(nextEntity(c));
-                } else {
+            default:
+                sb = new StringBuilder();
+                for (; ; ) {
                     sb.append(c);
+                    c = next();
+                    if (Character.isWhitespace(c)) {
+                        return sb.toString();
+                    }
+                    switch (c) {
+                        case 0:
+                            return sb.toString();
+                        case '>':
+                        case '/':
+                        case '=':
+                        case '!':
+                        case '?':
+                        case '[':
+                        case ']':
+                            back();
+                            return sb.toString();
+                        case '<':
+                        case '"':
+                        case '\'':
+                            throw syntaxError("Bad character in a name");
+                    }
                 }
-            }
-        default:
-            sb = new StringBuilder();
-            for (;;) {
-                sb.append(c);
-                c = next();
-                if (Character.isWhitespace(c)) {
-                    return sb.toString();
-                }
-                switch (c) {
-                case 0:
-                    return sb.toString();
-                case '>':
-                case '/':
-                case '=':
-                case '!':
-                case '?':
-                case '[':
-                case ']':
-                    back();
-                    return sb.toString();
-                case '<':
-                case '"':
-                case '\'':
-                    throw syntaxError("Bad character in a name");
-                }
-            }
         }
     }
 
@@ -245,7 +246,7 @@ public class XMLTokener extends JSONTokener {
             }
             circle[i] = c;
         }
-        for (;;) {
+        for (; ; ) {
             j = offset;
             b = true;
             for (i = 0; i < length; i += 1) {

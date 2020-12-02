@@ -1,6 +1,5 @@
 package ZipFileUtility.Headers;
 
-
 import ZipFileUtility.IO.Input.NumberedSplitRandomAccessFile;
 import ZipFileUtility.Model.*;
 import ZipFileUtility.Util.BitUtils;
@@ -34,7 +33,7 @@ public class HeaderReader {
 
         try {
             zipModel.setEndOfCentralDirectoryRecord(readEndOfCentralDirectoryRecord(zip4jRaf, rawIO, charset));
-        } catch (ZipException e){
+        } catch (ZipException e) {
             throw e;
         } catch (IOException e) {
             throw new ZipException("Zip headers not found. Probably not a zip file or a corrupted zip file", e);

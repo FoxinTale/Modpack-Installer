@@ -2,6 +2,7 @@ package FileUtils;
 
 public enum StandardDeleteOption implements DeleteOption {
     OVERRIDE_READ_ONLY;
+
     public static boolean overrideReadOnly(final DeleteOption[] options) {
         if (options == null || options.length == 0) {
             return false;

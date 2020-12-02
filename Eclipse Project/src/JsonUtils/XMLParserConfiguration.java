@@ -6,15 +6,16 @@ import java.util.Map;
 public class XMLParserConfiguration {
 
     public static final XMLParserConfiguration ORIGINAL
-        = new XMLParserConfiguration();
+            = new XMLParserConfiguration();
     public static final XMLParserConfiguration KEEP_STRINGS
-        = new XMLParserConfiguration().withKeepStrings(true);
+            = new XMLParserConfiguration().withKeepStrings(true);
 
     private boolean keepStrings;
     private String cDataTagName;
     private boolean convertNilAttributeToNull;
     private Map<String, XMLXsiTypeConverter<?>> xsiTypeMap;
-    public XMLParserConfiguration () {
+
+    public XMLParserConfiguration() {
         this.keepStrings = false;
         this.cDataTagName = "content";
         this.convertNilAttributeToNull = false;
@@ -22,31 +23,31 @@ public class XMLParserConfiguration {
     }
 
     @Deprecated
-    public XMLParserConfiguration (final boolean keepStrings) {
+    public XMLParserConfiguration(final boolean keepStrings) {
         this(keepStrings, "content", false);
     }
 
     @Deprecated
-    public XMLParserConfiguration (final String cDataTagName) {
+    public XMLParserConfiguration(final String cDataTagName) {
         this(false, cDataTagName, false);
     }
 
     @Deprecated
-    public XMLParserConfiguration (final boolean keepStrings, final String cDataTagName) {
+    public XMLParserConfiguration(final boolean keepStrings, final String cDataTagName) {
         this.keepStrings = keepStrings;
         this.cDataTagName = cDataTagName;
         this.convertNilAttributeToNull = false;
     }
 
     @Deprecated
-    public XMLParserConfiguration (final boolean keepStrings, final String cDataTagName, final boolean convertNilAttributeToNull) {
+    public XMLParserConfiguration(final boolean keepStrings, final String cDataTagName, final boolean convertNilAttributeToNull) {
         this.keepStrings = keepStrings;
         this.cDataTagName = cDataTagName;
         this.convertNilAttributeToNull = convertNilAttributeToNull;
     }
 
-    private XMLParserConfiguration (final boolean keepStrings, final String cDataTagName,
-            final boolean convertNilAttributeToNull, final Map<String, XMLXsiTypeConverter<?>> xsiTypeMap ) {
+    private XMLParserConfiguration(final boolean keepStrings, final String cDataTagName,
+                                   final boolean convertNilAttributeToNull, final Map<String, XMLXsiTypeConverter<?>> xsiTypeMap) {
         this.keepStrings = keepStrings;
         this.cDataTagName = cDataTagName;
         this.convertNilAttributeToNull = convertNilAttributeToNull;

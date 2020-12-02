@@ -9,14 +9,15 @@ and outputs them to the JTextArea in the GUI class. I found this was much easier
 do than any other option.
 */
 public class CustomOutputStream extends OutputStream {
-	private JTextArea consoleOutput;
+    private JTextArea consoleOutput;
 
-	public CustomOutputStream(JTextArea consoleOutput) {
-		this.consoleOutput = consoleOutput;
-	}
-	@Override
-	public void write(int b) {
-		consoleOutput.append(String.valueOf((char) b));
-		consoleOutput.setCaretPosition(consoleOutput.getDocument().getLength());
-	}
+    public CustomOutputStream(JTextArea consoleOutput) {
+        this.consoleOutput = consoleOutput;
+    }
+
+    @Override
+    public void write(int b) {
+        consoleOutput.append(String.valueOf((char) b));
+        consoleOutput.setCaretPosition(consoleOutput.getDocument().getLength());
+    }
 }

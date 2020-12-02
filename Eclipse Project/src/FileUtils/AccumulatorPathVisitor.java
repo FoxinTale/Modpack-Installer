@@ -18,15 +18,13 @@ public class AccumulatorPathVisitor extends CountingPathVisitor {
 
     private final List<Path> dirList = new ArrayList<>();
     private final List<Path> fileList = new ArrayList<>();
-    public AccumulatorPathVisitor() {
-        super(Counters.noopPathCounters());
-    }
+
     public AccumulatorPathVisitor(final PathCounters pathCounter) {
         super(pathCounter);
     }
 
     public AccumulatorPathVisitor(final PathCounters pathCounter, final PathFilter fileFilter,
-        final PathFilter dirFilter) {
+                                  final PathFilter dirFilter) {
         super(pathCounter, fileFilter, dirFilter);
     }
 
@@ -67,13 +65,13 @@ public class AccumulatorPathVisitor extends CountingPathVisitor {
 
 
     public List<Path> relativizeDirectories(final Path parent, final boolean sort,
-        final Comparator<? super Path> comparator) {
+                                            final Comparator<? super Path> comparator) {
         return PathUtils.relativize(getDirList(), parent, sort, comparator);
     }
 
 
     public List<Path> relativizeFiles(final Path parent, final boolean sort,
-        final Comparator<? super Path> comparator) {
+                                      final Comparator<? super Path> comparator) {
         return PathUtils.relativize(getFileList(), parent, sort, comparator);
     }
 

@@ -7,80 +7,80 @@ import java.io.*;
 
 public abstract class SplitInputStream extends InputStream {
 
-  protected RandomAccessFile randomAccessFile;
-  protected File zipFile;
+    protected RandomAccessFile randomAccessFile;
+    protected File zipFile;
 
-  private boolean isSplitZipArchive;
-  private int currentSplitFileCounter = 0;
-  private byte[] singleByteArray = new byte[1];
+    private boolean isSplitZipArchive;
+    private int currentSplitFileCounter = 0;
+    private byte[] singleByteArray = new byte[1];
 
-  public SplitInputStream(File zipFile, boolean isSplitZipArchive, int lastSplitZipFileNumber) throws FileNotFoundException {
-    this.randomAccessFile = new RandomAccessFile(zipFile, RandomAccessFileMode.READ.getValue());
-    this.zipFile = zipFile;
-    this.isSplitZipArchive = isSplitZipArchive;
+    public SplitInputStream(File zipFile, boolean isSplitZipArchive, int lastSplitZipFileNumber) throws FileNotFoundException {
+        this.randomAccessFile = new RandomAccessFile(zipFile, RandomAccessFileMode.READ.getValue());
+        this.zipFile = zipFile;
+        this.isSplitZipArchive = isSplitZipArchive;
 
 
-    if (isSplitZipArchive) {
-      currentSplitFileCounter = lastSplitZipFileNumber;
-    }
-  }
-
-  @Override
-  public int read() throws IOException {
-    int readLen = read(singleByteArray);
-    if (readLen == -1) {
-      return -1;
+        if (isSplitZipArchive) {
+            currentSplitFileCounter = lastSplitZipFileNumber;
+        }
     }
 
-    return singleByteArray[0];
-  }
+    @Override
+    public int read() throws IOException {
+        int readLen = read(singleByteArray);
+        if (readLen == -1) {
+            return -1;
+        }
 
-  @Override
-  public int read(byte[] b) throws IOException {
-    return read(b, 0, b.length);
-  }
-
-  @Override
-  public int read(byte[] b, int off, int len) throws IOException {
-    int readLen = randomAccessFile.read(b, off, len);
-
-    if ((readLen != len || readLen == -1) && isSplitZipArchive) {
-      openRandomAccessFileForIndex(currentSplitFileCounter + 1);
-      currentSplitFileCounter++;
-
-      if (readLen < 0) readLen = 0;
-      int newlyRead = randomAccessFile.read(b, readLen, len - readLen);
-      if (newlyRead > 0) readLen += newlyRead;
+        return singleByteArray[0];
     }
 
-    return readLen;
-  }
-
-  public void prepareExtractionForFileHeader(FileHeader fileHeader) throws IOException {
-
-    if (isSplitZipArchive && (currentSplitFileCounter != fileHeader.getDiskNumberStart())) {
-      openRandomAccessFileForIndex(fileHeader.getDiskNumberStart());
-      currentSplitFileCounter = fileHeader.getDiskNumberStart();
+    @Override
+    public int read(byte[] b) throws IOException {
+        return read(b, 0, b.length);
     }
 
-    randomAccessFile.seek(fileHeader.getOffsetLocalHeader());
-  }
+    @Override
+    public int read(byte[] b, int off, int len) throws IOException {
+        int readLen = randomAccessFile.read(b, off, len);
 
-  protected void openRandomAccessFileForIndex(int zipFileIndex) throws IOException {
-    File nextSplitFile = getNextSplitFile(zipFileIndex);
-    if (!nextSplitFile.exists()) {
-      throw new FileNotFoundException("zip split file does not exist: " + nextSplitFile);
+        if ((readLen != len || readLen == -1) && isSplitZipArchive) {
+            openRandomAccessFileForIndex(currentSplitFileCounter + 1);
+            currentSplitFileCounter++;
+
+            if (readLen < 0) readLen = 0;
+            int newlyRead = randomAccessFile.read(b, readLen, len - readLen);
+            if (newlyRead > 0) readLen += newlyRead;
+        }
+
+        return readLen;
     }
-    randomAccessFile.close();
-    randomAccessFile = new RandomAccessFile(nextSplitFile, RandomAccessFileMode.READ.getValue());
-  }
 
-  protected abstract File getNextSplitFile(int zipFileIndex) throws IOException;
+    public void prepareExtractionForFileHeader(FileHeader fileHeader) throws IOException {
 
-  @Override
-  public void close() throws IOException {
-    if (randomAccessFile != null) {
-      randomAccessFile.close();
+        if (isSplitZipArchive && (currentSplitFileCounter != fileHeader.getDiskNumberStart())) {
+            openRandomAccessFileForIndex(fileHeader.getDiskNumberStart());
+            currentSplitFileCounter = fileHeader.getDiskNumberStart();
+        }
+
+        randomAccessFile.seek(fileHeader.getOffsetLocalHeader());
     }
-  }
+
+    protected void openRandomAccessFileForIndex(int zipFileIndex) throws IOException {
+        File nextSplitFile = getNextSplitFile(zipFileIndex);
+        if (!nextSplitFile.exists()) {
+            throw new FileNotFoundException("zip split file does not exist: " + nextSplitFile);
+        }
+        randomAccessFile.close();
+        randomAccessFile = new RandomAccessFile(nextSplitFile, RandomAccessFileMode.READ.getValue());
+    }
+
+    protected abstract File getNextSplitFile(int zipFileIndex) throws IOException;
+
+    @Override
+    public void close() throws IOException {
+        if (randomAccessFile != null) {
+            randomAccessFile.close();
+        }
+    }
 }

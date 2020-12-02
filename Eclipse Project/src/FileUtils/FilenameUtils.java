@@ -16,6 +16,7 @@ public class FilenameUtils {
     private static final char SYSTEM_SEPARATOR = File.separatorChar;
 
     private static final char OTHER_SEPARATOR;
+
     static {
         if (isSystemWindows()) {
             OTHER_SEPARATOR = UNIX_SEPARATOR;
@@ -30,9 +31,11 @@ public class FilenameUtils {
     static boolean isSystemWindows() {
         return SYSTEM_SEPARATOR == WINDOWS_SEPARATOR;
     }
+
     private static boolean isSeparator(final char ch) {
         return ch == UNIX_SEPARATOR || ch == WINDOWS_SEPARATOR;
     }
+
     public static String normalize(final String fileName) {
         return doNormalize(fileName, SYSTEM_SEPARATOR, true);
     }
@@ -77,7 +80,7 @@ public class FilenameUtils {
                     lastIsDirectory = true;
                 }
                 System.arraycopy(array, i + 1, array, i - 1, size - i);
-                size -=2;
+                size -= 2;
                 i--;
             }
         }
@@ -92,7 +95,7 @@ public class FilenameUtils {
                     lastIsDirectory = true;
                 }
                 int j;
-                for (j = i - 4 ; j >= prefix; j--) {
+                for (j = i - 4; j >= prefix; j--) {
                     if (array[j] == separator) {
                         System.arraycopy(array, i + 1, array, j + 1, size - i);
                         size -= i - j;
@@ -387,7 +390,7 @@ public class FilenameUtils {
     }
 
     private static final Pattern IPV4_PATTERN =
-        Pattern.compile("^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$");
+            Pattern.compile("^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$");
     private static final int IPV4_MAX_OCTET_VALUE = 255;
 
     private static boolean isIPv4Address(final String name) {

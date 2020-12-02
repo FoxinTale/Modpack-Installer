@@ -162,7 +162,7 @@ public class ZipFile {
     private RandomAccessFile initializeRandomAccessFileForHeaderReading() throws IOException {
         if (FileUtils.isNumberedSplitFile(zipFile)) {
             File[] allSplitFiles = FileUtils.getAllSortedNumberedSplitFiles(zipFile);
-            NumberedSplitRandomAccessFile numberedSplitRandomAccessFile =  new NumberedSplitRandomAccessFile(zipFile,
+            NumberedSplitRandomAccessFile numberedSplitRandomAccessFile = new NumberedSplitRandomAccessFile(zipFile,
                     RandomAccessFileMode.READ.getValue(), allSplitFiles);
             numberedSplitRandomAccessFile.openLastSplitFileForReading();
             return numberedSplitRandomAccessFile;
@@ -191,7 +191,7 @@ public class ZipFile {
     }
 
     public void setCharset(Charset charset) throws IllegalArgumentException {
-        if(charset == null) {
+        if (charset == null) {
             throw new IllegalArgumentException("charset cannot be null");
         }
         this.charset = charset;

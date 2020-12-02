@@ -1,19 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package FileUtils;
 
 import java.io.*;
@@ -127,7 +111,7 @@ public class IOUtils {
     }
 
 
-    public static void consume(final InputStream input) throws IOException{
+    public static void consume(final InputStream input) throws IOException {
         copyLarge(input, NullOutputStream.NULL_OUTPUT_STREAM, SKIP_BYTE_BUFFER);
     }
 
@@ -229,7 +213,7 @@ public class IOUtils {
     }
 
     public static long copyLarge(final InputStream input, final OutputStream output, final byte[] buffer)
-        throws IOException {
+            throws IOException {
         long count = 0;
         if (input != null) {
             int n;
@@ -318,12 +302,15 @@ public class IOUtils {
     public static int length(final byte[] array) {
         return array == null ? 0 : array.length;
     }
+
     public static int length(final char[] array) {
         return array == null ? 0 : array.length;
     }
+
     public static int length(final CharSequence csq) {
         return csq == null ? 0 : csq.length();
     }
+
     public static int length(final Object[] array) {
         return array == null ? 0 : array.length;
     }
@@ -575,7 +562,7 @@ public class IOUtils {
         return toString(input, Charsets.toCharset(charsetName));
     }
 
-    public static String toString(final Reader input) throws IOException{
+    public static String toString(final Reader input) throws IOException {
         try (final StringBuilderWriter sw = new StringBuilderWriter()) {
             copy(input, sw);
             return sw.toString();
@@ -748,7 +735,7 @@ public class IOUtils {
     }
 
     public IOUtils() { //NOSONAR
-        
+
     }
 
 }

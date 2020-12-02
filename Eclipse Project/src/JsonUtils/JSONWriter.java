@@ -44,21 +44,12 @@ public class JSONWriter {
         throw new JSONException("Value out of sequence.");
     }
 
-/*    public JSONWriter array() throws JSONException {
-        if (this.mode == 'i' || this.mode == 'o' || this.mode == 'a') {
-            this.push(null);
-            this.append("[");
-            this.comma = false;
-            return this;
-        }
-        throw new JSONException("Misplaced array.");
-    }*/
 
     private JSONWriter end(char m, char c) throws JSONException {
         if (this.mode != m) {
             throw new JSONException(m == 'a'
-                ? "Misplaced endArray."
-                : "Misplaced endObject.");
+                    ? "Misplaced endArray."
+                    : "Misplaced endObject.");
         }
         this.pop(m);
         try {
@@ -70,11 +61,7 @@ public class JSONWriter {
         return this;
     }
 
-/*
-    public JSONWriter endArray() throws JSONException {
-        return this.end('a', ']');
-    }
-*/
+
 
     public JSONWriter endObject() throws JSONException {
         return this.end('k', '}');
@@ -87,9 +74,9 @@ public class JSONWriter {
         if (this.mode == 'k') {
             try {
                 JSONObject topObject = this.stack[this.top - 1];
-				if(topObject.has(string)) {
-					throw new JSONException("Duplicate key \"" + string + "\"");
-				}
+                if (topObject.has(string)) {
+                    throw new JSONException("Duplicate key \"" + string + "\"");
+                }
                 topObject.put(string, true);
                 if (this.comma) {
                     this.writer.append(',');
@@ -131,10 +118,10 @@ public class JSONWriter {
         }
         this.top -= 1;
         this.mode = this.top == 0
-            ? 'd'
-            : this.stack[this.top - 1] == null
-            ? 'a'
-            : 'k';
+                ? 'd'
+                : this.stack[this.top - 1] == null
+                ? 'a'
+                : 'k';
     }
 
     private void push(JSONObject jo) throws JSONException {
@@ -165,7 +152,7 @@ public class JSONWriter {
 
         if (value instanceof Number) {
             final String numberAsString = JSONObject.numberToString((Number) value);
-            if(JSONObject.NUMBER_PATTERN.matcher(numberAsString).matches()) {
+            if (JSONObject.NUMBER_PATTERN.matcher(numberAsString).matches()) {
                 return numberAsString;
             }
             return JSONObject.quote(numberAsString);
@@ -185,8 +172,8 @@ public class JSONWriter {
         if (value.getClass().isArray()) {
             return new JSONArray(value).toString();
         }
-        if(value instanceof Enum<?>){
-            return JSONObject.quote(((Enum<?>)value).name());
+        if (value instanceof Enum<?>) {
+            return JSONObject.quote(((Enum<?>) value).name());
         }
         return JSONObject.quote(value.toString());
     }

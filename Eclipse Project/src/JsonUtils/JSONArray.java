@@ -9,22 +9,24 @@ import java.util.*;
 public class JSONArray implements Iterable<Object> {
 
     private final ArrayList<Object> myArrayList;
+
     public JSONArray() {
         this.myArrayList = new ArrayList<Object>();
     }
+
     public JSONArray(JSONTokener x) throws JSONException {
         this();
         if (x.nextClean() != '[') {
             throw x.syntaxError("A JSONArray text must start with '['");
         }
-        
+
         char nextChar = x.nextClean();
         if (nextChar == 0) {
             throw x.syntaxError("Expected a ',' or ']'");
         }
         if (nextChar != ']') {
             x.back();
-            for (;;) {
+            for (; ; ) {
                 if (x.nextClean() == ',') {
                     x.back();
                     this.myArrayList.add(JSONObject.NULL);
@@ -34,28 +36,24 @@ public class JSONArray implements Iterable<Object> {
                 }
                 switch (x.nextClean()) {
                     case ',':
-                    nextChar = x.nextClean();
-                    if (nextChar == 0) {
-                        throw x.syntaxError("Expected a ',' or ']'");
-                    }
-                    if (nextChar == ']') {
+                        nextChar = x.nextClean();
+                        if (nextChar == 0) {
+                            throw x.syntaxError("Expected a ',' or ']'");
+                        }
+                        if (nextChar == ']') {
+                            return;
+                        }
+                        x.back();
+                        break;
+                    case ']':
                         return;
-                    }
-                    x.back();
-                    break;
-                case ']':
-                    return;
-                default:
-                    throw x.syntaxError("Expected a ',' or ']'");
+                    default:
+                        throw x.syntaxError("Expected a ',' or ']'");
                 }
             }
         }
     }
 
-
-    public JSONArray(String source) throws JSONException {
-        this(new JSONTokener(source));
-    }
 
     public JSONArray(Collection<?> collection) {
         if (collection == null) {
@@ -92,15 +90,6 @@ public class JSONArray implements Iterable<Object> {
     }
 
 
-    public JSONArray(int initialCapacity) throws JSONException {
-    	if (initialCapacity < 0) {
-            throw new JSONException(
-                    "JSONArray initial capacity cannot be negative.");
-    	}
-    	this.myArrayList = new ArrayList<Object>(initialCapacity);
-    }
-
-
     @Override
     public Iterator<Object> iterator() {
         return this.myArrayList.iterator();
@@ -118,16 +107,15 @@ public class JSONArray implements Iterable<Object> {
         Object object = this.get(index);
         if (object.equals(Boolean.FALSE)
                 || (object instanceof String && ((String) object)
-                        .equalsIgnoreCase("false"))) {
+                .equalsIgnoreCase("false"))) {
             return false;
         } else if (object.equals(Boolean.TRUE)
                 || (object instanceof String && ((String) object)
-                        .equalsIgnoreCase("true"))) {
+                .equalsIgnoreCase("true"))) {
             return true;
         }
         throw wrongValueFormatException(index, "boolean", null);
     }
-
 
 
     public JSONObject getJSONObject(int index) throws JSONException {
@@ -152,13 +140,13 @@ public class JSONArray implements Iterable<Object> {
         if (len == 0) {
             return "";
         }
-        
+
         StringBuilder sb = new StringBuilder(
-                   JSONObject.valueToString(this.myArrayList.get(0)));
+                JSONObject.valueToString(this.myArrayList.get(0)));
 
         for (int i = 1; i < len; i++) {
             sb.append(separator)
-              .append(JSONObject.valueToString(this.myArrayList.get(i)));
+                    .append(JSONObject.valueToString(this.myArrayList.get(i)));
         }
         return sb.toString();
     }
@@ -171,7 +159,8 @@ public class JSONArray implements Iterable<Object> {
         return (index < 0 || index >= this.length()) ? null : this.myArrayList
                 .get(index);
     }
-        public boolean optBoolean(int index) {
+
+    public boolean optBoolean(int index) {
         return this.optBoolean(index, false);
     }
 
@@ -249,7 +238,7 @@ public class JSONArray implements Iterable<Object> {
     }
 
 
-   public long optLong(int index, long defaultValue) {
+    public long optLong(int index, long defaultValue) {
         final Number val = this.optNumber(index, null);
         if (val == null) {
             return defaultValue;
@@ -262,10 +251,10 @@ public class JSONArray implements Iterable<Object> {
         if (JSONObject.NULL.equals(val)) {
             return defaultValue;
         }
-        if (val instanceof Number){
+        if (val instanceof Number) {
             return (Number) val;
         }
-        
+
         if (val instanceof String) {
             try {
                 return JSONObject.stringToNumber((String) val);
@@ -358,7 +347,7 @@ public class JSONArray implements Iterable<Object> {
             this.myArrayList.set(index, value);
             return this;
         }
-        if(index == this.length()){
+        if (index == this.length()) {
             return this.put(value);
         }
         this.myArrayList.ensureCapacity(index + 1);
@@ -390,8 +379,8 @@ public class JSONArray implements Iterable<Object> {
 
     public Object remove(int index) {
         return index >= 0 && index < this.length()
-            ? this.myArrayList.remove(index)
-            : null;
+                ? this.myArrayList.remove(index)
+                : null;
     }
 
 
@@ -400,28 +389,28 @@ public class JSONArray implements Iterable<Object> {
             return false;
         }
         int len = this.length();
-        if (len != ((JSONArray)other).length()) {
+        if (len != ((JSONArray) other).length()) {
             return false;
         }
         for (int i = 0; i < len; i += 1) {
             Object valueThis = this.myArrayList.get(i);
-            Object valueOther = ((JSONArray)other).myArrayList.get(i);
-            if(valueThis == valueOther) {
-            	continue;
+            Object valueOther = ((JSONArray) other).myArrayList.get(i);
+            if (valueThis == valueOther) {
+                continue;
             }
-            if(valueThis == null) {
-            	return false;
+            if (valueThis == null) {
+                return false;
             }
             if (valueThis instanceof JSONObject) {
-                if (!((JSONObject)valueThis).similar(valueOther)) {
+                if (!((JSONObject) valueThis).similar(valueOther)) {
                     return false;
                 }
             } else if (valueThis instanceof JSONArray) {
-                if (!((JSONArray)valueThis).similar(valueOther)) {
+                if (!((JSONArray) valueThis).similar(valueOther)) {
                     return false;
                 }
             } else if (valueThis instanceof Number && valueOther instanceof Number) {
-                return JSONObject.isNumberSimilar((Number)valueThis, (Number)valueOther);
+                return JSONObject.isNumberSimilar((Number) valueThis, (Number) valueOther);
             } else if (!valueThis.equals(valueOther)) {
                 return false;
             }
@@ -530,11 +519,11 @@ public class JSONArray implements Iterable<Object> {
     private void addAll(Collection<?> collection, boolean wrap) {
         this.myArrayList.ensureCapacity(this.myArrayList.size() + collection.size());
         if (wrap) {
-            for (Object o: collection){
+            for (Object o : collection) {
                 this.put(JSONObject.wrap(o));
             }
         } else {
-            for (Object o: collection){
+            for (Object o : collection) {
                 this.put(o);
             }
         }
@@ -542,11 +531,11 @@ public class JSONArray implements Iterable<Object> {
 
     private void addAll(Iterable<?> iter, boolean wrap) {
         if (wrap) {
-            for (Object o: iter){
+            for (Object o : iter) {
                 this.put(JSONObject.wrap(o));
             }
         } else {
-            for (Object o: iter){
+            for (Object o : iter) {
                 this.put(o);
             }
         }
@@ -566,11 +555,11 @@ public class JSONArray implements Iterable<Object> {
                 }
             }
         } else if (array instanceof JSONArray) {
-            this.myArrayList.addAll(((JSONArray)array).myArrayList);
+            this.myArrayList.addAll(((JSONArray) array).myArrayList);
         } else if (array instanceof Collection) {
-            this.addAll((Collection<?>)array, wrap);
+            this.addAll((Collection<?>) array, wrap);
         } else if (array instanceof Iterable) {
-            this.addAll((Iterable<?>)array, wrap);
+            this.addAll((Iterable<?>) array, wrap);
         } else {
             throw new JSONException(
                     "JSONArray initial value should be a string or collection or array.");

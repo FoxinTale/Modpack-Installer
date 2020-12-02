@@ -8,8 +8,9 @@ public class Counters {
         private final Counter byteCounter;
         private final Counter directoryCounter;
         private final Counter fileCounter;
+
         protected AbstractPathCounters(final Counter byteCounter, final Counter directoryCounter,
-            final Counter fileCounter) {
+                                       final Counter fileCounter) {
             this.byteCounter = byteCounter;
             this.directoryCounter = directoryCounter;
             this.fileCounter = fileCounter;
@@ -25,8 +26,8 @@ public class Counters {
             }
             final AbstractPathCounters other = (AbstractPathCounters) obj;
             return Objects.equals(byteCounter, other.byteCounter)
-                && Objects.equals(directoryCounter, other.directoryCounter)
-                && Objects.equals(fileCounter, other.fileCounter);
+                    && Objects.equals(directoryCounter, other.directoryCounter)
+                    && Objects.equals(fileCounter, other.fileCounter);
         }
 
         @Override
@@ -122,16 +123,22 @@ public class Counters {
 
     public interface Counter {
         void add(long val);
+
         long get();
+
         BigInteger getBigInteger();
+
         Long getLong();
+
         void increment();
+
         default void reset() {
         }
     }
 
     private final static class LongCounter implements Counter {
         private long value;
+
         @Override
         public void add(final long add) {
             value += add;
@@ -199,6 +206,7 @@ public class Counters {
         public void add(final long add) {
 
         }
+
         @Override
         public long get() {
             return 0;
@@ -221,6 +229,7 @@ public class Counters {
 
     private static final class NoopPathCounters extends AbstractPathCounters {
         static final NoopPathCounters INSTANCE = new NoopPathCounters();
+
         private NoopPathCounters() {
             super(Counters.noopCounter(), Counters.noopCounter(), Counters.noopCounter());
         }
@@ -228,8 +237,11 @@ public class Counters {
 
     public interface PathCounters {
         Counter getByteCounter();
+
         Counter getDirectoryCounter();
+
         Counter getFileCounter();
+
         default void reset() {
         }
     }
@@ -237,15 +249,19 @@ public class Counters {
     public static Counter bigIntegerCounter() {
         return new BigIntegerCounter();
     }
+
     public static Counter longCounter() {
         return new LongCounter();
     }
+
     public static PathCounters longPathCounters() {
         return new LongPathCounters();
     }
+
     public static Counter noopCounter() {
         return NoopCounter.INSTANCE;
     }
+
     public static PathCounters noopPathCounters() {
         return NoopPathCounters.INSTANCE;
     }

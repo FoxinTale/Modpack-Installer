@@ -30,7 +30,7 @@ public class HeaderWriter {
     public void writeLocalFileHeader(ZipModel zipModel, LocalFileHeader localFileHeader, OutputStream outputStream,
                                      Charset charset) throws IOException {
 
-        try(ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
             rawIO.writeIntLittleEndian(byteArrayOutputStream, (int) localFileHeader.getSignature().getValue());
             rawIO.writeShortLittleEndian(byteArrayOutputStream, localFileHeader.getVersionNeededToExtract());
             byteArrayOutputStream.write(localFileHeader.getGeneralPurposeFlag());
@@ -87,7 +87,6 @@ public class HeaderWriter {
             }
 
 
-
             outputStream.write(byteArrayOutputStream.toByteArray());
         }
     }
@@ -97,7 +96,7 @@ public class HeaderWriter {
             throw new ZipException("input parameters is null, cannot finalize zip file");
         }
 
-        try(ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
             processHeaderData(zipModel, outputStream);
             long offsetCentralDir = getOffsetOfCentralDirectory(zipModel);
             writeCentralDirectory(zipModel, byteArrayOutputStream, rawIO, charset);
@@ -129,7 +128,7 @@ public class HeaderWriter {
                 Zip64EndOfCentralDirectoryRecord zip64EndOfCentralDirectoryRecord = buildZip64EndOfCentralDirectoryRecord(zipModel,
                         sizeOfCentralDir, offsetCentralDir);
                 zipModel.setZip64EndOfCentralDirectoryRecord(zip64EndOfCentralDirectoryRecord);
-                writeZip64EndOfCentralDirectoryRecord(zip64EndOfCentralDirectoryRecord, byteArrayOutputStream,rawIO);
+                writeZip64EndOfCentralDirectoryRecord(zip64EndOfCentralDirectoryRecord, byteArrayOutputStream, rawIO);
                 writeZip64EndOfCentralDirectoryLocator(zipModel.getZip64EndOfCentralDirectoryLocator(), byteArrayOutputStream, rawIO);
             }
 
@@ -144,7 +143,7 @@ public class HeaderWriter {
             throw new ZipException("input parameters is null, cannot finalize zip file without validations");
         }
 
-        try(ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
             long offsetCentralDir = zipModel.getEndOfCentralDirectoryRecord().getOffsetOfStartOfCentralDirectory();
             writeCentralDirectory(zipModel, byteArrayOutputStream, rawIO, charset);
             int sizeOfCentralDir = byteArrayOutputStream.size();
@@ -165,7 +164,7 @@ public class HeaderWriter {
                 Zip64EndOfCentralDirectoryRecord zip64EndOfCentralDirectoryRecord = buildZip64EndOfCentralDirectoryRecord(zipModel,
                         sizeOfCentralDir, offsetCentralDir);
                 zipModel.setZip64EndOfCentralDirectoryRecord(zip64EndOfCentralDirectoryRecord);
-                writeZip64EndOfCentralDirectoryRecord(zip64EndOfCentralDirectoryRecord, byteArrayOutputStream,rawIO);
+                writeZip64EndOfCentralDirectoryRecord(zip64EndOfCentralDirectoryRecord, byteArrayOutputStream, rawIO);
                 writeZip64EndOfCentralDirectoryLocator(zipModel.getZip64EndOfCentralDirectoryLocator(), byteArrayOutputStream, rawIO);
             }
 
@@ -302,7 +301,7 @@ public class HeaderWriter {
             return;
         }
 
-        for (FileHeader fileHeader: zipModel.getCentralDirectory().getFileHeaders()) {
+        for (FileHeader fileHeader : zipModel.getCentralDirectory().getFileHeaders()) {
             writeFileHeader(zipModel, fileHeader, byteArrayOutputStream, rawIO, charset);
         }
     }

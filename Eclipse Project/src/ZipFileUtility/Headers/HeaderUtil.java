@@ -39,7 +39,7 @@ public class HeaderUtil {
             }
         }
 
-        if(charset != null) {
+        if (charset != null) {
             return new String(data, charset);
         }
 

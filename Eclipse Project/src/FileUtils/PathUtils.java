@@ -22,7 +22,7 @@ public final class PathUtils {
         final List<Path> relativeFileList2;
 
         private RelativeSortedPaths(final Path dir1, final Path dir2, final int maxDepth,
-            final LinkOption[] linkOptions, final FileVisitOption[] fileVisitOptions) throws IOException {
+                                    final LinkOption[] linkOptions, final FileVisitOption[] fileVisitOptions) throws IOException {
             List<Path> tmpRelativeDirList1 = null;
             List<Path> tmpRelativeDirList2 = null;
             List<Path> tmpRelativeFileList1 = null;
@@ -40,7 +40,7 @@ public final class PathUtils {
                     final AccumulatorPathVisitor visitor1 = accumulate(dir1, maxDepth, fileVisitOptions);
                     final AccumulatorPathVisitor visitor2 = accumulate(dir2, maxDepth, fileVisitOptions);
                     if (visitor1.getDirList().size() != visitor2.getDirList().size()
-                        || visitor1.getFileList().size() != visitor2.getFileList().size()) {
+                            || visitor1.getFileList().size() != visitor2.getFileList().size()) {
                         equals = false;
                     } else {
                         tmpRelativeDirList1 = visitor1.relativizeDirectories(dir1, true, null);
@@ -67,14 +67,14 @@ public final class PathUtils {
     public static final Path[] EMPTY_PATH_ARRAY = new Path[0];
 
     private static AccumulatorPathVisitor accumulate(final Path directory, final int maxDepth,
-        final FileVisitOption[] fileVisitOptions) throws IOException {
+                                                     final FileVisitOption[] fileVisitOptions) throws IOException {
         return visitFileTree(AccumulatorPathVisitor.withLongCounters(), directory,
-            toFileVisitOptionSet(fileVisitOptions), maxDepth);
+                toFileVisitOptionSet(fileVisitOptions), maxDepth);
     }
 
 
     public static Path copyFile(final URL sourceFile, final Path targetFile, final CopyOption... copyOptions)
-        throws IOException {
+            throws IOException {
         try (final InputStream inputStream = sourceFile.openStream()) {
             Files.copy(inputStream, targetFile, copyOptions);
             return targetFile;
@@ -102,12 +102,12 @@ public final class PathUtils {
 
     public static PathCounters delete(final Path path, final DeleteOption... options) throws IOException {
         return Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS) ? deleteDirectory(path, options)
-            : deleteFile(path, options);
+                : deleteFile(path, options);
     }
 
     public static PathCounters deleteDirectory(final Path directory, final DeleteOption... options) throws IOException {
         return visitFileTree(new DeletingPathVisitor(Counters.longPathCounters(), options), directory)
-            .getPathCounters();
+                .getPathCounters();
     }
 
 
@@ -130,12 +130,12 @@ public final class PathUtils {
 
     public static boolean directoryAndFileContentEquals(final Path path1, final Path path2) throws IOException {
         return directoryAndFileContentEquals(path1, path2, EMPTY_LINK_OPTION_ARRAY, EMPTY_OPEN_OPTION_ARRAY,
-            EMPTY_FILE_VISIT_OPTION_ARRAY);
+                EMPTY_FILE_VISIT_OPTION_ARRAY);
     }
 
     public static boolean directoryAndFileContentEquals(final Path path1, final Path path2,
-        final LinkOption[] linkOptions, final OpenOption[] openOptions, final FileVisitOption[] fileVisitOption)
-        throws IOException {
+                                                        final LinkOption[] linkOptions, final OpenOption[] openOptions, final FileVisitOption[] fileVisitOption)
+            throws IOException {
         if (path1 == null && path2 == null) {
             return true;
         }
@@ -146,7 +146,7 @@ public final class PathUtils {
             return true;
         }
         final RelativeSortedPaths relativeSortedPaths = new RelativeSortedPaths(path1, path2, Integer.MAX_VALUE,
-            linkOptions, fileVisitOption);
+                linkOptions, fileVisitOption);
         if (!relativeSortedPaths.equals) {
             return false;
         }
@@ -167,17 +167,17 @@ public final class PathUtils {
 
     public static boolean directoryContentEquals(final Path path1, final Path path2) throws IOException {
         return directoryContentEquals(path1, path2, Integer.MAX_VALUE, EMPTY_LINK_OPTION_ARRAY,
-            EMPTY_FILE_VISIT_OPTION_ARRAY);
+                EMPTY_FILE_VISIT_OPTION_ARRAY);
     }
 
     public static boolean directoryContentEquals(final Path path1, final Path path2, final int maxDepth,
-        final LinkOption[] linkOptions, final FileVisitOption[] fileVisitOptions) throws IOException {
+                                                 final LinkOption[] linkOptions, final FileVisitOption[] fileVisitOptions) throws IOException {
         return new RelativeSortedPaths(path1, path2, maxDepth, linkOptions, fileVisitOptions).equals;
     }
 
 
     public static boolean fileContentEquals(final Path path1, final Path path2, final LinkOption[] linkOptions,
-        final OpenOption[] openOptions) throws IOException {
+                                            final OpenOption[] openOptions) throws IOException {
         if (path1 == null && path2 == null) {
             return true;
         }
@@ -206,7 +206,7 @@ public final class PathUtils {
             return true;
         }
         try (final InputStream inputStream1 = Files.newInputStream(nPath1, openOptions);
-            final InputStream inputStream2 = Files.newInputStream(nPath2, openOptions)) {
+             final InputStream inputStream2 = Files.newInputStream(nPath2, openOptions)) {
             return IOUtils.contentEquals(inputStream1, inputStream2);
         }
     }
@@ -220,7 +220,7 @@ public final class PathUtils {
     }
 
     private static <R, A> R filterPaths(final PathFilter filter, final Stream<Path> stream,
-        final Collector<? super Path, A, R> collector) {
+                                        final Collector<? super Path, A, R> collector) {
         Objects.requireNonNull(filter, "filter");
         Objects.requireNonNull(collector, "collector");
         if (stream == null) {
@@ -253,7 +253,7 @@ public final class PathUtils {
     }
 
     public static boolean isNewer(final Path file, final long timeMillis, final LinkOption... options)
-        throws IOException {
+            throws IOException {
         Objects.requireNonNull(file, "file");
         if (!Files.exists(file)) {
             return false;
@@ -287,7 +287,7 @@ public final class PathUtils {
 
 
     static List<Path> relativize(final Collection<Path> collection, final Path parent, final boolean sort,
-        final Comparator<? super Path> comparator) {
+                                 final Comparator<? super Path> comparator) {
         Stream<Path> stream = collection.stream().map(parent::relativize);
         if (sort) {
             stream = comparator == null ? stream.sorted() : stream.sorted(comparator);
@@ -296,15 +296,15 @@ public final class PathUtils {
     }
 
     public static void setReadOnly(final Path path, final boolean readOnly, final LinkOption... options)
-        throws IOException {
+            throws IOException {
         final DosFileAttributeView fileAttributeView = Files.getFileAttributeView(path, DosFileAttributeView.class,
-            options);
+                options);
         if (fileAttributeView != null) {
             fileAttributeView.setReadOnly(readOnly);
             return;
         }
         final PosixFileAttributeView posixFileAttributeView = Files.getFileAttributeView(path,
-            PosixFileAttributeView.class, options);
+                PosixFileAttributeView.class, options);
         if (posixFileAttributeView != null) {
             final PosixFileAttributes readAttributes = posixFileAttributeView.readAttributes();
             final Set<PosixFilePermission> permissions = readAttributes.permissions();
@@ -319,25 +319,25 @@ public final class PathUtils {
 
     static Set<FileVisitOption> toFileVisitOptionSet(final FileVisitOption... fileVisitOptions) {
         return fileVisitOptions == null ? EnumSet.noneOf(FileVisitOption.class)
-            : Arrays.stream(fileVisitOptions).collect(Collectors.toSet());
+                : Arrays.stream(fileVisitOptions).collect(Collectors.toSet());
     }
 
     public static <T extends FileVisitor<? super Path>> T visitFileTree(final T visitor, final Path directory)
-        throws IOException {
+            throws IOException {
         Files.walkFileTree(directory, visitor);
         return visitor;
     }
 
     public static <T extends FileVisitor<? super Path>> T visitFileTree(final T visitor, final Path start,
-        final Set<FileVisitOption> options, final int maxDepth) throws IOException {
+                                                                        final Set<FileVisitOption> options, final int maxDepth) throws IOException {
         Files.walkFileTree(start, options, maxDepth, visitor);
         return visitor;
     }
 
     public static Stream<Path> walk(final Path start, final PathFilter pathFilter, final int maxDepth,
-        final boolean readAttributes, final FileVisitOption... options) throws IOException {
+                                    final boolean readAttributes, final FileVisitOption... options) throws IOException {
         return Files.walk(start, maxDepth, options).filter(path -> pathFilter.accept(path,
-            readAttributes ? readBasicFileAttributesQuietly(path) : null) == FileVisitResult.CONTINUE);
+                readAttributes ? readBasicFileAttributesQuietly(path) : null) == FileVisitResult.CONTINUE);
     }
 
     private PathUtils() {

@@ -7,6 +7,7 @@ public class StringBuilderWriter extends Writer implements Serializable {
 
     private static final long serialVersionUID = -146927496096066153L;
     private final StringBuilder builder;
+
     public StringBuilderWriter() {
         this.builder = new StringBuilder();
     }

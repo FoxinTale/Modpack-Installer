@@ -147,12 +147,12 @@ public class FileUtils {
     }
 
     public static void copyDirectory(final File srcDir, final File destDir, final FileFilter filter,
-        final boolean preserveFileDate) throws IOException {
+                                     final boolean preserveFileDate) throws IOException {
         copyDirectory(srcDir, destDir, filter, preserveFileDate, StandardCopyOption.REPLACE_EXISTING);
     }
 
     public static void copyDirectory(final File srcDir, final File destDir, final FileFilter filter,
-        final boolean preserveFileDate, final CopyOption... copyOptions) throws IOException {
+                                     final boolean preserveFileDate, final CopyOption... copyOptions) throws IOException {
         checkFileRequirements(srcDir, destDir);
         if (!srcDir.isDirectory()) {
             throw new IOException("Source '" + srcDir + "' exists but is not a directory");
@@ -193,12 +193,12 @@ public class FileUtils {
     }
 
     public static void copyFile(final File srcFile, final File destFile, final boolean preserveFileDate)
-        throws IOException {
+            throws IOException {
         copyFile(srcFile, destFile, preserveFileDate, StandardCopyOption.REPLACE_EXISTING);
     }
 
     public static void copyFile(final File srcFile, final File destFile, final boolean preserveFileDate, final CopyOption... copyOptions)
-        throws IOException {
+            throws IOException {
         checkFileRequirements(srcFile, destFile);
         if (srcFile.isDirectory()) {
             throw new IOException("Source '" + srcFile + "' exists but is a directory");
@@ -271,7 +271,7 @@ public class FileUtils {
 
 
     public static void copyURLToFile(final URL source, final File destination,
-        final int connectionTimeout, final int readTimeout) throws IOException {
+                                     final int connectionTimeout, final int readTimeout) throws IOException {
         final URLConnection connection = source.openConnection();
         connection.setConnectTimeout(connectionTimeout);
         connection.setReadTimeout(readTimeout);
@@ -354,8 +354,8 @@ public class FileUtils {
     }
 
     private static void doCopyDirectory(final File srcDir, final File destDir, final FileFilter filter,
-        final boolean preserveFileDate, final List<String> exclusionList, final CopyOption... copyOptions)
-        throws IOException {
+                                        final boolean preserveFileDate, final List<String> exclusionList, final CopyOption... copyOptions)
+            throws IOException {
         final File[] srcFiles = filter == null ? srcDir.listFiles() : srcDir.listFiles(filter);
         if (srcFiles == null) {
             throw new IOException("Failed to list contents of " + srcDir);
@@ -388,7 +388,7 @@ public class FileUtils {
     }
 
     private static void doCopyFile(final File srcFile, final File destFile, final boolean preserveFileDate, final CopyOption... copyOptions)
-        throws IOException {
+            throws IOException {
         if (destFile.exists() && destFile.isDirectory()) {
             throw new IOException("Destination '" + destFile + "' exists but is a directory");
         }
@@ -498,28 +498,28 @@ public class FileUtils {
     }
 
     public static Iterator<File> iterateFiles(final File directory, final IOFileFilter fileFilter,
-        final IOFileFilter dirFilter) {
+                                              final IOFileFilter dirFilter) {
         return listFiles(directory, fileFilter, dirFilter).iterator();
     }
 
     public static Iterator<File> iterateFilesAndDirs(final File directory, final IOFileFilter fileFilter,
-        final IOFileFilter dirFilter) {
+                                                     final IOFileFilter dirFilter) {
         return listFilesAndDirs(directory, fileFilter, dirFilter).iterator();
     }
 
     private static AccumulatorPathVisitor listAccumulate(final File directory, final IOFileFilter fileFilter,
-        final IOFileFilter dirFilter) throws IOException {
+                                                         final IOFileFilter dirFilter) throws IOException {
         final boolean isDirFilterSet = dirFilter != null;
         final FileEqualsFileFilter rootDirFilter = new FileEqualsFileFilter(directory);
         final PathFilter dirPathFilter = isDirFilterSet ? rootDirFilter.or(dirFilter) : rootDirFilter;
         final AccumulatorPathVisitor visitor = new AccumulatorPathVisitor(Counters.noopPathCounters(), fileFilter,
-            dirPathFilter);
+                dirPathFilter);
         Files.walkFileTree(directory.toPath(), Collections.emptySet(), toMaxDepth(isDirFilterSet), visitor);
         return visitor;
     }
 
     public static Collection<File> listFiles(
-        final File directory, final IOFileFilter fileFilter, final IOFileFilter dirFilter) {
+            final File directory, final IOFileFilter fileFilter, final IOFileFilter dirFilter) {
         try {
             final AccumulatorPathVisitor visitor = listAccumulate(directory, fileFilter, dirFilter);
             return visitor.getFileList().stream().map(Path::toFile).collect(Collectors.toList());
@@ -537,7 +537,7 @@ public class FileUtils {
     }
 
     public static Collection<File> listFilesAndDirs(
-        final File directory, final IOFileFilter fileFilter, final IOFileFilter dirFilter) {
+            final File directory, final IOFileFilter fileFilter, final IOFileFilter dirFilter) {
         try {
             final AccumulatorPathVisitor visitor = listAccumulate(directory, fileFilter, dirFilter);
             final List<Path> list = visitor.getFileList();
@@ -762,7 +762,7 @@ public class FileUtils {
     }
 
     public static Stream<File> streamFiles(final File directory, final boolean recursive, final String... extensions)
-        throws IOException {
+            throws IOException {
         IOFileFilter filter;
         if (extensions == null) {
             filter = FileFileFilter.INSTANCE;

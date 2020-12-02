@@ -10,6 +10,7 @@ public enum IOCase {
     private static final long serialVersionUID = -6343169151696340687L;
     private final String name;
     private final transient boolean sensitive;
+
     public static IOCase forName(final String name) {
         for (final IOCase ioCase : IOCase.values()) {
             if (ioCase.getName().equals(name)) {
@@ -27,6 +28,7 @@ public enum IOCase {
     private Object readResolve() {
         return forName(name);
     }
+
     public String getName() {
         return name;
     }

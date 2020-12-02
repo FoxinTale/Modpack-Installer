@@ -8,14 +8,14 @@ import SetUtils.Annotations.Nullable;
 @GwtCompatible
 public interface Predicate<T> extends java.util.function.Predicate<T> {
 
-  @CanIgnoreReturnValue
-  boolean apply(@Nullable T input);
+    @CanIgnoreReturnValue
+    boolean apply(@Nullable T input);
 
-  @Override
-  boolean equals(@Nullable Object object);
+    @Override
+    boolean equals(@Nullable Object object);
 
-  @Override
-  default boolean test(@Nullable T input) {
-    return apply(input);
-  }
+    @Override
+    default boolean test(@Nullable T input) {
+        return apply(input);
+    }
 }
