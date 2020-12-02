@@ -45,7 +45,7 @@ public class Downloader {
                 bout.close();
                 in.close();
 
-                System.out.println(" Download Complete!");
+                System.out.println(Strings.installerDownloadComplete);
                 GUI.progress.setValue(0);
                 zipFile = new File(q + Driver.getDownloadsLocation() + q + zipName);
                 switch (whatIs) {
@@ -83,9 +83,9 @@ public class Downloader {
     public static void redownloadModpack() {
         URL modpackOneLink;
         try {
-            System.out.println(" Verification failed. Redownloading.");
-            System.out.println(" If this happens more than three times,");
-            System.out.println(" tell me. It means I forgot to update things.");
+            System.out.println(Strings.installerVerificationRedownlaoding1);
+            System.out.println(Strings.installerVerificationRedownlaoding2);
+            System.out.println(Strings.installerVerificationRedownlaoding3);
             modpackOneLink = new URL("https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
             Download(modpackOneLink, "Modpack.zip", 0);
         } catch (MalformedURLException e) {

@@ -24,13 +24,13 @@ public class Checksums {
         try { // See the Downloads class for the full file names.
             md5Digest = MessageDigest.getInstance("MD5");
 
-            System.out.println(" Verifying integrity of file");
+            System.out.println(Strings.installerVerifyingFile);
             zipFile = new File(Driver.getDownloadsLocation() + q + zipName);
             if (zipName.equals("Modpack.zip")) {
                 modpackSum = checksums.get(0);
                 cModpackSum = getFileChecksum(md5Digest, zipFile);
                 if (checkSums(modpackSum, cModpackSum)) {
-                    System.out.println(" File verification passed!");
+                    System.out.println(Strings.installerVerificationPassed);
                     Extractor.Extract(q + Driver.getDownloadsLocation() + q + Driver.zipFile, "Modpack", 0);
                 }
                 if (!checkSums(modpackSum, cModpackSum)) {
@@ -77,7 +77,7 @@ public class Checksums {
             verifyFinish(zip.getPath(), name);
         }
         if (!checkSums(resourcesSum, cResourcesSum)) {
-            System.out.println(" Verification Failed...Redownloading.");
+            System.out.println(Strings.installerVerificationFailed);
         }
     }
 
@@ -110,9 +110,8 @@ public class Checksums {
     }
 
     public static void verifyFinish(String zipName, String folderName) {
-        System.out.println(" File verification passed.");
-        String t = "Would you like to extract the resource pack in order to improve load times on Minecraft?";
-        int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Extract pack?", JOptionPane.YES_NO_OPTION);
+        System.out.println(Strings.installerVerificationPassed);
+        int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerExtractResourceMessage, Strings.installerExtractResourceTitle, JOptionPane.YES_NO_OPTION);
         try {
             if (o == JOptionPane.YES_OPTION) { // Copy and Extract.
                 String baseLocation = resourcePackDir.getAbsolutePath() + File.separator;

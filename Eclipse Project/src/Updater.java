@@ -11,106 +11,54 @@ import java.util.ArrayList;
 public class Updater {
     static ArrayList<String> removal = Json.getToRemove();
     static File versionFile = new File(Driver.getMinecraftInstallLocation() + File.separator + "Modpack_Version.txt");
-    static String installedVersion = "";
     static String currentVersion = "";
-    static String baseLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Updates/";
     static String q = File.separator;
-    static String installerVersion;
 
     public static void updater() {
-        currentVersion = Json.getCurrentVersion();
-
-        if (!versionFile.exists()) {
-            versionFile();
-        }
-        if (versionFile.exists()) {
-            versionRead();
-        }
-        if (versionCompare()) {
-            System.out.println("Yay, you are running the latest version. No need to continue.");
-        }
-        if (!versionCompare()) {
-            System.out.println("Seems as if a new version has been released.");
-            System.out.println("Downloading update file");
-            try {
-                Downloader.Download(new URL(baseLink + currentVersion + ".zip"), currentVersion + ".zip", 1);
-            } catch (MalformedURLException e) {
-                GUI.errors.setText("Bastiodon");
-            }
-        }
+        //Empty constructor.
     }
 
-
-    public static void installerUpdateCheck() throws IOException {
-        /*To functionize, the API url is passed in, along with the Json titles to look for.*/
-
-        URL installerLatest = new URL("https://api.github.com/repos/foxintale/modpack-installer/releases/latest");
-        JSONObject installerPage = (JSONObject) new JSONTokener(installerLatest.openStream()).nextValue();
-        String installerVersion = (String) installerPage.get("tag_name");
-
-        if (!GUI.installerVersionValue.equals(installerVersion)) {
-            String t = "There's an update available for the installer. Would you like to download it?";
-            int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Installer update", JOptionPane.YES_NO_OPTION);
-            if (o == JOptionPane.YES_OPTION) {
-                JSONArray assetsArray = (JSONArray) installerPage.get("assets");
-                String assetString = assetsArray.toString();
-                String[] assetStringArray = assetString.split(",");
-                String newInstallerDownloadLink, tempLink = "";
-                for (int i = 0; i < assetStringArray.length; i++) {
-                    if (assetStringArray[i].contains("browser_download_url")) {
-                        tempLink = assetStringArray[i];
+    public static void checkAPIForUpdate(URL updateLink, String version, String message, String title,  String toPrint, int op){
+        try{
+            JSONObject latestPage = (JSONObject) new JSONTokener(updateLink.openStream()).nextValue();
+            String fileVersion = (String) latestPage.get("tag_name");
+            if(!version.equals(fileVersion)){
+                int o = JOptionPane.showConfirmDialog(new JFrame(), message, title, JOptionPane.YES_NO_OPTION);
+                if (o == JOptionPane.YES_OPTION) {
+                    JSONArray assetsArray = (JSONArray) latestPage.get("assets");
+                    String assetString = assetsArray.toString();
+                    String[] assetStringArray = assetString.split(",");
+                    String newDownloadLink, tempLink = "";
+                    for (String s : assetStringArray) {
+                        if (s.contains("browser_download_url")) {
+                            tempLink = s;
+                        }
                     }
+                    String[] tempArr = tempLink.split("\"");
+                    newDownloadLink = tempArr[tempArr.length - 1];
+                    // Fire off that link to the downloader to do its thingy, then close self after downloader is completed.
                 }
-                String[] tempArr = tempLink.split("\"");
-                newInstallerDownloadLink = tempArr[tempArr.length - 1];
-                // Fire off that link to the downloader to do its thingy, then close self after downloader is completed.
             }
-            if (o == JOptionPane.NO_OPTION) {
-                System.exit(0);
+            else{
+                System.out.println(toPrint);
             }
-        } else {
-            System.out.println(" The installer is up to date.");
         }
-    }
-
-
-    public static void versionFile() {
-        try {
-            PrintWriter writer = new PrintWriter(versionFile);
-            writer.println(currentVersion);
-            writer.println("Please do not delete this file. this is how the installer knows if there is an update.");
-            writer.close();
-            versionFile.setReadOnly();
+        catch (MalformedURLException e) {
+            e.printStackTrace();
         } catch (IOException e) {
-            // Do nothing.
+            e.printStackTrace();
         }
+
     }
 
-    public static void versionRead() {
+    public static void modpackUpdateCheck() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(versionFile));
-            String line;
-            ArrayList<String> versionsContent = new ArrayList<>();
-            while ((line = reader.readLine()) != null) {
-                versionsContent.add(line);
-            }
-            reader.close();
-            installedVersion = versionsContent.get(0);
-            versionCompare();
-        } catch (IOException e) {
-            GUI.errors.setText("Clefable");
-        }
-    }
+            URL modpackLatest = new URL("");
 
-    public static Boolean versionCompare() {
-        Boolean versionsMatch = false;
-        if (currentVersion.equals(installedVersion)) {
-            versionsMatch = true;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
-        if (!currentVersion.equals(installedVersion)) {
-            versionsMatch = false;
-        }
-        return versionsMatch;
+
     }
 
     public static void removeStuff() {

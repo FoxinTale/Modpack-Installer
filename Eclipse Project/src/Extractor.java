@@ -18,14 +18,14 @@ public class Extractor {
         String folderPath = Driver.getDownloadsLocation() + q + name + q;
         switch (op) {
             case 0: // Modpack
-                System.out.println(" Extracting modpack. Expect system lag.");
+                System.out.println(Strings.installerExtractNotice);
                 unzip(fileLocation, folderPath, op);
                 break;
             case 1: // Update
                 unzip(fileLocation, name, op);
                 break;
             case 2: // Resource Pack
-                System.out.println(" Extracting resource pack. Expect system lag.");
+                System.out.println(Strings.installerExtractNotice);
                 unzip(fileLocation, name, op);
                 break;
             default:

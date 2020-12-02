@@ -3,8 +3,6 @@ import GUI.RoundedPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class assetCredits extends resourcePacks {
     public static void credits() {
@@ -59,7 +57,7 @@ public class assetCredits extends resourcePacks {
         JPanel packSevenPanel = new RoundedPanel(10, rbc);
         JPanel packEightPanel = new RoundedPanel(10, rbc);
 
-        try {
+    /*    try {
             pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")).deriveFont(16f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")));
@@ -67,7 +65,7 @@ public class assetCredits extends resourcePacks {
 
         } catch (FontFormatException e) {
             GUI.errors.setText("Screwy font");
-        }
+        }*/
 
         packOneA.setBounds(30, 30, 300, 20);
         packOneB.setBounds(30, 50, 300, 20);
@@ -109,7 +107,7 @@ public class assetCredits extends resourcePacks {
         packEightC.setBounds(600, 230, 300, 20);
         packEightPanel.setBounds(385, 205, 345, 50);
 
-        packOneA.setFont(pretty);
+      /*  packOneA.setFont(pretty);
         packOneB.setFont(pretty);
         packOneC.setFont(pretty);
 
@@ -141,7 +139,7 @@ public class assetCredits extends resourcePacks {
 
         packEightA.setFont(pretty);
         packEightB.setFont(pretty);
-        packEightC.setFont(pretty);
+        packEightC.setFont(pretty);*/
 
         Container c = creditsFrame.getContentPane();
 

@@ -17,58 +17,55 @@ public class Install {
 
     public static void install() {
 
-        System.out.println(" Installing the Modpack now.");
+        System.out.println(Strings.installerInstallNotice);
         modpackLocation.deleteOnExit();
 
         String minecraftPath = Driver.getMinecraftInstall();
 
         File minecraftMods = new File(minecraftPath + q + "mods");
         File minecraftConfig = new File(minecraftPath + q + "config");
-        File minecraftFlans = new File(minecraftPath + q + "Flan");
+       // File minecraftFlans = new File(minecraftPath + q + "Flan");
 
         File backups = new File(Driver.getDesktopLocation() + q + "Minecraft Stuff");
         String backupsLocation = backups.getAbsolutePath();
         File backupMods = new File(backupsLocation + q + "Mods");
         File backupConfig = new File(backupsLocation + q + "Config");
-        File backupFlans = new File(backupsLocation + q + "Flans");
+       // File backupFlans = new File(backupsLocation + q + "Flans");
 
         File modpackMods = new File(modpackLocation + q + "mods");
         File modpackConfig = new File(modpackLocation + q + "config");
-        File modpackFlans = new File(modpackLocation + q + "Flan");
+        //File modpackFlans = new File(modpackLocation + q + "Flan");
 
         Driver.folderCreate(backups);
         Driver.folderCreate(backupMods);
         Driver.folderCreate(backupConfig);
-        Driver.folderCreate(backupFlans);
+        //Driver.folderCreate(backupFlans);
 
-        moveFiles(minecraftMods, backupMods, " Backing up any Mods");
-        moveFiles(minecraftConfig, backupConfig, " Backing up any configs.");
-        moveFiles(minecraftFlans, backupFlans, " Backing up any Flans related items");
+        moveFiles(minecraftMods, backupMods, Strings.installerBackupMods);
+        moveFiles(minecraftConfig, backupConfig, Strings.installerBackupConfig);
+        //moveFiles(minecraftFlans, backupFlans, " Backing up any Flans related items");
 
-        if (minecraftFlans.exists()) {
+      /*  if (minecraftFlans.exists()) {
             minecraftFlans.delete();
-        }
+        }*/
 
-        if (!Updater.versionFile.exists()) {
-            Updater.versionFile();
-        }
         installOptions.backup();
-        Driver.folderCreate(minecraftFlans);
+        //Driver.folderCreate(minecraftFlans);
         Driver.folderCreate(minecraftConfig);
         Driver.folderCreate(minecraftMods);
 
-        System.out.println(" Installing. ");
+        System.out.println(Strings.installerInstalling);
 
         copyFiles(modpackMods, minecraftMods);
         copyFiles(modpackConfig, minecraftConfig);
-        copyFiles(modpackFlans, minecraftFlans);
+        //copyFiles(modpackFlans, minecraftFlans);
 
         installOptions.verifyInstall();
         System.out.println(" Verifying install.");
         if (installOptions.packGood) {
 
             String t = "Would you like the installer to adjust your Java arguments in the launcher? This will also allow you to configure the amount of ram youallocate to Minecraft.";
-            int o = JOptionPane.showConfirmDialog(new JFrame(), t, "Java Arguments", JOptionPane.YES_NO_OPTION);
+            int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerExtractResourceMessage, "Java Arguments", JOptionPane.YES_NO_OPTION);
             if (o == JOptionPane.YES_OPTION) {
                 installOptions.backup();
                 Memory.sliderGUI();
@@ -144,13 +141,11 @@ public class Install {
         boolean vanilla = vanillaMinecraft.exists();
         boolean vanillaConfig = vanillaMinecraftConfig.exists();
         if (!vanilla || !vanillaConfig) {
-            String noVanilla = "Please run Vanilla Minecraft 1.7.10 at least once before continuing.";
-            JOptionPane.showMessageDialog(new JFrame(), noVanilla, "Vanilla not Found", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), Strings.noVanillaMessage, Strings.noVanillaTitle, JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
         if (!modConfig) {
-            String noMod = "Please install the latest version of Forge for 1.7.10 before continuing!";
-            JOptionPane.showMessageDialog(new JFrame(), noMod, "Forge not Found", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), Strings.noModsMessage, Strings.noModsTitle, JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
     }
@@ -179,8 +174,8 @@ public class Install {
     }
 
     public static void end() {
-        String endMessage = "Thanks for using the installer! Now, go have fun.";
-        JOptionPane.showMessageDialog(new JFrame(), endMessage, "All Done!", JOptionPane.INFORMATION_MESSAGE);
+        String endMessage = Strings.installerThanksMessage;
+        JOptionPane.showMessageDialog(new JFrame(), endMessage, Strings.installerThanksTitle, JOptionPane.INFORMATION_MESSAGE);
         System.exit(0);
     }
 

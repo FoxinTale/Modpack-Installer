@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -19,22 +18,22 @@ public class resourcePacks {
 	static JTextArea packInfo = new JTextArea();
 	static JScrollPane scroll = new JScrollPane(packInfo);
 	static String packLink;
-	static JFrame creditsFrame = new JFrame("Asset Credits");
+	static JFrame creditsFrame = new JFrame(Strings.assetCreditsLabel);
 	static int selectedPack;
 
 	public static void packGUI() {
-		JFrame frame = new JFrame("Resource Pack Options");
+		JFrame frame = new JFrame(Strings.resourcePackTitle);
 
-		JRadioButton textures = new JRadioButton("One."); // Textures only
-		JRadioButton musicTex = new JRadioButton("Two."); // Game music and sounds, no textures.
-		JRadioButton gameMusic = new JRadioButton("Three."); // Game music, Sounds and textures
-		JRadioButton ambiance = new JRadioButton("Four."); // Ambiance music, records , no textures.
-		JRadioButton everything = new JRadioButton("Five."); // Ambiance, records, sounds and textures
-		JRadioButton extra = new JRadioButton("Six."); // Ambiance, records, sounds and textures
+		JRadioButton textures = new JRadioButton(Strings.resourceOptionOne); // Textures only
+		JRadioButton musicTex = new JRadioButton(Strings.resourceOptionTwo); // Game music and sounds, no textures.
+		JRadioButton gameMusic = new JRadioButton(Strings.resourceOptionThree); // Game music, Sounds and textures
+		JRadioButton ambiance = new JRadioButton(Strings.resourceOptionFour); // Ambiance music, records , no textures.
+		JRadioButton everything = new JRadioButton(Strings.resourceOptionFive); // Ambiance, records, sounds and textures
+		JRadioButton extra = new JRadioButton(Strings.resourceOptionSix); // Ambiance, records, sounds and textures
 
-		JLabel downloadSizeLabel = new JLabel("Download Size: ");
-		JLabel downloadSize = new JLabel("None selected ");
-		JButton go = new JButton("Continue");
+		JLabel downloadSizeLabel = new JLabel(Strings.resourceDownloadSize);
+		JLabel downloadSize = new JLabel(Strings.resourceNoneSelected);
+		JButton go = new JButton(Strings.resourceContinue);
 		ButtonGroup options = new ButtonGroup();
 
 		packInfo.setLineWrap(true);
@@ -80,62 +79,43 @@ public class resourcePacks {
 					packInfo.setText(null);
 					downloadSize.setText(null);
 					selectedOption = 1;
-					packInfo.setText(" This pack is textures and \n" + " sounds. \n" + " As a note, this is a high \n"
-							+ " resolution texture pack.  \n" + " At least 128x128 quality. \n"
-							+ " This does not include any \n" + " music replacements, \n"
-							+ " sounds or ambiance music. ");
+					packInfo.setText(Strings.resourcePackOneDesc);
 					downloadSize.setText("90 Mb");
 					break;
 				case "Two.":
-
 					packInfo.setText(null);
 					downloadSize.setText(null);
 					selectedOption = 2;
-					packInfo.setText(" This pack is game music \n" + " and sounds. No textures. \n"
-							+ " No ambiance music. Only \n" + " replacing the games' music\n"
-							+ "  and realistic sounds.");
+					packInfo.setText(Strings.resourcePackTwoDesc);
 					downloadSize.setText("210 Mb");
 					break;
 				case "Three":
 					packInfo.setText(null);
 					downloadSize.setText(null);
 					selectedOption = 3;
-					packInfo.setText(
-							" This pack is game music \n" + " sounds and textures. \n" + " No ambiance music. Only \n"
-									+ " replacing the games' music, \n" + " realistic sounds \n" + " and textures.");
+					packInfo.setText(Strings.resourcePackThreeDesc);
 					downloadSize.setText("255 Mb");
 					break;
-
 				case "Four.":
 					packInfo.setText(null);
 					downloadSize.setText(null);
 					selectedOption = 4;
-					packInfo.setText(
-							" This pack is ambiance \n" + " music, music disks and \n" + " sounds. No textures.");
+					packInfo.setText(Strings.resourcePackFourDesc);
 					downloadSize.setText("400 Mb");
 					break;
 				case "Five.":
 					packInfo.setText(null);
 					downloadSize.setText(null);
 					selectedOption = 5;
-					packInfo.setText(" This one has it all. \n" + " High resolution textures, \n"
-							+ " Ambiance Music, realistic \n" + " sounds, and custom music \n"
-							+ " disks. Note: This will \n" + " also extract the pack, due \n"
-							+ " its size, to lessen load \n" + " times.");
+					packInfo.setText(Strings.resourcePackFiveDesc);
 					downloadSize.setText("550 Mb");
 					break;
 				case "Six.":
-
 					packInfo.setText(null);
 					downloadSize.setText(null);
 					selectedOption = 6;
-					packInfo.setText(" This one is like the \n" + " previous one, except with \n"
-							+ " a crazy amount of ambiance \n" + " added. This one is so large, \n"
-							+ " I am not entrusting the \n" + " installer to download it.\n\n"
-							+ " If you choose this, you \n" + " will be directed to a link \n"
-							+ " to download from within \n" + " your browser. ");
-
-					downloadSize.setText("Huge.");
+					packInfo.setText(Strings.resourcePackSixDesc);
+					downloadSize.setText(Strings.resourceBigPackSize);
 					break;
 				default:
 					break;
@@ -196,7 +176,7 @@ public class resourcePacks {
 			}
 		};
 
-		try {
+	/*	try {
 			pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")).deriveFont(16f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")));
@@ -212,7 +192,7 @@ public class resourcePacks {
 		ambiance.setFont(pretty);
 		go.setFont(pretty);
 		extra.setFont(pretty);
-		packInfo.setFont(pretty);
+		packInfo.setFont(pretty);*/
 
 		gameMusic.addActionListener(radioButtonEvent);
 		musicTex.addActionListener(radioButtonEvent);
@@ -287,6 +267,10 @@ public class resourcePacks {
 		frame.setVisible(true);
 	}
 
+	public static void nulling(){
+
+	}
+
 	public static void radioSet(JRadioButton a, JRadioButton b, JRadioButton c, JRadioButton d, JRadioButton e,
 			JRadioButton f) {
 		a.setEnabled(false);
@@ -298,10 +282,10 @@ public class resourcePacks {
 	}
 
 	public static void bigPack() {
-		JTextArea info = new JTextArea();
+		JTextArea info = new JTextArea(Strings.resourceBigTitle);
 		JScrollPane scroll2 = new JScrollPane(info);
 
-		JFrame frame = new JFrame("Large pack option");
+		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		info.setLineWrap(true);
@@ -309,20 +293,16 @@ public class resourcePacks {
 		scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll2.setBorder(new LineBorder(Color.black, 1, true));
 
-		String text = " Seriously, this is a massive pack \n" + " and is not required. For further \n"
-				+ " information, go to the below link. \n" + " It will direct you to my site \n"
-				+ " which contains more information.\n" + " The link may take time to load.\n" + "\n"
-				+ " Closing this will exit the program.";
-
 		Color rbc = new Color(220, 255, 255); // Hex value: dcffff
 
 		JPanel textPanel = new RoundedPanel(10, rbc);
 		Container c = frame.getContentPane();
 		c.setBackground(new Color(255, 220, 220));// Hex value: ffdcdc
 
-		JHyperlink link = new JHyperlink("Go here for more information",
+		JHyperlink link = new JHyperlink(Strings.resourceBigLinkLabel,
 				"https://foxintale.github.io/aubsburrow/subpages/gameservers/resourcepack.html");
 
+/*
 		try {
 			pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")).deriveFont(16f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -332,15 +312,16 @@ public class resourcePacks {
 		} catch (FontFormatException e) {
 			GUI.errors.setText("Screwy font");
 		}
+*/
 
-		info.setText(text);
-		info.setFont(pretty);
+		info.setText(Strings.resourceBigPackInfo);
+		//info.setFont(pretty);
 		info.setEditable(false);
 		textPanel.setBounds(15, 10, 280, 250);
 		scroll2.setBounds(25, 20, 260, 175);
 		link.setBounds(60, 225, 200, 20);
 
-		link.setFont(pretty);
+		//link.setFont(pretty);
 		frame.add(scroll2);
 		frame.add(link);
 		frame.add(textPanel);
