@@ -24,7 +24,46 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="" />
+    <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Modpack-Installer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Checksums.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Checksums.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Downloader.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Downloader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Driver.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Driver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Errors.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Errors.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Extractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Extractor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Install.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Install.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/InstallerSanityChecks.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/InstallerSanityChecks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Json.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Json.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Memory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Memory$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Memory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Memory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Strings.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Strings.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Updater.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Updater.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/assetCredits.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/assetCredits.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/installOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/installOptions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/modOptions$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/modOptions$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/modOptions$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/modOptions$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/modOptions$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/modOptions$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/modOptions$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/modOptions$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/modOptions$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/modOptions$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/modOptions$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/modOptions$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/modOptions$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/modOptions$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/modOptions$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/modOptions$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/modOptions$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/modOptions$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/modOptions$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/modOptions$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/modOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/modOptions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/optionsGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/optionsGUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/optionsGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/optionsGUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/optionsGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/optionsGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/osDetect.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/osDetect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/resourceCheck.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resourceCheck.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/resourcePacks$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resourcePacks$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/resourcePacks$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resourcePacks$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/resourcePacks.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/resourcePacks.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,8 +98,8 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modpack-Installer.ipr" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
@@ -115,6 +154,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="283" y="177" width="1034" height="849" key="#Project_Structure" timestamp="1607040087180">
+      <screen x="0" y="150" width="1600" height="900" />
+    </state>
+    <state x="283" y="177" width="1034" height="849" key="#Project_Structure/0.150.1600.900/1600.0.1680.1050@0.150.1600.900" timestamp="1607040087180" />
     <state x="605" y="136" key="#com.intellij.ide.util.MemberChooser" timestamp="1606690113062">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -136,22 +179,22 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="229" y="0" key="#org.jetbrains.kotlin.idea.refactoring.safeDelete.KotlinOverridingDialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606860240084" />
-    <state width="1557" height="237" key="GridCell.Tab.0.bottom" timestamp="1606955458303">
+    <state width="1557" height="237" key="GridCell.Tab.0.bottom" timestamp="1607108752729">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="237" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606955458303" />
-    <state width="1557" height="237" key="GridCell.Tab.0.center" timestamp="1606955458303">
+    <state width="1557" height="237" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607108752729" />
+    <state width="1557" height="237" key="GridCell.Tab.0.center" timestamp="1607108752729">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="237" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606955458303" />
-    <state width="1557" height="237" key="GridCell.Tab.0.left" timestamp="1606955458303">
+    <state width="1557" height="237" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607108752729" />
+    <state width="1557" height="237" key="GridCell.Tab.0.left" timestamp="1607108752729">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="237" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606955458303" />
-    <state width="1557" height="237" key="GridCell.Tab.0.right" timestamp="1606955458303">
+    <state width="1557" height="237" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607108752729" />
+    <state width="1557" height="237" key="GridCell.Tab.0.right" timestamp="1607108752729">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="237" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606955458303" />
+    <state width="1557" height="237" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607108752729" />
     <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1606894232668">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -172,10 +215,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="280" y="4" key="SettingsEditor/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606872312184" />
-    <state x="175" y="144" width="1308" height="504" key="caller.chooser.dialog" timestamp="1606893741706">
+    <state x="175" y="144" width="1308" height="504" key="caller.chooser.dialog" timestamp="1607106161028">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="175" y="144" width="1308" height="504" key="caller.chooser.dialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606893741706" />
+    <state x="175" y="144" width="1308" height="504" key="caller.chooser.dialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607106161028" />
     <state x="504" y="322" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1606848278510">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

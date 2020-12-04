@@ -11,11 +11,7 @@ public class Json {
     static ArrayList<String> modlist = new ArrayList<>();
     static ArrayList<String> toRemove = new ArrayList<>();
     static ArrayList<String> checksums = new ArrayList<>();
-
     static String currentVersion;
-
-    static String q = File.separator;
-
     static int forgePoint, argsPoint;
 
 
@@ -32,13 +28,10 @@ public class Json {
 
         } catch (FileNotFoundException e) {
             GUI.errors.setText("Zebstrika");
-            Errors.init();
         } catch (IOException e) {
             GUI.errors.setText("Litwick");
-            Errors.init();
         } catch (JSONException e) {
             GUI.errors.setText("Sylveon");
-            Errors.init();
         }
     }
 
@@ -55,7 +48,7 @@ public class Json {
                 s.delete(0, s.length() - 1);
             } catch (JSONException e) {
                 GUI.errors.setText("Sylveon");
-                Errors.init();
+                //Errors.init();
             }
         }
         if (toPrint) {
@@ -81,7 +74,7 @@ public class Json {
     }
 
     public static void readProfileData(int mem) {
-        File launcherSettings = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
+        File launcherSettings = new File(Common.getMinecraftInstall() + Common.q + "launcher_profiles.json");
         installOptions.backup();
         if (launcherSettings.exists()) {
             try {
@@ -176,7 +169,7 @@ public class Json {
 
     public static void launcherJsonWrite(String newArgs) {
         try {
-            File launcherInfo = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
+            File launcherInfo = new File(Common.getMinecraftInstall() + Common.q + "launcher_profiles.json");
             JSONTokener fileData = new JSONTokener(new FileReader(launcherInfo));
             JSONObject launcherData = new JSONObject(fileData);
             JSONObject newLauncher = launcherData.getJSONObject("profiles");
@@ -186,7 +179,7 @@ public class Json {
             JSONObject version = launcherData.getJSONObject("launcherVersion");
             JSONObject userData = launcherData.getJSONObject("selectedUser");
 
-            String json = Driver.getMinecraftInstall() + q + "launcher_profiles.json";
+            String json = Common.getMinecraftInstall() + Common.q + "launcher_profiles.json";
             PrintWriter launcherJson = new PrintWriter(json);
 
             JSONObject newForge = newLauncher.getJSONObject("Forge");
@@ -228,24 +221,6 @@ public class Json {
             je.printStackTrace();
         }
         return returnVal;
-    }
-
-    public static void errorRead(String errorCode) {
-        String pwd = System.getProperty("user.dir");
-        File errorsDataFile = new File(pwd + q + "Modpack-Installer_lib" + q + "json" + q + "errors.json");
-        try {
-            JSONTokener fileData = new JSONTokener(new FileReader(errorsDataFile));
-            JSONObject launcherData = new JSONObject(fileData);
-            JSONObject errorInfo = launcherData.getJSONObject(errorCode);
-            Errors.severity = errorInfo.get("severity");
-            Errors.fix = errorInfo.get("fix");
-            Errors.cause = errorInfo.get("cause");
-        } catch (FileNotFoundException fnfe) {
-            GUI.errors.setText("Errors data file not found.");
-        } catch (JSONException je) {
-            GUI.errors.setText("The errors errored.");
-        }
-        Errors.makeGUI();
     }
 
     public static void libRead(File libData, ArrayList<String> list) {

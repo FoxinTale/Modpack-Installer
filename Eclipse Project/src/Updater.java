@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Updater {
     static ArrayList<String> removal = Json.getToRemove();
-    static File versionFile = new File(Driver.getMinecraftInstallLocation() + File.separator + "Modpack_Version.txt");
+    //static File versionFile = new File(Common.getMinecraftInstallLocation() + File.separator + "Modpack_Version.txt");
     static String currentVersion = "";
     static String q = File.separator;
 
@@ -60,7 +60,7 @@ public class Updater {
     }
 
     public static void removeStuff() {
-        File modsDirectory = new File(Driver.getMinecraftInstall() + q + "mods");
+        File modsDirectory = new File(Common.getMinecraftInstall() + q + "mods");
         if (removal.isEmpty() || removal.size() == 0) {
             // Do nothing. Literally.
         }
@@ -73,10 +73,10 @@ public class Updater {
 
     public static void installUpdate() {
         removeStuff();
-        File modsDirectory = new File(Driver.getMinecraftInstall() + q + "mods");
-        File configDirectory = new File(Driver.getMinecraftInstall() + q + "config");
-        File updateMods = new File(Driver.getDownloadsLocation() + q + currentVersion + q + "mods");
-        File updateConfig = new File(Driver.getDownloadsLocation() + q + currentVersion + q + "config");
+        File modsDirectory = new File(Common.getMinecraftInstall() + q + "mods");
+        File configDirectory = new File(Common.getMinecraftInstall() + q + "config");
+        File updateMods = new File(Common.getDownloadsLocation() + q + currentVersion + q + "mods");
+        File updateConfig = new File(Common.getDownloadsLocation() + q + currentVersion + q + "config");
 
         Install.copyFiles(updateMods, modsDirectory);
         Install.copyFiles(updateConfig, configDirectory);

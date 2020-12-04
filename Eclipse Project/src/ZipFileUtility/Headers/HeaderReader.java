@@ -515,7 +515,6 @@ public class HeaderReader {
 
         readExtraDataRecords(inputStream, localFileHeader);
         readZip64ExtendedInfo(localFileHeader, rawIO);
-        //readAesExtraDataRecord(localFileHeader, rawIO);
 
         if (localFileHeader.isEncrypted()) {
 

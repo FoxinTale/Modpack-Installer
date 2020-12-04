@@ -1,14 +1,10 @@
 import javax.swing.*;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Downloader {
-    static String q = File.separator;
     static File zipFile;
 
     public static void Download(URL fileLink, String zipName, int whatIs) {
@@ -28,7 +24,7 @@ public class Downloader {
                 long completeFileSize = httpConnection.getContentLength();
                 java.io.BufferedInputStream in = new java.io.BufferedInputStream(httpConnection.getInputStream());
                 java.io.FileOutputStream fos = new java.io.FileOutputStream(
-                        q + Driver.getDownloadsLocation() + q + zipName);
+                        Common.q + Common.getDownloadsLocation() + Common.q + zipName);
                 BufferedOutputStream bout = new BufferedOutputStream(fos, 1024);
                 byte[] data = new byte[1024];
                 long downloadedFileSize = 0;
@@ -47,15 +43,15 @@ public class Downloader {
 
                 System.out.println(Strings.installerDownloadComplete);
                 GUI.progress.setValue(0);
-                zipFile = new File(q + Driver.getDownloadsLocation() + q + zipName);
+                zipFile = new File(Common.q + Common.getDownloadsLocation() + Common.q + zipName);
                 switch (whatIs) {
                     case 0:
                         Checksums.checksum(zipFile, "Modpack.zip"); // Checksum it.
                         break;
                     case 1:
                         if (!Install.featuresUsed) { // Update
-                            String updateZip = Driver.getDownloadsLocation() + q + Updater.currentVersion + ".zip";
-                            String updateFolder = Driver.getDownloadsLocation() + q + Updater.currentVersion;
+                            String updateZip = Common.getDownloadsLocation() + Common.q + Updater.currentVersion + ".zip";
+                            String updateFolder = Common.getDownloadsLocation() + Common.q + Updater.currentVersion;
                             Extractor.Extract(updateZip, updateFolder, 1);
                         }
                         if (Install.featuresUsed) {
@@ -91,6 +87,20 @@ public class Downloader {
         } catch (MalformedURLException e) {
             // This...shouldn't happen, as the URL is preset and cannot be entered by the user.
             e.printStackTrace();
+        }
+    }
+
+    public static void downloadNoProgress(String url, File name){
+        //No progress because it doesn't output to the progress bar. Used for real small files like the font.
+        try (BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
+             FileOutputStream fileOutputStream = new FileOutputStream(name)) {
+            byte[] dataBuffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
+                fileOutputStream.write(dataBuffer, 0, bytesRead);
+            }
+        } catch (IOException e) {
+            // handle exception
         }
     }
 }

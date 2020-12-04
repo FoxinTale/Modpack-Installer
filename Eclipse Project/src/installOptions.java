@@ -15,13 +15,14 @@ public class installOptions extends Install {
     static int ramSizeMb;
     static int ramSizeGb;
     static Font pretty;
-    static String q = File.separator;
     static Boolean packGood = false;
-    static String modpackOptions = Driver.getDownloadsLocation() + q + "Modpack" + q + "options" + q;
+    Common co = new Common();
+
+    static String modpackOptions = Common.getDownloadsLocation() + Common.q + "Modpack" + Common.q + "options" + Common.q;
 
     public static void verifyInstall() {
-        String downloadedMods = Driver.getDownloadsLocation() + q + "Modpack" + q + "mods" + q;
-        String minecraftMods = Driver.getMinecraftInstallLocation() + q + "mods" + q;
+        String downloadedMods = Common.getDownloadsLocation() + Common.q + "Modpack" + Common.q + "mods" + Common.q;
+        String minecraftMods = Common.getMinecraftInstallLocation() + Common.q + "mods" + Common.q;
         ArrayList<String> modList = Json.getModlist();
         ArrayList<String> minecraftModsList = new ArrayList<>();
         ArrayList<String> downloadedModsList = new ArrayList<>();
@@ -35,10 +36,10 @@ public class installOptions extends Install {
                 minecraftModsList.add(item.getFileName().toString());
             });
 
-            Set<Object> listOne = new HashSet<Object>(minecraftModsList);
-            Set<Object> listTwo = new HashSet<Object>(modList);
+            Set<Object> listOne = new HashSet<>(minecraftModsList);
+            Set<Object> listTwo = new HashSet<>(modList);
 
-            Set<Object> fileCheck = new HashSet<Object>(listTwo);
+            Set<Object> fileCheck = new HashSet<>(listTwo);
             fileCheck.removeAll(listOne);
             fileCheck.remove("gammabright");
             fileCheck.remove("1.7.10");
@@ -49,7 +50,7 @@ public class installOptions extends Install {
             }
             if (fileCheck.size() != 0) {
                 for (int i = fileCheck.size(); i > 0; i--) {
-                    fixMods(q + missing.remove(i - 1));
+                    fixMods(Common.q + missing.remove(i - 1));
                 }
                 verifyInstall();
             }
@@ -60,8 +61,8 @@ public class installOptions extends Install {
     }
 
     public static void fixMods(String missingMod) {
-        File modsDirectory = new File(Driver.getMinecraftInstall() + q + "mods");
-        File packDirectory = new File(Driver.getDownloadsLocation() + q + "Modpack" + q + "mods");
+        File modsDirectory = new File(Common.getMinecraftInstall() + Common.q + "mods");
+        File packDirectory = new File(Common.getDownloadsLocation() + Common.q + "Modpack" + Common.q + "mods");
         File missingModFile;
         try {
             missingModFile = new File(packDirectory + missingMod);
@@ -73,8 +74,8 @@ public class installOptions extends Install {
     }
 
     public static void backup() {
-        File profileBackup = new File(Driver.getMinecraftInstall() + q + "profilebackup");
-        File launcherProfiles = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
+        File profileBackup = new File(Common.getMinecraftInstall() + Common.q + "profilebackup");
+        File launcherProfiles = new File(Common.getMinecraftInstall() + Common.q + "launcher_profiles.json");
         if (!profileBackup.exists()) {
             profileBackup.mkdir();
             try {
@@ -87,12 +88,12 @@ public class installOptions extends Install {
     }
 
     public static void restore() {
-        File profileBackup = new File(Driver.getMinecraftInstall() + q + "profilebackup");
-        File launcherProfiles = new File(Driver.getMinecraftInstall() + q + "launcher_profiles.json");
+        File profileBackup = new File(Common.getMinecraftInstall() + Common.q + "profilebackup");
+        File launcherProfiles = new File(Common.getMinecraftInstall() + Common.q + "launcher_profiles.json");
         File oldProfile = new File(profileBackup + File.separator + "launcher_profiles.json");
         try {
             FileUtils.forceDelete(launcherProfiles);
-            FileUtils.copyFileToDirectory(oldProfile, Driver.getMinecraftInstallLocation());
+            FileUtils.copyFileToDirectory(oldProfile, Common.getMinecraftInstallLocation());
             System.out.println(Strings.installerRestoreProfile);
             if (featuresUsed) {
                 again();

@@ -12,34 +12,34 @@ import java.nio.file.StandardCopyOption;
 public class Install {
     static int selectedOption = 0;
     static Boolean featuresUsed = false;
-    static File modpackLocation = new File(Driver.getDownloadsLocation() + Strings.q + "Modpack");
+    static File modpackLocation = new File(Common.getDownloadsLocation() + Common.q + "Modpack");
 
     public static void install() {
 
         System.out.println(Strings.installerInstallNotice);
         modpackLocation.deleteOnExit();
 
-        String minecraftPath = Driver.getMinecraftInstall();
-        File minecraftMods = new File(minecraftPath + Strings.q + "mods");
-        File minecraftConfig = new File(minecraftPath + Strings.q + "config");
-        File backups = new File(Driver.getDesktopLocation() + Strings.q + "Minecraft Stuff");
+        String minecraftPath = Common.getMinecraftInstall();
+        File minecraftMods = new File(minecraftPath + Common.q + "mods");
+        File minecraftConfig = new File(minecraftPath + Common.q + "config");
+        File backups = new File(Common.getDesktopLocation() + Common.q + "Minecraft Stuff");
         String backupsLocation = backups.getAbsolutePath();
 
-        File backupMods = new File(backupsLocation + Strings.q + "Mods");
-        File backupConfig = new File(backupsLocation + Strings.q + "Config");
-        File modpackMods = new File(modpackLocation + Strings.q + "mods");
-        File modpackConfig = new File(modpackLocation + Strings.q + "config");
+        File backupMods = new File(backupsLocation + Common.q + "Mods");
+        File backupConfig = new File(backupsLocation + Common.q + "Config");
+        File modpackMods = new File(modpackLocation + Common.q + "mods");
+        File modpackConfig = new File(modpackLocation + Common.q + "config");
 
-        Driver.folderCreate(backups);
-        Driver.folderCreate(backupMods);
-        Driver.folderCreate(backupConfig);
+        Common.folderCreate(backups);
+        Common.folderCreate(backupMods);
+        Common.folderCreate(backupConfig);
 
         moveFiles(minecraftMods, backupMods, Strings.installerBackupMods);
         moveFiles(minecraftConfig, backupConfig, Strings.installerBackupConfig);
 
         installOptions.backup();
-        Driver.folderCreate(minecraftConfig);
-        Driver.folderCreate(minecraftMods);
+        Common.folderCreate(minecraftConfig);
+        Common.folderCreate(minecraftMods);
 
         System.out.println(Strings.installerInstalling);
 
@@ -109,10 +109,10 @@ public class Install {
     }
 
     public static void checkForMinecraftandForge() {
-        String minecraftVersions = Driver.getMinecraftInstall() + Strings.q + "versions" + Strings.q;
-        String moddedJson = minecraftVersions + "1.7.10-Forge10.13.4.1614-1.7.10" + Strings.q + "1.7.10-Forge10.13.4.1614-1.7.10.json";
-        File vanillaMinecraft = new File(minecraftVersions + "1.7.10" + Strings.q + "1.7.10.jar");
-        File vanillaMinecraftConfig = new File(minecraftVersions + "1.7.10" + Strings.q + "1.7.10.json");
+        String minecraftVersions = Common.getMinecraftInstall() + Common.q + "versions" + Common.q;
+        String moddedJson = minecraftVersions + "1.7.10-Forge10.13.4.1614-1.7.10" + Common.q + "1.7.10-Forge10.13.4.1614-1.7.10.json";
+        File vanillaMinecraft = new File(minecraftVersions + "1.7.10" + Common.q + "1.7.10.jar");
+        File vanillaMinecraftConfig = new File(minecraftVersions + "1.7.10" + Common.q + "1.7.10.json");
 
         File moddedMinecraftConfig = new File(moddedJson);
 

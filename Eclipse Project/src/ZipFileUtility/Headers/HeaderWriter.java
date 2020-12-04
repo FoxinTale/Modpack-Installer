@@ -21,7 +21,6 @@ public class HeaderWriter {
 
     private static final short ZIP64_EXTRA_DATA_RECORD_SIZE_LFH = 16;
     private static final short ZIP64_EXTRA_DATA_RECORD_SIZE_FH = 28;
-    private static final short AES_EXTRA_DATA_RECORD_SIZE = 11;
 
     private RawIO rawIO = new RawIO();
     private byte[] longBuff = new byte[8];

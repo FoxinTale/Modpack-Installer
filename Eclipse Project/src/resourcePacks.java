@@ -6,14 +6,12 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class resourcePacks {
 
 	static Font pretty;
-	static String q = File.separator;
 	static int selectedOption = 0;
 	static JTextArea packInfo = new JTextArea();
 	static JScrollPane scroll = new JScrollPane(packInfo);

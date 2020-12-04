@@ -1,10 +1,8 @@
-import java.io.File;
+
 
 public class Strings {
     // Purpose of putting all the strings here is to make it easier for translations to be made.
     // If you're doing a translation, the space in front of the word must be there. The text looks squished otherwise.
-
-
 
     // Text for the GUI elements, aside from the options.
     static String downloadText = "Download.";
@@ -40,7 +38,7 @@ public class Strings {
     static String installerErrorsDefault = " Nothing to report.";
 
     // Text for an update available for the installer.
-    static String installerLatestLink = "https://api.github.com/repos/foxintale/modpack-installer/releases/latest";
+
     static String installerUpdateTitle = "Installer Update Available";
     static String installerUpdateMessage = "There's an update available for the installer. Would you like to download it?";
     static String installerUpToDate = " You have the latest version of the installer.";
@@ -134,11 +132,6 @@ public class Strings {
             + " information, go to the below link. \n" + " It will direct you to my site \n"
             + " which contains more information.\n" + " The link may take time to load.\n" + "\n"
             + " Closing this will exit the program.";
-
-
-    //Other.
-    static String q = File.separator;
-
 
     // Finalizing the installation.
     static String installerThanksMessage = "Thanks for using the installer! Now, go have fun.";

@@ -15,9 +15,7 @@ public class Checksums {
     //static Boolean checksPassed;
 
     static String cModpackSum, cResourcesSum, modpackSum, resourcesSum;
-    static String q = File.separator;
-
-    static File resourcePackDir = new File(Driver.getMinecraftInstall() + q + "resourcepacks");
+    static File resourcePackDir = new File(Common.getMinecraftInstall() + Common.q + "resourcepacks");
     static ArrayList<String> checksums = Json.getChecksums();
 
     public static void checksum(File zipFile, String zipName) {
@@ -25,13 +23,13 @@ public class Checksums {
             md5Digest = MessageDigest.getInstance("MD5");
 
             System.out.println(Strings.installerVerifyingFile);
-            zipFile = new File(Driver.getDownloadsLocation() + q + zipName);
+            zipFile = new File(Common.getDownloadsLocation() + Common.q + zipName);
             if (zipName.equals("Modpack.zip")) {
                 modpackSum = checksums.get(0);
                 cModpackSum = getFileChecksum(md5Digest, zipFile);
                 if (checkSums(modpackSum, cModpackSum)) {
                     System.out.println(Strings.installerVerificationPassed);
-                    Extractor.Extract(q + Driver.getDownloadsLocation() + q + Driver.zipFile, "Modpack", 0);
+                    Extractor.Extract(Common.q + Common.getDownloadsLocation() + Common.q + Common.zipFile, "Modpack", 0);
                 }
                 if (!checkSums(modpackSum, cModpackSum)) {
                     Downloader.redownloadModpack();
@@ -58,10 +56,8 @@ public class Checksums {
         } catch (NoSuchAlgorithmException e) {
             // This should never, ever happen. Java required this catch.
             GUI.errors.setText("Blastoise");
-            Errors.init();
         } catch (IOException e) {
             GUI.errors.setText("Glameow");
-            Errors.init();
         }
     }
 
@@ -123,7 +119,6 @@ public class Checksums {
             }
         } catch (IOException e) {
             GUI.errors.setText("Luxray");
-            Errors.init();
         }
     }
 

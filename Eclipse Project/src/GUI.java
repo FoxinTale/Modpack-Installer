@@ -3,21 +3,19 @@ import GUI.RoundedPanel;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/*
- * Let's be honest, this class does document itself, for the most part.
- */
+// Let's be honest, this class does document itself, for the most part.
+
 public class GUI {
     static JProgressBar progress = new JProgressBar();
     static JTextArea consoleOutput = new JTextArea();
     static JScrollPane scroll = new JScrollPane(consoleOutput);
     static JTextField errors = new JTextField(Strings.installerErrorsDefault);
-    static JButton errorLookup = new JButton("!!!");
     static String installerVersionValue = "1.0";
 
     public static void launchGUI() {
+        Common.getFont();
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -57,85 +55,71 @@ public class GUI {
         JPanel optionsPanel = new RoundedPanel(10, rbc);
         JPanel resourcePanel = new RoundedPanel(10, rbc);
 
-        ActionListener radioButtonEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                AbstractButton absButton = (AbstractButton) ae.getSource();
-                String selection = absButton.getText();
-                Boolean validPack = null;
-                switch (selection) {
-                    case "Do it for me.":
-                        validPack = true;
-                        Driver.setSelectedOption(1);
-                        button.setText(Strings.downloadText);
-                        break;
-                    case "Just download the zip file.":
-                        Driver.setSelectedOption(2);
-                        button.setText(Strings.downloadText);
-                        validPack = true;
-                        break;
-                    case "Update.":
-                        Driver.updateTime = true;
-                        Driver.setSelectedOption(3);
-                        button.setText(Strings.downloadText);
-                        validPack = true;
-                        break;
-                    case "Other Features.":
-                        Driver.setSelectedOption(4);
-                        button.setText("Next");
-                        validPack = true;
-                        break;
-                    case "Get Resource Pack.":
-                        Driver.setSelectedOption(5);
-                        button.setText("Next");
-                        validPack = true;
-                        break;
-                    default:
-                        break;
-                }
-                if (!validPack) {
-                    errors.setText(" Garchomp");
-                    Errors.init();
-                }
+        ActionListener radioButtonEvent = ae -> {
+            AbstractButton absButton = (AbstractButton) ae.getSource();
+            String selection = absButton.getText();
+            Boolean validPack = false;
+            switch (selection) {
+                case "Do it for me.":
+                    validPack = true;
+                    Driver.setSelectedOption(1);
+                    button.setText(Strings.downloadText);
+                    break;
+                case "Just download the zip file.":
+                    Driver.setSelectedOption(2);
+                    button.setText(Strings.downloadText);
+                    validPack = true;
+                    break;
+                case "Update.":
+                    Driver.updateTime = true;
+                    Driver.setSelectedOption(3);
+                    button.setText(Strings.downloadText);
+                    validPack = true;
+                    break;
+                case "Other Features.":
+                    Driver.setSelectedOption(4);
+                    button.setText("Next");
+                    validPack = true;
+                    break;
+                case "Get Resource Pack.":
+                    Driver.setSelectedOption(5);
+                    button.setText("Next");
+                    validPack = true;
+                    break;
+                default:
+                    break;
             }
-        };
-        ActionListener buttonEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int op = Driver.getSelectedOption();
-                switch (op) {
-                    case 1:
-                    case 2:
-                        radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
-                        Json.readLists();
-                        //beginDownload(button);
-                        break;
-                    case 3:
-                        radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
-                        Json.readLists();
-                        Updater.updater();
-                        break;
-                    case 4:
-                        radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
-                        Json.readLists();
-                        optionsGUI.otherOptionsGUI();
-                        Install.featuresUsed = true;
-                        break;
-                    case 5:
-                        radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
-                        Json.readLists();
-                        resourcePacks.packGUI();
-                        break;
-                    default:
-                        break;
-                }
+            if (!validPack) {
+                errors.setText(" Garchomp");
             }
         };
 
-        ActionListener errorsEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(" Opening errors dilogue...");
-                Errors.makeGUI();
+        ActionListener buttonEvent = e -> {
+            int op = Driver.getSelectedOption();
+            switch (op) {
+                case 1: // Download, extract and install the pack.
+                    radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
+                    break;
+                case 2: //Just download the zip files.
+                    radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
+                    break;
+                case 3: // Get the resource packs.
+                    radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
+                    //Json.readLists();
+                    resourcePacks.packGUI();
+                    break;
+                case 4: // Look at the other options.
+                    radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
+                    Json.readLists();
+                    optionsGUI.otherOptionsGUI();
+                    Install.featuresUsed = true;
+                    break;
+                default:
+                    break;
             }
         };
+
+        // Colors for the light background. Probably not meant to be used this way, but...whatever.
         Color lightRed = new Color(255, 188, 188);
         Color lightOrange = new Color(255, 216, 158, 255);
         Color lightYellow = new Color(255, 255, 200);
@@ -167,7 +151,6 @@ public class GUI {
         lightBluePanel.setBounds(280, 0, 70, 575);
         lightPurplePanel.setBounds(350, 0, 70, 575);
         lightVioletPanel.setBounds(420, 0, 70,575);
-        errorLookup.setBounds(415, 300, 50, 50); // x axis, y axis, width, height
         scroll.setBounds(30, 20, 400, 200);
         modpackOne.setBounds(120, 235, 200, 15);
         modpackPanel.setBounds(115, 230, 250, 25);
@@ -182,6 +165,11 @@ public class GUI {
         button.setBounds(325, 475, 100, 25);
         errors.setBounds(75, 440, 350, 20);
         errorsLabel.setBounds(25, 440, 50, 20);
+
+        modpackOne.setFont(Common.pretty);
+        downloadOption.setFont(Common.pretty);
+        resourceOption.setFont(Common.pretty);
+        otherOptions.setFont(Common.pretty);
 
         modpackPanel.add(modpackOne);
         downloadPanel.add(downloadOption);
@@ -201,7 +189,6 @@ public class GUI {
         otherOptions.addActionListener(radioButtonEvent);
         resourceOption.addActionListener(radioButtonEvent);
         button.addActionListener(buttonEvent);
-        errorLookup.addActionListener(errorsEvent);
 
         // Adding all the elements to the frame.
         frame.add(button);
@@ -219,7 +206,6 @@ public class GUI {
         frame.add(installerVersion);
         frame.add(resourceOption);
         frame.add(resourcePanel);
-        frame.add(errorLookup);
         frame.add(lightRedPanel);
         frame.add(lightOrangePanel);
         frame.add(lightYellowPanel);
@@ -228,10 +214,8 @@ public class GUI {
         frame.add(lightPurplePanel);
         frame.add(lightVioletPanel);
 
-        errorLookup.setVisible(false);
         frame.setSize(480, 575);
         frame.setResizable(false);
-
         frame.setLayout(null);// using no layout managers
         frame.setVisible(true);// making the frame visible
     }

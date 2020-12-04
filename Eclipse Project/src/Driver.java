@@ -1,7 +1,6 @@
 import GUI.CustomOutputStream;
 
 import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URL;
@@ -22,21 +21,9 @@ import java.net.URL;
  */
 
 public class Driver {
-
-    static String zipFile = "Modpack.zip"; //This will get deleted soon, as it's no longer called this anymore.
-    static int installProgress = 0;
     static int selectedOption = 0;
     static Boolean updateTime = false;
-    static Boolean musicPack = false;
-
-
-    private static File minecraftInstallLocation = null;
-    private static String minecraftInstall = null;
-    private static String downloadsLocation = null;
-    private static String desktopLocation = null;
-    private static String minecraftDefaultInstall = null;
     public static URL installerUpdateLink;
-
     private static PrintStream standardOut; // This sets the outputs.
 
     public static void main(String[] args) throws IOException {
@@ -46,14 +33,13 @@ public class Driver {
         System.setOut(printStream);
         System.setErr(printStream);
         Boolean validOS = false;
-        installerUpdateLink = new URL(Strings.installerLatestLink);
+        installerUpdateLink = new URL(Common.installerLatestLink);
         String OS = System.getProperty("os.name"); // This gets the name of the current operating system.
         if (OS.equals("Windows 10") || OS.equals("Windows 8.1") || OS.equals("Windows 7")) {
             // For modern Windows systems
             validOS = true;
             osDetect.isWindows();
             //Install.checkForMinecraftandForge();
-            //Json.installerUpdateCheck();
             //Updater.installerUpdateCheck();
             GUI.launchGUI();
         }
@@ -89,59 +75,9 @@ public class Driver {
         }
     }
 
-    // This explains itself. I decided on a function because otherwise this would
-    // have been repeated many times, taking up space in the code.
-    public static void folderCreate(File folder) {
-        if (!folder.exists()) {
-            folder.mkdir();
-        }
-    }
-
-    // Just your average getters and setters... Nothing interesting to see.
-    public static File getMinecraftInstallLocation() {
-        return minecraftInstallLocation;
-    }
-
-    public static void setMinecraftInstallLocation(File minecraftInstallLocation) {
-        Driver.minecraftInstallLocation = minecraftInstallLocation;
-    }
-
-    public static String getMinecraftInstall() {
-        return minecraftInstall;
-    }
-
-    public static void setMinecraftInstall(String minecraftInstall) {
-        Driver.minecraftInstall = minecraftInstall;
-    }
-
-    public static String getDownloadsLocation() {
-        return downloadsLocation;
-    }
-
-    public static void setDownloadsLocation(String downloadsLocation) {
-        Driver.downloadsLocation = downloadsLocation;
-    }
-
-    public static String getDesktopLocation() {
-        return desktopLocation;
-    }
-
-    public static void setDesktopLocation(String desktopLocation) {
-        Driver.desktopLocation = desktopLocation;
-    }
-
-    public static String getMinecraftDefaultInstall() {
-        return minecraftDefaultInstall;
-    }
-
-    public static void setMinecraftDefaultInstall(String minecraftDefaultInstall) {
-        Driver.minecraftDefaultInstall = minecraftDefaultInstall;
-    }
-
     public static int getSelectedOption() {
         return selectedOption;
     }
-
     public static void setSelectedOption(int selectedOption) {
         Driver.selectedOption = selectedOption;
     }

@@ -1,19 +1,10 @@
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.WindowConstants;
-import javax.swing.border.LineBorder;
 
 public class modOptions extends installOptions {
 
@@ -24,9 +15,8 @@ public class modOptions extends installOptions {
     static JTextArea modInfo = new JTextArea();
     static JScrollPane scroll = new JScrollPane(modInfo);
     static Font pretty;
-    static String q = File.separator;
-    static String installFolder = Driver.getDownloadsLocation() + q + "Modpack" + q + "extras" + q;
-    static File modsDir = new File(Driver.getMinecraftInstallLocation() + q + "mods");
+    static String installFolder = Common.getDownloadsLocation() + Common.q + "Modpack" + Common.q + "extras" + Common.q;
+    static File modsDir = new File(Common.getMinecraftInstallLocation() + Common.q + "mods");
     static String s;
 
     public static void modOptionsGui() {
@@ -48,7 +38,7 @@ public class modOptions extends installOptions {
         JButton install = new JButton("Install!");
         JButton nope = new JButton("Nah, I'm good.");
 
-        modsDir = new File(Driver.getMinecraftInstallLocation() + q + "mods" + q);
+        modsDir = new File(Common.getMinecraftInstallLocation() + "mods" + Common.q);
 
         modInfo.setLineWrap(true);
         frame.getContentPane().add(scroll);
@@ -134,8 +124,8 @@ public class modOptions extends installOptions {
 
         ActionListener installEvent = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String ambiance = modpackOptions + "ambiance" + q;
-                String utility = modpackOptions + "utility" + q;
+                String ambiance = modpackOptions + "ambiance" + Common.q;
+                String utility = modpackOptions + "utility" + Common.q;
                 if (useController) {
                     System.out.println(" Controller support installed");
                     modInstall(utility, "JoypadMod-1.7.10.jar");
@@ -174,14 +164,13 @@ public class modOptions extends installOptions {
         };
 
         try {
-            pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")).deriveFont(16f);
+            pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + Common.q + "Font.ttf")).deriveFont(16f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + q + "Font.ttf")));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + Common.q + "Font.ttf")));
         } catch (IOException e) {
             // If the font could not be found. Not really bothersome.
         } catch (FontFormatException e) {
             GUI.errors.setText("Uxie");
-            Errors.init();
         }
 
         nope.setFont(pretty);
@@ -203,7 +192,6 @@ public class modOptions extends installOptions {
         surroundingsCheck.addActionListener(surroundingsEvent);
         filterCheck.addActionListener(filtersEvent);
         footstepCheck.addActionListener(footstepsEvent);
-        ;
         autofishCheck.addActionListener(autofishEvent);
         noteblockCheck.addActionListener(noteblockEvent);
         brightCheck.addActionListener(brightEvent);
@@ -256,7 +244,7 @@ public class modOptions extends installOptions {
     }
 
     public static void animatedInstall() {
-        String animatedOption = modpackOptions + "animations" + q;
+        String animatedOption = modpackOptions + "animations" + Common.q;
         File main = new File(animatedOption + "SmartMoving-1.7.10-15.6.jar");
         File apiOne = new File(animatedOption + "PlayerAPI-1.7.10-1.4.jar");
         File apiTwo = new File(animatedOption + "SmartRender-1.7.10-2.1.jar");

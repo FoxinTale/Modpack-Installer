@@ -4,18 +4,16 @@ import ZipFileUtility.ZipFile;
 import java.io.File;
 
 public class Extractor {
-    static String q = File.separator;
-
     public static void Extract(String fileLocation, String name, int op) {
 
-        File modpack = new File(Driver.getDownloadsLocation() + q + "Modpack");
+        File modpack = new File(Common.getDownloadsLocation() + Common.q + "Modpack");
         if (modpack.exists()) {
             modpack.delete();
             // This deletes a modpack folder in the downloads if it exists already.
             // If this wasn't done, the extract would fail.
         }
 
-        String folderPath = Driver.getDownloadsLocation() + q + name + q;
+        String folderPath = Common.getDownloadsLocation() + Common.q + name + Common.q;
         switch (op) {
             case 0: // Modpack
                 System.out.println(Strings.installerExtractNotice);
@@ -40,7 +38,6 @@ public class Extractor {
             zipFile.extractAll(extractFolder);
         } catch (ZipException e) {
             GUI.errors.setText("Kyogre");
-            Errors.init();
         }
         System.out.println(" Extraction complete.");
         switch (op) {

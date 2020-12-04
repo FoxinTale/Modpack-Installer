@@ -43,8 +43,8 @@ public class InstallerSanityChecks {
             case 6:
                 System.out.println(" Running checksum verification.");
                 String zipName = "Modpack.zip";
-                File zipFile = new File(q + Driver.getDownloadsLocation() + q + zipName);
-                Checksums.checksum(zipFile, zipName);
+                //File zipFile = new File(q + Driver.getDownloadsLocation() + q + zipName);
+                //Checksums.checksum(zipFile, zipName);
                 break;
             case 7:
                 Install.install();
@@ -52,7 +52,6 @@ public class InstallerSanityChecks {
             case 8:
                 GUI.launchGUI();
                 GUI.errors.setText("Sylveon");
-                Errors.init();
                 break;
             case 9:
                 String dir = System.getProperty("user.dir") + q + "Modpack-Installer_lib";

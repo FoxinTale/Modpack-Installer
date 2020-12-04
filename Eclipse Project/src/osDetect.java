@@ -33,20 +33,20 @@ public class osDetect {
 
     public static void locationCheck(File downloads, File minecraftDefaultPath, File desktop) {
         if (downloads.exists()) {
-            Driver.setDownloadsLocation(downloads.getAbsolutePath());
+            Common.setDownloadsLocation(downloads.getAbsolutePath());
         }
         if (!downloads.exists()) {
             noDownloads(downloads);
         }
         if (minecraftDefaultPath.exists()) {
-            Driver.setMinecraftInstall(minecraftDefaultPath.getAbsolutePath());
-            Driver.setMinecraftInstallLocation(minecraftDefaultPath);
+            Common.setMinecraftInstall(minecraftDefaultPath.getAbsolutePath());
+            Common.setMinecraftInstallLocation(minecraftDefaultPath);
         }
         if (!minecraftDefaultPath.exists()) {
             noMinecraft(minecraftDefaultPath);
         }
         if (desktop.exists()) {
-            Driver.setDesktopLocation(desktop.getAbsolutePath());
+            Common.setDesktopLocation(desktop.getAbsolutePath());
         }
         if (!desktop.exists()) {
             noDesktop(desktop);
@@ -56,22 +56,22 @@ public class osDetect {
     public static void noDownloads(File downloads) {
         String message = "Unable to locate downloads folder.";
         JOptionPane.showMessageDialog(new JFrame(), message, "Downloads not Found.", JOptionPane.ERROR_MESSAGE);
-        Driver.setDownloadsLocation(
+        Common.setDownloadsLocation(
                 findFolder(downloads.getPath(), "Where is the pack going to go?", "Pack home search cancelled"));
     }
 
     public static void noMinecraft(File minecraftDefaultPath) {
         String message = "Unable to locate Minecraft install directory. Click OK to manually locate it";
         JOptionPane.showMessageDialog(new JFrame(), message, "Minecraft Not Found.", JOptionPane.ERROR_MESSAGE);
-        Driver.setMinecraftInstall(findFolder(minecraftDefaultPath.getPath(),
+        Common.setMinecraftInstall(findFolder(minecraftDefaultPath.getPath(),
                 "Cannot continue without Minecraft install!", "Install Search Cancelled"));
-        Driver.setMinecraftInstallLocation(loc);
+        Common.setMinecraftInstallLocation(loc);
     }
 
     public static void noDesktop(File desktop) {
         String message = "For some reason, your desktop could not be found. Click ok to point this to it.";
         JOptionPane.showMessageDialog(new JFrame(), message, "Desktop 404", JOptionPane.ERROR_MESSAGE);
-        Driver.setDesktopLocation(
+        Common.setDesktopLocation(
                 findFolder(desktop.getPath(), "This is needed for the installation...", "Desktop Search Cancelled"));
     }
 
