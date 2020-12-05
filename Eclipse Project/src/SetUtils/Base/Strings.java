@@ -2,7 +2,6 @@ package SetUtils.Base;
 
 import SetUtils.Annotations.GwtCompatible;
 import SetUtils.Annotations.Nullable;
-import SetUtils.Annotations.VisibleForTesting;
 
 import java.util.logging.Logger;
 
@@ -48,32 +47,6 @@ public final class Strings {
         }
         System.arraycopy(array, 0, array, n, size - n);
         return new String(array);
-    }
-
-
-    public static String commonSuffix(CharSequence a, CharSequence b) {
-        Preconditions.checkNotNull(a);
-        Preconditions.checkNotNull(b);
-
-        int maxSuffixLength = Math.min(a.length(), b.length());
-        int s = 0;
-        while (s < maxSuffixLength && a.charAt(a.length() - s - 1) == b.charAt(b.length() - s - 1)) {
-            s++;
-        }
-        if (validSurrogatePairAt(a, a.length() - s - 1)
-                || validSurrogatePairAt(b, b.length() - s - 1)) {
-            s--;
-        }
-        return a.subSequence(a.length() - s, a.length()).toString();
-    }
-
-
-    @VisibleForTesting
-    static boolean validSurrogatePairAt(CharSequence string, int index) {
-        return index >= 0
-                && index <= (string.length() - 2)
-                && Character.isHighSurrogate(string.charAt(index))
-                && Character.isLowSurrogate(string.charAt(index + 1));
     }
 
 

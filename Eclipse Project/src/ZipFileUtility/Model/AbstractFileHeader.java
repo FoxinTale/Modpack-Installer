@@ -15,7 +15,6 @@ public abstract class AbstractFileHeader extends ZipHeader {
     private int extraFieldLength;
     private String fileName;
     private boolean isEncrypted;
-    private EncryptionMethod encryptionMethod = EncryptionMethod.NONE;
     private boolean dataDescriptorExists;
     private Zip64ExtendedInfo zip64ExtendedInfo;
     private boolean fileNameUTF8Encoded;
@@ -25,115 +24,82 @@ public abstract class AbstractFileHeader extends ZipHeader {
     public int getVersionNeededToExtract() {
         return versionNeededToExtract;
     }
-
     public void setVersionNeededToExtract(int versionNeededToExtract) {
         this.versionNeededToExtract = versionNeededToExtract;
     }
-
     public byte[] getGeneralPurposeFlag() {
         return generalPurposeFlag;
     }
-
     public void setGeneralPurposeFlag(byte[] generalPurposeFlag) {
         this.generalPurposeFlag = generalPurposeFlag;
     }
-
     public CompressionMethod getCompressionMethod() {
         return compressionMethod;
     }
-
     public void setCompressionMethod(CompressionMethod compressionMethod) {
         this.compressionMethod = compressionMethod;
     }
-
     public long getLastModifiedTime() {
         return lastModifiedTime;
     }
-
     public void setLastModifiedTime(long lastModifiedTime) {
         this.lastModifiedTime = lastModifiedTime;
     }
-
     public long getCrc() {
         return crc;
     }
-
     public void setCrc(long crc) {
         this.crc = crc;
     }
-
     public long getCompressedSize() {
         return compressedSize;
     }
-
     public void setCompressedSize(long compressedSize) {
         this.compressedSize = compressedSize;
     }
-
     public long getUncompressedSize() {
         return uncompressedSize;
     }
-
     public void setUncompressedSize(long uncompressedSize) {
         this.uncompressedSize = uncompressedSize;
     }
-
     public int getFileNameLength() {
         return fileNameLength;
     }
-
     public void setFileNameLength(int fileNameLength) {
         this.fileNameLength = fileNameLength;
     }
-
     public int getExtraFieldLength() {
         return extraFieldLength;
     }
-
     public void setExtraFieldLength(int extraFieldLength) {
         this.extraFieldLength = extraFieldLength;
     }
-
     public String getFileName() {
         return fileName;
     }
-
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
-
     public boolean isEncrypted() {
         return isEncrypted;
     }
-
     public void setEncrypted(boolean encrypted) {
         isEncrypted = encrypted;
     }
-
-    public EncryptionMethod getEncryptionMethod() {
-        return encryptionMethod;
-    }
-
-    public void setEncryptionMethod(EncryptionMethod encryptionMethod) {
-        this.encryptionMethod = encryptionMethod;
-    }
-
+    public void setEncryptionMethod() { }
     public boolean isDataDescriptorExists() {
         return dataDescriptorExists;
     }
-
     public void setDataDescriptorExists(boolean dataDescriptorExists) {
         this.dataDescriptorExists = dataDescriptorExists;
     }
-
     public Zip64ExtendedInfo getZip64ExtendedInfo() {
         return zip64ExtendedInfo;
     }
-
     public void setZip64ExtendedInfo(Zip64ExtendedInfo zip64ExtendedInfo) {
         this.zip64ExtendedInfo = zip64ExtendedInfo;
     }
-
     public boolean isFileNameUTF8Encoded() {
         return fileNameUTF8Encoded;
     }

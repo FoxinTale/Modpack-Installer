@@ -14,9 +14,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.zip.CRC32;
-import java.util.zip.CheckedInputStream;
-import java.util.zip.Checksum;
 
 
 public class FileUtils {
@@ -32,34 +29,7 @@ public class FileUtils {
     public static final BigInteger ONE_PB_BI = ONE_KB_BI.multiply(ONE_TB_BI);
     public static final long ONE_EB = ONE_KB * ONE_PB;
     public static final BigInteger ONE_EB_BI = ONE_KB_BI.multiply(ONE_PB_BI);
-    public static final BigInteger ONE_ZB = BigInteger.valueOf(ONE_KB).multiply(BigInteger.valueOf(ONE_EB));
-    public static final BigInteger ONE_YB = ONE_KB_BI.multiply(ONE_ZB);
     public static final File[] EMPTY_FILE_ARRAY = new File[0];
-
-    public static String byteCountToDisplaySize(final BigInteger size) {
-        String displaySize;
-
-        if (size.divide(ONE_EB_BI).compareTo(BigInteger.ZERO) > 0) {
-            displaySize = String.valueOf(size.divide(ONE_EB_BI)) + " EB";
-        } else if (size.divide(ONE_PB_BI).compareTo(BigInteger.ZERO) > 0) {
-            displaySize = String.valueOf(size.divide(ONE_PB_BI)) + " PB";
-        } else if (size.divide(ONE_TB_BI).compareTo(BigInteger.ZERO) > 0) {
-            displaySize = String.valueOf(size.divide(ONE_TB_BI)) + " TB";
-        } else if (size.divide(ONE_GB_BI).compareTo(BigInteger.ZERO) > 0) {
-            displaySize = String.valueOf(size.divide(ONE_GB_BI)) + " GB";
-        } else if (size.divide(ONE_MB_BI).compareTo(BigInteger.ZERO) > 0) {
-            displaySize = String.valueOf(size.divide(ONE_MB_BI)) + " MB";
-        } else if (size.divide(ONE_KB_BI).compareTo(BigInteger.ZERO) > 0) {
-            displaySize = String.valueOf(size.divide(ONE_KB_BI)) + " KB";
-        } else {
-            displaySize = String.valueOf(size) + " bytes";
-        }
-        return displaySize;
-    }
-
-    public static String byteCountToDisplaySize(final long size) {
-        return byteCountToDisplaySize(BigInteger.valueOf(size));
-    }
 
 
     private static File checkDirectory(final File directory) {
@@ -86,20 +56,6 @@ public class FileUtils {
         if (!source.exists()) {
             throw new FileNotFoundException("Source '" + source + "' does not exist");
         }
-    }
-
-    public static Checksum checksum(final File file, final Checksum checksum) throws IOException {
-        if (file.isDirectory()) {
-            throw new IllegalArgumentException("Checksums can't be computed on directories");
-        }
-        try (InputStream in = new CheckedInputStream(new FileInputStream(file), checksum)) {
-            IOUtils.consume(in);
-        }
-        return checksum;
-    }
-
-    public static long checksumCRC32(final File file) throws IOException {
-        return checksum(file, new CRC32()).getValue();
     }
 
     public static void cleanDirectory(final File directory) throws IOException {
@@ -178,11 +134,11 @@ public class FileUtils {
 
     public static void copyDirectoryToDirectory(final File sourceDir, final File destinationDir) throws IOException {
         Objects.requireNonNull(sourceDir, "sourceDir");
-        if (sourceDir.exists() && sourceDir.isDirectory() == false) {
+        if (sourceDir.exists() && !sourceDir.isDirectory()) {
             throw new IllegalArgumentException("Source '" + sourceDir + "' is not a directory");
         }
         Objects.requireNonNull(destinationDir, "destinationDir");
-        if (destinationDir.exists() && destinationDir.isDirectory() == false) {
+        if (destinationDir.exists() && !destinationDir.isDirectory()) {
             throw new IllegalArgumentException("Destination '" + destinationDir + "' is not a directory");
         }
         copyDirectory(sourceDir, new File(destinationDir, sourceDir.getName()), true);
@@ -212,7 +168,7 @@ public class FileUtils {
                 throw new IOException("Destination '" + parentFile + "' directory cannot be created");
             }
         }
-        if (destFile.exists() && destFile.canWrite() == false) {
+        if (destFile.exists() && !destFile.canWrite()) {
             throw new IOException("Destination '" + destFile + "' exists but is read-only");
         }
         doCopyFile(srcFile, destFile, preserveFileDate, copyOptions);
@@ -232,7 +188,7 @@ public class FileUtils {
     public static void copyFileToDirectory(final File sourceFile, final File destinationDir, final boolean preserveFileDate)
             throws IOException {
         Objects.requireNonNull(destinationDir, "destinationDir");
-        if (destinationDir.exists() && destinationDir.isDirectory() == false) {
+        if (destinationDir.exists() && !destinationDir.isDirectory()) {
             throw new IllegalArgumentException("Destination '" + destinationDir + "' is not a directory");
         }
         final File destFile = new File(destinationDir, sourceFile.getName());
@@ -295,7 +251,7 @@ public class FileUtils {
                             i += 3;
                         } while (i < n && url.charAt(i) == '%');
                         continue;
-                    } catch (final RuntimeException e) {
+                    } catch (final RuntimeException ignored) {
                     } finally {
                         if (bytes.position() > 0) {
                             bytes.flip();
@@ -661,7 +617,7 @@ public class FileUtils {
             if (file.isDirectory()) {
                 throw new IOException("File '" + file + "' exists but is a directory");
             }
-            if (file.canWrite() == false) {
+            if (!file.canWrite()) {
                 throw new IOException("File '" + file + "' cannot be written to");
             }
         } else {
@@ -789,7 +745,7 @@ public class FileUtils {
         for (int i = 0; i < urls.length; i++) {
             final URL url = urls[i];
             if (url != null) {
-                if (url.getProtocol().equals("file") == false) {
+                if (!url.getProtocol().equals("file")) {
                     throw new IllegalArgumentException(
                             "URL could not be converted to a File: " + url);
                 }
@@ -817,7 +773,6 @@ public class FileUtils {
 
     public static URL[] toURLs(final File... files) throws IOException {
         final URL[] urls = new URL[files.length];
-
         for (int i = 0; i < urls.length; i++) {
             urls[i] = files[i].toURI().toURL();
         }
@@ -877,13 +832,6 @@ public class FileUtils {
         write(file, data, Charsets.toCharset(charsetName), append);
     }
 
-    public static void writeByteArrayToFile(final File file, final byte[] data, final int off, final int len,
-                                            final boolean append) throws IOException {
-        try (OutputStream out = openOutputStream(file, append)) {
-            out.write(data, off, len);
-        }
-    }
-
     @Deprecated
     public static void writeStringToFile(final File file, final String data) throws IOException {
         writeStringToFile(file, data, Charset.defaultCharset(), false);
@@ -900,7 +848,6 @@ public class FileUtils {
             IOUtils.write(data, out, charset);
         }
     }
-
 
     public FileUtils() {
     }

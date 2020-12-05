@@ -23,6 +23,6 @@ public class FileEqualsFileFilter extends AbstractFileFilter {
 
     @Override
     public FileVisitResult accept(final Path path, final BasicFileAttributes attributes) {
-        return toFileVisitResult(Objects.equals(this.path, path), path);
+        return toFileVisitResult(Objects.equals(this.path, path));
     }
 }

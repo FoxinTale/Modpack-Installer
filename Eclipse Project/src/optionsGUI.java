@@ -2,7 +2,6 @@ import GUI.RoundedPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class optionsGUI extends installOptions {
@@ -40,61 +39,57 @@ public class optionsGUI extends installOptions {
         restoreSettings.setBackground(rbc);
         optionalMods.setBackground(rbc);
 
-        ActionListener radioButtonEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                AbstractButton absButton = (AbstractButton) ae.getSource();
-                String selection = absButton.getText();
-                switch (selection) {
-                    case "Extract.":
-                        selectedOption = 1;
-                        break;
-                    case "Set Memory.":
-                        selectedOption = 2;
-                        break;
-                    case "Ping Server.":
-                        selectedOption = 3;
-                        break;
-                    case "Restore Settings.":
-                        selectedOption = 4;
-                        break;
-                    case "Optional Mods.":
-                        selectedOption = 5;
-                        break;
-                    default:
-                        break;
-                }
+        ActionListener radioButtonEvent = ae -> {
+            AbstractButton absButton = (AbstractButton) ae.getSource();
+            String selection = absButton.getText();
+            switch (selection) {
+                case "Extract.":
+                    selectedOption = 1;
+                    break;
+                case "Set Memory.":
+                    selectedOption = 2;
+                    break;
+                case "Ping Server.":
+                    selectedOption = 3;
+                    break;
+                case "Restore Settings.":
+                    selectedOption = 4;
+                    break;
+                case "Optional Mods.":
+                    selectedOption = 5;
+                    break;
+                default:
+                    break;
             }
         };
 
-        ActionListener buttonEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                switch (selectedOption) {
-                    case 1:
-                        radioSet(extract, launcher, ping, restoreSettings, optionalMods);
-                        System.out.println(" Extracting File...");
-                        Extractor.Extract(Common.q + Common.getDownloadsLocation() + Common.q + Common.zipFile, "Modpack", 0);
-                        break;
-                    case 2:
-                        radioSet(extract, launcher, ping, restoreSettings, optionalMods);
-                        Memory.sliderGUI();
-                        break;
-                    case 3:
-                        radioSet(extract, launcher, ping, restoreSettings, optionalMods);
-                        System.out.println(" Pinging Server...");
-                        serverPing();
-                        break;
-                    case 4:
-                        radioSet(extract, launcher, ping, restoreSettings, optionalMods);
-                        restore();
-                        break;
+        ActionListener buttonEvent = e -> {
+            switch (selectedOption) {
+                case 1:
+                    radioSet(extract, launcher, ping, restoreSettings, optionalMods);
+                    System.out.println(" Extracting File...");
+                    Extractor.Extract(Common.q + Common.getDownloadsLocation() + Common.q + Common.zipFile, "Modpack", 0);
+                    break;
+                case 2:
+                    radioSet(extract, launcher, ping, restoreSettings, optionalMods);
+                    Memory.sliderGUI();
+                    break;
+                case 3:
+                    radioSet(extract, launcher, ping, restoreSettings, optionalMods);
+                    System.out.println(" Pinging Server...");
+                    serverPing();
+                    break;
+                case 4:
+                    radioSet(extract, launcher, ping, restoreSettings, optionalMods);
+                    restore();
+                    break;
 
-                    case 5:
-                        radioSet(extract, launcher, ping, restoreSettings, optionalMods);
-                        modOptions.modOptionsGui();
-                        break;
-                    default:
-                        break;
-                }
+                case 5:
+                    radioSet(extract, launcher, ping, restoreSettings, optionalMods);
+                    modOptions.modOptionsGui();
+                    break;
+                default:
+                    break;
             }
         };
 
@@ -103,6 +98,12 @@ public class optionsGUI extends installOptions {
         extract.addActionListener(radioButtonEvent);
         restoreSettings.addActionListener(radioButtonEvent);
         optionalMods.addActionListener(radioButtonEvent);
+
+        ping.setFont(Common.pretty);
+        launcher.setFont(Common.pretty);
+        extract.setFont(Common.pretty);
+        restoreSettings.setFont(Common.pretty);
+        optionalMods.setFont(Common.pretty);
 
         go.addActionListener(buttonEvent);
 

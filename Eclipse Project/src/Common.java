@@ -16,21 +16,24 @@ public class Common {
 
     // Links.
     static String installerLatestLink = "https://api.github.com/repos/foxintale/modpack-installer/releases/latest";
-    static String fontLink = "https://srv-store4.gofile.io/download/DTVnwf/Font.ttf";
-    static String modpackLargeLink = "";
-    static String modpackSmallerLink = "";
+    static String fontLink = "https://srv-store1.gofile.io/download/7cQzQT/InstallerFont.ttf";
+    static String modpackPartOneLink = "https://api.github.com/repos/foxintale/minecraft-modpack/releases/latest";
+    static String modpackPartTwoLink = "https://api.github.com/repos/foxintale/modpack-bigmods/releases/latest";
     static String resourcePackTexturesLink = "";
 
+
+    // Versions.
+    static String modpackVersion = "";
     public static void getFont(){
         try {
 
-            File fontFile = new File(System.getProperty("user.dir")+ File.separator + "Font.ttf");
+            File fontFile = new File(System.getProperty("user.dir")+ File.separator + "InstallerFont.ttf");
             if(!fontFile.exists()) {
                 Downloader.downloadNoProgress(fontLink, fontFile);
             }
-            pretty = Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir") + File.separator + "Font.ttf")).deriveFont(16f);
+            pretty = Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir") + File.separator + "InstallerFont.ttf")).deriveFont(16f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir") + File.separator + "Font.ttf")));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir") + File.separator + "InstallerFont.ttf")));
             fontFile.deleteOnExit();
         } catch (IOException e) {
 

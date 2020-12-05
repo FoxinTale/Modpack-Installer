@@ -12,7 +12,6 @@ public interface Function<F, T> extends java.util.function.Function<F, T> {
     @Nullable
     T apply(@Nullable F input);
 
-
     @Override
     boolean equals(@Nullable Object object);
 }

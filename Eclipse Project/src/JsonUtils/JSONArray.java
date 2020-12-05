@@ -11,7 +11,7 @@ public class JSONArray implements Iterable<Object> {
     private final ArrayList<Object> myArrayList;
 
     public JSONArray() {
-        this.myArrayList = new ArrayList<Object>();
+        this.myArrayList = new ArrayList<>();
     }
 
     public JSONArray(JSONTokener x) throws JSONException {
@@ -57,26 +57,10 @@ public class JSONArray implements Iterable<Object> {
 
     public JSONArray(Collection<?> collection) {
         if (collection == null) {
-            this.myArrayList = new ArrayList<Object>();
+            this.myArrayList = new ArrayList<>();
         } else {
-            this.myArrayList = new ArrayList<Object>(collection.size());
+            this.myArrayList = new ArrayList<>(collection.size());
             this.addAll(collection, true);
-        }
-    }
-
-    public JSONArray(Iterable<?> iter) {
-        this();
-        if (iter == null) {
-            return;
-        }
-        this.addAll(iter, true);
-    }
-
-    public JSONArray(JSONArray array) {
-        if (array == null) {
-            this.myArrayList = new ArrayList<Object>();
-        } else {
-            this.myArrayList = new ArrayList<Object>(array.myArrayList);
         }
     }
 
@@ -88,7 +72,6 @@ public class JSONArray implements Iterable<Object> {
         }
         this.addAll(array, true);
     }
-
 
     @Override
     public Iterator<Object> iterator() {
@@ -114,7 +97,7 @@ public class JSONArray implements Iterable<Object> {
                 .equalsIgnoreCase("true"))) {
             return true;
         }
-        throw wrongValueFormatException(index, "boolean", null);
+        throw wrongValueFormatException(index, "boolean");
     }
 
 
@@ -123,7 +106,7 @@ public class JSONArray implements Iterable<Object> {
         if (object instanceof JSONObject) {
             return (JSONObject) object;
         }
-        throw wrongValueFormatException(index, "JSONObject", null);
+        throw wrongValueFormatException(index, "JSONObject");
     }
 
     public String getString(int index) throws JSONException {
@@ -131,7 +114,7 @@ public class JSONArray implements Iterable<Object> {
         if (object instanceof String) {
             return (String) object;
         }
-        throw wrongValueFormatException(index, "String", null);
+        throw wrongValueFormatException(index, "String");
     }
 
 
@@ -160,31 +143,6 @@ public class JSONArray implements Iterable<Object> {
                 .get(index);
     }
 
-    public boolean optBoolean(int index) {
-        return this.optBoolean(index, false);
-    }
-
-    public boolean optBoolean(int index, boolean defaultValue) {
-        try {
-            return this.getBoolean(index);
-        } catch (Exception e) {
-            return defaultValue;
-        }
-    }
-
-    public double optDouble(int index) {
-        return this.optDouble(index, Double.NaN);
-    }
-
-    public double optDouble(int index, double defaultValue) {
-        final Number val = this.optNumber(index, null);
-        if (val == null) {
-            return defaultValue;
-        }
-        final double doubleValue = val.doubleValue();
-        return doubleValue;
-    }
-
     public float optFloat(int index) {
         return this.optFloat(index, Float.NaN);
     }
@@ -210,42 +168,6 @@ public class JSONArray implements Iterable<Object> {
         return val.intValue();
     }
 
-    public <E extends Enum<E>> E optEnum(Class<E> clazz, int index) {
-        return this.optEnum(clazz, index, null);
-    }
-
-    public <E extends Enum<E>> E optEnum(Class<E> clazz, int index, E defaultValue) {
-        try {
-            Object val = this.opt(index);
-            if (JSONObject.NULL.equals(val)) {
-                return defaultValue;
-            }
-            if (clazz.isAssignableFrom(val.getClass())) {
-                E myE = (E) val;
-                return myE;
-            }
-            return Enum.valueOf(clazz, val.toString());
-        } catch (IllegalArgumentException e) {
-            return defaultValue;
-        } catch (NullPointerException e) {
-            return defaultValue;
-        }
-    }
-
-
-    public long optLong(int index) {
-        return this.optLong(index, 0);
-    }
-
-
-    public long optLong(int index, long defaultValue) {
-        final Number val = this.optNumber(index, null);
-        if (val == null) {
-            return defaultValue;
-        }
-        return val.longValue();
-    }
-
     public Number optNumber(int index, Number defaultValue) {
         Object val = this.opt(index);
         if (JSONObject.NULL.equals(val)) {
@@ -265,24 +187,12 @@ public class JSONArray implements Iterable<Object> {
         return defaultValue;
     }
 
-    public String optString(int index) {
-        return this.optString(index, "");
-    }
-
-    public String optString(int index, String defaultValue) {
-        Object object = this.opt(index);
-        return JSONObject.NULL.equals(object) ? defaultValue : object
-                .toString();
-    }
-
     public JSONArray put(boolean value) {
         return this.put(value ? Boolean.TRUE : Boolean.FALSE);
     }
-
     public JSONArray put(Collection<?> value) {
         return this.put(new JSONArray(value));
     }
-
     public JSONArray put(double value) throws JSONException {
         return this.put(Double.valueOf(value));
     }
@@ -294,11 +204,9 @@ public class JSONArray implements Iterable<Object> {
     public JSONArray put(int value) {
         return this.put(Integer.valueOf(value));
     }
-
     public JSONArray put(long value) {
         return this.put(Long.valueOf(value));
     }
-
     public JSONArray put(Map<?, ?> value) {
         return this.put(new JSONObject(value));
     }
@@ -568,10 +476,9 @@ public class JSONArray implements Iterable<Object> {
 
     private static JSONException wrongValueFormatException(
             int idx,
-            String valueType,
-            Throwable cause) {
+            String valueType) {
         return new JSONException(
                 "JSONArray[" + idx + "] is not a " + valueType + "."
-                , cause);
+                , null);
     }
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class ZipStandardSplitInputStream extends SplitInputStream {
 
-    private int lastSplitZipFileNumber;
+    private final int lastSplitZipFileNumber;
 
     public ZipStandardSplitInputStream(File zipFile, boolean isSplitZipArchive, int lastSplitZipFileNumber) throws FileNotFoundException {
         super(zipFile, isSplitZipArchive, lastSplitZipFileNumber);

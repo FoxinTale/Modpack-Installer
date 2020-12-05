@@ -9,11 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class Checksums {
-
     static MessageDigest md5Digest;
-
-    //static Boolean checksPassed;
-
     static String cModpackSum, cResourcesSum, modpackSum, resourcesSum;
     static File resourcePackDir = new File(Common.getMinecraftInstall() + Common.q + "resourcepacks");
     static ArrayList<String> checksums = Json.getChecksums();
@@ -121,6 +117,4 @@ public class Checksums {
             GUI.errors.setText("Luxray");
         }
     }
-
-
 }

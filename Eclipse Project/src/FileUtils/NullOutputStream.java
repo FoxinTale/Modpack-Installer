@@ -9,8 +9,6 @@ public class NullOutputStream extends OutputStream {
     public NullOutputStream() {
     }
 
-    public static final NullOutputStream NULL_OUTPUT_STREAM = new NullOutputStream();
-
     @Override
     public void write(final byte[] b, final int off, final int len) {
         // To /dev/null

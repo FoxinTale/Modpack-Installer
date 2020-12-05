@@ -1,42 +1,35 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 
 public class modOptions extends installOptions {
-
     static JCheckBox controllerCheck, musicCheck, surroundingsCheck, footstepCheck, filterCheck, autofishCheck,
             noteblockCheck, brightCheck;
     static boolean useController, useMusic, useSurroundings, useFootsteps, useFilters, useAutofish, useNoteblock,
-            useBright;
+            useBright = false;
     static JTextArea modInfo = new JTextArea();
     static JScrollPane scroll = new JScrollPane(modInfo);
-    static Font pretty;
-    static String installFolder = Common.getDownloadsLocation() + Common.q + "Modpack" + Common.q + "extras" + Common.q;
     static File modsDir = new File(Common.getMinecraftInstallLocation() + Common.q + "mods");
-    static String s;
 
     public static void modOptionsGui() {
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        frame.setTitle("Optional mod installation");
-        controllerCheck = new JCheckBox("Controller Support.");
-        musicCheck = new JCheckBox("Custom Ambiance Music.");
-        surroundingsCheck = new JCheckBox("Dynamic Surroundings.");
-        footstepCheck = new JCheckBox("Presence Footsteps.");
-        filterCheck = new JCheckBox("Sound Filters.");
-        autofishCheck = new JCheckBox("Auto Fishing");
-        noteblockCheck = new JCheckBox("Noteblock Display");
-        brightCheck = new JCheckBox("Gammabright");
-        modInfo.setText(" These are optional. \n" + " You'll be able to connect\n" + " without problems if you \n"
-                + " select none of these.");
+        frame.setTitle(Strings.optionalModsTitle);
+        controllerCheck = new JCheckBox(Strings.optionalModsControllerLabel);
+        musicCheck = new JCheckBox(Strings.optionalModsAmbianceLabel);
+        surroundingsCheck = new JCheckBox(Strings.optionalModsDynamicLabel);
+        footstepCheck = new JCheckBox(Strings.optionalModsFootstepsLabel);
+        filterCheck = new JCheckBox(Strings.optionalModsFiltersLabel);
+        autofishCheck = new JCheckBox(Strings.optionalModsFishingLabel);
+        noteblockCheck = new JCheckBox(Strings.optionalModsNoteblockLabel);
+        brightCheck = new JCheckBox(Strings.optionalModsGammabrightLabel);
+        modInfo.setText(Strings.optionalModsInfoDefault);
 
-        JButton install = new JButton("Install!");
-        JButton nope = new JButton("Nah, I'm good.");
+        JButton install = new JButton(Strings.optionalModsInstall);
+        JButton nope = new JButton(Strings.optionalModsCancel);
 
         modsDir = new File(Common.getMinecraftInstallLocation() + "mods" + Common.q);
 
@@ -45,145 +38,100 @@ public class modOptions extends installOptions {
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setBorder(new LineBorder(Color.black, 1, true));
 
-        useController = false;
+/*        useController = false;
         useMusic = false;
         useSurroundings = false;
         useFootsteps = false;
         useFilters = false;
         useAutofish = false;
         useNoteblock = false;
-        useBright = false;
+        useBright = false;*/
 
-        ActionListener controllerEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JCheckBox controller = (JCheckBox) e.getSource();
-                s = " Adds support for Xbox \n" + " controllers. I suppose other \n"
-                        + " controllers could be used too.";
-                selectionDo(controller, useController, s);
-            }
+        ActionListener controllerEvent = e -> {
+            JCheckBox controller = (JCheckBox) e.getSource();
+            selectionDo(controller, useController, Strings.optionalModsControllerInfo);
         };
-        ActionListener musicEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JCheckBox music = (JCheckBox) e.getSource();
-                s = " Environmentally aware music. \n" + " Required for the non-texture \n" + " resource packs.";
-                selectionDo(music, useMusic, s);
-            }
+        ActionListener musicEvent = e -> {
+            JCheckBox music = (JCheckBox) e.getSource();
+            selectionDo(music, useMusic, Strings.optionalModsAmbianceInfo);
         };
-
-        ActionListener footstepsEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JCheckBox footsteps = (JCheckBox) e.getSource();
-                s = " Dynamic sounds for every \n" + " block the player walks on. \n" + " Every block has sounds to \n"
-                        + " better match what they're \n" + " made of.";
-                selectionDo(footsteps, useFootsteps, s);
-            }
+        ActionListener footstepsEvent = e -> {
+            JCheckBox footsteps = (JCheckBox) e.getSource();
+            selectionDo(footsteps, useFootsteps, Strings.optionalModsFootstepInfo);
         };
-        ActionListener filtersEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JCheckBox filters = (JCheckBox) e.getSource();
-                s = " Adds reverb to sounds in \n" + " caves and mutes sounds while " + "\n underwater. Mutes sounds \n"
-                        + " from behind a wall too.";
-                selectionDo(filters, useFilters, s);
-            }
+        ActionListener filtersEvent = e -> {
+            JCheckBox filters = (JCheckBox) e.getSource();
+            selectionDo(filters, useFilters, Strings.optionalModsFiltersLabel);
         };
-        ActionListener surroundingsEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JCheckBox surroundings = (JCheckBox) e.getSource();
-                s = " Realistic storms, Auroras, \n" + " Specific biome sounds, and more!";
-                selectionDo(surroundings, useSurroundings, s);
-            }
+        ActionListener surroundingsEvent = e -> {
+            JCheckBox surroundings = (JCheckBox) e.getSource();
+            selectionDo(surroundings, useSurroundings, Strings.optionalModsDynamicInfo);
+        };
+        ActionListener autofishEvent = e -> {
+            JCheckBox autofish = (JCheckBox) e.getSource();
+            selectionDo(autofish, useAutofish, Strings.optionalModsFishingInfo);
+        };
+        ActionListener noteblockEvent = e -> {
+            JCheckBox noteblock = (JCheckBox) e.getSource();
+            selectionDo(noteblock, useNoteblock, Strings.optionalModsNoteblockInfo);
+        };
+        ActionListener brightEvent = e -> {
+            JCheckBox gammabright = (JCheckBox) e.getSource();
+            selectionDo(gammabright, useBright, Strings.optionalModsGammabrightInfo);
         };
 
-        ActionListener autofishEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JCheckBox autofish = (JCheckBox) e.getSource();
-                s = " The name describes all. \n" + " It pulls in fishing rods \n" + " as soon as a bite happens";
-                selectionDo(autofish, useAutofish, s);
-            }
-        };
-        ActionListener noteblockEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JCheckBox noteblock = (JCheckBox) e.getSource();
-                s = " Shows a graphical config \n" + " menu for noteblocks.";
-                selectionDo(noteblock, useNoteblock, s);
-            }
-        };
-        ActionListener brightEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JCheckBox gammabright = (JCheckBox) e.getSource();
-                s = " The name describes all. \n" + " It pulls in fishing rods \n" + " as soon as a bite happens";
-                selectionDo(gammabright, useBright, s);
-            }
-        };
+        ActionListener cancelEvent = e -> Install.end();
 
-        ActionListener cancelEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Install.end();
+        ActionListener installEvent = e -> {
+            String ambiance = modpackOptions + "ambiance" + Common.q;
+            String utility = modpackOptions + "utility" + Common.q;
+            if (useController) {
+                System.out.println(" Controller support installed");
+                modInstall(utility, "JoypadMod-1.7.10.jar");
             }
-        };
-
-        ActionListener installEvent = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String ambiance = modpackOptions + "ambiance" + Common.q;
-                String utility = modpackOptions + "utility" + Common.q;
-                if (useController) {
-                    System.out.println(" Controller support installed");
-                    modInstall(utility, "JoypadMod-1.7.10.jar");
-                }
-                if (useMusic) {
-                    System.out.println(" Music installed");
-                    modInstall(ambiance, "MusicChoices-1.3_for_1.7.10.jar");
-                }
-                if (useSurroundings) {
-                    System.out.println(" Surroundings installed");
-                    modInstall(ambiance, "DynamicSurroundings-1.7.10-1.0.6.4.jar");
-                }
-                if (useFootsteps) {
-                    System.out.println(" Footsteps installcomped");
-                    modInstall(ambiance, "PresenceFootsteps_r5b__1.7.10.litemod");
-                }
-                if (useFilters) {
-                    System.out.println(" Filters installed");
-                    modInstall(ambiance, "SoundFilters-0.8_for_1.7.X.jar");
-                }
-
-                if (useAutofish) {
-                    System.out.println(" Autofish installed");
-                    modInstall(utility, "mod_Autofish_0.4.9_mc1.7.10.litemod");
-                }
-                if (useNoteblock) {
-                    System.out.println(" Noteblock Display installed");
-                    modInstall(utility, "mod_noteblockdisplay_1.3.2_mc1.7.10.litemod");
-                }
-                if (useBright) {
-                    System.out.println(" Gammabright installed");
-                    modInstall(utility, "Gammabright v3.3[MC 1.7.10].litemod");
-                }
-                Install.end();
+            if (useMusic) {
+                System.out.println(" Music installed");
+                modInstall(ambiance, "MusicChoices-1.3_for_1.7.10.jar");
             }
+            if (useSurroundings) {
+                System.out.println(" Surroundings installed");
+                modInstall(ambiance, "DynamicSurroundings-1.7.10-1.0.6.4.jar");
+            }
+            if (useFootsteps) {
+                System.out.println(" Footsteps installcomped");
+                modInstall(ambiance, "PresenceFootsteps_r5b__1.7.10.litemod");
+            }
+            if (useFilters) {
+                System.out.println(" Filters installed");
+                modInstall(ambiance, "SoundFilters-0.8_for_1.7.X.jar");
+            }
+
+            if (useAutofish) {
+                System.out.println(" Autofish installed");
+                modInstall(utility, "mod_Autofish_0.4.9_mc1.7.10.litemod");
+            }
+            if (useNoteblock) {
+                System.out.println(" Noteblock Display installed");
+                modInstall(utility, "mod_noteblockdisplay_1.3.2_mc1.7.10.litemod");
+            }
+            if (useBright) {
+                System.out.println(" Gammabright installed");
+                modInstall(utility, "Gammabright v3.3[MC 1.7.10].litemod");
+            }
+            Install.end();
         };
 
-        try {
-            pretty = Font.createFont(Font.TRUETYPE_FONT, new File("resources" + Common.q + "Font.ttf")).deriveFont(16f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources" + Common.q + "Font.ttf")));
-        } catch (IOException e) {
-            // If the font could not be found. Not really bothersome.
-        } catch (FontFormatException e) {
-            GUI.errors.setText("Uxie");
-        }
-
-        nope.setFont(pretty);
-        install.setFont(pretty);
-        controllerCheck.setFont(pretty);
-        musicCheck.setFont(pretty);
-        surroundingsCheck.setFont(pretty);
-        filterCheck.setFont(pretty);
-        footstepCheck.setFont(pretty);
-        autofishCheck.setFont(pretty);
-        brightCheck.setFont(pretty);
-        noteblockCheck.setFont(pretty);
-        modInfo.setFont(pretty);
+        nope.setFont(Common.pretty);
+        install.setFont(Common.pretty);
+        controllerCheck.setFont(Common.pretty);
+        musicCheck.setFont(Common.pretty);
+        surroundingsCheck.setFont(Common.pretty);
+        filterCheck.setFont(Common.pretty);
+        footstepCheck.setFont(Common.pretty);
+        autofishCheck.setFont(Common.pretty);
+        brightCheck.setFont(Common.pretty);
+        noteblockCheck.setFont(Common.pretty);
+        modInfo.setFont(Common.pretty);
 
         nope.addActionListener(cancelEvent);
         install.addActionListener(installEvent);
@@ -243,7 +191,7 @@ public class modOptions extends installOptions {
         copyFiles(mod, modsDir);
     }
 
-    public static void animatedInstall() {
+/*    public static void animatedInstall() {
         String animatedOption = modpackOptions + "animations" + Common.q;
         File main = new File(animatedOption + "SmartMoving-1.7.10-15.6.jar");
         File apiOne = new File(animatedOption + "PlayerAPI-1.7.10-1.4.jar");
@@ -251,5 +199,5 @@ public class modOptions extends installOptions {
         copyFiles(main, modsDir);
         copyFiles(apiOne, modsDir);
         copyFiles(apiTwo, modsDir);
-    }
+    }*/
 }

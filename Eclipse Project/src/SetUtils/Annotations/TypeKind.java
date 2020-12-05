@@ -9,17 +9,6 @@ public enum TypeKind {
     CHAR,
     FLOAT,
     DOUBLE,
-    VOID,
-    NONE,
     NULL,
-    ARRAY,
-    DECLARED,
-    ERROR,
-    TYPEVAR,
-    WILDCARD,
-    PACKAGE,
-    EXECUTABLE,
-    OTHER,
-    UNION,
-    INTERSECTION;
+    PACKAGE;
 }

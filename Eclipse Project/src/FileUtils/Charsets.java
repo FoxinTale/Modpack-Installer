@@ -2,12 +2,10 @@ package FileUtils;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class Charsets {
-    private static final SortedMap<String, Charset> STANDARD_CHARSET_MAP;
 
     static {
         final SortedMap<String, Charset> standardCharsetMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
@@ -17,7 +15,6 @@ public class Charsets {
         standardCharsetMap.put(StandardCharsets.UTF_16BE.name(), StandardCharsets.UTF_16BE);
         standardCharsetMap.put(StandardCharsets.UTF_16LE.name(), StandardCharsets.UTF_16LE);
         standardCharsetMap.put(StandardCharsets.UTF_8.name(), StandardCharsets.UTF_8);
-        STANDARD_CHARSET_MAP = Collections.unmodifiableSortedMap(standardCharsetMap);
     }
 
     public static Charset toCharset(final Charset charset) {

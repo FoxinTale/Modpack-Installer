@@ -16,6 +16,10 @@ public class Strings {
     static String installerOptions = " Select an option from below to continue.\n";
     static String installerVerifyingFile = " Verifying integrity of file";
     static String installerVerificationPassed = " File verification passed!";
+    static String installerDownloadingPartOne = " Downloading part one of the modpack.";
+    static String installerFinishedPartOne = " Finished downloading part one.";
+    static String installerDownloadingPartTwo = " Downloading part two of the modpack.";
+    static String installerFinishedPartTwo = " Finished downloading part two.";
     static String installerVerificationFailed = " Verification Failed...Redownloading.";
     static String installerDownloadComplete = " Download Complete!";
     static String installerVerificationRedownlaoding1 = " Verification failed. Redownloading.";
@@ -38,7 +42,6 @@ public class Strings {
     static String installerErrorsDefault = " Nothing to report.";
 
     // Text for an update available for the installer.
-
     static String installerUpdateTitle = "Installer Update Available";
     static String installerUpdateMessage = "There's an update available for the installer. Would you like to download it?";
     static String installerUpToDate = " You have the latest version of the installer.";
@@ -78,12 +81,12 @@ public class Strings {
     static String installerAgainTitle = "Use another option?";
 
     // Options Text
-    static String optionsTitle = "Options";
+    static String optionsTitle = "Options.";
     static String optionsOne = "Extract.";
     static String optionsTwo = "Set Memory.";
     static String optionsThree = "Ping Server.";
-    static String optionsFour = "Restore Settings";
-    static String optionsFive = "Optional Mods";
+    static String optionsFour = "Restore Settings.";
+    static String optionsFive = "Optional Mods.";
 
     //  Resource pack options GUI Text.
     static String assetCreditsLabel = "Asset Credits";
@@ -132,6 +135,48 @@ public class Strings {
             + " information, go to the below link. \n" + " It will direct you to my site \n"
             + " which contains more information.\n" + " The link may take time to load.\n" + "\n"
             + " Closing this will exit the program.";
+
+
+    // Optional mods labels.
+    static String optionalModsControllerLabel = "Controller Support.";
+    static String optionalModsAmbianceLabel = "Custom Ambiance Music.";
+    static String optionalModsDynamicLabel = "Dynamic Surroundings.";
+    static String optionalModsFootstepsLabel = "Presence Footsteps.";
+    static String optionalModsFiltersLabel = "Sound Filters.";
+    static String optionalModsFishingLabel = "Auto Fishing";
+    static String optionalModsNoteblockLabel = "Noteblock Display";
+    static String optionalModsGammabrightLabel = "Gammabright";
+
+    //Optional mods info text
+    static String optionalModsInfoDefault = " These are optional. \n" +
+            " You'll be able to connect\n" + " without problems if you \n"
+            + " select none of these.";
+
+    static String optionalModsControllerInfo = " Adds support for Xbox \n"
+            + " controllers. I suppose other \n" + " controllers could be used too.";
+
+    static String optionalModsAmbianceInfo = " Environmentally aware music. \n"
+            + " Required for the non-texture \n" + " resource packs.";
+
+    static String optionalModsFootstepInfo = " Dynamic sounds for every \n"
+            + " block the player walks on. \n" + " Every block has sounds to \n"
+            + " better match what they're \n" + " made of.";
+
+    static String optionalModsFiltersInfo = " Adds reverb to sounds in \n"
+            + " caves and mutes sounds while " + "\n underwater. Mutes sounds \n"
+            + " from behind a wall too.";
+
+    static String optionalModsGammabrightInfo = " Adds an option to  \n " + " increase the in game \n"
+            + " brightness eliminating the \n" + " need for torches";
+
+    static String optionalModsDynamicInfo = " Realistic storms, Auroras, \n" + " Specific biome sounds, and more!";
+    static String optionalModsFishingInfo = " The name describes all. \n" + " It pulls in fishing rods \n" + " as soon as a bite happens";
+    static String optionalModsNoteblockInfo = " Shows a graphical config \n" + " menu for noteblocks.";
+
+    // Optional mods GUI elements.
+    static String optionalModsInstall = "Install!";
+    static String optionalModsCancel = "Nah, I'm good";
+    static String optionalModsTitle = "Optional mods installation";
 
     // Finalizing the installation.
     static String installerThanksMessage = "Thanks for using the installer! Now, go have fun.";

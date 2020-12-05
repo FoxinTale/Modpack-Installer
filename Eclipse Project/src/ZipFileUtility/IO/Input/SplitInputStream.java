@@ -10,9 +10,9 @@ public abstract class SplitInputStream extends InputStream {
     protected RandomAccessFile randomAccessFile;
     protected File zipFile;
 
-    private boolean isSplitZipArchive;
+    private final boolean isSplitZipArchive;
     private int currentSplitFileCounter = 0;
-    private byte[] singleByteArray = new byte[1];
+    private final byte[] singleByteArray = new byte[1];
 
     public SplitInputStream(File zipFile, boolean isSplitZipArchive, int lastSplitZipFileNumber) throws FileNotFoundException {
         this.randomAccessFile = new RandomAccessFile(zipFile, RandomAccessFileMode.READ.getValue());

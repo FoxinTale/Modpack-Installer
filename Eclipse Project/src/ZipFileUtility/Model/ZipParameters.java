@@ -1,33 +1,25 @@
 package ZipFileUtility.Model;
 
 public class ZipParameters {
-
     public enum SymbolicLinkAction {
         INCLUDE_LINKED_FILE_ONLY,
         INCLUDE_LINK_AND_LINKED_FILE
     }
 
-    ;
-
-    private CompressionMethod compressionMethod = CompressionMethod.DEFLATE;
     private boolean readHiddenFolders = true;
-    private long entryCRC;
-    private String defaultFolderPath;
-    private String fileNameInZip;
-    private long entrySize = -1;
-    private String rootFolderNameInZip;
+    private final String defaultFolderPath;
+    private final String fileNameInZip;
+    private final String rootFolderNameInZip;
     private boolean unixMode;
 
-    public ZipParameters(long entryCRC, String defaultFolderPath, String fileNameInZip, String rootFolderNameInZip, boolean unixMode) {
-        this.entryCRC = entryCRC;
+    public ZipParameters(String defaultFolderPath, String fileNameInZip, String rootFolderNameInZip, boolean unixMode) {
         this.defaultFolderPath = defaultFolderPath;
         this.fileNameInZip = fileNameInZip;
         this.rootFolderNameInZip = rootFolderNameInZip;
         this.unixMode = unixMode;
     }
 
-    public void setCompressionMethod(CompressionMethod compressionMethod) {
-        this.compressionMethod = compressionMethod;
+    public void setCompressionMethod() {
     }
 
     public boolean isReadHiddenFolders() {
@@ -50,8 +42,7 @@ public class ZipParameters {
         return fileNameInZip;
     }
 
-    public void setEntrySize(long entrySize) {
-        this.entrySize = entrySize;
+    public void setEntrySize() {
     }
 
     public String getRootFolderNameInZip() {

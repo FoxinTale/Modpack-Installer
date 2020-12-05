@@ -16,13 +16,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class ExtractFileTask extends AbstractExtractFileTask<ExtractFileTask.ExtractFileTaskParameters> {
-
-    private char[] password;
     private SplitInputStream splitInputStream;
-
-    public ExtractFileTask(ZipModel zipModel, char[] password, AsyncTaskParameters asyncTaskParameters) {
+    public ExtractFileTask(ZipModel zipModel, AsyncTaskParameters asyncTaskParameters) {
         super(zipModel, asyncTaskParameters);
-        this.password = password;
     }
 
     @Override
@@ -60,7 +56,7 @@ public class ExtractFileTask extends AbstractExtractFileTask<ExtractFileTask.Ext
     private ZipInputStream createZipInputStream(FileHeader fileHeader, Charset charset) throws IOException {
         splitInputStream = UnzipUtil.createSplitInputStream(getZipModel());
         splitInputStream.prepareExtractionForFileHeader(fileHeader);
-        return new ZipInputStream(splitInputStream, password, charset);
+        return new ZipInputStream(splitInputStream, charset);
     }
 
     private String determineNewFileName(String newFileName, FileHeader fileHeaderToExtract, FileHeader fileHeaderBeingExtracted) {

@@ -10,11 +10,9 @@ public class FilenameUtils {
     private static final String EMPTY_STRING = "";
     private static final int NOT_FOUND = -1;
     public static final char EXTENSION_SEPARATOR = '.';
-    public static final String EXTENSION_SEPARATOR_STR = Character.toString(EXTENSION_SEPARATOR);
     private static final char UNIX_SEPARATOR = '/';
     private static final char WINDOWS_SEPARATOR = '\\';
     private static final char SYSTEM_SEPARATOR = File.separatorChar;
-
     private static final char OTHER_SEPARATOR;
 
     static {

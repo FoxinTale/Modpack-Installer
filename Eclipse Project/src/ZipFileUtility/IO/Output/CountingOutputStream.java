@@ -7,7 +7,7 @@ import java.io.OutputStream;
 
 public class CountingOutputStream extends OutputStream implements OutputStreamWithSplitZipSupport {
 
-    private OutputStream outputStream;
+    private final OutputStream outputStream;
     private long numberOfBytesWritten = 0;
 
     public CountingOutputStream(OutputStream outputStream) {

@@ -12,24 +12,18 @@ import java.util.zip.CRC32;
 
 
 public class ZipInputStream extends InputStream {
-
     private final PushbackInputStream inputStream;
     private final HeaderReader headerReader = new HeaderReader();
-    private char[] password;
     private LocalFileHeader localFileHeader;
-    private CRC32 crc32 = new CRC32();
+    private final CRC32 crc32 = new CRC32();
     private byte[] endOfEntryBuffer;
-    private boolean canSkipExtendedLocalFileHeader = false;
-    private Charset charset;
+    private final Charset charset;
 
-
-    public ZipInputStream(InputStream inputStream, char[] password, Charset charset) {
+    public ZipInputStream(InputStream inputStream, Charset charset) {
         if (charset == null) {
             charset = InternalZipConstants.CHARSET_UTF_8;
         }
-
         this.inputStream = new PushbackInputStream(inputStream, InternalZipConstants.BUFF_SIZE);
-        this.password = password;
         this.charset = charset;
     }
 
@@ -37,9 +31,7 @@ public class ZipInputStream extends InputStream {
         if (localFileHeader != null) {
             readUntilEndOfEntry();
         }
-
         localFileHeader = headerReader.readLocalFileHeader(inputStream, charset);
-
         if (localFileHeader == null) {
             return null;
         }
@@ -50,9 +42,6 @@ public class ZipInputStream extends InputStream {
             localFileHeader.setCrc(fileHeader.getCrc());
             localFileHeader.setCompressedSize(fileHeader.getCompressedSize());
             localFileHeader.setUncompressedSize(fileHeader.getUncompressedSize());
-            canSkipExtendedLocalFileHeader = true;
-        } else {
-            canSkipExtendedLocalFileHeader = false;
         }
         return localFileHeader;
     }
@@ -61,11 +50,9 @@ public class ZipInputStream extends InputStream {
     public int read() throws IOException {
         byte[] b = new byte[1];
         int readLen = read(b);
-
         if (readLen == -1) {
             return -1;
         }
-
         return b[0] & 0xff;
     }
 
@@ -73,13 +60,6 @@ public class ZipInputStream extends InputStream {
     public int read(byte[] b) throws IOException {
         return read(b, 0, b.length);
     }
-
-/*  @Override
-  public void close() throws IOException {
-    if (decompressedInputStream != null) {
-      decompressedInputStream.close();
-    }
-  }*/
 
     private void verifyLocalFileHeader(LocalFileHeader localFileHeader) throws IOException {
         if (!isEntryDirectory(localFileHeader.getFileName())

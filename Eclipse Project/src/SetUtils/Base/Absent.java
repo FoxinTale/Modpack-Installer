@@ -6,11 +6,9 @@ import SetUtils.Annotations.Nullable;
 @GwtCompatible
 final class Absent<T> extends Optional<T> {
     static final Absent<Object> INSTANCE = new Absent<>();
-
     static <T> Optional<T> withType() {
         return (Optional<T>) INSTANCE;
     }
-
     private Absent() {
     }
 
@@ -59,7 +57,6 @@ final class Absent<T> extends Optional<T> {
     public String toString() {
         return "Optional.absent()";
     }
-
     private Object readResolve() {
         return INSTANCE;
     }

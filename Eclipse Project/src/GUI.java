@@ -12,7 +12,7 @@ public class GUI {
     static JTextArea consoleOutput = new JTextArea();
     static JScrollPane scroll = new JScrollPane(consoleOutput);
     static JTextField errors = new JTextField(Strings.installerErrorsDefault);
-    static String installerVersionValue = "1.0";
+    static String installerVersionValue = "0.1";
 
     public static void launchGUI() {
         Common.getFont();
@@ -170,6 +170,9 @@ public class GUI {
         downloadOption.setFont(Common.pretty);
         resourceOption.setFont(Common.pretty);
         otherOptions.setFont(Common.pretty);
+        button.setFont(Common.pretty);
+        errorsLabel.setFont(Common.pretty);
+        installerVersion.setFont(Common.pretty);
 
         modpackPanel.add(modpackOne);
         downloadPanel.add(downloadOption);
@@ -179,8 +182,8 @@ public class GUI {
         errors.setEditable(false);
 
         System.out.println(Strings.installerWelcome);
-        /*Updater.checkAPIForUpdate(Driver.installerUpdateLink, installerVersionValue, Strings.installerUpdateMessage,
-                Strings.installerUpdateTitle, Strings.installerUpToDate, 0);*/
+        Updater.checkAPIForUpdate(Driver.installerUpdateLink, installerVersionValue, Strings.installerUpdateMessage,
+                Strings.installerUpdateTitle, Strings.installerUpToDate, 0);
         System.out.println(Strings.installerBugReport);
         System.out.println(Strings.installerOptions);
 
@@ -206,6 +209,7 @@ public class GUI {
         frame.add(installerVersion);
         frame.add(resourceOption);
         frame.add(resourcePanel);
+
         frame.add(lightRedPanel);
         frame.add(lightOrangePanel);
         frame.add(lightYellowPanel);

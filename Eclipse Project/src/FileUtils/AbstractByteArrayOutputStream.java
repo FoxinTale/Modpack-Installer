@@ -1,9 +1,11 @@
 package FileUtils;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public abstract class AbstractByteArrayOutputStream extends OutputStream {
@@ -113,30 +115,6 @@ public abstract class AbstractByteArrayOutputStream extends OutputStream {
             needNewBuffer(size);
             reuseBuffers = true;
         }
-    }
-
-    protected <T extends InputStream> InputStream toInputStream(
-            final InputStreamConstructor<T> isConstructor) {
-        int remaining = count;
-        if (remaining == 0) {
-            return ClosedInputStream.CLOSED_INPUT_STREAM;
-        }
-        final List<T> list = new ArrayList<>(buffers.size());
-        for (final byte[] buf : buffers) {
-            final int c = Math.min(buf.length, remaining);
-            list.add(isConstructor.construct(buf, 0, c));
-            remaining -= c;
-            if (remaining == 0) {
-                break;
-            }
-        }
-        reuseBuffers = false;
-        return new SequenceInputStream(Collections.enumeration(list));
-    }
-
-    @FunctionalInterface
-    protected interface InputStreamConstructor<T extends InputStream> {
-        T construct(final byte[] buf, final int offset, final int length);
     }
 
     public abstract byte[] toByteArray();

@@ -12,9 +12,7 @@ public class FileFileFilter extends AbstractFileFilter implements Serializable {
 
     @Deprecated
     public static final IOFileFilter FILE = INSTANCE;
-
     private static final long serialVersionUID = 5345244090827540862L;
-
 
     protected FileFileFilter() {
     }
@@ -26,7 +24,6 @@ public class FileFileFilter extends AbstractFileFilter implements Serializable {
 
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        return toFileVisitResult(Files.isRegularFile(file), file);
+        return toFileVisitResult(Files.isRegularFile(file));
     }
-
 }

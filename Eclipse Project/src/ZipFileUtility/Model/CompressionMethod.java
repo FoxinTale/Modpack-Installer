@@ -9,7 +9,7 @@ public enum CompressionMethod {
     DEFLATE(8),
     AES_INTERNAL_ONLY(99);
 
-    private int code;
+    private final int code;
 
     CompressionMethod(int code) {
         this.code = code;

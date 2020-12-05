@@ -24,24 +24,21 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 public class ZipFile {
-    private File zipFile;
+    private final File zipFile;
     private ZipModel zipModel;
-    private ProgressMonitor progressMonitor;
-    private boolean runInThread;
-    private char[] password;
-    private HeaderWriter headerWriter = new HeaderWriter();
+    private final ProgressMonitor progressMonitor;
+    private final boolean runInThread;
+    private final HeaderWriter headerWriter = new HeaderWriter();
     private Charset charset = InternalZipConstants.CHARSET_UTF_8;
     private ThreadFactory threadFactory;
     private ExecutorService executorService;
 
-
     public ZipFile(String zipFile) {
-        this(new File(zipFile), null);
+        this(new File(zipFile));
     }
 
-    public ZipFile(File zipFile, char[] password) {
+    public ZipFile(File zipFile) {
         this.zipFile = zipFile;
-        this.password = password;
         this.runInThread = false;
         this.progressMonitor = new ProgressMonitor();
     }
@@ -68,7 +65,7 @@ public class ZipFile {
             throw new ZipException("invalid operation - Zip4j is in busy state");
         }
 
-        new ExtractAllFilesTask(zipModel, password, buildAsyncParameters()).execute(
+        new ExtractAllFilesTask(zipModel, buildAsyncParameters()).execute(
                 new ExtractAllFilesTask.ExtractAllFilesTaskParameters(destinationPath, charset));
     }
 
@@ -88,7 +85,7 @@ public class ZipFile {
 
         readZipInfo();
 
-        new ExtractFileTask(zipModel, password, buildAsyncParameters()).execute(
+        new ExtractFileTask(zipModel, buildAsyncParameters()).execute(
                 new ExtractFileTask.ExtractFileTaskParameters(destinationPath, fileHeader, newFileName, charset));
     }
 

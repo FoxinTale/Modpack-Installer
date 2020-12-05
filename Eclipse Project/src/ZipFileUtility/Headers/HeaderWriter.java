@@ -4,14 +4,12 @@ import ZipFileUtility.IO.Output.CountingOutputStream;
 import ZipFileUtility.IO.Output.OutputStreamWithSplitZipSupport;
 import ZipFileUtility.IO.Output.SplitOutputStream;
 import ZipFileUtility.Model.*;
-import ZipFileUtility.Util.FileUtils;
 import ZipFileUtility.Util.InternalZipConstants;
 import ZipFileUtility.Util.RawIO;
 import ZipFileUtility.Util.Zip4jUtil;
 import ZipFileUtility.ZipException;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
@@ -22,9 +20,9 @@ public class HeaderWriter {
     private static final short ZIP64_EXTRA_DATA_RECORD_SIZE_LFH = 16;
     private static final short ZIP64_EXTRA_DATA_RECORD_SIZE_FH = 28;
 
-    private RawIO rawIO = new RawIO();
-    private byte[] longBuff = new byte[8];
-    private byte[] intBuff = new byte[4];
+    private final RawIO rawIO = new RawIO();
+    private final byte[] longBuff = new byte[8];
+    private final byte[] intBuff = new byte[4];
 
     public void writeLocalFileHeader(ZipModel zipModel, LocalFileHeader localFileHeader, OutputStream outputStream,
                                      Charset charset) throws IOException {
@@ -50,7 +48,7 @@ public class HeaderWriter {
                 byteArrayOutputStream.write(longBuff, 0, 4);
 
                 zipModel.setZip64Format(true);
-                localFileHeader.setWriteCompressedSizeInZip64ExtraRecord(true);
+                localFileHeader.setWriteCompressedSizeInZip64ExtraRecord();
             } else {
                 rawIO.writeLongLittleEndian(longBuff, 0, localFileHeader.getCompressedSize());
                 byteArrayOutputStream.write(longBuff, 0, 4);
@@ -58,7 +56,7 @@ public class HeaderWriter {
                 rawIO.writeLongLittleEndian(longBuff, 0, localFileHeader.getUncompressedSize());
                 byteArrayOutputStream.write(longBuff, 0, 4);
 
-                localFileHeader.setWriteCompressedSizeInZip64ExtraRecord(false);
+                localFileHeader.setWriteCompressedSizeInZip64ExtraRecord();
             }
 
             byte[] fileNameBytes = new byte[0];
@@ -169,68 +167,6 @@ public class HeaderWriter {
 
             writeEndOfCentralDirectoryRecord(zipModel, sizeOfCentralDir, offsetCentralDir, byteArrayOutputStream, rawIO, charset);
             writeZipHeaderBytes(zipModel, outputStream, byteArrayOutputStream.toByteArray(), charset);
-        }
-    }
-
-    public void updateLocalFileHeader(FileHeader fileHeader, ZipModel zipModel, SplitOutputStream outputStream)
-            throws IOException {
-
-        if (fileHeader == null || zipModel == null) {
-            throw new ZipException("invalid input parameters, cannot update local file header");
-        }
-
-        boolean closeFlag = false;
-        SplitOutputStream currOutputStream;
-
-        if (fileHeader.getDiskNumberStart() != outputStream.getCurrentSplitFileCounter()) {
-            String parentFile = zipModel.getZipFile().getParent();
-            String fileNameWithoutExt = FileUtils.getZipFileNameWithoutExtension(zipModel.getZipFile().getName());
-            String fileName = parentFile + System.getProperty("file.separator");
-            if (fileHeader.getDiskNumberStart() < 9) {
-                fileName += fileNameWithoutExt + ".z0" + (fileHeader.getDiskNumberStart() + 1);
-            } else {
-                fileName += fileNameWithoutExt + ".z" + (fileHeader.getDiskNumberStart() + 1);
-            }
-            currOutputStream = new SplitOutputStream(new File(fileName));
-            closeFlag = true;
-        } else {
-            currOutputStream = outputStream;
-        }
-
-        long currOffset = currOutputStream.getFilePointer();
-
-        currOutputStream.seek(fileHeader.getOffsetLocalHeader() + InternalZipConstants.UPDATE_LFH_CRC);
-        rawIO.writeLongLittleEndian(longBuff, 0, fileHeader.getCrc());
-        currOutputStream.write(longBuff, 0, 4);
-
-        updateFileSizesInLocalFileHeader(currOutputStream, fileHeader);
-
-        if (closeFlag) {
-            currOutputStream.close();
-        } else {
-            outputStream.seek(currOffset);
-        }
-    }
-
-    private void updateFileSizesInLocalFileHeader(SplitOutputStream outputStream, FileHeader fileHeader)
-            throws IOException {
-
-        if (fileHeader.getUncompressedSize() >= InternalZipConstants.ZIP_64_SIZE_LIMIT) {
-            rawIO.writeLongLittleEndian(longBuff, 0, InternalZipConstants.ZIP_64_SIZE_LIMIT);
-            outputStream.write(longBuff, 0, 4);
-            outputStream.write(longBuff, 0, 4);
-            int zip64CompressedSizeOffset = 2 + 2 + fileHeader.getFileNameLength() + 2 + 2;
-            if (outputStream.skipBytes(zip64CompressedSizeOffset) != zip64CompressedSizeOffset) {
-                throw new ZipException("Unable to skip " + zip64CompressedSizeOffset + " bytes to update LFH");
-            }
-            rawIO.writeLongLittleEndian(outputStream, fileHeader.getUncompressedSize());
-            rawIO.writeLongLittleEndian(outputStream, fileHeader.getCompressedSize());
-        } else {
-            rawIO.writeLongLittleEndian(longBuff, 0, fileHeader.getCompressedSize());
-            outputStream.write(longBuff, 0, 4);
-
-            rawIO.writeLongLittleEndian(longBuff, 0, fileHeader.getUncompressedSize());
-            outputStream.write(longBuff, 0, 4);
         }
     }
 
@@ -409,22 +345,18 @@ public class HeaderWriter {
 
     private int calculateExtraDataRecordsSize(FileHeader fileHeader, boolean writeZip64ExtendedInfo) throws IOException {
         int extraFieldLength = 0;
-
         if (writeZip64ExtendedInfo) {
             extraFieldLength += ZIP64_EXTRA_DATA_RECORD_SIZE_FH + 4; // 4 for signature + size of record
         }
-
         if (fileHeader.getExtraDataRecords() != null) {
             for (ExtraDataRecord extraDataRecord : fileHeader.getExtraDataRecords()) {
                 if (extraDataRecord.getHeader() == HeaderSignature.AES_EXTRA_DATA_RECORD.getValue()
                         || extraDataRecord.getHeader() == HeaderSignature.ZIP64_EXTRA_FIELD_SIGNATURE.getValue()) {
                     continue;
                 }
-
                 extraFieldLength += 4 + extraDataRecord.getSizeOfData(); // 4  = 2 for header + 2 for size of data
             }
         }
-
         return extraFieldLength;
     }
 

@@ -46,7 +46,7 @@ public class JSONObject {
     public static final Object NULL = new Null();
 
     public JSONObject() {
-        this.map = new HashMap<String, Object>();
+        this.map = new HashMap<>();
     }
 
     public JSONObject(JSONObject jo, String ... names) {

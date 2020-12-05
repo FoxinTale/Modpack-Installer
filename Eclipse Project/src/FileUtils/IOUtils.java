@@ -3,7 +3,6 @@ package FileUtils;
 import java.io.*;
 import java.net.URI;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -13,17 +12,11 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 public class IOUtils {
-    private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
     public static final int DEFAULT_BUFFER_SIZE = 8192;
-    public static final char DIR_SEPARATOR = File.separatorChar;
-    public static final char DIR_SEPARATOR_UNIX = '/';
-    public static final char DIR_SEPARATOR_WINDOWS = '\\';
     public static final int EOF = -1;
 
     @Deprecated
     public static final String LINE_SEPARATOR = System.lineSeparator();
-    public static final String LINE_SEPARATOR_UNIX = "\n";
-    public static final String LINE_SEPARATOR_WINDOWS = "\r\n";
     private static final byte[] SKIP_BYTE_BUFFER = new byte[DEFAULT_BUFFER_SIZE];
     private static char[] SKIP_CHAR_BUFFER;
 
@@ -110,11 +103,6 @@ public class IOUtils {
         }
     }
 
-
-    public static void consume(final InputStream input) throws IOException {
-        copyLarge(input, NullOutputStream.NULL_OUTPUT_STREAM, SKIP_BYTE_BUFFER);
-    }
-
     public static boolean contentEquals(final InputStream input1, final InputStream input2)
             throws IOException {
         if (input1 == input2) {
@@ -136,12 +124,8 @@ public class IOUtils {
         return bufferedInput2.read() == EOF;
     }
 
-    public static int copy(final InputStream input, final OutputStream output) throws IOException {
+    public static void copy(final InputStream input, final OutputStream output) throws IOException {
         final long count = copyLarge(input, output);
-        if (count > Integer.MAX_VALUE) {
-            return -1;
-        }
-        return (int) count;
     }
 
     public static long copy(final InputStream input, final OutputStream output, final int bufferSize)
@@ -159,11 +143,6 @@ public class IOUtils {
             throws IOException {
         final InputStreamReader in = new InputStreamReader(input, Charsets.toCharset(inputCharset));
         copy(in, output);
-    }
-
-    public static void copy(final InputStream input, final Writer output, final String inputCharsetName)
-            throws IOException {
-        copy(input, output, Charsets.toCharset(inputCharsetName));
     }
 
     public static long copy(final Reader input, final Appendable output) throws IOException {
@@ -194,17 +173,8 @@ public class IOUtils {
         out.flush();
     }
 
-    public static void copy(final Reader input, final OutputStream output, final String outputCharsetName)
-            throws IOException {
-        copy(input, output, Charsets.toCharset(outputCharsetName));
-    }
-
-    public static int copy(final Reader input, final Writer output) throws IOException {
+    public static void copy(final Reader input, final Writer output) throws IOException {
         final long count = copyLarge(input, output);
-        if (count > Integer.MAX_VALUE) {
-            return -1;
-        }
-        return (int) count;
     }
 
     public static long copyLarge(final InputStream input, final OutputStream output)
@@ -381,32 +351,6 @@ public class IOUtils {
         return list;
     }
 
-    public static byte[] resourceToByteArray(final String name) throws IOException {
-        return resourceToByteArray(name, null);
-    }
-
-    public static byte[] resourceToByteArray(final String name, final ClassLoader classLoader) throws IOException {
-        return toByteArray(resourceToURL(name, classLoader));
-    }
-
-    public static String resourceToString(final String name, final Charset charset) throws IOException {
-        return resourceToString(name, charset, null);
-    }
-
-    public static String resourceToString(final String name, final Charset charset, final ClassLoader classLoader) throws IOException {
-        return toString(resourceToURL(name, classLoader), charset);
-    }
-
-
-    public static URL resourceToURL(final String name, final ClassLoader classLoader) throws IOException {
-
-        final URL resource = classLoader == null ? IOUtils.class.getResource(name) : classLoader.getResource(name);
-
-        if (resource == null) {
-            throw new IOException("Resource not found: " + name);
-        }
-        return resource;
-    }
 
     public static long skip(final InputStream input, final long toSkip) throws IOException {
         if (toSkip < 0) {
@@ -465,18 +409,10 @@ public class IOUtils {
         return reader instanceof BufferedReader ? (BufferedReader) reader : new BufferedReader(reader);
     }
 
-    public static byte[] toByteArray(final InputStream input) throws IOException {
-        try (final ByteArrayOutputStream output = new ByteArrayOutputStream()) {
-            copy(input, output);
-            return output.toByteArray();
-        }
-    }
-
     @Deprecated
     public static byte[] toByteArray(final Reader input) throws IOException {
         return toByteArray(input, Charset.defaultCharset());
     }
-
 
     public static byte[] toByteArray(final Reader input, final Charset charset) throws IOException {
         try (final ByteArrayOutputStream output = new ByteArrayOutputStream()) {
@@ -488,21 +424,6 @@ public class IOUtils {
     @Deprecated
     public static byte[] toByteArray(final String input) {
         return input.getBytes(Charset.defaultCharset());
-    }
-
-    public static byte[] toByteArray(final URL url) throws IOException {
-        final URLConnection conn = url.openConnection();
-        try {
-            return IOUtils.toByteArray(conn);
-        } finally {
-            close((Closeable) conn);
-        }
-    }
-
-    public static byte[] toByteArray(final URLConnection urlConn) throws IOException {
-        try (InputStream inputStream = urlConn.getInputStream()) {
-            return IOUtils.toByteArray(inputStream);
-        }
     }
 
     @Deprecated

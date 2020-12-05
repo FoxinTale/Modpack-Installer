@@ -18,10 +18,6 @@ public class SplitOutputStream extends OutputStream implements OutputStreamWithS
     private long bytesWrittenForThisPart;
     private final RawIO rawIO = new RawIO();
 
-    public SplitOutputStream(File file) throws FileNotFoundException, ZipException {
-        this(file, -1);
-    }
-
     public SplitOutputStream(File file, long splitLength) throws FileNotFoundException, ZipException {
         if (splitLength >= 0 && splitLength < InternalZipConstants.MIN_SPLIT_LENGTH) {
             throw new ZipException("split length less than minimum allowed split length of " + InternalZipConstants.MIN_SPLIT_LENGTH + " Bytes");
@@ -46,13 +42,11 @@ public class SplitOutputStream extends OutputStream implements OutputStreamWithS
         if (len <= 0) {
             return;
         }
-
         if (splitLength == -1) {
             raf.write(b, off, len);
             bytesWrittenForThisPart += len;
             return;
         }
-
         if (bytesWrittenForThisPart >= splitLength) {
             startNextSplitFile();
             raf.write(b, off, len);
@@ -87,18 +81,14 @@ public class SplitOutputStream extends OutputStream implements OutputStreamWithS
         }
 
         File currSplitFile = new File(parentPath + zipFileWithoutExt + fileExtension);
-
         raf.close();
-
         if (currSplitFile.exists()) {
             throw new IOException("split file: " + currSplitFile.getName()
                     + " already exists in the current directory, cannot rename this file");
         }
-
         if (!zipFile.renameTo(currSplitFile)) {
             throw new IOException("cannot rename newly created split file");
         }
-
         zipFile = new File(zipFileName);
         raf = new RandomAccessFile(zipFile, RandomAccessFileMode.WRITE.getValue());
         currSplitFileCounter++;
@@ -120,7 +110,6 @@ public class SplitOutputStream extends OutputStream implements OutputStreamWithS
         if (bufferSize < 0) {
             throw new ZipException("negative buffersize for checkBufferSizeAndStartNextSplitFile");
         }
-
         if (!isBufferSizeFitForCurrSplitFile(bufferSize)) {
             try {
                 startNextSplitFile();
@@ -130,7 +119,6 @@ public class SplitOutputStream extends OutputStream implements OutputStreamWithS
                 throw new ZipException(e);
             }
         }
-
         return false;
     }
 
@@ -141,14 +129,6 @@ public class SplitOutputStream extends OutputStream implements OutputStreamWithS
         } else {
             return true;
         }
-    }
-
-    public void seek(long pos) throws IOException {
-        raf.seek(pos);
-    }
-
-    public int skipBytes(int n) throws IOException {
-        return raf.skipBytes(n);
     }
 
     public void close() throws IOException {

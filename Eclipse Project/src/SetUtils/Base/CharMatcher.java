@@ -218,7 +218,6 @@ public abstract class CharMatcher implements Predicate<Character> {
         return true;
     }
 
-
     public boolean matchesNoneOf(CharSequence sequence) {
         return indexIn(sequence) == -1;
     }
@@ -286,7 +285,6 @@ public abstract class CharMatcher implements Predicate<Character> {
         }
         return new String(chars, 0, pos - spread);
     }
-
 
     public String replaceFrom(CharSequence sequence, char replacement) {
         String string = sequence.toString();
@@ -671,11 +669,11 @@ public abstract class CharMatcher implements Predicate<Character> {
             this.description = description;
             this.rangeStarts = rangeStarts;
             this.rangeEnds = rangeEnds;
-            Preconditions.checkArgument(rangeStarts.length == rangeEnds.length);
+            Preconditions.checkArgument();
             for (int i = 0; i < rangeStarts.length; i++) {
-                Preconditions.checkArgument(rangeStarts[i] <= rangeEnds[i]);
+                Preconditions.checkArgument();
                 if (i + 1 < rangeStarts.length) {
-                    Preconditions.checkArgument(rangeEnds[i] < rangeStarts[i + 1]);
+                    Preconditions.checkArgument();
                 }
             }
         }

@@ -38,11 +38,9 @@ public class HeaderUtil {
                 return new String(data);
             }
         }
-
         if (charset != null) {
             return new String(data, charset);
         }
-
         return new String(data, InternalZipConstants.CHARSET_UTF_8);
     }
 

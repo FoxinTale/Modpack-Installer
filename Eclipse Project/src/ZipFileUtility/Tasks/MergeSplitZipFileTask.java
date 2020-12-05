@@ -13,8 +13,8 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 public class MergeSplitZipFileTask extends AsyncZipTask<MergeSplitZipFileTask.MergeSplitZipFileTaskParameters> {
-    private ZipModel zipModel;
-    private RawIO rawIO = new RawIO();
+    private final ZipModel zipModel;
+    private final RawIO rawIO = new RawIO();
 
     public MergeSplitZipFileTask(ZipModel zipModel, AsyncTaskParameters asyncTaskParameters) {
         super(asyncTaskParameters);

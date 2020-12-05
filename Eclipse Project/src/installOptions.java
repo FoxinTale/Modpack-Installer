@@ -1,7 +1,6 @@
 import FileUtils.FileUtils;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,12 +10,9 @@ import java.util.Set;
 
 public class installOptions extends Install {
     static int ramSizeChosen = 0;
-    static long memSize;
     static int ramSizeMb;
     static int ramSizeGb;
-    static Font pretty;
     static Boolean packGood = false;
-    Common co = new Common();
 
     static String modpackOptions = Common.getDownloadsLocation() + Common.q + "Modpack" + Common.q + "options" + Common.q;
 

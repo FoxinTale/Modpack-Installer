@@ -6,13 +6,12 @@ public class ProgressMonitor {
 
     public enum Result {SUCCESS, ERROR, CANCELLED}
 
-    public enum Task {NONE, REMOVE_ENTRY, EXTRACT_ENTRY, MERGE_ZIP_FILES, SET_COMMENT, RENAME_FILE}
+    public enum Task {NONE, EXTRACT_ENTRY, MERGE_ZIP_FILES, SET_COMMENT, RENAME_FILE}
 
     private State state;
     private long totalWork;
     private long workCompleted;
     private int percentDone;
-    private Task currentTask;
     private String fileName;
     private Result result;
     private Exception exception;
@@ -63,56 +62,42 @@ public class ProgressMonitor {
     }
 
     private void reset() {
-        currentTask = Task.NONE;
         state = State.READY;
     }
 
     public State getState() {
         return state;
     }
-
     public void setState(State state) {
         this.state = state;
     }
-
     public void setTotalWork(long totalWork) {
         this.totalWork = totalWork;
     }
-
     public int getPercentDone() {
         return percentDone;
     }
-
     public void setCurrentTask(Task currentTask) {
-        this.currentTask = currentTask;
     }
-
     public String getFileName() {
         return fileName;
     }
-
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
-
     public Result getResult() {
         return result;
     }
-
     public void setResult(Result result) {
         this.result = result;
     }
-
     public Exception getException() {
         return exception;
     }
-
     public void setException(Exception exception) {
         this.exception = exception;
     }
-
     public boolean isCancelAllTasks() {
         return cancelAllTasks;
     }
-
 }

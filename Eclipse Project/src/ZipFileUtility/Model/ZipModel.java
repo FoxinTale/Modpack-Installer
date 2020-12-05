@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ZipModel implements Cloneable {
-
     private List<LocalFileHeader> localFileHeaders = new ArrayList<>();
     private CentralDirectory centralDirectory = new CentralDirectory();
     private EndOfCentralDirectoryRecord endOfCentralDirectoryRecord = new EndOfCentralDirectoryRecord();
     private Zip64EndOfCentralDirectoryLocator zip64EndOfCentralDirectoryLocator = new Zip64EndOfCentralDirectoryLocator();
     private Zip64EndOfCentralDirectoryRecord zip64EndOfCentralDirectoryRecord = new Zip64EndOfCentralDirectoryRecord();
-
     private boolean splitArchive;
     private File zipFile;
     private boolean isZip64Format = false;

@@ -19,8 +19,8 @@ import java.util.List;
 
 public class HeaderReader {
     private ZipModel zipModel;
-    private RawIO rawIO = new RawIO();
-    private byte[] intBuff = new byte[4];
+    private final RawIO rawIO = new RawIO();
+    private final byte[] intBuff = new byte[4];
 
     public ZipModel readAllHeaders(RandomAccessFile zip4jRaf, Charset charset) throws IOException {
 
@@ -188,7 +188,7 @@ public class HeaderReader {
             if (digitalSignature.getSizeOfData() > 0) {
                 byte[] signatureDataBuff = new byte[digitalSignature.getSizeOfData()];
                 zip4jRaf.readFully(signatureDataBuff);
-                digitalSignature.setSignatureData(new String(signatureDataBuff));
+                digitalSignature.setSignatureData();
             }
         }
 
@@ -218,40 +218,31 @@ public class HeaderReader {
 
     private List<ExtraDataRecord> readExtraDataRecords(RandomAccessFile zip4jRaf, int extraFieldLength)
             throws IOException {
-
         if (extraFieldLength < 4) {
             if (extraFieldLength > 0) {
                 zip4jRaf.skipBytes(extraFieldLength);
             }
-
             return null;
         }
-
         byte[] extraFieldBuf = new byte[extraFieldLength];
         zip4jRaf.read(extraFieldBuf);
-
         try {
             return parseExtraDataRecords(extraFieldBuf, extraFieldLength);
         } catch (Exception e) {
-            // Ignore any errors when parsing extra data records
             return Collections.emptyList();
         }
     }
 
     private List<ExtraDataRecord> readExtraDataRecords(InputStream inputStream, int extraFieldLength)
             throws IOException {
-
         if (extraFieldLength < 4) {
             if (extraFieldLength > 0) {
                 inputStream.skip(extraFieldLength);
             }
-
             return null;
         }
-
         byte[] extraFieldBuf = new byte[extraFieldLength];
         Zip4jUtil.readFully(inputStream, extraFieldBuf);
-
         try {
             return parseExtraDataRecords(extraFieldBuf, extraFieldLength);
         } catch (Exception e) {
@@ -512,23 +503,15 @@ public class HeaderReader {
         } else {
             localFileHeader.setFileName(null);
         }
-
         readExtraDataRecords(inputStream, localFileHeader);
         readZip64ExtendedInfo(localFileHeader, rawIO);
-
         if (localFileHeader.isEncrypted()) {
-
-            if (localFileHeader.getEncryptionMethod() == EncryptionMethod.AES) {
-            } else {
                 if (BigInteger.valueOf(localFileHeader.getGeneralPurposeFlag()[0]).testBit(6)) {
-                    localFileHeader.setEncryptionMethod(EncryptionMethod.ZIP_STANDARD_VARIANT_STRONG);
+                    localFileHeader.setEncryptionMethod();
                 } else {
-                    localFileHeader.setEncryptionMethod(EncryptionMethod.ZIP_STANDARD);
+                    localFileHeader.setEncryptionMethod();
                 }
-            }
-
         }
-
         return localFileHeader;
     }
 

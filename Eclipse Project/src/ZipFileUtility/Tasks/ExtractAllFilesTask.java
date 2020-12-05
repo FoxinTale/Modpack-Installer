@@ -13,12 +13,10 @@ import java.nio.charset.Charset;
 
 public class ExtractAllFilesTask extends AbstractExtractFileTask<ExtractAllFilesTask.ExtractAllFilesTaskParameters> {
 
-    private char[] password;
     private SplitInputStream splitInputStream;
 
-    public ExtractAllFilesTask(ZipModel zipModel, char[] password, AsyncTaskParameters asyncTaskParameters) {
+    public ExtractAllFilesTask(ZipModel zipModel, AsyncTaskParameters asyncTaskParameters) {
         super(zipModel, asyncTaskParameters);
-        this.password = password;
     }
 
     @Override
@@ -56,7 +54,7 @@ public class ExtractAllFilesTask extends AbstractExtractFileTask<ExtractAllFiles
             splitInputStream.prepareExtractionForFileHeader(fileHeader);
         }
 
-        return new ZipInputStream(splitInputStream, password, charset);
+        return new ZipInputStream(splitInputStream, charset);
     }
 
     private FileHeader getFirstFileHeader(ZipModel zipModel) {
@@ -71,7 +69,6 @@ public class ExtractAllFilesTask extends AbstractExtractFileTask<ExtractAllFiles
 
     public static class ExtractAllFilesTaskParameters extends AbstractZipTaskParameters {
         private final String outputPath;
-
         public ExtractAllFilesTaskParameters(String outputPath, Charset charset) {
             super(charset);
             this.outputPath = outputPath;

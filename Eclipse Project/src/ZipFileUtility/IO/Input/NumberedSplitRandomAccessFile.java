@@ -10,12 +10,12 @@ import java.io.RandomAccessFile;
 
 public class NumberedSplitRandomAccessFile extends RandomAccessFile {
 
-    private long splitLength;
-    private File[] allSortedSplitFiles;
+    private final long splitLength;
+    private final File[] allSortedSplitFiles;
     private RandomAccessFile randomAccessFile;
-    private byte[] singleByteBuffer = new byte[1];
+    private final byte[] singleByteBuffer = new byte[1];
     private int currentOpenSplitFileCounter = 0;
-    private String rwMode;
+    private final String rwMode;
 
     public NumberedSplitRandomAccessFile(File file, String mode, File[] allSortedSplitFiles) throws IOException {
         super(file, mode);
@@ -35,11 +35,9 @@ public class NumberedSplitRandomAccessFile extends RandomAccessFile {
     @Override
     public int read() throws IOException {
         int readLen = read(singleByteBuffer);
-
         if (readLen == -1) {
             return -1;
         }
-
         return singleByteBuffer[0] & 0xff;
     }
 
@@ -51,7 +49,6 @@ public class NumberedSplitRandomAccessFile extends RandomAccessFile {
     @Override
     public int read(byte[] b, int off, int len) throws IOException {
         int readLen = randomAccessFile.read(b, off, len);
-
         if (readLen == -1) {
             if (currentOpenSplitFileCounter == allSortedSplitFiles.length - 1) {
                 return -1;
@@ -59,7 +56,6 @@ public class NumberedSplitRandomAccessFile extends RandomAccessFile {
             openRandomAccessFileForIndex(currentOpenSplitFileCounter + 1);
             return read(b, off, len);
         }
-
         return readLen;
     }
 

@@ -8,7 +8,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Objects;
 
 public abstract class AbstractFileFilter implements IOFileFilter, PathVisitor {
-    static FileVisitResult toFileVisitResult(final boolean accept, final Path path) {
+    static FileVisitResult toFileVisitResult(final boolean accept) {
         return accept ? FileVisitResult.CONTINUE : FileVisitResult.TERMINATE;
     }
 

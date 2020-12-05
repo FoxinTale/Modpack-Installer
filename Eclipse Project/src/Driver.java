@@ -1,8 +1,5 @@
-import GUI.CustomOutputStream;
-
 import javax.swing.*;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.net.URL;
 /*
  * This program is free software. It comes without any warranty, to the extent
@@ -18,20 +15,23 @@ import java.net.URL;
  * someone tells me it said a Pokemon, I can look at where it is supposed to be
  * outputting that, and understand what's going wrong.
  *
+ *
+ * All strings can be found in the Strings file.
+ *
  */
 
 public class Driver {
     static int selectedOption = 0;
     static Boolean updateTime = false;
     public static URL installerUpdateLink;
-    private static PrintStream standardOut; // This sets the outputs.
+    //private static PrintStream standardOut; // This sets the outputs.
 
     public static void main(String[] args) throws IOException {
         // Creating the custom output stream.
-        PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
-        standardOut = System.out;
-        System.setOut(printStream);
-        System.setErr(printStream);
+       // PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
+        //standardOut = System.out;
+        //System.setOut(printStream);
+        //System.setErr(printStream);
         Boolean validOS = false;
         installerUpdateLink = new URL(Common.installerLatestLink);
         String OS = System.getProperty("os.name"); // This gets the name of the current operating system.
