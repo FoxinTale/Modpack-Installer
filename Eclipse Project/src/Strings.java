@@ -80,6 +80,10 @@ public class Strings {
     static String installerAgainMessage = "Would you like to use another option? Selecting no exits the program.";
     static String installerAgainTitle = "Use another option?";
 
+    static String guiChoiceMessage = "Would you like a colourful, pretty version or would you like to keep it plain?";
+    static String guiChoiceTitle = "User interface theme choice";
+    static Object[] guiOptionsArray = {"Make it pretty", "Keep it plain"};
+
     // Options Text
     static String optionsTitle = "Options.";
     static String optionsOne = "Extract.";

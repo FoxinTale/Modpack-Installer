@@ -105,7 +105,6 @@ public class modOptions extends installOptions {
                 System.out.println(" Filters installed");
                 modInstall(ambiance, "SoundFilters-0.8_for_1.7.X.jar");
             }
-
             if (useAutofish) {
                 System.out.println(" Autofish installed");
                 modInstall(utility, "mod_Autofish_0.4.9_mc1.7.10.litemod");

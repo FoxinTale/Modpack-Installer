@@ -27,7 +27,7 @@ public class assetCredits extends resourcePacks {
 
         JLabel packFourA = new JLabel("SnowSong - Epic sound and music pack");
         JLabel packFourB = new JLabel("Created by: Sn0w");
-        JHyperlink packFourC = new JHyperlink("Check it out here.",
+        JHyperlink packFourC = new JHyperlink("Check it out here.", //This one has blanket permissions given, no need to ask.
                 "https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1245112-snowsong-the-epic-sound-pack-sound-resource-pack");
 
         JLabel packFiveA = new JLabel(" PonyCraft 128 x 128.");
@@ -36,8 +36,8 @@ public class assetCredits extends resourcePacks {
                 "https://www.planetminecraft.com/texture_pack/flutterstorms-ponycraft/");
 
         JLabel packSixA = new JLabel(" Pencil Pack");
-        JLabel packSixB = new JLabel(" Created by:  jonoww");
-        JHyperlink packSixC = new JHyperlink("Check it out here.", "https://www.planetminecraft.com/texture_pack/pencil-pack-hand-drawn/");
+        JLabel packSixB = new JLabel(" Created by:  jonoww"); // Wait, what did I use from this one?
+        JHyperlink packSixC = new JHyperlink("Check it out here.", "https://www.planetminecraft.com/texture_pack/pencil-pack-hand-drawn/"); // CC-By-Nc-Nd
 
         JLabel packSevenA = new JLabel(" Rainbow Animated");
         JLabel packSevenB = new JLabel(" Created by:  Blazik3n");
@@ -45,7 +45,7 @@ public class assetCredits extends resourcePacks {
 
         JLabel packEightA = new JLabel(" Nellik's GUIs");
         JLabel packEightB = new JLabel(" Created by:  ScottKillen");
-        JHyperlink packEightC = new JHyperlink("Check it out here.", "https://www.curseforge.com/minecraft/texture-packs/nelliks-highdef-guis");
+        JHyperlink packEightC = new JHyperlink("Check it out here.", "https://www.curseforge.com/minecraft/texture-packs/nelliks-highdef-guis"); //Long as credit is given, all is good.
 
         Color rbc = new Color(220, 255, 255); // Hex value: dcffff
         JPanel packOnePanel = new RoundedPanel(10, rbc);

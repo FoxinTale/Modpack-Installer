@@ -24,8 +24,6 @@ This then completes the installation process. All the user needs to do is verify
 - An aesthetically pleasing user interface.
 - It also has the ability to download updates for the modpack too!
 - Multiple "failsafes" so it should be hard to break.
-- Over 2800 lines of code!
-
 
 ### Major Update 7-5-2019
 
@@ -64,35 +62,21 @@ Rewrote the entire file verification, and installation verification methods. Cha
 for whenever an error occurs, it says what caused it, and how to fix it. Work on the memory adjustment is still in progress. Also fixed a few more reported bugs.
 Not much visual changes. Just a lot of under the hood changes going on. 
 
+### Total rewrite 1
+Absorbed all external libraries to in it to reduce the chance of a missing library causing the program to not work. Removed the external font and image for the same reason the libraries were absorbed.
+
+
 #### What is the WTFPL?
 This program is free software. It comes without any warranty, to the extent permitted by applicable law. 
 You can redistribute it and/or modify it under the terms of the Do What The Fuck You Want To Public License, Version 2, as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 
-##### Class File Code Count Breakdown
-The amount of code doesn't really mean anything overall, It's just here for curious folks.
-- assetCredits : 201
-- Checksums : 167
-- CustomOutputStream : 23
-- Downloader : 110
-- Driver : 157
-- Errors : 116
-- Extractor : 63
-- GUI : 341
-- Install : 205
-- installOptions : 189
-- JHyperlink : 66
-- Json : 111
-- Memory : 182
-- optionsGUI: 208
-- osDetect : 100
-- resourcePacks: 407
-- RoundedPanel : 56
-- Updater : 110
-- Total lines of code : 2812
 
 ##### What is the "Other projects" folder?
 This is, as it says. The smaller components that I made on their own to verify that they work on their own, before combining into this. It is how I decided to go about this project. Feel free to look at each one to see how it works.
 
+#### Note.
+If you feel like it, go support the file host gofile.io. It's run by a few people and is powered by user donations. Not a sponsorship or partnership at all, but I think 
+it should be mentioned.  
 
 #### To do list:
 - Bugfix as needed

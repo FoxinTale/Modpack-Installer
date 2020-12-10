@@ -22,11 +22,10 @@ public class Common {
     static String resourcePackTexturesLink = "";
 
 
-    // Versions.
+    // Font stuff.
     static String modpackVersion = "";
     public static void getFont(){
         try {
-
             File fontFile = new File(System.getProperty("user.dir")+ File.separator + "InstallerFont.ttf");
             if(!fontFile.exists()) {
                 Downloader.downloadNoProgress(fontLink, fontFile);
@@ -50,7 +49,8 @@ public class Common {
         }
     }
 
-
+    // Other variables.
+    public static Boolean bePretty = false;
 
     // Getters and setters.
     public static String getDownloadsLocation() {
