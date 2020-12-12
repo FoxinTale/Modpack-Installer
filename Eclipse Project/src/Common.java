@@ -10,6 +10,10 @@ public class Common {
     private static String downloadsLocation = null;
     private static String desktopLocation = null;
     private static String minecraftDefaultInstall = null;
+
+    static String modpackPartOneCheckedVersion;
+    static String modpackPartTwoCheckedVersion;
+
     static String q = File.separator;
     static Font pretty;
     static String zipFile = "Modpack.zip"; //This will get deleted soon, as it's no longer called this anymore.

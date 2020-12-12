@@ -120,18 +120,19 @@ public class modOptions extends installOptions {
             Install.end();
         };
 
-        nope.setFont(Common.pretty);
-        install.setFont(Common.pretty);
-        controllerCheck.setFont(Common.pretty);
-        musicCheck.setFont(Common.pretty);
-        surroundingsCheck.setFont(Common.pretty);
-        filterCheck.setFont(Common.pretty);
-        footstepCheck.setFont(Common.pretty);
-        autofishCheck.setFont(Common.pretty);
-        brightCheck.setFont(Common.pretty);
-        noteblockCheck.setFont(Common.pretty);
-        modInfo.setFont(Common.pretty);
-
+        if(Common.bePretty) {
+            nope.setFont(Common.pretty);
+            install.setFont(Common.pretty);
+            controllerCheck.setFont(Common.pretty);
+            musicCheck.setFont(Common.pretty);
+            surroundingsCheck.setFont(Common.pretty);
+            filterCheck.setFont(Common.pretty);
+            footstepCheck.setFont(Common.pretty);
+            autofishCheck.setFont(Common.pretty);
+            brightCheck.setFont(Common.pretty);
+            noteblockCheck.setFont(Common.pretty);
+            modInfo.setFont(Common.pretty);
+        }
         nope.addActionListener(cancelEvent);
         install.addActionListener(installEvent);
         controllerCheck.addActionListener(controllerEvent);

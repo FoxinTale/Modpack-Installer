@@ -12,10 +12,6 @@ public class Updater {
     static ArrayList<String> removal = Json.getToRemove();
     static String currentVersion = "";
 
-    public static void updater() {
-        //Empty constructor.
-    }
-
     public static void checkAPIForUpdate(URL updateLink, String version, String message, String title,  String toPrint, int op){
         try{
             JSONObject latestPage = (JSONObject) new JSONTokener(updateLink.openStream()).nextValue();
@@ -71,7 +67,9 @@ public class Updater {
 
     public static void modpackUpdateCheck() {
         try {
-            URL modpackLatest = new URL("");
+
+            Common.modpackPartOneCheckedVersion = Preinstall.getTag(new URL(Common.modpackPartOneLink));
+            Common.modpackPartTwoCheckedVersion = Preinstall.getTag(new URL(Common.modpackPartTwoLink));
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

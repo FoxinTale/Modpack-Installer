@@ -98,13 +98,13 @@ public class optionsGUI extends installOptions {
         extract.addActionListener(radioButtonEvent);
         restoreSettings.addActionListener(radioButtonEvent);
         optionalMods.addActionListener(radioButtonEvent);
-
+    if(Common.bePretty) {
         ping.setFont(Common.pretty);
         launcher.setFont(Common.pretty);
         extract.setFont(Common.pretty);
         restoreSettings.setFont(Common.pretty);
         optionalMods.setFont(Common.pretty);
-
+    }
         go.addActionListener(buttonEvent);
 
         extractPanel.setBounds(63, 30, 200, 25);
