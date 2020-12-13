@@ -13,10 +13,14 @@ public class Common {
 
     static String modpackPartOneCheckedVersion;
     static String modpackPartTwoCheckedVersion;
+    static String modpackPartOneInstalledVersion;
+    static String modpackPartTwoInstalledVersion;
 
     static String q = File.separator;
     static Font pretty;
     static String zipFile = "Modpack.zip"; //This will get deleted soon, as it's no longer called this anymore.
+    static File infoFile = new File("installerinfo.json");
+
 
     // Links.
     static String installerLatestLink = "https://api.github.com/repos/foxintale/modpack-installer/releases/latest";

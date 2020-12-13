@@ -3,8 +3,7 @@ import JsonUtils.JSONObject;
 import JsonUtils.JSONTokener;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 
 // Used for checking and doing things before the installation process begins.
@@ -16,7 +15,6 @@ public class Preinstall {
         String moddedJson = minecraftVersions + "1.7.10-Forge10.13.4.1614-1.7.10" + Common.q + "1.7.10-Forge10.13.4.1614-1.7.10.json";
         File vanillaMinecraft = new File(minecraftVersions + "1.7.10" + Common.q + "1.7.10.jar");
         File vanillaMinecraftConfig = new File(minecraftVersions + "1.7.10" + Common.q + "1.7.10.json");
-
         File moddedMinecraftConfig = new File(moddedJson);
 
         boolean modConfig = moddedMinecraftConfig.exists();
@@ -42,23 +40,65 @@ public class Preinstall {
         return null;
     }
 
-    public static void createLocationFile(){
+    public static void createInfoFile(){
+        try {
+            FileWriter infoWriter = new FileWriter(Common.infoFile);
+            infoWriter.write("{\n");
+            infoWriter.write("\t\"PartOneVersion\": " + "\"" + Common.modpackPartOneCheckedVersion + "\",\n");
+            infoWriter.write("\t\"PartTwoVersion\": " + "\"" + Common.modpackPartTwoCheckedVersion + "\"");
+            infoWriter.write("\n}");
+            infoWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public static void readLocationFile(){
-
+    public static void readInfoFile(){
+        if(Common.infoFile.exists()){
+            try {
+               JSONTokener infoData  = new JSONTokener(new FileReader(Common.infoFile));
+                JSONObject infoObject = new JSONObject(infoData);
+                Common.modpackPartOneInstalledVersion = (String) infoObject.get("PartOneVersion");
+                Common.modpackPartTwoInstalledVersion = (String) infoObject.get("PartTwoVersion");
+                modpackPartOneCheck();
+                modpackPartTwoCheck();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    public static void createVersionFile(){
-
+    public static void fileCheck(){
+        if(Common.infoFile.exists()){
+            readInfoFile();
+        }
+        else{
+            createInfoFile();
+        }
     }
 
-    public static void readVersionFile(){
-
+    public static void modpackPartOneCheck(){
+        if(Common.modpackPartOneInstalledVersion.equals(Common.modpackPartOneCheckedVersion)){
+            System.out.println(Strings.modpackPartOneGood);
+            // Would it then do something afterwards?
+        }
+        else{
+            JOptionPane.showMessageDialog(new JFrame(), Strings.modpackPartOneOutdated, Strings.modpackPartOutdated, JOptionPane.WARNING_MESSAGE);
+            // Summon the downloader by firing a link off. May need to have special copying. Force copy overwriting anything there.
+        }
     }
 
-    public static void versionCheck(){
-
+    public static void modpackPartTwoCheck(){
+        if(Common.modpackPartTwoInstalledVersion.equals(Common.modpackPartTwoCheckedVersion)){
+            System.out.println(Strings.modpackPartTwoGood);
+            // Would it then do something afterwards?
+        }
+        else{
+            JOptionPane.showMessageDialog(new JFrame(), Strings.modpackPartTwoOutdated, Strings.modpackPartOutdated, JOptionPane.WARNING_MESSAGE);
+            // Summon the downloader by firing a link off. May need to have special copying. Force copy overwriting anything there.
+        }
     }
+
+
 }

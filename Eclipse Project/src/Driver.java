@@ -74,9 +74,9 @@ static Boolean validOS = false;
     }
 
     public static void sharedActions(){
-        //Install.checkForMinecraftandForge();
-        Updater.modpackUpdateCheck();
-        //System.out.println();
+        Preinstall.checkForMinecraftandForge();
+        Updater.modpackUpdateTags();
+        Preinstall.fileCheck();
        // guiChoice();
     }
 

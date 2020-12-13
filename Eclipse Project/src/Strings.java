@@ -3,12 +3,16 @@
 public class Strings {
     // Purpose of putting all the strings here is to make it easier for translations to be made.
     // If you're doing a translation, the space in front of the word must be there. The text looks squished otherwise.
+    // Ideally, this should be in a bundled language file, but I haven't figured out how to bundle assets within the jar file yet.
+    // If someone knows how to, please either let me know or somehow send me documentation/ tutorials.
+
 
     // Text for the GUI elements, aside from the options.
     static String downloadText = "Download.";
     static String installerWindowTitle = "Modpack Installer by Aubrey";
     static String installerErrorsLabelText = "Errors: ";
     static String installerVersionText = "Version ";
+
 
     // Outputs directly to the text window, this is listing the progress of the installer.
     static String installerWelcome = " Welcome to the installer!";
@@ -34,6 +38,7 @@ public class Strings {
     static String installerBackupConfig = " Backing up any existing configs";
     static String installerInstalling = " Installing...";
 
+
     // Installer Options
     static String installerOptionOne = "Do it for me.";
     static String installerOptionTwo = "Just download the zip file.";
@@ -41,10 +46,20 @@ public class Strings {
     static String installerOptionFour = "Get Resource Pack.";
     static String installerErrorsDefault = " Nothing to report.";
 
+
     // Text for an update available for the installer.
     static String installerUpdateTitle = "Installer Update Available";
     static String installerUpdateMessage = "There's an update available for the installer. Would you like to download it?";
     static String installerUpToDate = " You have the latest version of the installer.";
+
+
+    // Modpack update related things.
+    static String modpackPartOneGood = " Part one is up to date. Yay!";
+    static String modpackPartTwoGood = " Part two is up to date. Yay!";
+    static String modpackPartOneOutdated = "Part one is out of date. Downloading the latest version.";
+    static String modpackPartTwoOutdated = "Part two is out of date. Downloading the latest version.";
+    static String modpackPartOutdated = " Part of the pack is outdated.";
+
 
     // Checking the existence of Vanilla Minecraft and Modded.
     static String noVanillaMessage = "Please run Vanilla Minecraft 1.7.10 at least once before continuing.";
@@ -52,11 +67,13 @@ public class Strings {
     static String noModsMessage = "Please install the latest version of Forge for 1.7.10 before continuing!";
     static String noModsTitle = "Forge not Found";
 
+
     // Unsupported Operating System.
     static String oldOSMessage = "Why are you still using this computer?";
     static String oldOSTitle = "Outdated OS";
     static String unknownOSMessage = "Your OS is not supported by this installer.";
     static String unknownOSTitle = "Unknown Operating System";
+
 
     // Installer options messages and titles.
     static String installerExtractResourceMessage = "Would you like to extract the resource pack in order to improve load times on Minecraft? ";
@@ -79,10 +96,10 @@ public class Strings {
     static String installerOptionalModsTitle = "Install optional mods?";
     static String installerAgainMessage = "Would you like to use another option? Selecting no exits the program.";
     static String installerAgainTitle = "Use another option?";
-
     static String guiChoiceMessage = "Would you like a colourful, pretty version or would you like to keep it plain?";
     static String guiChoiceTitle = "User interface theme choice";
     static Object[] guiOptionsArray = {"Make it pretty", "Keep it plain"};
+
 
     // Options Text
     static String optionsTitle = "Options.";
@@ -92,12 +109,14 @@ public class Strings {
     static String optionsFour = "Restore Settings.";
     static String optionsFive = "Optional Mods.";
 
+
     //  Resource pack options GUI Text.
     static String assetCreditsLabel = "Asset Credits";
     static String resourcePackTitle = "Resource Pack Options";
     static String resourceDownloadSize = "Download Size: ";
     static String resourceNoneSelected = "None selected ";
     static String resourceContinue = "Continue";
+
 
     // Resource Pack Options
     static String resourceOptionOne = "One";
@@ -106,6 +125,7 @@ public class Strings {
     static String resourceOptionFour = "Four";
     static String resourceOptionFive = "Five";
     static String resourceOptionSix = "Six";
+
 
     // Text for the descriptions of the resource packs.
     static String resourcePackOneDesc = " This pack is textures and \n" + " sounds. \n" + " As a note, this is a high \n"
@@ -131,6 +151,7 @@ public class Strings {
             + " If you choose this, you \n" + " will be directed to a link \n"
             + " to download from within \n" + " your browser. ";
 
+
     //The big resource pack things
     static String resourceBigPackSize = "Huge";
     static String resourceBigTitle = "Large pack option";
@@ -150,6 +171,7 @@ public class Strings {
     static String optionalModsFishingLabel = "Auto Fishing";
     static String optionalModsNoteblockLabel = "Noteblock Display";
     static String optionalModsGammabrightLabel = "Gammabright";
+
 
     //Optional mods info text
     static String optionalModsInfoDefault = " These are optional. \n" +
@@ -177,10 +199,12 @@ public class Strings {
     static String optionalModsFishingInfo = " The name describes all. \n" + " It pulls in fishing rods \n" + " as soon as a bite happens";
     static String optionalModsNoteblockInfo = " Shows a graphical config \n" + " menu for noteblocks.";
 
+
     // Optional mods GUI elements.
     static String optionalModsInstall = "Install!";
     static String optionalModsCancel = "Nah, I'm good";
     static String optionalModsTitle = "Optional mods installation";
+
 
     // Finalizing the installation.
     static String installerThanksMessage = "Thanks for using the installer! Now, go have fun.";

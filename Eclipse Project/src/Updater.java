@@ -65,12 +65,10 @@ public class Updater {
         }
     }
 
-    public static void modpackUpdateCheck() {
+    public static void modpackUpdateTags() {
         try {
-
             Common.modpackPartOneCheckedVersion = Preinstall.getTag(new URL(Common.modpackPartOneLink));
             Common.modpackPartTwoCheckedVersion = Preinstall.getTag(new URL(Common.modpackPartTwoLink));
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
