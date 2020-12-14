@@ -75,8 +75,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -171,6 +171,10 @@
     </state>
     <state x="441" y="273" width="433" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.760@0.0.1280.760" timestamp="1606618659920" />
     <state x="551" y="309" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607190079168" />
+    <state x="425" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607978657199">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="425" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607978657199" />
     <state x="530" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606893420735">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -179,38 +183,38 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="229" y="0" key="#org.jetbrains.kotlin.idea.refactoring.safeDelete.KotlinOverridingDialog/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607139632190" />
-    <state width="1557" height="237" key="GridCell.Tab.0.bottom" timestamp="1607892576733">
+    <state width="1557" height="276" key="GridCell.Tab.0.bottom" timestamp="1607981118445">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="237" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607892576733" />
-    <state width="1557" height="237" key="GridCell.Tab.0.center" timestamp="1607892576733">
+    <state width="1557" height="276" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607981118445" />
+    <state width="1557" height="276" key="GridCell.Tab.0.center" timestamp="1607981118445">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="237" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607892576733" />
-    <state width="1557" height="237" key="GridCell.Tab.0.left" timestamp="1607892576733">
+    <state width="1557" height="276" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607981118445" />
+    <state width="1557" height="276" key="GridCell.Tab.0.left" timestamp="1607981118445">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="237" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607892576733" />
-    <state width="1557" height="237" key="GridCell.Tab.0.right" timestamp="1607892576733">
+    <state width="1557" height="276" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607981118445" />
+    <state width="1557" height="276" key="GridCell.Tab.0.right" timestamp="1607981118445">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="237" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607892576733" />
-    <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1607153212184">
+    <state width="1557" height="276" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607981118445" />
+    <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1607981118446">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.bottom/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607153212184" />
-    <state width="1557" height="276" key="GridCell.Tab.1.center" timestamp="1607153212184">
+    <state width="1557" height="276" key="GridCell.Tab.1.bottom/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607981118446" />
+    <state width="1557" height="276" key="GridCell.Tab.1.center" timestamp="1607981118446">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.center/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607153212184" />
-    <state width="1557" height="276" key="GridCell.Tab.1.left" timestamp="1607153212184">
+    <state width="1557" height="276" key="GridCell.Tab.1.center/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607981118446" />
+    <state width="1557" height="276" key="GridCell.Tab.1.left" timestamp="1607981118445">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.left/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607153212184" />
-    <state width="1557" height="276" key="GridCell.Tab.1.right" timestamp="1607153212184">
+    <state width="1557" height="276" key="GridCell.Tab.1.left/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607981118445" />
+    <state width="1557" height="276" key="GridCell.Tab.1.right" timestamp="1607981118446">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607153212184" />
+    <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607981118446" />
     <state x="280" y="4" key="SettingsEditor" timestamp="1606872312184">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -227,6 +231,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="406" y="40" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1606932361595" />
+    <state x="351" y="166" width="898" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1607977417169">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="351" y="166" width="898" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607977417169" />
     <state x="507" y="29" width="585" height="801" key="find.popup" timestamp="1606865984461">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -243,5 +251,15 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860/1600.0.1680.1010@0.0.1600.860" timestamp="1607136679938" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.StackOverflowError" package="java.lang" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

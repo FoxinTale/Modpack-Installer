@@ -1,5 +1,8 @@
 package ZipFileUtility.Util;
 
+
+import ZipFileUtility.Model.CompressionMethod;
+import ZipFileUtility.Model.LocalFileHeader;
 import ZipFileUtility.ZipException;
 
 import java.io.File;
@@ -77,6 +80,26 @@ public class Zip4jUtil {
         return cal.getTime().getTime();
     }
 
+    public static byte[] convertCharArrayToByteArray(char[] charArray) {
+        byte[] bytes = new byte[charArray.length];
+        for (int i = 0; i < charArray.length; i++) {
+            bytes[i] = (byte) charArray[i];
+        }
+        return bytes;
+    }
+
+    public static CompressionMethod getCompressionMethod(LocalFileHeader localFileHeader) {
+        if (localFileHeader.getCompressionMethod() != CompressionMethod.AES_INTERNAL_ONLY) {
+            return localFileHeader.getCompressionMethod();
+        }
+
+        if (localFileHeader.getAesExtraDataRecord() == null) {
+            throw new RuntimeException("AesExtraDataRecord not present in local header for aes encrypted data");
+        }
+
+        return localFileHeader.getAesExtraDataRecord().getCompressionMethod();
+    }
+
     public static int readFully(InputStream inputStream, byte[] bufferToReadInto) throws IOException {
 
         int readLen = inputStream.read(bufferToReadInto);
@@ -131,7 +154,7 @@ public class Zip4jUtil {
 
         int remainingLength = bufferToReadInto.length - readLength;
         int loopReadLength = 0;
-        int retryAttempt = 1;
+        int retryAttempt = 1; // first attempt is already done before this method is called
 
         while (readLength < bufferToReadInto.length
                 && loopReadLength != -1

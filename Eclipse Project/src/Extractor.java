@@ -4,15 +4,16 @@ import ZipFileUtility.ZipFile;
 import java.io.File;
 
 public class Extractor {
-    public static void Extract(String fileLocation, String name, int op) {
+    public static void Extract(String fileLocation, int op) {
 
-        File modpack = new File(Common.getDownloadsLocation() + Common.q + "Modpack");
+        String name = Common.zipFile.substring(0, Common.zipFile.lastIndexOf('.'));
+        File modpack = new File(Common.getDownloadsLocation() + Common.q + name);
         if (modpack.exists()) {
             modpack.delete();
             // This deletes a modpack folder in the downloads if it exists already.
             // If this wasn't done, the extract would fail.
         }
-
+        //System.out.println(nam1)
         String folderPath = Common.getDownloadsLocation() + Common.q + name + Common.q;
         switch (op) {
             case 0: // Modpack
@@ -26,10 +27,14 @@ public class Extractor {
                 System.out.println(Strings.installerExtractNotice);
                 unzip(fileLocation, name, op);
                 break;
+            case 3:
+                unzip(fileLocation, name, 1);
+                break;
             default:
                 break;
         }
     }
+
 
     public static void unzip(String zipFilePath, String extractFolder, int op) {
         // 0 is the modpack, 1 is an update, and 2 is the resource pack.
@@ -45,10 +50,13 @@ public class Extractor {
                 Install.install();
                 break;
             case 1:
-                Updater.installUpdate();
+                //Updater.installUpdate();
+                System.out.println(" Extract complete!");
+                break;
             case 2:
                 System.out.println(" Resource pack installed.");
                 Install.end();
+                break;
             default:
                 break;
         }

@@ -1,5 +1,8 @@
+//import GUI.CustomOutputStream;
+
 import javax.swing.*;
 import java.io.IOException;
+//import java.io.PrintStream;
 import java.net.URL;
 /*
  * This program is free software. It comes without any warranty, to the extent
@@ -30,7 +33,7 @@ public class Driver {
 static Boolean validOS = false;
     public static void main(String[] args) throws IOException {
         // Creating the custom output stream.
-        //PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
+       // PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
         //standardOut = System.out;
         //System.setOut(printStream);
         //System.setErr(printStream);
@@ -75,9 +78,9 @@ static Boolean validOS = false;
 
     public static void sharedActions(){
         Preinstall.checkForMinecraftandForge();
+        guiChoice();
         Updater.modpackUpdateTags();
         Preinstall.fileCheck();
-       // guiChoice();
     }
 
     public static void guiChoice(){

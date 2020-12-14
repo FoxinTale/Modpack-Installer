@@ -507,13 +507,39 @@ public class HeaderReader {
         readZip64ExtendedInfo(localFileHeader, rawIO);
         if (localFileHeader.isEncrypted()) {
                 if (BigInteger.valueOf(localFileHeader.getGeneralPurposeFlag()[0]).testBit(6)) {
-                    localFileHeader.setEncryptionMethod();
+                    localFileHeader.setEncryptionMethod(EncryptionMethod.ZIP_STANDARD_VARIANT_STRONG);
                 } else {
-                    localFileHeader.setEncryptionMethod();
+                    localFileHeader.setEncryptionMethod(EncryptionMethod.ZIP_STANDARD);
                 }
         }
         return localFileHeader;
     }
+
+
+    public DataDescriptor readDataDescriptor(InputStream inputStream, boolean isZip64Format) throws IOException {
+        DataDescriptor dataDescriptor = new DataDescriptor();
+        byte[] intBuff = new byte[4];
+        Zip4jUtil.readFully(inputStream, intBuff);
+        long sigOrCrc = rawIO.readLongLittleEndian(intBuff, 0);
+
+        if (sigOrCrc == HeaderSignature.EXTRA_DATA_RECORD.getValue()) {
+            dataDescriptor.setSignature(HeaderSignature.EXTRA_DATA_RECORD);
+            Zip4jUtil.readFully(inputStream, intBuff);
+            dataDescriptor.setCrc(rawIO.readLongLittleEndian(intBuff, 0));
+        } else {
+            dataDescriptor.setCrc(sigOrCrc);
+        }
+
+        if (isZip64Format) {
+            dataDescriptor.setCompressedSize(rawIO.readLongLittleEndian(inputStream));
+            dataDescriptor.setUncompressedSize(rawIO.readLongLittleEndian(inputStream));
+        } else {
+            dataDescriptor.setCompressedSize(rawIO.readIntLittleEndian(inputStream));
+            dataDescriptor.setUncompressedSize(rawIO.readIntLittleEndian(inputStream));
+        }
+        return dataDescriptor;
+    }
+
 
     private long getNumberOfEntriesInCentralDirectory(ZipModel zipModel) {
         if (zipModel.isZip64Format()) {

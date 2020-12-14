@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 // Let's be honest, this class does document itself, for the most part.
 
@@ -26,7 +28,6 @@ public class GUI {
         JButton button = new JButton("...");
         JLabel errorsLabel = new JLabel(Strings.installerErrorsLabelText);
         ButtonGroup options = new ButtonGroup();
-
 
 
         JLabel installerVersion = new JLabel(Strings.installerVersionText+ installerVersionValue);
@@ -92,6 +93,7 @@ public class GUI {
             int op = Driver.getSelectedOption();
             switch (op) {
                 case 1: // Download, extract and install the pack.
+                    beginDownload(button);
                     radioSet(modpackOne, downloadOption, otherOptions, resourceOption);
                     break;
                 case 2: //Just download the zip files.
@@ -194,8 +196,9 @@ public class GUI {
         errors.setEditable(false);
 
         System.out.println(Strings.installerWelcome);
-        Updater.checkAPIForUpdate(Driver.installerUpdateLink, installerVersionValue, Strings.installerUpdateMessage,
-                Strings.installerUpdateTitle, Strings.installerUpToDate, 0);
+       // Updater.getFileUpdate(Driver.installerUpdateLink);
+        //, installerVersionValue, Strings.installerUpdateMessage,
+        //                Strings.installerUpdateTitle, Strings.installerUpToDate, 0
         System.out.println(Strings.installerBugReport);
         System.out.println(Strings.installerOptions);
 
@@ -247,15 +250,14 @@ public class GUI {
         d.setEnabled(false);
     }
 
-/*	public static void beginDownload(JButton button) {
+public static void beginDownload(JButton button) {
 		try {
-			URL modpackOneLink = new URL("https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
-			Downloader.Download(modpackOneLink, "Modpack.zip", 0);
+            Updater.getFileUpdate(new URL(Common.modpackPartOneLink), 0);
+			//Downloader.Download(fileLink, "Modpack.zip", 0);
 			button.setEnabled(false);
 		} catch (MalformedURLException mue) {
 			errors.setText("Shaymin");
 			System.out.println("Fuck you Java.");
-			Errors.init();
 		}
-	}*/
+	}
 }

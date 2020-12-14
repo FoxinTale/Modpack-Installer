@@ -68,7 +68,7 @@ public class optionsGUI extends installOptions {
                 case 1:
                     radioSet(extract, launcher, ping, restoreSettings, optionalMods);
                     System.out.println(" Extracting File...");
-                    Extractor.Extract(Common.q + Common.getDownloadsLocation() + Common.q + Common.zipFile, "Modpack", 0);
+                    //Extractor.Extract(Common.q + Common.getDownloadsLocation() + Common.q + Common.zipFile, "Modpack", 0);
                     break;
                 case 2:
                     radioSet(extract, launcher, ping, restoreSettings, optionalMods);

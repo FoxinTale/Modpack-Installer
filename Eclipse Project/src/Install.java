@@ -19,33 +19,6 @@ public class Install {
         System.out.println(Strings.installerInstallNotice);
         modpackLocation.deleteOnExit();
 
-        String minecraftPath = Common.getMinecraftInstall();
-        File minecraftMods = new File(minecraftPath + Common.q + "mods");
-        File minecraftConfig = new File(minecraftPath + Common.q + "config");
-        File backups = new File(Common.getDesktopLocation() + Common.q + "Minecraft Stuff");
-        String backupsLocation = backups.getAbsolutePath();
-
-        File backupMods = new File(backupsLocation + Common.q + "Mods");
-        File backupConfig = new File(backupsLocation + Common.q + "Config");
-        File modpackMods = new File(modpackLocation + Common.q + "mods");
-        File modpackConfig = new File(modpackLocation + Common.q + "config");
-
-        Common.folderCreate(backups);
-        Common.folderCreate(backupMods);
-        Common.folderCreate(backupConfig);
-
-        moveFiles(minecraftMods, backupMods, Strings.installerBackupMods);
-        moveFiles(minecraftConfig, backupConfig, Strings.installerBackupConfig);
-
-        installOptions.backup();
-        Common.folderCreate(minecraftConfig);
-        Common.folderCreate(minecraftMods);
-
-        System.out.println(Strings.installerInstalling);
-
-        copyFiles(modpackMods, minecraftMods);
-        copyFiles(modpackConfig, minecraftConfig);
-
         installOptions.verifyInstall();
         System.out.println(Strings.installerModsVerification);
 
@@ -132,6 +105,35 @@ public class Install {
         String endMessage = Strings.installerThanksMessage;
         JOptionPane.showMessageDialog(new JFrame(), endMessage, Strings.installerThanksTitle, JOptionPane.INFORMATION_MESSAGE);
         System.exit(0);
+    }
+
+    public static void backupMinecraftContent(){
+        String minecraftPath = Common.getMinecraftInstall();
+        File minecraftMods = new File(minecraftPath + Common.q + "mods");
+        File minecraftConfig = new File(minecraftPath + Common.q + "config");
+        File backups = new File(Common.getDesktopLocation() + Common.q + "Minecraft Stuff");
+        String backupsLocation = backups.getAbsolutePath();
+
+        File backupMods = new File(backupsLocation + Common.q + "Mods");
+        File backupConfig = new File(backupsLocation + Common.q + "Config");
+        File modpackMods = new File(modpackLocation + Common.q + "mods");
+        File modpackConfig = new File(modpackLocation + Common.q + "config");
+
+        Common.folderCreate(backups);
+        Common.folderCreate(backupMods);
+        Common.folderCreate(backupConfig);
+
+        moveFiles(minecraftMods, backupMods, Strings.installerBackupMods);
+        moveFiles(minecraftConfig, backupConfig, Strings.installerBackupConfig);
+
+        //installOptions.backup();
+        Common.folderCreate(minecraftConfig);
+        Common.folderCreate(minecraftMods);
+
+        System.out.println(Strings.installerInstalling);
+
+        copyFiles(modpackMods, minecraftMods);
+        copyFiles(modpackConfig, minecraftConfig);
     }
 
     public static void moveFiles(File dirOne, File dirTwo, String s) {

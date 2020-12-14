@@ -18,7 +18,7 @@ public class Common {
 
     static String q = File.separator;
     static Font pretty;
-    static String zipFile = "Modpack.zip"; //This will get deleted soon, as it's no longer called this anymore.
+    static String zipFile = ""; //This will get deleted soon, as it's no longer called this anymore.
     static File infoFile = new File("installerinfo.json");
 
 

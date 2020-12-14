@@ -48,7 +48,7 @@ public class HeaderWriter {
                 byteArrayOutputStream.write(longBuff, 0, 4);
 
                 zipModel.setZip64Format(true);
-                localFileHeader.setWriteCompressedSizeInZip64ExtraRecord();
+                localFileHeader.setWriteCompressedSizeInZip64ExtraRecord(true);
             } else {
                 rawIO.writeLongLittleEndian(longBuff, 0, localFileHeader.getCompressedSize());
                 byteArrayOutputStream.write(longBuff, 0, 4);
@@ -56,7 +56,7 @@ public class HeaderWriter {
                 rawIO.writeLongLittleEndian(longBuff, 0, localFileHeader.getUncompressedSize());
                 byteArrayOutputStream.write(longBuff, 0, 4);
 
-                localFileHeader.setWriteCompressedSizeInZip64ExtraRecord();
+                localFileHeader.setWriteCompressedSizeInZip64ExtraRecord(false);
             }
 
             byte[] fileNameBytes = new byte[0];

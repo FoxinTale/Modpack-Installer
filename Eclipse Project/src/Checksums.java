@@ -25,7 +25,7 @@ public class Checksums {
                 cModpackSum = getFileChecksum(md5Digest, zipFile);
                 if (checkSums(modpackSum, cModpackSum)) {
                     System.out.println(Strings.installerVerificationPassed);
-                    Extractor.Extract(Common.q + Common.getDownloadsLocation() + Common.q + Common.zipFile, "Modpack", 0);
+                    //Extractor.Extract(Common.q + Common.getDownloadsLocation() + Common.q + Common.zipFile, "Modpack", 0);
                 }
                 if (!checkSums(modpackSum, cModpackSum)) {
                     Downloader.redownloadModpack();
@@ -108,7 +108,7 @@ public class Checksums {
             if (o == JOptionPane.YES_OPTION) { // Copy and Extract.
                 String baseLocation = resourcePackDir.getAbsolutePath() + File.separator;
                 FileUtils.copyFileToDirectory(Downloader.zipFile, resourcePackDir, false);
-                Extractor.Extract(baseLocation + zipName, baseLocation + folderName, 2);
+                //Extractor.Extract(baseLocation + zipName, baseLocation + folderName, 2);
             }
             if (o == JOptionPane.NO_OPTION) {
                 FileUtils.copyFileToDirectory(Downloader.zipFile, resourcePackDir, false);

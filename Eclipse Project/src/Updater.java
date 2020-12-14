@@ -12,14 +12,13 @@ public class Updater {
     static ArrayList<String> removal = Json.getToRemove();
     static String currentVersion = "";
 
-    public static void checkAPIForUpdate(URL updateLink, String version, String message, String title,  String toPrint, int op){
+    public static void getFileUpdate(URL updateLink, int whatDo){
         try{
+            // , String version, String message, String title, String toPrint, int op
             JSONObject latestPage = (JSONObject) new JSONTokener(updateLink.openStream()).nextValue();
-            String fileVersion = (String) latestPage.get("tag_name");
+           // String fileVersion = (String) latestPage.get("tag_name");
             String fileName = "";
-            if(!version.equals(fileVersion)){
-                int o = JOptionPane.showConfirmDialog(new JFrame(), message, title, JOptionPane.YES_NO_OPTION);
-                if (o == JOptionPane.YES_OPTION) {
+           // if(!version.equals(fileVersion)){
                     JSONArray assetsArray = (JSONArray) latestPage.get("assets");
                     String assetString = assetsArray.toString();
                     String[] assetStringArray = assetString.split(",");
@@ -38,12 +37,13 @@ public class Updater {
 
                     String[] linkArr = tempLink.split("\"");
                     String[] nameArr = fileName.split("\"");
-                    fileName = nameArr[nameArr.length - 1];
-
+                    Common.zipFile = nameArr[nameArr.length - 1];
                     newDownloadLink = linkArr[linkArr.length - 1];
-                    System.out.println("File name: " + fileName);
+
+
                     // Following if it remains two values it could likely be a Boolean value passed in.
-                    switch (op) {
+
+             /*       switch (op) {
                         case 0: // It's pretty much every other file
                             URL fileDownloadLink = new URL (newDownloadLink);
                             Downloader.Download(fileDownloadLink, fileName, 0);
@@ -54,12 +54,20 @@ public class Updater {
                             break;
                         default:
                             break;
-                    }
-                }
+                    }*/
+
+            switch(whatDo){
+                case 0:
+                    Downloader.Download(new URL(newDownloadLink), Common.zipFile, 3);
+                    break;
+                case 1:
+                    Downloader.Download(new URL(newDownloadLink), Common.zipFile, 4);
             }
-            else{
-                System.out.println(toPrint);
-            }
+
+          //  }
+           // else{
+             //   System.out.println(toPrint);
+          //  }
         } catch (IOException e) {
             e.printStackTrace();
         }

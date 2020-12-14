@@ -17,14 +17,12 @@ public class Notes {
      * Testing things:
      * - Test file extraction with the newly merged libraries.
      * - Test json file creation and writing.
-     * - Ensure that when part one is finished the installer does not quit and fires back for part two.
-     *    After part two, it then goes into its previous routine of doing install-y things.
      * - Do a full test runthrough to make sure it all works. This will be the final thing completed.
      *
      *
      * Thing(s) to fix:
      * - Change the old file links. Resource packs may be tricky to find. May use gofile.io.
-     *
+     * - Fix the custom font not showing up.
      *
      * Thing(s) to add:
      * - Installer "remembering" installation paths.

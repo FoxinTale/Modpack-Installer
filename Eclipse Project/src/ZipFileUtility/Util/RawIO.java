@@ -6,13 +6,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
-import java.util.Arrays;
 
 public class RawIO {
 
-    private final byte[] shortBuff = new byte[2];
-    private final byte[] intBuff = new byte[4];
-    private final byte[] longBuff = new byte[8];
+    private byte[] shortBuff = new byte[2];
+    private byte[] intBuff = new byte[4];
+    private byte[] longBuff = new byte[8];
 
     public long readLongLittleEndian(RandomAccessFile randomAccessFile) throws IOException {
         randomAccessFile.readFully(longBuff);
@@ -22,6 +21,11 @@ public class RawIO {
     public long readLongLittleEndian(RandomAccessFile randomAccessFile, int readLen) throws IOException {
         resetBytes(longBuff);
         randomAccessFile.readFully(longBuff, 0, readLen);
+        return readLongLittleEndian(longBuff, 0);
+    }
+
+    public long readLongLittleEndian(InputStream inputStream) throws IOException {
+        readFully(inputStream, longBuff, longBuff.length);
         return readLongLittleEndian(longBuff, 0);
     }
 
@@ -137,6 +141,8 @@ public class RawIO {
     }
 
     private void resetBytes(byte[] b) {
-        Arrays.fill(b, (byte) 0);
+        for(int i = 0; i < b.length; i++) {
+            b[i] = 0;
+        }
     }
 }
