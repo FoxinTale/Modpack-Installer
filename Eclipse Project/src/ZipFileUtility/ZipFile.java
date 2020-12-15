@@ -3,7 +3,6 @@ package ZipFileUtility;
 
 import ZipFileUtility.Headers.HeaderReader;
 import ZipFileUtility.Headers.HeaderUtil;
-import ZipFileUtility.Headers.HeaderWriter;
 import ZipFileUtility.IO.Input.NumberedSplitRandomAccessFile;
 import ZipFileUtility.Model.FileHeader;
 import ZipFileUtility.Model.RandomAccessFileMode;
@@ -28,7 +27,6 @@ public class ZipFile {
     private ZipModel zipModel;
     private final ProgressMonitor progressMonitor;
     private final boolean runInThread;
-    private final HeaderWriter headerWriter = new HeaderWriter();
     private Charset charset = InternalZipConstants.CHARSET_UTF_8;
     private ThreadFactory threadFactory;
     private ExecutorService executorService;
@@ -74,15 +72,12 @@ public class ZipFile {
         if (fileHeader == null) {
             throw new ZipException("input file header is null, cannot extract file");
         }
-
         if (!Zip4jUtil.isStringNotNullAndNotEmpty(destinationPath)) {
             throw new ZipException("destination path is empty or null, cannot extract file");
         }
-
         if (progressMonitor.getState() == ProgressMonitor.State.BUSY) {
             throw new ZipException("invalid operation - Zip4j is in busy state");
         }
-
         readZipInfo();
 
         new ExtractFileTask(zipModel, buildAsyncParameters()).execute(

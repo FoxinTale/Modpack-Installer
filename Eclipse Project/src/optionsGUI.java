@@ -9,7 +9,6 @@ public class optionsGUI extends installOptions {
         JFrame frame = new JFrame(Strings.optionsTitle);
         JFrame.setDefaultLookAndFeelDecorated(true);
         JRadioButton extract = new JRadioButton(Strings.optionsOne);
-        JRadioButton launcher = new JRadioButton(Strings.optionsTwo);
         JRadioButton ping = new JRadioButton(Strings.optionsThree);
         JRadioButton restoreSettings = new JRadioButton(Strings.optionsFour);
         JRadioButton optionalMods = new JRadioButton(Strings.optionsFive);
@@ -17,7 +16,6 @@ public class optionsGUI extends installOptions {
         ButtonGroup options = new ButtonGroup();
 
         options.add(ping);
-        options.add(launcher);
         options.add(extract);
         options.add(optionalMods);
 
@@ -27,14 +25,13 @@ public class optionsGUI extends installOptions {
         JPanel launcherPanel = new RoundedPanel(10, rbc);
         JPanel extractPanel = new RoundedPanel(10, rbc);
         JPanel restorePanel = new RoundedPanel(10, rbc);
-        JPanel modPanel = new RoundedPanel(10, rbc);
+        //JPanel modPanel = new RoundedPanel(10, rbc);
 
         Container c = frame.getContentPane();
 
         c.setBackground(new Color(255, 220, 220));// Hex value: ffdcdc
 
         ping.setBackground(rbc);
-        launcher.setBackground(rbc);
         extract.setBackground(rbc);
         restoreSettings.setBackground(rbc);
         optionalMods.setBackground(rbc);
@@ -46,17 +43,14 @@ public class optionsGUI extends installOptions {
                 case "Extract.":
                     selectedOption = 1;
                     break;
-                case "Set Memory.":
+                case "Ping Server.":
                     selectedOption = 2;
                     break;
-                case "Ping Server.":
+                case "Restore Settings.":
                     selectedOption = 3;
                     break;
-                case "Restore Settings.":
-                    selectedOption = 4;
-                    break;
                 case "Optional Mods.":
-                    selectedOption = 5;
+                    selectedOption = 4;
                     break;
                 default:
                     break;
@@ -66,26 +60,21 @@ public class optionsGUI extends installOptions {
         ActionListener buttonEvent = e -> {
             switch (selectedOption) {
                 case 1:
-                    radioSet(extract, launcher, ping, restoreSettings, optionalMods);
+                    radioSet(extract, ping, restoreSettings, optionalMods);
                     System.out.println(" Extracting File...");
                     //Extractor.Extract(Common.q + Common.getDownloadsLocation() + Common.q + Common.zipFile, "Modpack", 0);
                     break;
                 case 2:
-                    radioSet(extract, launcher, ping, restoreSettings, optionalMods);
-                    Memory.sliderGUI();
-                    break;
-                case 3:
-                    radioSet(extract, launcher, ping, restoreSettings, optionalMods);
+                    radioSet(extract, ping, restoreSettings, optionalMods);
                     System.out.println(" Pinging Server...");
                     serverPing();
                     break;
-                case 4:
-                    radioSet(extract, launcher, ping, restoreSettings, optionalMods);
+                case 3:
+                    radioSet(extract, ping, restoreSettings, optionalMods);
                     restore();
                     break;
-
-                case 5:
-                    radioSet(extract, launcher, ping, restoreSettings, optionalMods);
+                case 4:
+                    radioSet(extract, ping, restoreSettings, optionalMods);
                     modOptions.modOptionsGui();
                     break;
                 default:
@@ -94,13 +83,11 @@ public class optionsGUI extends installOptions {
         };
 
         ping.addActionListener(radioButtonEvent);
-        launcher.addActionListener(radioButtonEvent);
         extract.addActionListener(radioButtonEvent);
         restoreSettings.addActionListener(radioButtonEvent);
         optionalMods.addActionListener(radioButtonEvent);
     if(Common.bePretty) {
         ping.setFont(Common.pretty);
-        launcher.setFont(Common.pretty);
         extract.setFont(Common.pretty);
         restoreSettings.setFont(Common.pretty);
         optionalMods.setFont(Common.pretty);
@@ -114,24 +101,25 @@ public class optionsGUI extends installOptions {
         ping.setBounds(68, 70, 175, 15);
 
         launcherPanel.setBounds(63, 100, 200, 25);
-        launcher.setBounds(68, 105, 175, 15); // Launcher (Memory Set)
+        //launcher.setBounds(68, 105, 175, 15); // Launcher (Memory Set)
 
         restorePanel.setBounds(63, 135, 200, 25);
-        restoreSettings.setBounds(68, 140, 175, 15); // Restore settings, Width 150.
+        restoreSettings.setBounds(68, 105, 175, 15); // Restore settings, Width 150.
 
-        modPanel.setBounds(63, 170, 200, 25);
-        optionalMods.setBounds(68, 175, 175, 15);
+        //modPanel.setBounds(63, 170, 200, 25);
+        optionalMods.setBounds(68, 140, 175, 15);
 
         go.setBounds(90, 300, 100, 30);
 
+        frame.add(extract);
+        frame.add(extractPanel);
         frame.add(ping);
         frame.add(pingPanel);
-        frame.add(launcher);
         frame.add(launcherPanel);
         frame.add(restoreSettings);
         frame.add(restorePanel);
         frame.add(optionalMods);
-        frame.add(modPanel);
+        //frame.add(modPanel);
         frame.add(go);
 
         frame.setSize(320, 400);
@@ -141,11 +129,10 @@ public class optionsGUI extends installOptions {
         frame.setVisible(true);
     }
 
-    public static void radioSet(JRadioButton a, JRadioButton b, JRadioButton c, JRadioButton d, JRadioButton e) {
+    public static void radioSet(JRadioButton a, JRadioButton b, JRadioButton c, JRadioButton d) {
         a.setEnabled(false);
         b.setEnabled(false);
         c.setEnabled(false);
         d.setEnabled(false);
-        e.setEnabled(false);
     }
 }

@@ -1,8 +1,8 @@
-//import GUI.CustomOutputStream;
+import GUI.CustomOutputStream;
 
 import javax.swing.*;
 import java.io.IOException;
-//import java.io.PrintStream;
+import java.io.PrintStream;
 import java.net.URL;
 /*
  * This program is free software. It comes without any warranty, to the extent
@@ -27,16 +27,16 @@ public class Driver {
     static int selectedOption = 0;
     static Boolean updateTime = false;
     public static URL installerUpdateLink;
-    //private static PrintStream standardOut; // This sets the outputs.
+    private static PrintStream standardOut; // This sets the outputs.
 
 
 static Boolean validOS = false;
     public static void main(String[] args) throws IOException {
-        // Creating the custom output stream.
-       // PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
-        //standardOut = System.out;
-        //System.setOut(printStream);
-        //System.setErr(printStream);
+         //Creating the custom output stream.
+        PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
+        standardOut = System.out;
+        System.setOut(printStream);
+        System.setErr(printStream);
 
         installerUpdateLink = new URL(Common.installerLatestLink);
         String OS = System.getProperty("os.name"); // This gets the name of the current operating system.

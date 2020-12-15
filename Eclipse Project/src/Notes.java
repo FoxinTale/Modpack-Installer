@@ -29,15 +29,8 @@ public class Notes {
      *     This can probably utilize the previously created Json file and store the paths for downloads and desktop, as apparently this had issues.
      * - Add the presence footsteps resources to modpack part one.
      *
-     * 
-     * Minecraft launcher memory adjustment:
-     * - Verify that changing the memory in the launcher still works and Microsoft didn't rework it over the past year.
-     * - Remove all usage of Sigar due to it not working without being used externally.
-     * - Replace it with a slider with 1 Gb memory increments, from 2 Gb up to 14 Gb.
-     *
      *
      * Other:
-     * - Maybe remove the checksums part as I don't really see much of a use for it anymore.
      * - Figure out what more resource packs that were used and double check the usage permissions.
      *    After that, create a new repository with a released version of the texture pack.
      * - Remove InstallerSanityChecks, as that's just for testing the various parts.

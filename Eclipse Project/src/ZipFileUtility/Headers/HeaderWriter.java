@@ -343,7 +343,7 @@ public class HeaderWriter {
         }
     }
 
-    private int calculateExtraDataRecordsSize(FileHeader fileHeader, boolean writeZip64ExtendedInfo) throws IOException {
+    private int calculateExtraDataRecordsSize(FileHeader fileHeader, boolean writeZip64ExtendedInfo) {
         int extraFieldLength = 0;
         if (writeZip64ExtendedInfo) {
             extraFieldLength += ZIP64_EXTRA_DATA_RECORD_SIZE_FH + 4; // 4 for signature + size of record

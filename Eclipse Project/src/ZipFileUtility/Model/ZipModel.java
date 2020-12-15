@@ -33,10 +33,6 @@ public class ZipModel implements Cloneable {
         this.localFileHeaders = localFileHeaderList;
     }
 
-    public List<DataDescriptor> getDataDescriptors() {
-        return dataDescriptors;
-    }
-
     public void setDataDescriptors(List<DataDescriptor> dataDescriptors) {
         this.dataDescriptors = dataDescriptors;
     }
@@ -130,14 +126,6 @@ public class ZipModel implements Cloneable {
 
     public void setEnd(long end) {
         this.end = end;
-    }
-
-    public long getSplitLength() {
-        return splitLength;
-    }
-
-    public void setSplitLength(long splitLength) {
-        this.splitLength = splitLength;
     }
 
     public Object clone() throws CloneNotSupportedException {

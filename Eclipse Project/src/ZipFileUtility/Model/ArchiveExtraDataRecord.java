@@ -9,14 +9,6 @@ public class ArchiveExtraDataRecord extends ZipHeader {
         return extraFieldLength;
     }
 
-    public void setExtraFieldLength(int extraFieldLength) {
-        this.extraFieldLength = extraFieldLength;
-    }
-
-    public String getExtraFieldData() {
-        return extraFieldData;
-    }
-
     public void setExtraFieldData(String extraFieldData) {
         this.extraFieldData = extraFieldData;
     }

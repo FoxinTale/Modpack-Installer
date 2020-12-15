@@ -4,7 +4,6 @@ import GUI.RoundedPanel;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -68,109 +67,105 @@ public class resourcePacks {
 		everything.setBackground(rbc);
 		extra.setBackground(rbc);
 
-		ActionListener radioButtonEvent = new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
-				AbstractButton absButton = (AbstractButton) ae.getSource();
-				String selection = absButton.getText();
-				switch (selection) {
-				case "One.":
-					packInfo.setText(null);
-					downloadSize.setText(null);
-					selectedOption = 1;
-					packInfo.setText(Strings.resourcePackOneDesc);
-					downloadSize.setText("90 Mb");
+		ActionListener radioButtonEvent = ae -> {
+			AbstractButton absButton = (AbstractButton) ae.getSource();
+			String selection = absButton.getText();
+			switch (selection) {
+			case "One.":
+				packInfo.setText(null);
+				downloadSize.setText(null);
+				selectedOption = 1;
+				packInfo.setText(Strings.resourcePackOneDesc);
+				downloadSize.setText("90 Mb");
+				break;
+			case "Two.":
+				packInfo.setText(null);
+				downloadSize.setText(null);
+				selectedOption = 2;
+				packInfo.setText(Strings.resourcePackTwoDesc);
+				downloadSize.setText("210 Mb");
+				break;
+			case "Three":
+				packInfo.setText(null);
+				downloadSize.setText(null);
+				selectedOption = 3;
+				packInfo.setText(Strings.resourcePackThreeDesc);
+				downloadSize.setText("255 Mb");
+				break;
+			case "Four.":
+				packInfo.setText(null);
+				downloadSize.setText(null);
+				selectedOption = 4;
+				packInfo.setText(Strings.resourcePackFourDesc);
+				downloadSize.setText("400 Mb");
+				break;
+			case "Five.":
+				packInfo.setText(null);
+				downloadSize.setText(null);
+				selectedOption = 5;
+				packInfo.setText(Strings.resourcePackFiveDesc);
+				downloadSize.setText("550 Mb");
+				break;
+			case "Six.":
+				packInfo.setText(null);
+				downloadSize.setText(null);
+				selectedOption = 6;
+				packInfo.setText(Strings.resourcePackSixDesc);
+				downloadSize.setText(Strings.resourceBigPackSize);
+				break;
+			default:
+				break;
+			}
+		};
+
+		ActionListener buttonEvent = e -> {
+			try {
+				switch (selectedOption) {
+				case 1:
+					radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
+					setSelectedPack(1);
+					packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-TO.zip";
+					Downloader.Download(new URL(packLink), "ACRP-TO.zip", 2);
+					assetCredits.credits();
 					break;
-				case "Two.":
-					packInfo.setText(null);
-					downloadSize.setText(null);
-					selectedOption = 2;
-					packInfo.setText(Strings.resourcePackTwoDesc);
-					downloadSize.setText("210 Mb");
+				case 2:
+					radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
+					setSelectedPack(2);
+					packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-MS.zip";
+					Downloader.Download(new URL(packLink), "ACRP-MS.zip", 2);
+					assetCredits.credits();
 					break;
-				case "Three":
-					packInfo.setText(null);
-					downloadSize.setText(null);
-					selectedOption = 3;
-					packInfo.setText(Strings.resourcePackThreeDesc);
-					downloadSize.setText("255 Mb");
+				case 3:
+					radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
+					setSelectedPack(3);
+					packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-MST.zip";
+					Downloader.Download(new URL(packLink), "ACRP-MST.zip", 2);
+					assetCredits.credits();
 					break;
-				case "Four.":
-					packInfo.setText(null);
-					downloadSize.setText(null);
-					selectedOption = 4;
-					packInfo.setText(Strings.resourcePackFourDesc);
-					downloadSize.setText("400 Mb");
+				case 4:
+					radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
+					setSelectedPack(4);
+					packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-AS.zip";
+					Downloader.Download(new URL(packLink), "ACRP-AS.zip", 2);
+					assetCredits.credits();
 					break;
-				case "Five.":
-					packInfo.setText(null);
-					downloadSize.setText(null);
-					selectedOption = 5;
-					packInfo.setText(Strings.resourcePackFiveDesc);
-					downloadSize.setText("550 Mb");
+				case 5:
+					radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
+					setSelectedPack(5);
+					packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-E.zip";
+					Downloader.Download(new URL(packLink), "ACRP-E.zip", 2);
+					assetCredits.credits();
 					break;
-				case "Six.":
-					packInfo.setText(null);
-					downloadSize.setText(null);
-					selectedOption = 6;
-					packInfo.setText(Strings.resourcePackSixDesc);
-					downloadSize.setText(Strings.resourceBigPackSize);
+				case 6:
+					radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
+					setSelectedPack(6);
+					bigPack();
 					break;
 				default:
 					break;
 				}
-			}
-		};
-
-		ActionListener buttonEvent = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					switch (selectedOption) {
-					case 1:
-						radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
-						setSelectedPack(1);
-						packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-TO.zip";
-						Downloader.Download(new URL(packLink), "ACRP-TO.zip", 2);
-						assetCredits.credits();
-						break;
-					case 2:
-						radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
-						setSelectedPack(2);
-						packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-MS.zip";
-						Downloader.Download(new URL(packLink), "ACRP-MS.zip", 2);
-						assetCredits.credits();
-						break;
-					case 3:
-						radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
-						setSelectedPack(3);
-						packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-MST.zip";
-						Downloader.Download(new URL(packLink), "ACRP-MST.zip", 2);
-						assetCredits.credits();
-						break;
-					case 4:
-						radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
-						setSelectedPack(4);
-						packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-AS.zip";
-						Downloader.Download(new URL(packLink), "ACRP-AS.zip", 2);
-						assetCredits.credits();
-						break;
-					case 5:
-						radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
-						setSelectedPack(5);
-						packLink = "https://aubreys-storage.s3.us-east-2.amazonaws.com/Resource-Packs/ACRP-E.zip";
-						Downloader.Download(new URL(packLink), "ACRP-E.zip", 2);
-						assetCredits.credits();
-						break;
-					case 6:
-						radioSet(ambiance, gameMusic, musicTex, textures, everything, extra);
-						setSelectedPack(6);
-						bigPack();
-						break;
-					default:
-						break;
-					}
-				} catch (MalformedURLException u) {
-					// Handle this somehow.
-				}
+			} catch (MalformedURLException u) {
+				// Handle this somehow.
 			}
 		};
 
@@ -237,22 +232,16 @@ public class resourcePacks {
 
 		frame.add(gameMusic);
 		frame.add(gameMusicPanel);
-
 		frame.add(musicTex);
 		frame.add(musicTexPanel);
-
 		frame.add(textures);
 		frame.add(texturesPanel);
-
 		frame.add(ambiance);
 		frame.add(ambiancePanel);
-
 		frame.add(everything);
 		frame.add(allPanel);
-
 		frame.add(downloadSizeLabel);
 		frame.add(downloadSize);
-
 		frame.add(extra);
 		frame.add(extraPanel);
 
@@ -311,7 +300,6 @@ public class resourcePacks {
 			GUI.errors.setText("Screwy font");
 		}
 */
-
 		info.setText(Strings.resourceBigPackInfo);
 		//info.setFont(pretty);
 		info.setEditable(false);
@@ -328,10 +316,6 @@ public class resourcePacks {
 		frame.setResizable(false);
 		frame.setLayout(null);// using no layout managers
 		frame.setVisible(true);
-	}
-
-	public static int getSelectedPack() {
-		return selectedPack;
 	}
 
 	public static void setSelectedPack(int selectedPack) {

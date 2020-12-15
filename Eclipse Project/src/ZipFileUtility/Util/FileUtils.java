@@ -40,7 +40,7 @@ public class FileUtils {
         }
         try {
             Files.setLastModifiedTime(file, FileTime.fromMillis(Zip4jUtil.dosToExtendedEpochTme(lastModifiedTime)));
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
     }
@@ -382,7 +382,7 @@ public class FileUtils {
             fileAttributes[2] = setBitIfApplicable(posixFilePermissions.contains(OTHERS_READ), fileAttributes[2], 2);
             fileAttributes[2] = setBitIfApplicable(posixFilePermissions.contains(OTHERS_WRITE), fileAttributes[2], 1);
             fileAttributes[2] = setBitIfApplicable(posixFilePermissions.contains(OTHERS_EXECUTE), fileAttributes[2], 0);
-        } catch (IOException e) {
+        } catch (IOException ignored) {
 
         }
 

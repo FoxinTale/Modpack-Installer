@@ -22,8 +22,8 @@ public class ZipCryptoEngine {
         keys[0] = 305419896;
         keys[1] = 591751049;
         keys[2] = 878082192;
-        for (int i = 0; i < password.length; i++) {
-            updateKeys((byte) (password[i] & 0xff));
+        for (char c : password) {
+            updateKeys((byte) (c & 0xff));
         }
     }
 

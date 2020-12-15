@@ -48,10 +48,6 @@ public class AESExtraDataRecord extends ZipHeader {
         return aesKeyStrength;
     }
 
-    public void setAesKeyStrength(AesKeyStrength aesKeyStrength) {
-        this.aesKeyStrength = aesKeyStrength;
-    }
-
     public CompressionMethod getCompressionMethod() {
         return compressionMethod;
     }

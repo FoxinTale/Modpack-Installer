@@ -102,7 +102,7 @@ class AesCipherInputStream extends CipherInputStream<AESDecrypter> {
     }
 
     private void copyBytesFromBuffer(byte[] b, int off) {
-        lengthToCopyInThisIteration = lengthToRead < remainingAes16ByteBlockLength ? lengthToRead : remainingAes16ByteBlockLength;
+        lengthToCopyInThisIteration = Math.min(lengthToRead, remainingAes16ByteBlockLength);
         System.arraycopy(aes16ByteBlock, aes16ByteBlockPointer, b, off, lengthToCopyInThisIteration);
 
         incrementAesByteBlockPointer(lengthToCopyInThisIteration);

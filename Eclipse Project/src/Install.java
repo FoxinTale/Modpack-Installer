@@ -23,15 +23,9 @@ public class Install {
         System.out.println(Strings.installerModsVerification);
 
         if (installOptions.packGood) {
-            int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerMemoryAdjustMessage, Strings.installerMemoryAdjustTitle, JOptionPane.YES_NO_OPTION);
-            if (o == JOptionPane.YES_OPTION) {
-                installOptions.backup();
-                Memory.sliderGUI();
-            }
-            if (o == JOptionPane.NO_OPTION) {
-                installFinalize();
-            }
+            installFinalize();
         }
+
         if (!installOptions.packGood) {
             GUI.errors.setText("Chikorita");
             //Installation failed to verify somehow.

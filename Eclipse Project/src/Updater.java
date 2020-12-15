@@ -12,66 +12,43 @@ public class Updater {
     static ArrayList<String> removal = Json.getToRemove();
     static String currentVersion = "";
 
-    public static void getFileUpdate(URL updateLink, int whatDo){
-        try{
-            // , String version, String message, String title, String toPrint, int op
+    public static void getFileUpdate(URL updateLink, int whatDo) {
+        try {
             JSONObject latestPage = (JSONObject) new JSONTokener(updateLink.openStream()).nextValue();
-           // String fileVersion = (String) latestPage.get("tag_name");
             String fileName = "";
-           // if(!version.equals(fileVersion)){
-                    JSONArray assetsArray = (JSONArray) latestPage.get("assets");
-                    String assetString = assetsArray.toString();
-                    String[] assetStringArray = assetString.split(",");
-                    String newDownloadLink, tempLink = "";
-                    for (String s : assetStringArray) {
-                        if (s.contains("browser_download_url")) {
-                            tempLink = s;
-                        }
-                    }
-
-                    for (String s : assetStringArray) {
-                        if (s.contains("name")) {
-                            fileName = s;
-                        }
-                    }
-
-                    String[] linkArr = tempLink.split("\"");
-                    String[] nameArr = fileName.split("\"");
-                    Common.zipFile = nameArr[nameArr.length - 1];
-                    newDownloadLink = linkArr[linkArr.length - 1];
-
-
-                    // Following if it remains two values it could likely be a Boolean value passed in.
-
-             /*       switch (op) {
-                        case 0: // It's pretty much every other file
-                            URL fileDownloadLink = new URL (newDownloadLink);
-                            Downloader.Download(fileDownloadLink, fileName, 0);
-                            break;
-                        case 1: // Installer update.
-                            File thingFile = new File(fileName);
-                            Downloader.downloadNoProgress(newDownloadLink, thingFile);
-                            break;
-                        default:
-                            break;
-                    }*/
-
-            switch(whatDo){
+            JSONArray assetsArray = (JSONArray) latestPage.get("assets");
+            String assetString = assetsArray.toString();
+            String[] assetStringArray = assetString.split(",");
+            String newDownloadLink, tempLink = "";
+            for (String s : assetStringArray) {
+                if (s.contains("browser_download_url")) {
+                    tempLink = s;
+                }
+            }
+            for (String s : assetStringArray) {
+                if (s.contains("name")) {
+                    fileName = s;
+                }
+            }
+            String[] linkArr = tempLink.split("\"");
+            String[] nameArr = fileName.split("\"");
+            Common.zipFile = nameArr[nameArr.length - 1];
+            newDownloadLink = linkArr[linkArr.length - 1];
+            switch (whatDo) {
                 case 0:
                     Downloader.Download(new URL(newDownloadLink), Common.zipFile, 3);
                     break;
                 case 1:
                     Downloader.Download(new URL(newDownloadLink), Common.zipFile, 4);
+                    break;
+                default:
+                    break;
             }
-
-          //  }
-           // else{
-             //   System.out.println(toPrint);
-          //  }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     public static void modpackUpdateTags() {
         try {
@@ -81,6 +58,7 @@ public class Updater {
             e.printStackTrace();
         }
     }
+
 
     public static void removeStuff() {
         File modsDirectory = new File(Common.getMinecraftInstall() + Common.q + "mods");
@@ -94,16 +72,15 @@ public class Updater {
         }
     }
 
+
     public static void installUpdate() {
         removeStuff();
         File modsDirectory = new File(Common.getMinecraftInstall() + Common.q + "mods");
         File configDirectory = new File(Common.getMinecraftInstall() + Common.q + "config");
         File updateMods = new File(Common.getDownloadsLocation() + Common.q + currentVersion + Common.q + "mods");
         File updateConfig = new File(Common.getDownloadsLocation() + Common.q + currentVersion + Common.q + "config");
-
         Install.copyFiles(updateMods, modsDirectory);
         Install.copyFiles(updateConfig, configDirectory);
-
         String updateMessage = "Update installed!";
         JOptionPane.showMessageDialog(new JFrame(), updateMessage, "Update done.", JOptionPane.INFORMATION_MESSAGE);
         Install.end();

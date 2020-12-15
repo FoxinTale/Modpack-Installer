@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
+import java.util.Arrays;
 
 public class RawIO {
 
@@ -141,8 +142,6 @@ public class RawIO {
     }
 
     private void resetBytes(byte[] b) {
-        for(int i = 0; i < b.length; i++) {
-            b[i] = 0;
-        }
+        Arrays.fill(b, (byte) 0);
     }
 }

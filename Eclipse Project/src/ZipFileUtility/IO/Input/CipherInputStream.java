@@ -84,10 +84,6 @@ abstract class CipherInputStream<T extends Decrypter> extends InputStream {
         // is optional but useful for AES
     }
 
-    protected long getNumberOfBytesReadForThisEntry() {
-        return zipEntryInputStream.getNumberOfBytesRead();
-    }
-
     public LocalFileHeader getLocalFileHeader() {
         return localFileHeader;
     }

@@ -29,7 +29,6 @@ public class GUI {
         JLabel errorsLabel = new JLabel(Strings.installerErrorsLabelText);
         ButtonGroup options = new ButtonGroup();
 
-
         JLabel installerVersion = new JLabel(Strings.installerVersionText+ installerVersionValue);
         consoleOutput.setLineWrap(true);
         frame.getContentPane().add(scroll);
@@ -150,9 +149,7 @@ public class GUI {
         otherOptions.setBackground(rbc);
         resourceOption.setBackground(rbc);
 
-
         //Setting the location of each element.
-
         if(Common.bePretty){
             lightRedPanel.setBounds(0,0,70,575);
             lightOrangePanel.setBounds(70,0,70,575);
@@ -178,15 +175,13 @@ public class GUI {
         errors.setBounds(75, 440, 350, 20);
         errorsLabel.setBounds(25, 440, 50, 20);
 
-
-            modpackOne.setFont(Common.pretty);
-            downloadOption.setFont(Common.pretty);
-            resourceOption.setFont(Common.pretty);
-            otherOptions.setFont(Common.pretty);
-            button.setFont(Common.pretty);
-            errorsLabel.setFont(Common.pretty);
-            installerVersion.setFont(Common.pretty);
-
+        modpackOne.setFont(Common.pretty);
+        downloadOption.setFont(Common.pretty);
+        resourceOption.setFont(Common.pretty);
+        otherOptions.setFont(Common.pretty);
+        button.setFont(Common.pretty);
+        errorsLabel.setFont(Common.pretty);
+        installerVersion.setFont(Common.pretty);
 
         modpackPanel.add(modpackOne);
         downloadPanel.add(downloadOption);

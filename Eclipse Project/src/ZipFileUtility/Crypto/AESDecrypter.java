@@ -48,7 +48,6 @@ public class AESDecrypter implements Decrypter {
         for (int j = start; j < (start + len); j += InternalZipConstants.AES_BLOCK_SIZE) {
             int loopCount = (j + InternalZipConstants.AES_BLOCK_SIZE <= (start + len)) ?
                     InternalZipConstants.AES_BLOCK_SIZE : ((start + len) - j);
-
             mac.update(buff, j, loopCount);
             AesCipherUtil.prepareBuffAESIVBytes(iv, nonce);
             aesEngine.processBlock(iv, counterBlock);
@@ -56,10 +55,8 @@ public class AESDecrypter implements Decrypter {
             for (int k = 0; k < loopCount; k++) {
                 buff[j + k] = (byte) (buff[j + k] ^ counterBlock[k]);
             }
-
             nonce++;
         }
-
         return len;
     }
 

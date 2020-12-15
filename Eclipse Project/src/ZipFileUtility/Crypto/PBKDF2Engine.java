@@ -60,10 +60,6 @@ public class PBKDF2Engine {
         prf.init(P);
     }
 
-    public PRF getPseudoRandomFunction() {
-        return prf;
-    }
-
     private byte[] PBKDF2(PRF prf, byte[] S, int c, int dkLen) {
         if (S == null) {
             S = new byte[0];
@@ -78,7 +74,6 @@ public class PBKDF2Engine {
             ti_offset += hLen;
         }
         if (r < hLen) {
-            // Incomplete last block
             byte DK[] = new byte[dkLen];
             System.arraycopy(T, 0, DK, 0, dkLen);
             return DK;
@@ -97,10 +92,10 @@ public class PBKDF2Engine {
     private void _F(byte[] dest, int offset, PRF prf, byte[] S, int c,
                     int blockIndex) {
         int hLen = prf.getHLen();
-        byte U_r[] = new byte[hLen];
+        byte[] U_r = new byte[hLen];
 
         // U0 = S || INT (i);
-        byte U_i[] = new byte[S.length + 4];
+        byte[] U_i = new byte[S.length + 4];
         System.arraycopy(S, 0, U_i, 0, S.length);
         INT(U_i, S.length, blockIndex);
 
@@ -132,7 +127,4 @@ public class PBKDF2Engine {
         this.parameters = parameters;
     }
 
-    public void setPseudoRandomFunction(PRF prf) {
-        this.prf = prf;
-    }
 }

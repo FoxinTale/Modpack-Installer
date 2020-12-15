@@ -1,6 +1,5 @@
 package ZipFileUtility.Crypto;
 
-import ZipFileUtility.Util.InternalZipConstants;
 import ZipFileUtility.ZipException;
 
 public class AESEngine {
@@ -51,11 +50,11 @@ public class AESEngine {
         return W;
     }
 
-    public int processBlock(byte[] in, byte[] out) throws ZipException {
-        return processBlock(in, 0, out, 0);
+    public void processBlock(byte[] in, byte[] out) throws ZipException {
+        processBlock(in, 0, out, 0);
     }
 
-    public int processBlock(byte[] in, int inOff, byte[] out, int outOff) throws ZipException {
+    public void processBlock(byte[] in, int inOff, byte[] out, int outOff) throws ZipException {
         if (workingKey == null) {
             throw new ZipException("AES engine not initialised");
         }
@@ -71,7 +70,6 @@ public class AESEngine {
         stateIn(in, inOff);
         encryptBlock(workingKey);
         stateOut(out, outOff);
-        return InternalZipConstants.AES_BLOCK_SIZE;
 
     }
 

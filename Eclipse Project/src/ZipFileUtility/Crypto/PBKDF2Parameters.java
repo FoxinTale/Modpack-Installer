@@ -8,14 +8,6 @@ public class PBKDF2Parameters {
     protected String hashCharset;
     protected byte[] derivedKey;
 
-    public PBKDF2Parameters() {
-        this.hashAlgorithm = null;
-        this.hashCharset = "UTF-8";
-        this.salt = null;
-        this.iterationCount = 1000;
-        this.derivedKey = null;
-    }
-
     public PBKDF2Parameters(String hashAlgorithm, String hashCharset, byte[] salt, int iterationCount) {
         this(hashAlgorithm, hashCharset, salt, iterationCount, null);
     }
@@ -31,10 +23,6 @@ public class PBKDF2Parameters {
 
     public int getIterationCount() {
         return iterationCount;
-    }
-
-    public void setIterationCount(int iterationCount) {
-        this.iterationCount = iterationCount;
     }
 
     public byte[] getSalt() {
@@ -55,10 +43,6 @@ public class PBKDF2Parameters {
 
     public String getHashAlgorithm() {
         return hashAlgorithm;
-    }
-
-    public void setHashAlgorithm(String hashAlgorithm) {
-        this.hashAlgorithm = hashAlgorithm;
     }
 
     public String getHashCharset() {

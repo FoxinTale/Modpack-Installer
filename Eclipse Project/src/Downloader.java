@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Downloader {
@@ -41,41 +40,29 @@ public class Downloader {
                 bout.close();
                 in.close();
 
-                System.out.println(Strings.installerDownloadComplete);
+               // System.out.println(Strings.installerDownloadComplete);
                 GUI.progress.setValue(0);
                 zipFile = new File(Common.q + Common.getDownloadsLocation() + Common.q + zipName);
                 switch (whatIs) {
-                    case 0:
-                        Checksums.checksum(zipFile, "Modpack.zip"); // Checksum it.
+                    case 0: //Part one.
+                        Install.backupMinecraftContent();
+                        Extractor.Extract(zipFile.getAbsolutePath(), 0);
                         break;
                     case 1:
-                        if (!Install.featuresUsed) { // Update
-                            String updateZip = Common.getDownloadsLocation() + Common.q + Updater.currentVersion + ".zip";
-                            String updateFolder = Common.getDownloadsLocation() + Common.q + Updater.currentVersion;
-                            //Extractor.Extract(updateZip, updateFolder, 1);
-                        }
-                        if (Install.featuresUsed) {
-                            installOptions.again();
-                        }
+                        Extractor.Extract(zipFile.getAbsolutePath(), 1);
                         break;
                     case 2:
                         resourcePacks.creditsFrame.setVisible(false);
-                        Checksums.checksum(zipFile, zipName);
                         break;
                     case 3: //Part one only. Extract,  install then do part two.
-                       // Install.backupMinecraftContent();
-                       Extractor.Extract(zipFile.getAbsolutePath(), 3);
-                        System.out.println(" Part one downloaded.");
-                        //System.out.println(" Beginning part two.");
+                        if (Install.featuresUsed) {
+                            installOptions.again();
+                        }
                         //Updater.getFileUpdate(new URL(Common.modpackPartTwoLink), 1);
-                        break;
-                    case 4: //Part two is done.
-                        // Carry on with the rest of the installation process.
                         break;
                     default:
                         break;
                 }
-
             } catch (FileNotFoundException e) {
                 // If the zip file could not be found.
                 GUI.errors.setText("Roserade");
@@ -85,24 +72,6 @@ public class Downloader {
             }
         };
         new Thread(updatethread).start();
-    }
-
-    public static void doPartTwo(){
-
-    }
-
-    public static void redownloadModpack() {
-        URL modpackOneLink;
-        try {
-            System.out.println(Strings.installerVerificationRedownlaoding1);
-            System.out.println(Strings.installerVerificationRedownlaoding2);
-            System.out.println(Strings.installerVerificationRedownlaoding3);
-            modpackOneLink = new URL("https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
-            Download(modpackOneLink, "Modpack.zip", 0);
-        } catch (MalformedURLException e) {
-            // This...shouldn't happen, as the URL is preset and cannot be entered by the user.
-            e.printStackTrace();
-        }
     }
 
     public static void downloadNoProgress(String url, File name){

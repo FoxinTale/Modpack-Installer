@@ -26,10 +26,6 @@ public class LocalFileHeader extends AbstractFileHeader {
         return offsetStartOfData;
     }
 
-    public void setOffsetStartOfData(long offsetStartOfData) {
-        this.offsetStartOfData = offsetStartOfData;
-    }
-
     public boolean isWriteCompressedSizeInZip64ExtraRecord() {
         return writeCompressedSizeInZip64ExtraRecord;
     }

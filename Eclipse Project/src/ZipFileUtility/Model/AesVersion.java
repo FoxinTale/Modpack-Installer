@@ -10,11 +10,6 @@ public enum AesVersion {
         this.versionNumber = versionNumber;
     }
 
-
-    public int getVersionNumber() {
-        return versionNumber;
-    }
-
     public static AesVersion getFromVersionNumber(int versionNumber) {
         for (AesVersion aesVersion : values()) {
             if (aesVersion.versionNumber == versionNumber) {

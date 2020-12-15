@@ -1,7 +1,5 @@
 package ZipFileUtility.Model;
 
-import ZipFileUtility.Util.Zip4jUtil;
-
 import java.util.List;
 
 public abstract class AbstractFileHeader extends ZipHeader {
@@ -58,10 +56,6 @@ public abstract class AbstractFileHeader extends ZipHeader {
         this.lastModifiedTime = lastModifiedTime;
     }
 
-    public long getLastModifiedTimeEpoch() {
-        return Zip4jUtil.dosToExtendedEpochTme(lastModifiedTime);
-    }
-
     public long getCrc() {
         return crc;
     }
@@ -72,10 +66,6 @@ public abstract class AbstractFileHeader extends ZipHeader {
 
     public byte[] getCrcRawData() {
         return crcRawData;
-    }
-
-    public void setCrcRawData(byte[] crcRawData) {
-        this.crcRawData = crcRawData;
     }
 
     public long getCompressedSize() {
@@ -92,10 +82,6 @@ public abstract class AbstractFileHeader extends ZipHeader {
 
     public void setUncompressedSize(long uncompressedSize) {
         this.uncompressedSize = uncompressedSize;
-    }
-
-    public int getFileNameLength() {
-        return fileNameLength;
     }
 
     public void setFileNameLength(int fileNameLength) {
@@ -187,11 +173,9 @@ public abstract class AbstractFileHeader extends ZipHeader {
         if (obj == null) {
             return false;
         }
-
         if (!(obj instanceof AbstractFileHeader)) {
             return false;
         }
-
         return this.getFileName().equals(((AbstractFileHeader) obj).getFileName());
     }
 }

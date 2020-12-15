@@ -33,7 +33,6 @@ public class Zip4jUtil {
                 throw new ZipException("Cannot create output directories");
             }
         }
-
         return true;
     }
 

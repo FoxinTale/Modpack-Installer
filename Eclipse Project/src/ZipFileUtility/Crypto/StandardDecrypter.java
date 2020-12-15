@@ -38,9 +38,6 @@ public class StandardDecrypter implements Decrypter {
         crc[1] = (byte) ((crcBytes[3] >> 16) & 0xFF);
         crc[0] = (byte) ((crcBytes[3] >> 24) & 0xFF);
 
-        if (crc[2] > 0 || crc[1] > 0 || crc[0] > 0)
-            throw new IllegalStateException("Invalid CRC in File Header");
-
         if (password == null || password.length <= 0) {
             throw new ZipException("Wrong password!", ZipException.Type.WRONG_PASSWORD);
         }

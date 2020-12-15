@@ -16,7 +16,7 @@ public class Extractor {
         //System.out.println(nam1)
         String folderPath = Common.getDownloadsLocation() + Common.q + name + Common.q;
         switch (op) {
-            case 0: // Modpack
+            case 0: // Part One, copy it over to the proper folder, then download part two.
                 System.out.println(Strings.installerExtractNotice);
                 unzip(fileLocation, folderPath, op);
                 break;
@@ -28,7 +28,7 @@ public class Extractor {
                 unzip(fileLocation, name, op);
                 break;
             case 3:
-                unzip(fileLocation, name, 1);
+                unzip(fileLocation, name, 3);
                 break;
             default:
                 break;
@@ -44,18 +44,19 @@ public class Extractor {
         } catch (ZipException e) {
             GUI.errors.setText("Kyogre");
         }
-        System.out.println(" Extraction complete.");
         switch (op) {
-            case 0:
+            case 0: // Part one, then start part two.
                 Install.install();
                 break;
-            case 1:
+            case 1: // Part two, and installation.
                 //Updater.installUpdate();
-                System.out.println(" Extract complete!");
                 break;
             case 2:
                 System.out.println(" Resource pack installed.");
                 Install.end();
+                break;
+            case 3:
+
                 break;
             default:
                 break;

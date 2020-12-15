@@ -48,12 +48,8 @@ public class HeaderReader {
 
         if (zipModel.isZip64Format()) {
             zipModel.setZip64EndOfCentralDirectoryRecord(readZip64EndCentralDirRec(zip4jRaf, rawIO));
-            if (zipModel.getZip64EndOfCentralDirectoryRecord() != null
-                    && zipModel.getZip64EndOfCentralDirectoryRecord().getNumberOfThisDisk() > 0) {
-                zipModel.setSplitArchive(true);
-            } else {
-                zipModel.setSplitArchive(false);
-            }
+            zipModel.setSplitArchive(zipModel.getZip64EndOfCentralDirectoryRecord() != null
+                    && zipModel.getZip64EndOfCentralDirectoryRecord().getNumberOfThisDisk() > 0);
         }
 
         zipModel.setCentralDirectory(readCentralDirectory(zip4jRaf, rawIO, charset));

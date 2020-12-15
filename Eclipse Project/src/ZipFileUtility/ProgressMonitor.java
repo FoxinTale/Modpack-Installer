@@ -79,6 +79,7 @@ public class ProgressMonitor {
     }
     public void setCurrentTask(Task currentTask) {
     }
+
     public String getFileName() {
         return fileName;
     }
