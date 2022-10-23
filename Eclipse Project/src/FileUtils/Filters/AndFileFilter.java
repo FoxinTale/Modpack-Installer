@@ -1,4 +1,7 @@
-package FileUtils;
+package FileUtils.Filters;
+
+import FileUtils.AbstractFileFilter;
+import FileUtils.IOFileFilter;
 
 import java.io.File;
 import java.io.Serializable;

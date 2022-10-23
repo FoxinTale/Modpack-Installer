@@ -1,5 +1,7 @@
 package FileUtils;
 
+import FileUtils.Filters.AndFileFilter;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;

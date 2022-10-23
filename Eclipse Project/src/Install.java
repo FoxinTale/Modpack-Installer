@@ -23,17 +23,11 @@ public class Install {
         System.out.println(Strings.installerModsVerification);
 
         if (installOptions.packGood) {
-            int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerMemoryAdjustMessage, Strings.installerMemoryAdjustTitle, JOptionPane.YES_NO_OPTION);
-            if (o == JOptionPane.YES_OPTION) {
-                installOptions.backup();
-                Memory.sliderGUI();
-            }
-            if (o == JOptionPane.NO_OPTION) {
-                installFinalize();
-            }
+            installFinalize();
         }
         if (!installOptions.packGood) {
-            GUI.errors.setText("Chikorita");
+            GUI.errorOccured("Chickorita");
+            Errors.chickorita();
             //Installation failed to verify somehow.
             installOptions.verifyInstall();
         }
@@ -47,7 +41,7 @@ public class Install {
             serverPing();
         }
         if (o == JOptionPane.NO_OPTION) {
-            resourcePack();
+            end();
         }
     }
 
@@ -60,44 +54,14 @@ public class Install {
             // a proper IP that error should never be thrown.
             JOptionPane.showMessageDialog(new JFrame(), Strings.serverUpMessage, Strings.serverUpTitle, JOptionPane.INFORMATION_MESSAGE);
             server.close();
-            if (!featuresUsed) {
-                resourcePack();
-            }
-            if (featuresUsed) {
-                installOptions.again();
-            }
+            end();
         } catch (UnknownHostException h) {
             // This should never happen EVER.
-            GUI.errors.setText("Marill");
+            GUI.errorOccured("Marill");
+            Errors.marill();
         } catch (IOException i) {
             JOptionPane.showMessageDialog(new JFrame(), Strings.serverNotReachableMessage, Strings.serverNotReachableTitle, JOptionPane.ERROR_MESSAGE);
             // This is an error that must be caught, as the server sometimes crashes without my knowing.
-            if (!featuresUsed) {
-                resourcePack();
-            }
-            if (featuresUsed) {
-                installOptions.again();
-            }
-        }
-    }
-
-    public static void resourcePack() {
-        int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerResourceMessage, Strings.installerResourceTitle, JOptionPane.YES_NO_OPTION);
-        if (o == JOptionPane.YES_OPTION) {
-            resourcePacks.packGUI();
-        }
-        if (o == JOptionPane.NO_OPTION) {
-            optionalMods();
-        }
-    }
-
-    public static void optionalMods() {
-        int modsAsk = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerOptionalModsMessage, Strings.installerOptionalModsTitle, JOptionPane.YES_NO_OPTION);
-        if (modsAsk == JOptionPane.YES_OPTION) {
-            modOptions.modOptionsGui();
-        }
-        if (modsAsk == JOptionPane.NO_OPTION) {
-            end();
         }
     }
 

@@ -1,4 +1,8 @@
-package JsonUtils;
+package JsonUtils.XML;
+
+import JsonUtils.JSONException;
+import JsonUtils.JSONTokener;
+import JsonUtils.XML.XML;
 
 import java.io.Reader;
 

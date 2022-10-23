@@ -1,4 +1,4 @@
-package JsonUtils;
+package JsonUtils.XML;
 
 import java.util.Collections;
 import java.util.Map;

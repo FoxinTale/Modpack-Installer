@@ -42,7 +42,8 @@ public class Extractor {
             ZipFile zipFile = new ZipFile(zipFilePath);
             zipFile.extractAll(extractFolder);
         } catch (ZipException e) {
-            GUI.errors.setText("Kyogre");
+            GUI.errorOccured("Kyogre");
+            Errors.kyogre();
         }
         System.out.println(" Extraction complete.");
         switch (op) {

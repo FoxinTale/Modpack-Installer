@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 
 public class Common {
     //This contains stuff that would otherwise be repeated elsewhere many times.
@@ -30,24 +29,7 @@ public class Common {
     static String resourcePackTexturesLink = "";
 
 
-    // Font stuff.
-    static String modpackVersion = "";
-    public static void getFont(){
-        try {
-            File fontFile = new File(System.getProperty("user.dir")+ File.separator + "InstallerFont.ttf");
-            if(!fontFile.exists()) {
-                Downloader.downloadNoProgress(fontLink, fontFile);
-            }
-            pretty = Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir") + File.separator + "InstallerFont.ttf")).deriveFont(16f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir") + File.separator + "InstallerFont.ttf")));
-            fontFile.deleteOnExit();
-        } catch (IOException e) {
 
-        } catch (FontFormatException e) {
-            GUI.errors.setText("Screwy font");
-        }
-    }
 
     // This explains itself. I decided on a function because otherwise this would
     // have been repeated many times, taking up space in the code.
@@ -56,9 +38,6 @@ public class Common {
             folder.mkdir();
         }
     }
-
-    // Other variables.
-    public static Boolean bePretty = false;
 
     // Getters and setters.
     public static String getDownloadsLocation() {

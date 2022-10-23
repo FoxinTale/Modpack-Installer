@@ -1,6 +1,5 @@
 import FileUtils.FileUtils;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,9 +8,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class installOptions extends Install {
-    static int ramSizeChosen = 0;
-    static int ramSizeMb;
-    static int ramSizeGb;
     static Boolean packGood = false;
 
     static String modpackOptions = Common.getDownloadsLocation() + Common.q + "Modpack" + Common.q + "options" + Common.q;
@@ -52,7 +48,8 @@ public class installOptions extends Install {
             }
         } catch (IOException e) {
             // Mod file could not be found to copy over.
-            GUI.errors.setText("Mantyke");
+            GUI.errorOccured("Mantyke");
+            Errors.mantyke();
         }
     }
 
@@ -65,48 +62,7 @@ public class installOptions extends Install {
             FileUtils.copyFileToDirectory(missingModFile, modsDirectory, false);
         } catch (IOException e) {
             // Generic IO exception while copying mods.
-            GUI.errors.setText("Lapras");
-        }
-    }
-
-    public static void backup() {
-        File profileBackup = new File(Common.getMinecraftInstall() + Common.q + "profilebackup");
-        File launcherProfiles = new File(Common.getMinecraftInstall() + Common.q + "launcher_profiles.json");
-        if (!profileBackup.exists()) {
-            profileBackup.mkdir();
-            try {
-                FileUtils.copyFileToDirectory(launcherProfiles, profileBackup);
-                System.out.println(Strings.installerBackupProfile);
-            } catch (IOException e) {
-                // Eh, do nothing here.
-            }
-        }
-    }
-
-    public static void restore() {
-        File profileBackup = new File(Common.getMinecraftInstall() + Common.q + "profilebackup");
-        File launcherProfiles = new File(Common.getMinecraftInstall() + Common.q + "launcher_profiles.json");
-        File oldProfile = new File(profileBackup + File.separator + "launcher_profiles.json");
-        try {
-            FileUtils.forceDelete(launcherProfiles);
-            FileUtils.copyFileToDirectory(oldProfile, Common.getMinecraftInstallLocation());
-            System.out.println(Strings.installerRestoreProfile);
-            if (featuresUsed) {
-                again();
-            }
-        } catch (IOException e) {
-            // If the backed up profile could not be found.
-            e.printStackTrace();
-        }
-    }
-
-    public static void again() {
-        int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerAgainMessage, Strings.installerAgainTitle, JOptionPane.YES_NO_OPTION);
-        if (o == JOptionPane.YES_OPTION) {
-            optionsGUI.otherOptionsGUI();
-        }
-        if (o == JOptionPane.NO_OPTION) {
-            end();
+   //         GUI.errors.setText("Lapras");
         }
     }
 }

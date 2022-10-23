@@ -44,51 +44,21 @@ public class Downloader {
                 System.out.println(Strings.installerDownloadComplete);
                 GUI.progress.setValue(0);
                 zipFile = new File(Common.q + Common.getDownloadsLocation() + Common.q + zipName);
-                switch (whatIs) {
-                    case 0:
+
                         Checksums.checksum(zipFile, "Modpack.zip"); // Checksum it.
-                        break;
-                    case 1:
-                        if (!Install.featuresUsed) { // Update
-                            String updateZip = Common.getDownloadsLocation() + Common.q + Updater.currentVersion + ".zip";
-                            String updateFolder = Common.getDownloadsLocation() + Common.q + Updater.currentVersion;
-                            //Extractor.Extract(updateZip, updateFolder, 1);
-                        }
-                        if (Install.featuresUsed) {
-                            installOptions.again();
-                        }
-                        break;
-                    case 2:
-                        resourcePacks.creditsFrame.setVisible(false);
-                        Checksums.checksum(zipFile, zipName);
-                        break;
-                    case 3: //Part one only. Extract,  install then do part two.
-                       // Install.backupMinecraftContent();
-                       Extractor.Extract(zipFile.getAbsolutePath(), 3);
-                        System.out.println(" Part one downloaded.");
-                        //System.out.println(" Beginning part two.");
-                        //Updater.getFileUpdate(new URL(Common.modpackPartTwoLink), 1);
-                        break;
-                    case 4: //Part two is done.
-                        // Carry on with the rest of the installation process.
-                        break;
-                    default:
-                        break;
-                }
+
 
             } catch (FileNotFoundException e) {
                 // If the zip file could not be found.
-                GUI.errors.setText("Roserade");
+                GUI.errorOccured("Roserade");
+                Errors.roserade();
             } catch (IOException e) {
                 // Generic IO error. Who knows what broke here.
-                GUI.errors.setText("Jumpluff");
+                GUI.errorOccured("Jumpluff");
+                Errors.jumpluff();
             }
         };
         new Thread(updatethread).start();
-    }
-
-    public static void doPartTwo(){
-
     }
 
     public static void redownloadModpack() {

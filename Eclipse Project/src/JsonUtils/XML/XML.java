@@ -1,5 +1,7 @@
-package JsonUtils;
+package JsonUtils.XML;
 
+
+import JsonUtils.*;
 
 import java.io.Reader;
 import java.io.StringReader;

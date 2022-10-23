@@ -77,25 +77,14 @@ static Boolean validOS = false;
     }
 
     public static void sharedActions(){
-        Preinstall.checkForMinecraftandForge();
-        guiChoice();
-        Updater.modpackUpdateTags();
-        Preinstall.fileCheck();
+ //       Preinstall.checkForMinecraftandForge();
+ //       guiChoice();
+//        Updater.modpackUpdateTags();
+ //       Preinstall.fileCheck();
+        GUI.launchGUI();
     }
 
-    public static void guiChoice(){
-        int o = JOptionPane.showOptionDialog(new JFrame(), Strings.guiChoiceMessage, Strings.guiChoiceTitle, JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, Strings.guiOptionsArray, Strings.guiOptionsArray[0]);
-        if (o == JOptionPane.YES_OPTION) {
-            Common.bePretty = true;
-            Common.getFont();
-            GUI.launchGUI();
-        }
-        if (o == JOptionPane.NO_OPTION) {
-            Common.bePretty = false;
-            GUI.launchGUI();
-        }
-    }
+
 
     public static int getSelectedOption() {
         return selectedOption;

@@ -51,9 +51,11 @@ public class Checksums {
             }
         } catch (NoSuchAlgorithmException e) {
             // This should never, ever happen. Java required this catch.
-            GUI.errors.setText("Blastoise");
+            GUI.errorOccured("Blastoise");
+            Errors.blastoise();
         } catch (IOException e) {
-            GUI.errors.setText("Glameow");
+            GUI.errorOccured("Glameow");
+            Errors.glameow();
         }
     }
 
@@ -114,7 +116,8 @@ public class Checksums {
                 FileUtils.copyFileToDirectory(Downloader.zipFile, resourcePackDir, false);
             }
         } catch (IOException e) {
-            GUI.errors.setText("Luxray");
+            GUI.errorOccured("Luxray");
+            Errors.luxray();
         }
     }
 }
