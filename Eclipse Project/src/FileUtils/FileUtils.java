@@ -1,5 +1,8 @@
 package FileUtils;
 
+import FileUtils.Filters.*;
+import FileUtils.Visitors.AccumulatorPathVisitor;
+
 import java.io.*;
 import java.math.BigInteger;
 import java.net.URL;

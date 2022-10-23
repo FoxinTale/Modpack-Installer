@@ -2,6 +2,9 @@ package FileUtils;
 
 
 import FileUtils.Counters.PathCounters;
+import FileUtils.Filters.PathFilter;
+import FileUtils.Visitors.AccumulatorPathVisitor;
+import FileUtils.Visitors.DeletingPathVisitor;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -286,8 +289,8 @@ public final class PathUtils {
     }
 
 
-    static List<Path> relativize(final Collection<Path> collection, final Path parent, final boolean sort,
-                                 final Comparator<? super Path> comparator) {
+    public static List<Path> relativize(final Collection<Path> collection, final Path parent, final boolean sort,
+                                        final Comparator<? super Path> comparator) {
         Stream<Path> stream = collection.stream().map(parent::relativize);
         if (sort) {
             stream = comparator == null ? stream.sorted() : stream.sorted(comparator);

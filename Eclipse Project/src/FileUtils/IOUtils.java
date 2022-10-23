@@ -409,17 +409,17 @@ public class IOUtils {
         return reader instanceof BufferedReader ? (BufferedReader) reader : new BufferedReader(reader);
     }
 
-    @Deprecated
-    public static byte[] toByteArray(final Reader input) throws IOException {
-        return toByteArray(input, Charset.defaultCharset());
-    }
+  //  @Deprecated
+  //  public static byte[] toByteArray(final Reader input) throws IOException {
+  //      return toByteArray(input, Charset.defaultCharset());
+  //  }
 
-    public static byte[] toByteArray(final Reader input, final Charset charset) throws IOException {
-        try (final ByteArrayOutputStream output = new ByteArrayOutputStream()) {
-            copy(input, output, charset);
-            return output.toByteArray();
-        }
-    }
+ //   public static byte[] toByteArray(final Reader input, final Charset charset) throws IOException {
+  //      try (final FileUtils.OutputStream.ByteArrayOutputStream output = new ByteArrayOutputStream()) {
+  //          copy(input, output, charset);
+  //          return output.toByteArray();
+  //      }
+  //  }
 
     @Deprecated
     public static byte[] toByteArray(final String input) {

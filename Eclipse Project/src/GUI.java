@@ -14,7 +14,7 @@ public class GUI {
     static JTextArea consoleOutput = new JTextArea();
     static JScrollPane scroll = new JScrollPane(consoleOutput);
     static JTextField errorsBox = new JTextField(Strings.installerErrorsDefault);
-    static String installerVersionValue = "0.0";
+    static String installerVersionValue = "1.0.0";
 
     public static void launchGUI() {
 
@@ -116,9 +116,6 @@ public class GUI {
         errorsBox.setEditable(false);
 
         System.out.println(Strings.installerWelcome);
-       // Updater.getFileUpdate(Driver.installerUpdateLink);
-        //, installerVersionValue, Strings.installerUpdateMessage,
-        //                Strings.installerUpdateTitle, Strings.installerUpToDate, 0
         System.out.println(Strings.installerBugReport);
         System.out.println(Strings.installerOptions);
 
@@ -163,8 +160,6 @@ public static void beginDownload(JButton button) {
 			System.out.println("Fuck you Java.");
 		}
 	}
-
-
 
     public static void errorOccured(String errorType){
         errorsBox.setText(errorType);

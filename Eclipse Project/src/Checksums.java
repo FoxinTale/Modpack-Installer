@@ -1,6 +1,3 @@
-import FileUtils.FileUtils;
-
-import javax.swing.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,8 +7,7 @@ import java.util.ArrayList;
 
 public class Checksums {
     static MessageDigest md5Digest;
-    static String cModpackSum, cResourcesSum, modpackSum, resourcesSum;
-    static File resourcePackDir = new File(Common.getMinecraftInstall() + Common.q + "resourcepacks");
+    static String cModpackSum, modpackSum;
     static ArrayList<String> checksums = Json.getChecksums();
 
     public static void checksum(File zipFile, String zipName) {
@@ -31,24 +27,6 @@ public class Checksums {
                     Downloader.redownloadModpack();
                 }
             }
-            switch (zipName) {
-                case "ACRP-TO.zip":
-                    resourceCheck(1, zipFile, "ACRP-TO");
-                    break;
-                case "ACRP-MS.zip":
-                    resourceCheck(2, zipFile, "ACRP-MS");
-                    break;
-                case "ACRP-MST.zip":
-                    resourceCheck(3, zipFile, "ACRP-MST");
-                    break;
-                case "ACRP-AS.zip":
-                    resourceCheck(4, zipFile, "ACRP-AS");
-                    break;
-                case "ACRP-E.zip":
-                    resourceCheck(5, zipFile, "ACRP-E");
-                default:
-                    break;
-            }
         } catch (NoSuchAlgorithmException e) {
             // This should never, ever happen. Java required this catch.
             GUI.errorOccured("Blastoise");
@@ -56,22 +34,6 @@ public class Checksums {
         } catch (IOException e) {
             GUI.errorOccured("Glameow");
             Errors.glameow();
-        }
-    }
-
-    public static void resourceCheck(int opt, File zip, String name) {
-        resourcesSum = checksums.get(opt);
-        try {
-            cResourcesSum = getFileChecksum(md5Digest, zip);
-        } catch (IOException e) {
-            // This would happen if the zip file being verified could not be found.
-            e.printStackTrace();
-        }
-        if (checkSums(resourcesSum, cResourcesSum)) {
-            verifyFinish(zip.getPath(), name);
-        }
-        if (!checkSums(resourcesSum, cResourcesSum)) {
-            System.out.println(Strings.installerVerificationFailed);
         }
     }
 
@@ -103,21 +65,4 @@ public class Checksums {
         return good;
     }
 
-    public static void verifyFinish(String zipName, String folderName) {
-        System.out.println(Strings.installerVerificationPassed);
-        int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerExtractResourceMessage, Strings.installerExtractResourceTitle, JOptionPane.YES_NO_OPTION);
-        try {
-            if (o == JOptionPane.YES_OPTION) { // Copy and Extract.
-                String baseLocation = resourcePackDir.getAbsolutePath() + File.separator;
-                FileUtils.copyFileToDirectory(Downloader.zipFile, resourcePackDir, false);
-                //Extractor.Extract(baseLocation + zipName, baseLocation + folderName, 2);
-            }
-            if (o == JOptionPane.NO_OPTION) {
-                FileUtils.copyFileToDirectory(Downloader.zipFile, resourcePackDir, false);
-            }
-        } catch (IOException e) {
-            GUI.errorOccured("Luxray");
-            Errors.luxray();
-        }
-    }
 }
