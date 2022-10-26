@@ -10,8 +10,6 @@ import java.util.Set;
 public class installOptions extends Install {
     static Boolean packGood = false;
 
-    static String modpackOptions = Common.getDownloadsLocation() + Common.q + "Modpack" + Common.q + "options" + Common.q;
-
     public static void verifyInstall() {
         String downloadedMods = Common.getDownloadsLocation() + Common.q + "Modpack" + Common.q + "mods" + Common.q;
         String minecraftMods = Common.getMinecraftInstallLocation() + Common.q + "mods" + Common.q;

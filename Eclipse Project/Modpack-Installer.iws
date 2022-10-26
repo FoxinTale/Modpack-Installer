@@ -25,38 +25,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/InstallerFont.ttf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Modpack-Installer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/.sigar_shellrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Common.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Common.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Downloader.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Downloader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Driver.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Driver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Extractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Extractor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Json.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Json.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Preinstall.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Preinstall.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Strings.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Strings.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Updater.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/ZipFileUtility/Crypto/AESDecrypter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/ZipFileUtility/Crypto/AESEngine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/ZipFileUtility/Crypto/AesCipherUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/ZipFileUtility/Crypto/MacBasedPRF.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/ZipFileUtility/Crypto/PBKDF2Engine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/ZipFileUtility/Crypto/PBKDF2Parameters.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/ZipFileUtility/Crypto/PRF.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/ZipFileUtility/IO/Input/AesCipherInputStream.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/ZipFileUtility/IO/Input/ZipInputStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/ZipFileUtility/IO/Input/ZipInputStream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/ZipFileUtility/ZipFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/ZipFileUtility/ZipFile.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/installOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/installOptions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/installerinfo.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Checksums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Checksums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.sigar_shellrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Downloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Downloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/AbstractByteArrayOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/OutputStream/AbstractByteArrayOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/AbstractFileFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Filters/AbstractFileFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/AccumulatorPathVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Visitors/AccumulatorPathVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/ByteArrayOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/OutputStream/ByteArrayOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/CountingPathVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Visitors/CountingPathVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/DeletingPathVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Visitors/DeletingPathVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/FileEqualsFileFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Filters/FileEqualsFileFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/FileFileFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Filters/FileFileFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/Filters/AndFileFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Filters/AndFileFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/Filters/ConditionalFileFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Filters/ConditionalFileFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/IOFileFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Filters/IOFileFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/IOUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/IOUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/NullOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/OutputStream/NullOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/OrFileFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Filters/OrFileFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/PathFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Filters/PathFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/PathUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/PathUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/PathVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Visitors/PathVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/SimplePathVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Visitors/SimplePathVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/SuffixFileFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Filters/SuffixFileFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils/TrueFileFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils/Filters/TrueFileFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Extractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Extractor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Json.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonUtils/JSONArray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/XML/XML.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/XML/XMLParserConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/XML/XMLTokener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/XML/XMLXsiTypeConverter.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Preinstall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Preinstall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Strings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Updater.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Crypto/AESDecrypter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Crypto/AESEngine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Crypto/AesCipherUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Crypto/MacBasedPRF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Crypto/PBKDF2Engine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Crypto/PBKDF2Parameters.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Crypto/PRF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/AesCipherInputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/ZipInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/ZipInputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/ZipFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ZipFileUtility/ZipFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/installOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/installOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Modpack-Installer.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data.json" beforeDir="false" afterPath="$PROJECT_DIR$/../data.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

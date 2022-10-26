@@ -25,7 +25,6 @@ import java.net.URL;
 
 public class Driver {
     static int selectedOption = 0;
-    static Boolean updateTime = false;
     public static URL installerUpdateLink;
     private static PrintStream standardOut; // This sets the outputs.
 

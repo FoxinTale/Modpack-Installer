@@ -9,7 +9,7 @@ public class Strings {
 
     // Text for the GUI elements, aside from the options.
     static String downloadText = "Download.";
-    static String installerWindowTitle = "Modpack Installer by Aubrey";
+    static String installerWindowTitle = "Modpack Installer";
     static String installerErrorsLabelText = "Errors: ";
     static String installerVersionText = "Version ";
 

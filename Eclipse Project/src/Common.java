@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.io.File;
 
 public class Common {
@@ -9,27 +8,12 @@ public class Common {
     private static String downloadsLocation = null;
     private static String desktopLocation = null;
     private static String minecraftDefaultInstall = null;
-
-    static String modpackPartOneCheckedVersion;
-    static String modpackPartTwoCheckedVersion;
-    static String modpackPartOneInstalledVersion;
-    static String modpackPartTwoInstalledVersion;
-
     static String q = File.separator;
-    static Font pretty;
     static String zipFile = ""; //This will get deleted soon, as it's no longer called this anymore.
-    static File infoFile = new File("installerinfo.json");
-
 
     // Links.
     static String installerLatestLink = "https://api.github.com/repos/foxintale/modpack-installer/releases/latest";
-    static String fontLink = "https://srv-store1.gofile.io/download/7cQzQT/InstallerFont.ttf";
-    static String modpackPartOneLink = "https://api.github.com/repos/foxintale/minecraft-modpack/releases/latest";
-    static String modpackPartTwoLink = "https://api.github.com/repos/foxintale/modpack-bigmods/releases/latest";
-    static String resourcePackTexturesLink = "";
-
-
-
+    static String modpackLatestLink = "https://api.github.com/repos/foxintale/minecraft-modpack/releases/latest";
 
     // This explains itself. I decided on a function because otherwise this would
     // have been repeated many times, taking up space in the code.
@@ -43,31 +27,24 @@ public class Common {
     public static String getDownloadsLocation() {
         return downloadsLocation;
     }
-
     public static File getMinecraftInstallLocation() {
         return minecraftInstallLocation;
     }
-
     public static String getMinecraftInstall() {
         return minecraftInstall;
     }
-
     public static String getDesktopLocation() {
         return desktopLocation;
     }
-
     public static void setDownloadsLocation(String absolutePath) {
         downloadsLocation = absolutePath;
     }
-
     public static void setMinecraftInstall(String absolutePath) {
         minecraftInstall = absolutePath;
     }
-
     public static void setMinecraftInstallLocation(File minecraftDefaultPath) {
         minecraftInstallLocation = minecraftDefaultPath;
     }
-
     public static void setDesktopLocation(String absolutePath) {
         desktopLocation = absolutePath;
     }

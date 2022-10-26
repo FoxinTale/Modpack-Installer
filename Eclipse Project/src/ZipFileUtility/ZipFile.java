@@ -113,18 +113,6 @@ public class ZipFile {
     }
 
 
-    public boolean isSplitArchive() throws ZipException {
-
-        if (zipModel == null) {
-            readZipInfo();
-            if (zipModel == null) {
-                throw new ZipException("Zip Model is null");
-            }
-        }
-
-        return zipModel.isSplitArchive();
-    }
-
     private void readZipInfo() throws ZipException {
         if (zipModel != null) {
             return;

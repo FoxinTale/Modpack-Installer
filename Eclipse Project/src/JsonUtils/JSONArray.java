@@ -86,20 +86,6 @@ public class JSONArray implements Iterable<Object> {
         return object;
     }
 
-    public boolean getBoolean(int index) throws JSONException {
-        Object object = this.get(index);
-        if (object.equals(Boolean.FALSE)
-                || (object instanceof String && ((String) object)
-                .equalsIgnoreCase("false"))) {
-            return false;
-        } else if (object.equals(Boolean.TRUE)
-                || (object instanceof String && ((String) object)
-                .equalsIgnoreCase("true"))) {
-            return true;
-        }
-        throw wrongValueFormatException(index, "boolean");
-    }
-
 
     public JSONObject getJSONObject(int index) throws JSONException {
         Object object = this.get(index);
@@ -118,22 +104,6 @@ public class JSONArray implements Iterable<Object> {
     }
 
 
-    public String join(String separator) throws JSONException {
-        int len = this.length();
-        if (len == 0) {
-            return "";
-        }
-
-        StringBuilder sb = new StringBuilder(
-                JSONObject.valueToString(this.myArrayList.get(0)));
-
-        for (int i = 1; i < len; i++) {
-            sb.append(separator)
-                    .append(JSONObject.valueToString(this.myArrayList.get(i)));
-        }
-        return sb.toString();
-    }
-
     public int length() {
         return this.myArrayList.size();
     }
@@ -141,50 +111,6 @@ public class JSONArray implements Iterable<Object> {
     public Object opt(int index) {
         return (index < 0 || index >= this.length()) ? null : this.myArrayList
                 .get(index);
-    }
-
-    public float optFloat(int index) {
-        return this.optFloat(index, Float.NaN);
-    }
-
-    public float optFloat(int index, float defaultValue) {
-        final Number val = this.optNumber(index, null);
-        if (val == null) {
-            return defaultValue;
-        }
-        final float floatValue = val.floatValue();
-        return floatValue;
-    }
-
-    public int optInt(int index) {
-        return this.optInt(index, 0);
-    }
-
-    public int optInt(int index, int defaultValue) {
-        final Number val = this.optNumber(index, null);
-        if (val == null) {
-            return defaultValue;
-        }
-        return val.intValue();
-    }
-
-    public Number optNumber(int index, Number defaultValue) {
-        Object val = this.opt(index);
-        if (JSONObject.NULL.equals(val)) {
-            return defaultValue;
-        }
-        if (val instanceof Number) {
-            return (Number) val;
-        }
-
-        if (val instanceof String) {
-            try {
-                return JSONObject.stringToNumber((String) val);
-            } catch (Exception e) {
-                return defaultValue;
-            }
-        }
-        return defaultValue;
     }
 
     public JSONArray put(boolean value) {

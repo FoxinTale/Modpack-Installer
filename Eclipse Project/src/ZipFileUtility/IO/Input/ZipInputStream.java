@@ -1,6 +1,5 @@
 package ZipFileUtility.IO.Input;
 
-import ZipFileUtility.Crypto.AesCipherUtil;
 import ZipFileUtility.Headers.HeaderReader;
 import ZipFileUtility.Headers.HeaderSignature;
 import ZipFileUtility.Model.*;
@@ -29,16 +28,8 @@ public class ZipInputStream extends InputStream {
     private boolean canSkipExtendedLocalFileHeader = false;
     private Charset charset;
 
-    public ZipInputStream(InputStream inputStream) {
-        this(inputStream, null, InternalZipConstants.CHARSET_UTF_8);
-    }
-
     public ZipInputStream(InputStream inputStream, Charset charset) {
         this(inputStream, null, charset);
-    }
-
-    public ZipInputStream(InputStream inputStream, char[] password) {
-        this(inputStream, password, InternalZipConstants.CHARSET_UTF_8);
     }
 
     public ZipInputStream(InputStream inputStream, char[] password, Charset charset) {
@@ -49,10 +40,6 @@ public class ZipInputStream extends InputStream {
         this.inputStream = new PushbackInputStream(inputStream, InternalZipConstants.BUFF_SIZE);
         this.password = password;
         this.charset = charset;
-    }
-
-    public LocalFileHeader getNextEntry() throws IOException {
-        return getNextEntry(null);
     }
 
     public LocalFileHeader getNextEntry(FileHeader fileHeader) throws IOException {
@@ -140,10 +127,6 @@ public class ZipInputStream extends InputStream {
         }
     }
 
-    public int getAvailableBytesInPushBackInputStream() throws IOException {
-        return inputStream.available();
-    }
-
     private void endOfCompressedDataReached() throws IOException {
         //With inflater, without knowing the compressed or uncompressed size, we over read necessary data
         //In such cases, we have to push back the inputstream to the end of data
@@ -167,10 +150,7 @@ public class ZipInputStream extends InputStream {
         if (!localFileHeader.isEncrypted()) {
             return new NoCipherInputStream(zipEntryInputStream, localFileHeader, password);
         }
-
-        if (localFileHeader.getEncryptionMethod() == EncryptionMethod.AES) {
-            return new AesCipherInputStream(zipEntryInputStream, localFileHeader, password);
-        } else if (localFileHeader.getEncryptionMethod() == EncryptionMethod.ZIP_STANDARD) {
+        else if (localFileHeader.getEncryptionMethod() == EncryptionMethod.ZIP_STANDARD) {
             return new ZipStandardCipherInputStream(zipEntryInputStream, localFileHeader, password);
         } else {
             final String message = String.format("Entry [%s] Strong Encryption not supported", localFileHeader.getFileName());

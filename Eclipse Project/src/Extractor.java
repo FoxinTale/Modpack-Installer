@@ -54,10 +54,6 @@ public class Extractor {
                 //Updater.installUpdate();
                 System.out.println(" Extract complete!");
                 break;
-            case 2:
-                System.out.println(" Resource pack installed.");
-                Install.end();
-                break;
             default:
                 break;
         }
