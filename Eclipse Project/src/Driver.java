@@ -1,9 +1,7 @@
-import GUI.CustomOutputStream;
+//import GUI.CustomOutputStream;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.net.URL;
 /*
  * This program is free software. It comes without any warranty, to the extent
  * permitted by applicable law. You can redistribute it and/or modify it under
@@ -25,18 +23,18 @@ import java.net.URL;
 
 public class Driver {
     static int selectedOption = 0;
-    public static URL installerUpdateLink;
-    private static PrintStream standardOut; // This sets the outputs.
+ //   public static URL installerUpdateLink;
+//    private static PrintStream standardOut; // This sets the outputs.
 
 static Boolean validOS = false;
     public static void main(String[] args) throws IOException {
         // Creating the custom output stream.
-        PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
-        standardOut = System.out;
-        System.setOut(printStream);
-        System.setErr(printStream);
+  //      PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
+   //     standardOut = System.out;
+   //     System.setOut(printStream);
+  //      System.setErr(printStream);
 
-        installerUpdateLink = new URL(Common.installerLatestLink);
+//        installerUpdateLink = new URL(Common.installerLatestLink);
         String OS = System.getProperty("os.name"); // This gets the name of the current operating system.
         if (OS.equals("Windows 10") || OS.equals("Windows 8.1") || OS.equals("Windows 7")) {
             // For modern Windows systems
@@ -76,7 +74,8 @@ static Boolean validOS = false;
 
     public static void sharedActions(){
         Preinstall.checkForMinecraftandForge();
-        GUI.launchGUI();
+    //    GUI.launchGUI();
+        Json.modpackData();
     }
 
 

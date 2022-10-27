@@ -14,6 +14,7 @@ public class Common {
     // Links.
     static String installerLatestLink = "https://api.github.com/repos/foxintale/modpack-installer/releases/latest";
     static String modpackLatestLink = "https://api.github.com/repos/foxintale/minecraft-modpack/releases/latest";
+    static String modpackDataJsonLink = "https://raw.githubusercontent.com/FoxinTale/Minecraft-Modpack/1.16.5/data.json";
 
     // This explains itself. I decided on a function because otherwise this would
     // have been repeated many times, taking up space in the code.
