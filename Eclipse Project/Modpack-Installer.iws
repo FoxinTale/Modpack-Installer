@@ -26,13 +26,19 @@
   <component name="ChangeListManager">
     <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Modpack-Installer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Common.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Common.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Downloader.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Downloader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Driver.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Driver.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Json.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Json.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Sets$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Sets$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Sets$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Sets$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Sets$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Sets$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Sets$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Sets$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Sets$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Sets$3$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Sets$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Sets$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Sets$SetView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Sets$SetView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Sets.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Sets.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Json.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SetUtils/Sets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SetUtils/Sets.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../data.json" beforeDir="false" afterPath="$PROJECT_DIR$/../data.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

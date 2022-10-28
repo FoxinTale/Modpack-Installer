@@ -23,15 +23,12 @@ public final class Sets {
         private SetView() {
         }
 
-
         @CanIgnoreReturnValue
         @Deprecated
         @Override
         public final boolean add(E e) {
             throw new UnsupportedOperationException();
         }
-
-
         @CanIgnoreReturnValue
         @Deprecated
         @Override
@@ -39,14 +36,12 @@ public final class Sets {
             throw new UnsupportedOperationException();
         }
 
-
         @CanIgnoreReturnValue
         @Deprecated
         @Override
         public final boolean addAll(Collection<? extends E> newElements) {
             throw new UnsupportedOperationException();
         }
-
 
         @CanIgnoreReturnValue
         @Deprecated

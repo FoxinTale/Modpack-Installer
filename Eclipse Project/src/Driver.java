@@ -76,6 +76,7 @@ static Boolean validOS = false;
         Preinstall.checkForMinecraftandForge();
     //    GUI.launchGUI();
         Json.modpackData();
+  //      Json.modpackLatestInfo();
     }
 
 

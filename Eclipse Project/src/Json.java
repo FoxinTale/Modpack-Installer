@@ -11,16 +11,21 @@ public class Json {
     static ArrayList<String> toRemove = new ArrayList<>();
     static ArrayList<String> checksums = new ArrayList<>();
 
+
     public static void modpackLatestInfo() {
         try {
             URL modpackLink = new URL(Common.modpackLatestLink);
             JSONObject data = (JSONObject) new JSONTokener(modpackLink.openStream()).nextValue();
+
+            // I could not do this the normal way as for whatever reason, the length is 1.
+            // Meaning a for loop with assets.size() is pointless.
             JSONArray assets = (JSONArray) data.get("assets");
             String assetsString = assets.toString();
             String stuff = assetsString.substring(assetsString.indexOf("{"), assetsString.indexOf("}"));
             String browserURL = null;
 
             String[] splitData = stuff.split(",");
+
 
             for (int i = 0; i < splitData.length; i++) {
                 if (splitData[i].contains("browser_download_url")) {
@@ -32,8 +37,8 @@ public class Json {
             String[] splitURL = browserURL.split("\":\"");
             String modpackURL = splitURL[1].replace("\"", "\n").strip();
             String modpackFileName = modpackURL.substring(modpackURL.lastIndexOf("/") + 1);
-
-            Downloader.Download(new URL(modpackURL), modpackFileName);
+            System.out.println(modpackURL);
+        //    Downloader.Download(new URL(modpackURL), modpackFileName);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -47,10 +52,10 @@ public class Json {
             String currentVersion = (String) data.get("1_16-currentVersion");
             JSONArray checksumArray = (JSONArray) data.get("checksums");
             JSONArray modArray = (JSONArray) data.get("modList");
-    //        JSONArray removal = (JSONArray) data.get("toRemove");
+            JSONArray removal= (JSONArray) data.get("toRemove");
 
             readJSONArray(modArray, modlist, "mod");
-    //        readJSONArray(removal, toRemove, "remove");
+            readJSONArray(removal, toRemove, "remove");
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -59,7 +64,6 @@ public class Json {
 
     public static void readJSONArray(JSONArray array, ArrayList<String> list, String key) {
         JSONObject obj;
-
         for (int i = 0; i < array.length(); i++) {
             obj = (JSONObject) array.get(i);
             list.add((String) obj.get(key));
