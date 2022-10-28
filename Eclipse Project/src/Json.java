@@ -2,9 +2,12 @@ import JsonUtils.JSONArray;
 import JsonUtils.JSONObject;
 import JsonUtils.JSONTokener;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Set;
 
 public class Json {
     static ArrayList<String> modlist = new ArrayList<>();
@@ -38,7 +41,7 @@ public class Json {
             String modpackURL = splitURL[1].replace("\"", "\n").strip();
             String modpackFileName = modpackURL.substring(modpackURL.lastIndexOf("/") + 1);
             System.out.println(modpackURL);
-        //    Downloader.Download(new URL(modpackURL), modpackFileName);
+            //    Downloader.Download(new URL(modpackURL), modpackFileName);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -52,7 +55,7 @@ public class Json {
             String currentVersion = (String) data.get("1_16-currentVersion");
             JSONArray checksumArray = (JSONArray) data.get("checksums");
             JSONArray modArray = (JSONArray) data.get("modList");
-            JSONArray removal= (JSONArray) data.get("toRemove");
+            JSONArray removal = (JSONArray) data.get("toRemove");
 
             readJSONArray(modArray, modlist, "mod");
             readJSONArray(removal, toRemove, "remove");
@@ -68,6 +71,52 @@ public class Json {
             obj = (JSONObject) array.get(i);
             list.add((String) obj.get(key));
         }
+    }
+
+
+    public static void readLauncherFile(String versionId) throws IOException {
+        File launcherFile = new File("C:\\Users\\Aubrey\\Appdata\\Roaming\\.minecraft\\launcher_profiles.json");
+        Scanner scan = new Scanner(launcherFile);
+        StringBuilder sb = new StringBuilder();
+
+        while(scan.hasNext()){
+            sb.append(scan.next());
+        }
+        scan.close();
+
+        JSONObject obj = new JSONObject(sb.toString().strip());
+        JSONObject profiles = obj.getJSONObject("profiles");
+        Set<String> keys = profiles.keySet();
+        Object[] keysArr = keys.toArray();
+        ArrayList<String> stringKeys = new ArrayList<>();
+        for (Object o : keysArr) {
+            stringKeys.add(o.toString());
+        }
+
+        JSONObject array;
+        String key, lastVersionId;
+        int spot = 0;
+
+        for(int i = 0; i < stringKeys.size(); i++){
+            key = stringKeys.get(i);
+            array = (JSONObject) profiles.get(key);
+            lastVersionId = (String) array.get("lastVersionId");
+            if(lastVersionId.equals(versionId)){
+                spot = i;
+                break;
+            }
+        }
+
+        JSONObject chosenObject = (JSONObject) profiles.get(stringKeys.get(spot));
+
+        String argsString = (String) chosenObject.get("javaArgs");
+        String[] argsArr = argsString.split(":");
+
+        System.out.println(argsArr.length);
+    }
+
+    public static void checkSegment(JSONArray array){
+
     }
 
     public static ArrayList<String> getModlist() {
