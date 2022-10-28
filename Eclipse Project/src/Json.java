@@ -73,8 +73,7 @@ public class Json {
         }
     }
 
-
-    public static void readLauncherFile(String versionId) throws IOException {
+    public static void readLauncherFile(String versionId, int newMemAmt) throws IOException {
         File launcherFile = new File("C:\\Users\\Aubrey\\Appdata\\Roaming\\.minecraft\\launcher_profiles.json");
         Scanner scan = new Scanner(launcherFile);
         StringBuilder sb = new StringBuilder();
@@ -93,31 +92,33 @@ public class Json {
             stringKeys.add(o.toString());
         }
 
-        JSONObject array;
+        JSONObject array, chosenObject = null;
         String key, lastVersionId;
-        int spot = 0;
 
         for(int i = 0; i < stringKeys.size(); i++){
             key = stringKeys.get(i);
             array = (JSONObject) profiles.get(key);
             lastVersionId = (String) array.get("lastVersionId");
             if(lastVersionId.equals(versionId)){
-                spot = i;
+                chosenObject = (JSONObject) profiles.get(stringKeys.get(i));
                 break;
             }
         }
 
-        JSONObject chosenObject = (JSONObject) profiles.get(stringKeys.get(spot));
-
         String argsString = (String) chosenObject.get("javaArgs");
         String[] argsArr = argsString.split(":");
 
-        System.out.println(argsArr.length);
+        for(int i = 0; i < argsArr.length; i++){
+            if(argsArr[i].contains("-Xmx")){
+                argsArr[i] = "-Xmx" + newMemAmt + "G-XX";
+                break;
+           }
+       }
+
+ //       System.out.println(Arrays.toString(argsArr));
+
     }
 
-    public static void checkSegment(JSONArray array){
-
-    }
 
     public static ArrayList<String> getModlist() {
         return modlist;

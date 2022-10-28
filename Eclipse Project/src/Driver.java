@@ -77,7 +77,7 @@ static Boolean validOS = false;
     //    GUI.launchGUI();
     //    Json.modpackData();
   //      Json.modpackLatestInfo();
-        Json.readLauncherFile("1.16.5-forge-36.2.39");
+        Json.readLauncherFile("1.16.5-forge-36.2.39", 6);
     }
 
 
