@@ -1,33 +1,16 @@
-/* Copyright 2016 Clifton Labs
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License. */
 package json_simple;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.io.Writer;
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /** Jsoner provides JSON utilities for escaping strings to be JSON compatible, thread safe parsing (RFC 7159) JSON
  * strings, and thread safe serializing data to strings in JSON format.
  * @since 2.0.0 */
 public class Jsoner{
 	/** Flags to tweak the behavior of the primary deserialization method. */
-	private static enum DeserializationOptions{
+	private enum DeserializationOptions{
 		/** Whether multiple JSON values can be deserialized as a root element. */
 		ALLOW_CONCATENATED_JSON_VALUES,
 		/** Whether a JsonArray can be deserialized as a root element. */
@@ -39,7 +22,7 @@ public class Jsoner{
 	}
 
 	/** Flags to tweak the behavior of the primary serialization method. */
-	private static enum SerializationOptions{
+	private enum SerializationOptions{
 		/** Instead of aborting serialization on non-JSON values it will continue serialization by serializing the
 		 * non-JSON value directly into the now invalid JSON. Be mindful that invalid JSON will not successfully
 		 * deserialize. */
@@ -51,22 +34,20 @@ public class Jsoner{
 	}
 
 	/** The possible States of a JSON deserializer. */
-	private static enum States{
+	private enum States{
 		/** Post-parsing state. */
 		DONE,
 		/** Pre-parsing state. */
 		INITIAL,
 		/** Parsing error, ParsingException should be thrown. */
 		PARSED_ERROR,
-		@SuppressWarnings("javadoc")
 		PARSING_ARRAY,
 		/** Parsing a key-value pair inside of an object. */
 		PARSING_ENTRY,
-		@SuppressWarnings("javadoc")
 		PARSING_OBJECT;
 	}
 
-	@SuppressWarnings("javadoc")
+
 	private Jsoner(){
 		/* Jsoner is purely static so instantiation is unnecessary. */
 	}
@@ -274,104 +255,6 @@ public class Jsoner{
 		return new JsonArray(valueStack);
 	}
 
-	/** A convenience method that assumes a StringReader to deserialize a string.
-	 * @param deserializable representing content to be deserialized as JSON.
-	 * @return either a boolean, null, Number, String, JsonObject, or JsonArray that best represents the deserializable.
-	 * @throws JsonException if an unexpected token is encountered in the deserializable. To recover from a
-	 *         JsonException: fix the deserializable to no longer have an unexpected token and try again.
-	 * @see Jsoner#deserialize(Reader)
-	 * @see StringReader */
-	public static Object deserialize(final String deserializable) throws JsonException{
-		Object returnable;
-		StringReader readableDeserializable = null;
-		try{
-			readableDeserializable = new StringReader(deserializable);
-			returnable = Jsoner.deserialize(readableDeserializable);
-		}catch(final NullPointerException caught){
-			/* They both have the same recovery scenario.
-			 * See StringReader.
-			 * If deserializable is null, it should be reasonable to expect null back. */
-			returnable = null;
-		}finally{
-			if(readableDeserializable != null){
-				readableDeserializable.close();
-			}
-		}
-		return returnable;
-	}
-
-	/** A convenience method that assumes a JsonArray must be deserialized.
-	 * @param deserializable representing content to be deserializable as a JsonArray.
-	 * @param defaultValue representing what would be returned if deserializable isn't a JsonArray or an IOException,
-	 *        NullPointerException, or JsonException occurs during deserialization.
-	 * @return a JsonArray that represents the deserializable, or the defaultValue if there isn't a JsonArray that
-	 *         represents deserializable.
-	 * @see Jsoner#deserialize(Reader) */
-	public static JsonArray deserialize(final String deserializable, final JsonArray defaultValue){
-		StringReader readable = null;
-		JsonArray returnable;
-		try{
-			readable = new StringReader(deserializable);
-			returnable = Jsoner.deserialize(readable, EnumSet.of(DeserializationOptions.ALLOW_JSON_ARRAYS)).<JsonArray> getCollection(0);
-		}catch(NullPointerException | JsonException caught){
-			/* Don't care, just return the default value. */
-			returnable = defaultValue;
-		}finally{
-			if(readable != null){
-				readable.close();
-			}
-		}
-		return returnable;
-	}
-
-	/** A convenience method that assumes a JsonObject must be deserialized.
-	 * @param deserializable representing content to be deserializable as a JsonObject.
-	 * @param defaultValue representing what would be returned if deserializable isn't a JsonObject or an IOException,
-	 *        NullPointerException, or JsonException occurs during deserialization.
-	 * @return a JsonObject that represents the deserializable, or the defaultValue if there isn't a JsonObject that
-	 *         represents deserializable.
-	 * @see Jsoner#deserialize(Reader) */
-	public static JsonObject deserialize(final String deserializable, final JsonObject defaultValue){
-		StringReader readable = null;
-		JsonObject returnable;
-		try{
-			readable = new StringReader(deserializable);
-			returnable = Jsoner.deserialize(readable, EnumSet.of(DeserializationOptions.ALLOW_JSON_OBJECTS)).<JsonObject> getMap(0);
-		}catch(NullPointerException | JsonException caught){
-			/* Don't care, just return the default value. */
-			returnable = defaultValue;
-		}finally{
-			if(readable != null){
-				readable.close();
-			}
-		}
-		return returnable;
-	}
-
-	/** A convenience method that assumes multiple RFC 7159 JSON values (except numbers) have been concatenated together
-	 * for deserilization which will be collectively returned in a JsonArray wrapper.
-	 * There may be numbers included, they just must not be concatenated together as it is prone to
-	 * NumberFormatExceptions (thus causing a JsonException) or the numbers no longer represent their
-	 * respective values.
-	 * Examples:
-	 * "123null321" returns [123, null, 321]
-	 * "nullnullnulltruefalse\"\"{}[]" returns [null, null, null, true, false, "", {}, []]
-	 * "123" appended to "321" returns [123321]
-	 * "12.3" appended to "3.21" throws JsonException(NumberFormatException)
-	 * "123" appended to "-321" throws JsonException(NumberFormatException)
-	 * "123e321" appended to "-1" throws JsonException(NumberFormatException)
-	 * "null12.33.21null" throws JsonException(NumberFormatException)
-	 * @param deserializable representing concatenated content to be deserialized as JSON in one reader. Its contents
-	 *        may not contain two numbers concatenated together.
-	 * @return a JsonArray that contains each of the concatenated objects as its elements. Each concatenated element is
-	 *         either a boolean, null, Number, String, JsonArray, or JsonObject that best represents the concatenated
-	 *         content inside deserializable.
-	 * @throws JsonException if an unexpected token is encountered in the deserializable. To recover from a
-	 *         JsonException: fix the deserializable to no longer have an unexpected token and try again. */
-	public static JsonArray deserializeMany(final Reader deserializable) throws JsonException{
-		return Jsoner.deserialize(deserializable, EnumSet.of(DeserializationOptions.ALLOW_JSON_ARRAYS, DeserializationOptions.ALLOW_JSON_OBJECTS, DeserializationOptions.ALLOW_JSON_DATA, DeserializationOptions.ALLOW_CONCATENATED_JSON_VALUES));
-	}
-
 	/** Escapes potentially confusing or important characters in the String provided.
 	 * @param escapable an unescaped string.
 	 * @return an escaped string for usage in JSON; An escaped string is one that has escaped all of the quotes ("),
@@ -409,7 +292,7 @@ public class Jsoner{
 				default:
 					/* The many characters that get replaced are benign to software but could be mistaken by people
 					 * reading it for a JSON relevant character. */
-					if(((character >= '\u0000') && (character <= '\u001F')) || ((character >= '\u007F') && (character <= '\u009F')) || ((character >= '\u2000') && (character <= '\u20FF'))){
+					if(character <= '\u001F' || character >= '\u007F' && character <= '\u009F' || character >= '\u2000' && character <= '\u20FF'){
 						final String characterHexCode = Integer.toHexString(character);
 						builder.append("\\u");
 						for(int k = 0; k < (4 - characterHexCode.length()); k++){
@@ -444,25 +327,6 @@ public class Jsoner{
 		return returnable;
 	}
 
-	/** Creates a new JsonKey that wraps the given string and value. This function should NOT be
-	 * used in favor of existing constants and enumerations to make code easier to maintain.
-	 * @param key represents the JsonKey as a String.
-	 * @param value represents the value the JsonKey uses.
-	 * @return a JsonKey that represents the provided key and value. */
-	public static JsonKey mintJsonKey(final String key, final Object value){
-		return new JsonKey(){
-			@Override
-			public String getKey(){
-				return key;
-			}
-
-			@Override
-			public Object getValue(){
-				return value;
-			}
-		};
-	}
-
 	/** Used for state transitions while deserializing.
 	 * @param stateStack represents the deserialization states saved for future processing.
 	 * @return a state for deserialization context so it knows how to consume the next token. */
@@ -472,108 +336,6 @@ public class Jsoner{
 		}else{
 			return States.PARSED_ERROR;
 		}
-	}
-
-	/** Makes the JSON input more easily human readable using indentation and newline of the caller's choice. This means
-	 * the validity of the JSON printed by this method is dependent on the caller's choice of indentation and newlines.
-	 * @param readable representing a JSON formatted string with out extraneous characters, like one returned from
-	 *        Jsoner#serialize(Object).
-	 * @param writable represents where the pretty printed JSON should be written to.
-	 * @param indentation representing the indentation used to format the JSON string. NOT validated as a proper
-	 *        indentation. It is recommended to use tabs ("\t"), but 3 or 4 spaces are common alternatives.
-	 * @param newline representing the newline used to format the JSON string. NOT validated as a proper newline. It is
-	 *        recommended to use "\n", but "\r" or "/r/n" are common alternatives.
-	 * @throws IOException if the provided writer encounters an IO issue.
-	 * @throws JsonException if the provided reader encounters an IO issue.
-	 * @see Jsoner#prettyPrint(String)
-	 * @since 3.1.0 made public to allow large JSON inputs and more pretty print control. */
-	public static void prettyPrint(final Reader readable, final Writer writable, final String indentation, final String newline) throws IOException, JsonException{
-		final Yylex lexer = new Yylex(readable);
-		Yytoken lexed;
-		int level = 0;
-		do{
-			lexed = Jsoner.lexNextToken(lexer);
-			switch(lexed.getType()){
-				case COLON:
-					writable.append(lexed.getValue().toString());
-					writable.append(' ');
-					break;
-				case COMMA:
-					writable.append(lexed.getValue().toString());
-					writable.append(newline);
-					for(int i = 0; i < level; i++){
-						writable.append(indentation);
-					}
-					break;
-				case END:
-					break;
-				case LEFT_BRACE:
-				case LEFT_SQUARE:
-					writable.append(lexed.getValue().toString());
-					writable.append(newline);
-					level++;
-					for(int i = 0; i < level; i++){
-						writable.append(indentation);
-					}
-					break;
-				case RIGHT_BRACE:
-				case RIGHT_SQUARE:
-					writable.append(newline);
-					level--;
-					for(int i = 0; i < level; i++){
-						writable.append(indentation);
-					}
-					writable.append(lexed.getValue().toString());
-					break;
-				default:
-					if(lexed.getValue() == null){
-						writable.append("null");
-					}else if(lexed.getValue() instanceof String){
-						writable.append("\"");
-						writable.append(Jsoner.escape((String)lexed.getValue()));
-						writable.append("\"");
-					}else{
-						writable.append(lexed.getValue().toString());
-					}
-					break;
-			}
-		}while(!lexed.getType().equals(Yytoken.Types.END));
-		writable.flush();
-	}
-
-	/** A convenience method to pretty print a String with tabs ("\t") and "\n" for newlines.
-	 * @param printable representing a JSON formatted string with out extraneous characters, like one returned from
-	 *        Jsoner#serialize(Object).
-	 * @return printable except it will have '\n' then '\t' characters inserted after '[', '{', ',' and before ']' '}'
-	 *         tokens in the JSON. It will return null if printable isn't a JSON string. */
-	public static String prettyPrint(final String printable){
-		final StringWriter writer = new StringWriter();
-		try{
-			Jsoner.prettyPrint(new StringReader(printable), writer, "\t", "\n");
-		}catch(final IOException caught){
-			/* See java.io.StringReader.
-			 * See java.io.StringWriter. */
-		}catch(final JsonException caught){
-			/* Would have been caused by a an IO exception while lexing, but the StringReader does not throw them. See
-			 * java.io.StringReader. */
-		}
-		return writer.toString();
-	}
-
-	/** A convenience method that assumes a StringWriter.
-	 * @param jsonSerializable represents the object that should be serialized as a string in JSON format.
-	 * @return a string, in JSON format, that represents the object provided.
-	 * @throws IllegalArgumentException if the jsonSerializable isn't serializable in JSON.
-	 * @see Jsoner#serialize(Object, Writer)
-	 * @see StringWriter */
-	public static String serialize(final Object jsonSerializable){
-		final StringWriter writableDestination = new StringWriter();
-		try{
-			Jsoner.serialize(jsonSerializable, writableDestination);
-		}catch(final IOException caught){
-			/* See java.io.StringWriter. */
-		}
-		return writableDestination.toString();
 	}
 
 	/** Serializes values according to the RFC 7159 JSON specification. It will also trust the serialization provided by
@@ -799,24 +561,4 @@ public class Jsoner{
 		}
 	}
 
-	/** Serializes like the first version of this library.
-	 * It has been adapted to use Jsonable for serializing custom objects, but otherwise works like the old JSON string
-	 * serializer. It will allow non-JSON values in its output like the old one. It can be helpful for last resort log
-	 * statements and debugging errors in self generated JSON. Anything serialized using this method isn't guaranteed to
-	 * be deserializable.
-	 * @param jsonSerializable represents the object that should be serialized in JSON format.
-	 * @param writableDestination represents where the resulting JSON text is written to.
-	 * @throws IOException if the writableDestination encounters an I/O problem, like being closed while in use. */
-	public static void serializeCarelessly(final Object jsonSerializable, final Writer writableDestination) throws IOException{
-		Jsoner.serialize(jsonSerializable, writableDestination, EnumSet.of(SerializationOptions.ALLOW_JSONABLES, SerializationOptions.ALLOW_INVALIDS));
-	}
-
-	/** Serializes JSON values and only JSON values according to the RFC 7159 JSON specification.
-	 * @param jsonSerializable represents the object that should be serialized in JSON format.
-	 * @param writableDestination represents where the resulting JSON text is written to.
-	 * @throws IOException if the writableDestination encounters an I/O problem, like being closed while in use.
-	 * @throws IllegalArgumentException if the jsonSerializable isn't serializable in raw JSON. */
-	public static void serializeStrictly(final Object jsonSerializable, final Writer writableDestination) throws IOException{
-		Jsoner.serialize(jsonSerializable, writableDestination, EnumSet.noneOf(SerializationOptions.class));
-	}
 }

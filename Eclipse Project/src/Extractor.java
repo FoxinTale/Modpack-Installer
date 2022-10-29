@@ -1,5 +1,4 @@
-import net.lingala.zip4j.ZipFile;
-import net.lingala.zip4j.exception.ZipException;
+import zip4j.ZipFile;
 
 import java.io.File;
 
@@ -19,13 +18,8 @@ public class Extractor {
 
 
     public static void unzip(String zipFilePath, String extractFolder) {
-        try {
-            ZipFile zipFile = new ZipFile(zipFilePath);
-            zipFile.extractAll(extractFolder);
-        } catch (ZipException e) {
-            GUI.errorOccured("Kyogre");
-            Errors.kyogre();
-        }
+        ZipFile zipFile = new ZipFile(zipFilePath);
+        zipFile.extractAll(extractFolder);
         System.out.println(" Extraction complete.");
     }
 }

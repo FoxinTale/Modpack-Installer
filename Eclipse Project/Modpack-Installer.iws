@@ -25,21 +25,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/zip4j/ZipFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modpack-Installer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modpack-Installer.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modpack-Installer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Checksums.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Checksums.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Common.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Common.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Downloader.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Downloader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Driver.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Driver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Extractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Extractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Json.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Json.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Checksums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Checksums.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Common.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Downloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Downloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Extractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Extractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Json.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json_simple/JsonArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/JsonArray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json_simple/JsonException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/JsonException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json_simple/JsonObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/JsonObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json_simple/Jsonable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/Jsonable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json_simple/Jsoner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/Jsoner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json_simple/Yylex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/Yylex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json_simple/Yytoken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/Yytoken.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +68,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "last_opened_file_path": "F:/Java Libraries/json.jar",
+    "last_opened_file_path": "F:/Java Libraries/sigar/sigar.jar",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -80,11 +76,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\json_simple" />
-      <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\org\json" />
-      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\FileUtils" />
-      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\SetUtils\Base" />
-      <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\SetUtils\Collections" />
+      <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\zip4j" />
+      <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\sigar\pager" />
+      <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\sigar\ptql" />
+      <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\sigar\shell" />
+      <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\sigar" />
     </key>
   </component>
   <component name="RunManager">

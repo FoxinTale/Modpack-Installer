@@ -1,13 +1,3 @@
-/* Copyright 2016-2017 Clifton Labs
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License. */
 package json_simple;
 
 /** JsonException explains how and where the problem occurs in the source JSON text during deserialization.
@@ -15,25 +5,16 @@ package json_simple;
 public class JsonException extends Exception{
 	/** The kinds of exceptions that can trigger a JsonException. */
 	public enum Problems{
-		@SuppressWarnings("javadoc")
 		DISALLOWED_TOKEN,
-		/** @since 2.3.0 to consolidate exceptions that occur during deserialization. */
 		IOEXCEPTION,
-		@SuppressWarnings("javadoc")
 		UNEXPECTED_CHARACTER,
-		@SuppressWarnings("javadoc")
 		UNEXPECTED_EXCEPTION,
-		@SuppressWarnings("javadoc")
 		UNEXPECTED_TOKEN;
 	}
 
-	@SuppressWarnings("javadoc")
 	private static final long	serialVersionUID	= 1L;
-	@SuppressWarnings("javadoc")
 	private final long			position;
-	@SuppressWarnings("javadoc")
 	private final Problems		problemType;
-	@SuppressWarnings("javadoc")
 	private final Object		unexpectedObject;
 
 	/** Instantiates a JsonException without assumptions.
@@ -77,21 +58,4 @@ public class JsonException extends Exception{
 		return sb.toString();
 	}
 
-	/** Helps debug the location of a problem.
-	 * @return an index of the string character the error type occurred at. */
-	public long getPosition(){
-		return this.position;
-	}
-
-	/** Helps find an appropriate solution for a problem.
-	 * @return the enumeration for how the exception occurred. */
-	public Problems getProblemType(){
-		return this.problemType;
-	}
-
-	/** Helps identify the problem.
-	 * @return a representation of what caused the exception. */
-	public Object getUnexpectedObject(){
-		return this.unexpectedObject;
-	}
 }
