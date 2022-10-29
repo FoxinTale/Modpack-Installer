@@ -1,5 +1,5 @@
-import ZipFileUtility.ZipException;
-import ZipFileUtility.ZipFile;
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
 
 import java.io.File;
 

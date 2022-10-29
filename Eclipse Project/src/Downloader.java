@@ -48,6 +48,20 @@ public class Downloader {
         new Thread(updatethread).start();
     }
 
+    public static void downloadNoProgress(String url, File name){
+        //No progress because it doesn't output to the progress bar. Used for real small files like the font.
+        try (BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
+             FileOutputStream fileOutputStream = new FileOutputStream(name)) {
+            byte[] dataBuffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
+                fileOutputStream.write(dataBuffer, 0, bytesRead);
+            }
+        } catch (IOException e) {
+            // handle exception
+        }
+    }
+
     public static void redownloadModpack() {
         URL modpackOneLink;
         try {

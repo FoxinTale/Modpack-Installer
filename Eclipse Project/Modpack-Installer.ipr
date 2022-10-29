@@ -5,6 +5,8 @@
       <output-path>$PROJECT_DIR$/out/artifacts/Modpack_Installer_jar</output-path>
       <root id="archive" name="Modpack-Installer.jar">
         <element id="module-output" name="Modpack-Installer" />
+        <element id="library" level="project" name="json" />
+        <element id="library" level="project" name="zip4j-2.11.2" />
       </root>
     </artifact>
   </component>
@@ -155,9 +157,16 @@
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
   </component>
   <component name="libraryTable">
-    <library name="commons-io-2.6">
+    <library name="json">
       <CLASSES>
-        <root url="jar://$USER_HOME$/Programs/Java Libraries/commons-io-2.6/commons-io-2.6.jar!/" />
+        <root url="jar://F:/Java Libraries/json.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="zip4j-2.11.2">
+      <CLASSES>
+        <root url="jar://F:/Java Libraries/zip4j-2.11.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />

@@ -25,22 +25,123 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/JsonUtils/JSONPointer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/JsonUtils/JSONPointerException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/JsonUtils/JSONStringer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modpack-Installer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modpack-Installer.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modpack-Installer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Driver.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Driver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Common.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Common.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Downloader.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Downloader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Json.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Json.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/JsonUtils/JSONArray.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/JsonUtils/JSONException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/JsonUtils/JSONObject$Null.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/JsonUtils/JSONObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/JsonUtils/JSONPropertyIgnore.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/JsonUtils/JSONPropertyName.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/JsonUtils/JSONString.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/JsonUtils/JSONTokener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/JsonUtils/JSONWriter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Modpack-Installer_lib/errors.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/json/errors.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/json/libraries.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/json/modData.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-amd64-freebsd-6.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-amd64-linux.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-amd64-solaris.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-ia64-hpux-11.sl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-ia64-linux.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-pa-hpux-11.sl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-ppc-aix-5.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-ppc-linux.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-ppc64-aix-5.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-ppc64-linux.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-s390x-linux.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-sparc-solaris.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-sparc64-solaris.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-universal-macosx.dylib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-universal64-macosx.dylib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-x86-freebsd-5.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-x86-freebsd-6.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-x86-linux.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/libsigar-x86-solaris.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/log4j.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/sigar-amd64-winnt.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/sigar-x86-winnt.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/sigar-x86-winnt.lib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/installer libraries/sigar.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Modpack_Installer_jar/Modpack-Installer.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Downloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Downloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Extractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Extractor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Json.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonUtils/JSONArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonUtils/JSONException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonUtils/JSONObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONPropertyIgnore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonUtils/JSONPropertyIgnore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONPropertyName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonUtils/JSONPropertyName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonUtils/JSONString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONTokener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonUtils/JSONTokener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonUtils/JSONWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONPointer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONPointerException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONPropertyIgnore.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONPropertyName.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONString.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONStringer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONTokener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonUtils/JSONWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Crypto/Decrypter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Crypto/StandardDecrypter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Crypto/ZipCryptoEngine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Headers/HeaderReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Headers/HeaderSignature.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Headers/HeaderUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Headers/HeaderWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/CipherInputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/DecompressedInputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/InflaterInputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/NoCipherInputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/NumberedSplitInputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/NumberedSplitRandomAccessFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/SplitInputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/StoreInputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/ZipEntryInputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/ZipInputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/ZipStandardCipherInputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Input/ZipStandardSplitInputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Output/CountingOutputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Output/OutputStreamWithSplitZipSupport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/IO/Output/SplitOutputStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/AESExtraDataRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/AbstractFileHeader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/AesKeyStrength.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/AesVersion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/ArchiveExtraDataRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/CentralDirectory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/CompressionMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/DataDescriptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/DigitalSignature.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/EncryptionMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/EndOfCentralDirectoryRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/ExtraDataRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/FileHeader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/LocalFileHeader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/RandomAccessFileMode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/Zip64EndOfCentralDirectoryLocator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/Zip64EndOfCentralDirectoryRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/Zip64ExtendedInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/ZipHeader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/ZipModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Model/ZipParameters.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/ProgressMonitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Tasks/AbstractExtractFileTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Tasks/AbstractZipTaskParameters.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Tasks/AsyncZipTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Tasks/ExtractAllFilesTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Tasks/ExtractFileTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Tasks/MergeSplitZipFileTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Util/BitUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Util/FileUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Util/InternalZipConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Util/RawIO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Util/UnzipUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/Util/Zip4jUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/ZipException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZipFileUtility/ZipFile.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,20 +172,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="JavaMethodFindUsagesOptions.isSearchForTextOccurrences" value="true" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "F:/Java Libraries/json.jar",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Aubrey\Documents\Modpack Installer\src\FileUtils" />

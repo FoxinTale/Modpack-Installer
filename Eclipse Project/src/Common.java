@@ -16,6 +16,10 @@ public class Common {
     static String modpackLatestLink = "https://api.github.com/repos/foxintale/minecraft-modpack/releases/latest";
     static String modpackDataJsonLink = "https://raw.githubusercontent.com/FoxinTale/Minecraft-Modpack/1.16.5/data.json";
 
+
+    public static void libraryCheck(){
+
+    }
     // This explains itself. I decided on a function because otherwise this would
     // have been repeated many times, taking up space in the code.
     public static void folderCreate(File folder) {
