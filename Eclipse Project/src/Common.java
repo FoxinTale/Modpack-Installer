@@ -16,10 +16,9 @@ public class Common {
     static String modpackLatestLink = "https://api.github.com/repos/foxintale/minecraft-modpack/releases/latest";
     static String modpackDataJsonLink = "https://raw.githubusercontent.com/FoxinTale/Minecraft-Modpack/1.16.5/data.json";
 
+    static String jsonLibLink = "https://store1.gofile.io/download/1dc956b5-8dea-4293-91d3-1d25ddf0939b/json.jar";
+    static String zipLibLink = "https://store7.gofile.io/download/d1d8321c-0834-4817-a0a5-3637674ba260/zip4j-2.11.2.jar";
 
-    public static void libraryCheck(){
-
-    }
     // This explains itself. I decided on a function because otherwise this would
     // have been repeated many times, taking up space in the code.
     public static void folderCreate(File folder) {

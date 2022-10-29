@@ -16,6 +16,7 @@ public class Checksums {
 
             System.out.println(Strings.installerVerifyingFile);
             zipFile = new File(Common.getDownloadsLocation() + Common.q + zipName);
+
             if (zipName.equals("Modpack.zip")) {
                 modpackSum = checksums.get(0);
                 cModpackSum = getFileChecksum(md5Digest, zipFile);

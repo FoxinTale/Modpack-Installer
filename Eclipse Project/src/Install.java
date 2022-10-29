@@ -12,7 +12,7 @@ import java.nio.file.StandardCopyOption;
 public class Install {
     static int selectedOption = 0;
     static Boolean featuresUsed = false;
-    static File modpackLocation = new File(Common.getDownloadsLocation() + Common.q + "Modpack");
+    static File modpackLocation = new File(Common.getDownloadsLocation() + Common.q + "modpack");
 
     public static void install() {
 

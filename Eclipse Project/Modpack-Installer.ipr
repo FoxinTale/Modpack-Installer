@@ -5,14 +5,15 @@
       <output-path>$PROJECT_DIR$/out/artifacts/Modpack_Installer_jar</output-path>
       <root id="archive" name="Modpack-Installer.jar">
         <element id="module-output" name="Modpack-Installer" />
-        <element id="library" level="project" name="json" />
-        <element id="library" level="project" name="zip4j-2.11.2" />
       </root>
     </artifact>
   </component>
   <component name="InspectionProjectProfileManager">
     <profile version="1.0">
       <option name="myName" value="Project Default" />
+      <inspection_tool class="AutoCloseableResource" enabled="true" level="WARNING" enabled_by_default="true">
+        <option name="METHOD_MATCHER_CONFIG" value="java.util.Formatter,format,java.io.Writer,append,com.google.common.base.Preconditions,checkNotNull,org.hibernate.Session,close,java.io.PrintWriter,printf,java.io.PrintStream,printf,java.nio.file.Files,newBufferedReader" />
+      </inspection_tool>
     </profile>
     <version value="1.0" />
   </component>
@@ -157,13 +158,6 @@
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
   </component>
   <component name="libraryTable">
-    <library name="json">
-      <CLASSES>
-        <root url="jar://F:/Java Libraries/json.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES />
-    </library>
     <library name="zip4j-2.11.2">
       <CLASSES>
         <root url="jar://F:/Java Libraries/zip4j-2.11.2.jar!/" />

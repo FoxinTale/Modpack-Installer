@@ -77,6 +77,5 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="zip4j-2.11.2" level="project" />
-    <orderEntry type="library" name="json" level="project" />
   </component>
 </module>

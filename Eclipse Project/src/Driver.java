@@ -1,5 +1,7 @@
 //import GUI.CustomOutputStream;
 
+import json_simple.JsonException;
+
 import javax.swing.*;
 import java.io.IOException;
 /*
@@ -27,7 +29,7 @@ public class Driver {
 //    private static PrintStream standardOut; // This sets the outputs.
 
 static Boolean validOS = false;
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, JsonException {
         // Creating the custom output stream.
   //      PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
    //     standardOut = System.out;
@@ -72,12 +74,12 @@ static Boolean validOS = false;
         }
     }
 
-    public static void sharedActions() throws IOException {
+    public static void sharedActions() throws IOException, JsonException {
         Preinstall.checkForMinecraftandForge();
-    //    GUI.launchGUI();
-    //    Json.modpackData();
-  //      Json.modpackLatestInfo();
-        Json.readLauncherFile("1.16.5-forge-36.2.39", 6);
+        GUI.launchGUI();
+  //      Json.modpackData();
+   //   Json.modpackLatestInfo();
+   //     Json.adjustLauncherMemory("1.16.5-forge-36.2.39", 6);
     }
 
 

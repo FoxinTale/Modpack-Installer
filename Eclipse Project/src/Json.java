@@ -1,13 +1,14 @@
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.JSONTokener;
+import json_simple.JsonArray;
+import json_simple.JsonException;
+import json_simple.JsonObject;
+import json_simple.Jsoner;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Set;
 
 public class Json {
     static ArrayList<String> modlist = new ArrayList<>();
@@ -18,31 +19,22 @@ public class Json {
     public static void modpackLatestInfo() {
         try {
             URL modpackLink = new URL(Common.modpackLatestLink);
-            JSONObject data = (JSONObject) new JSONTokener(modpackLink.openStream()).nextValue();
 
-            // I could not do this the normal way as for whatever reason, the length is 1.
-            // Meaning a for loop with assets.size() is pointless.
-            JSONArray assets = (JSONArray) data.get("assets");
-            String assetsString = assets.toString();
-            String stuff = assetsString.substring(assetsString.indexOf("{"), assetsString.indexOf("}"));
-            String browserURL = null;
+            InputStream linkStream = modpackLink.openStream();
+            BufferedReader linkReader = new BufferedReader(new InputStreamReader(linkStream, StandardCharsets.UTF_8));
 
-            String[] splitData = stuff.split(",");
+            JsonObject linkParser = (JsonObject) Jsoner.deserialize(linkReader);
+            JsonArray assetsArray = (JsonArray) linkParser.get("assets");
+            JsonObject assets = (JsonObject) assetsArray.get(0);
 
+            String downloadURL, fileName;
 
-            for (int i = 0; i < splitData.length; i++) {
-                if (splitData[i].contains("browser_download_url")) {
-                    browserURL = splitData[i];
-                    i = splitData.length;
-                }
-            }
+            downloadURL = assets.get("browser_download_url").toString();
 
-            String[] splitURL = browserURL.split("\":\"");
-            String modpackURL = splitURL[1].replace("\"", "\n").strip();
-            String modpackFileName = modpackURL.substring(modpackURL.lastIndexOf("/") + 1);
-            System.out.println(modpackURL);
-            //    Downloader.Download(new URL(modpackURL), modpackFileName);
-        } catch (IOException e) {
+            fileName = downloadURL.substring(downloadURL.lastIndexOf("/") + 1);
+            // Feed to download function.
+            Downloader.Download(new URL(downloadURL), fileName);
+        } catch (IOException | JsonException e) {
             throw new RuntimeException(e);
         }
     }
@@ -50,73 +42,77 @@ public class Json {
     public static void modpackData() {
         try {
             URL modpackDataLink = new URL(Common.modpackDataJsonLink);
-            JSONObject data = (JSONObject) new JSONTokener(modpackDataLink.openStream()).nextValue();
+            InputStream dataStream = modpackDataLink.openStream();
+            BufferedReader dataReader = new BufferedReader(new InputStreamReader(dataStream, StandardCharsets.UTF_8));
 
-            String currentVersion = (String) data.get("1_16-currentVersion");
-            JSONArray checksumArray = (JSONArray) data.get("checksums");
-            JSONArray modArray = (JSONArray) data.get("modList");
-            JSONArray removal = (JSONArray) data.get("toRemove");
+            JsonObject dataParser = (JsonObject) Jsoner.deserialize(dataReader);
+
+            JsonArray checksumArray = (JsonArray) dataParser.get("checksums");
+            JsonArray modArray = (JsonArray) dataParser.get("modList");
+            JsonArray removal = (JsonArray) dataParser.get("toRemove");
 
             readJSONArray(modArray, modlist, "mod");
             readJSONArray(removal, toRemove, "remove");
 
+            JsonObject checksumObj = (JsonObject) checksumArray.get(0);
+
+            System.out.println();
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (JsonException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void readJSONArray(JSONArray array, ArrayList<String> list, String key) {
-        JSONObject obj;
-        for (int i = 0; i < array.length(); i++) {
-            obj = (JSONObject) array.get(i);
+    public static void readJSONArray(JsonArray array, ArrayList<String> list, String key) {
+        JsonObject obj;
+        for (int i = 0; i < array.size(); i++) {
+            obj = (JsonObject) array.get(i);
             list.add((String) obj.get(key));
         }
     }
 
-    public static void readLauncherFile(String versionId, int newMemAmt) throws IOException {
-        File launcherFile = new File("C:\\Users\\Aubrey\\Appdata\\Roaming\\.minecraft\\launcher_profiles.json");
-        Scanner scan = new Scanner(launcherFile);
-        StringBuilder sb = new StringBuilder();
+    public static void adjustLauncherMemory(String versionId, int newMemAmt) throws IOException, JsonException {
+        File launcherFile = new File(Common.getMinecraftInstall() + Common.q + "launcher_profiles.json");
 
-        while(scan.hasNext()){
-            sb.append(scan.next());
-        }
-        scan.close();
+        Reader profilesReader = Files.newBufferedReader(Paths.get(launcherFile.toURI()));
 
-        JSONObject obj = new JSONObject(sb.toString().strip());
-        JSONObject profiles = obj.getJSONObject("profiles");
-        Set<String> keys = profiles.keySet();
-        Object[] keysArr = keys.toArray();
+        JsonObject profileParser = (JsonObject) Jsoner.deserialize(profilesReader);
+        JsonObject profiles = (JsonObject) profileParser.get("profiles");
+
+        Object[] keysArray = profiles.keySet().toArray();
         ArrayList<String> stringKeys = new ArrayList<>();
-        for (Object o : keysArr) {
+
+        for (Object o : keysArray) {
             stringKeys.add(o.toString());
         }
 
-        JSONObject array, chosenObject = null;
-        String key, lastVersionId;
+        JsonObject obj;
+        String versionKey;
+        int foundSpot = 0;
 
-        for(int i = 0; i < stringKeys.size(); i++){
-            key = stringKeys.get(i);
-            array = (JSONObject) profiles.get(key);
-            lastVersionId = (String) array.get("lastVersionId");
-            if(lastVersionId.equals(versionId)){
-                chosenObject = (JSONObject) profiles.get(stringKeys.get(i));
+        for (int i = 0; i < stringKeys.size(); i++) {
+            obj = (JsonObject) profiles.get(stringKeys.get(i));
+            versionKey = obj.get("lastVersionId").toString();
+            if (versionKey.equals(versionId)) {
+                foundSpot = i;
                 break;
             }
         }
 
-        String argsString = (String) chosenObject.get("javaArgs");
-        String[] argsArr = argsString.split(":");
+        JsonObject chosenOne = (JsonObject) profiles.get(stringKeys.get(foundSpot));
+        String javaArgs = chosenOne.get("javaArgs").toString();
+        String newArgs = "-Xmx" + newMemAmt + "G ";
+        String currentArgs = javaArgs.substring(javaArgs.indexOf("-Xmx"), javaArgs.indexOf("-Xmx") + 7);
+        javaArgs = javaArgs.replace(currentArgs, newArgs);
+        chosenOne.put("javaArgs", javaArgs);
 
-        for(int i = 0; i < argsArr.length; i++){
-            if(argsArr[i].contains("-Xmx")){
-                argsArr[i] = "-Xmx" + newMemAmt + "G-XX";
-                break;
-           }
-       }
+        profiles.put(stringKeys.get(foundSpot), chosenOne);
 
- //       System.out.println(Arrays.toString(argsArr));
+        BufferedWriter profileWriter = Files.newBufferedWriter(Paths.get("profiles.json"));
 
+        Jsoner.serialize(profileParser, profileWriter);
+        profileWriter.close();
     }
 
 

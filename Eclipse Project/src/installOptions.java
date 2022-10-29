@@ -31,8 +31,6 @@ public class installOptions extends Install {
 
             Set<Object> fileCheck = new HashSet<>(listTwo);
             fileCheck.removeAll(listOne);
-            fileCheck.remove("gammabright");
-            fileCheck.remove("1.7.10");
             ArrayList<Object> missing = new ArrayList<Object>(fileCheck);
 
             if (fileCheck.isEmpty()) {
