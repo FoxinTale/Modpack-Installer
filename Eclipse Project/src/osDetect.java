@@ -1,3 +1,7 @@
+import oshi.hardware.platform.linux.LinuxGlobalMemory;
+import oshi.hardware.platform.mac.MacGlobalMemory;
+import oshi.hardware.platform.windows.WindowsGlobalMemory;
+
 import javax.swing.*;
 import java.io.File;
 
@@ -12,6 +16,8 @@ public class osDetect {
         File minecraftDefaultPath = new File("C:\\Users\\" + username + "\\AppData\\Roaming\\.minecraft");
         File desktop = new File("C:\\Users\\" + username + "\\Desktop");
         locationCheck(downloads, minecraftDefaultPath, desktop);
+        WindowsGlobalMemory  winMem = new WindowsGlobalMemory();
+        Common.setSystemMemory(winMem.getTotal() / 1048576); // Returns memory in Mb.. This is 1024 squared. Kb -> Mb.
     }
 
     public static void isLinux() {
@@ -20,6 +26,8 @@ public class osDetect {
         File minecraftDefaultPath = new File("/home/" + username + "/.minecraft/");
         File desktop = new File("/home/" + username + "/Desktop");
         locationCheck(downloads, minecraftDefaultPath, desktop);
+        LinuxGlobalMemory linMem = new LinuxGlobalMemory();
+        Common.setSystemMemory(linMem.getTotal() / 1048576); // Returns memory in Mb.. This is 1024 squared. Kb -> Mb.
     }
 
     public static void isMac() {
@@ -29,6 +37,8 @@ public class osDetect {
         File minecraftDefaultPath = new File("/Users/" + username + "/Library/Application Support/minecraft");
         File desktop = new File("/Users/" + username + "/Desktop/");
         locationCheck(downloads, minecraftDefaultPath, desktop);
+        MacGlobalMemory macMem = new MacGlobalMemory();
+        Common.setSystemMemory(macMem.getTotal() / 1048576); // Returns memory in Mb.. This is 1024 squared. Kb -> Mb.
     }
 
     public static void locationCheck(File downloads, File minecraftDefaultPath, File desktop) {

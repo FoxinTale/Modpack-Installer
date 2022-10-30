@@ -11,7 +11,6 @@ public class Extractor {
         if (modpack.exists()) {
             modpack.delete();
         }
-
         String folderPath = Common.getDownloadsLocation() + Common.q + name + Common.q;
     }
 

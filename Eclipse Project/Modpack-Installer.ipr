@@ -158,9 +158,30 @@
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
   </component>
   <component name="libraryTable">
-    <library name="sigar">
+    <library name="jna-jpms-5.12.1">
       <CLASSES>
-        <root url="jar://F:/Java Libraries/sigar/sigar.jar!/" />
+        <root url="jar://F:/Java Libraries/jna-jpms-5.12.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="jna-platform">
+      <CLASSES>
+        <root url="jar://F:/Java Libraries/jna-platform.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="slf4j-api-2.0.3">
+      <CLASSES>
+        <root url="jar://F:/Java Libraries/slf4j-api-2.0.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="slf4j-nop-2.0.3">
+      <CLASSES>
+        <root url="jar://F:/Java Libraries/slf4j-nop-2.0.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />

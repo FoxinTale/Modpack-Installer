@@ -76,6 +76,9 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="sigar" level="project" />
+    <orderEntry type="library" name="jna-jpms-5.12.1" level="project" />
+    <orderEntry type="library" name="jna-platform" level="project" />
+    <orderEntry type="library" name="slf4j-api-2.0.3" level="project" />
+    <orderEntry type="library" name="slf4j-nop-2.0.3" level="project" />
   </component>
 </module>
