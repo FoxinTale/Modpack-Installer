@@ -16,20 +16,15 @@
 
 package zip4j.crypto;
 
-import net.lingala.zip4j.crypto.Encrypter;
-import net.lingala.zip4j.crypto.PBKDF2.MacBasedPRF;
-import net.lingala.zip4j.crypto.engine.AESEngine;
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.model.enums.AesKeyStrength;
+import zip4j.crypto.PBKDF2.MacBasedPRF;
+import zip4j.crypto.engine.AESEngine;
+import zip4j.exception.ZipException;
+import zip4j.model.enums.AesKeyStrength;
 
 import java.security.SecureRandom;
 
-import static zip4j.crypto.AesCipherUtil.derivePasswordBasedKey;
-import static zip4j.crypto.AesCipherUtil.derivePasswordVerifier;
-import static zip4j.crypto.AesCipherUtil.getAESEngine;
-import static zip4j.crypto.AesCipherUtil.getMacBasedPRF;
-import static zip4j.crypto.AesCipherUtil.prepareBuffAESIVBytes;
-import static net.lingala.zip4j.util.InternalZipConstants.AES_BLOCK_SIZE;
+import static zip4j.crypto.AesCipherUtil.*;
+import static zip4j.util.InternalZipConstants.AES_BLOCK_SIZE;
 
 /**
  * AES Encrypter supports AE-1 and AE-2 encryption using AES-CTR with either 128 or 256 Key Strength

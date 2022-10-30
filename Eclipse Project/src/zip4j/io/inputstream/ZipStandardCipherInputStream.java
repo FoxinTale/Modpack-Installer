@@ -1,17 +1,16 @@
 package zip4j.io.inputstream;
 
-import net.lingala.zip4j.crypto.StandardDecrypter;
-import net.lingala.zip4j.io.inputstream.CipherInputStream;
-import net.lingala.zip4j.io.inputstream.ZipEntryInputStream;
-import net.lingala.zip4j.model.LocalFileHeader;
+
+import zip4j.crypto.StandardDecrypter;
+import zip4j.model.LocalFileHeader;
 
 import java.io.IOException;
 
-import static net.lingala.zip4j.util.InternalZipConstants.STD_DEC_HDR_SIZE;
+import static zip4j.util.InternalZipConstants.STD_DEC_HDR_SIZE;
 
-class ZipStandardCipherInputStream extends net.lingala.zip4j.io.inputstream.CipherInputStream<StandardDecrypter> {
+class ZipStandardCipherInputStream extends CipherInputStream<StandardDecrypter> {
 
-  public ZipStandardCipherInputStream(net.lingala.zip4j.io.inputstream.ZipEntryInputStream zipEntryInputStream, LocalFileHeader localFileHeader,
+  public ZipStandardCipherInputStream(ZipEntryInputStream zipEntryInputStream, LocalFileHeader localFileHeader,
                                       char[] password, int bufferSize, boolean useUtf8ForPassword) throws IOException {
     super(zipEntryInputStream, localFileHeader, password, bufferSize, useUtf8ForPassword);
   }

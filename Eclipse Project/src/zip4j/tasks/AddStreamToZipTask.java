@@ -1,24 +1,23 @@
 package zip4j.tasks;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderUtil;
-import net.lingala.zip4j.headers.HeaderWriter;
-import net.lingala.zip4j.io.outputstream.SplitOutputStream;
-import net.lingala.zip4j.io.outputstream.ZipOutputStream;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.Zip4jConfig;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.model.enums.CompressionMethod;
-import net.lingala.zip4j.progress.ProgressMonitor;
-import net.lingala.zip4j.tasks.AddStreamToZipTask.AddStreamToZipTaskParameters;
-import net.lingala.zip4j.tasks.AsyncZipTask;
-import net.lingala.zip4j.util.Zip4jUtil;
+import zip4j.exception.ZipException;
+import zip4j.headers.HeaderUtil;
+import zip4j.headers.HeaderWriter;
+import zip4j.io.outputstream.SplitOutputStream;
+import zip4j.io.outputstream.ZipOutputStream;
+import zip4j.model.FileHeader;
+import zip4j.model.Zip4jConfig;
+import zip4j.model.ZipModel;
+import zip4j.model.ZipParameters;
+import zip4j.model.enums.CompressionMethod;
+import zip4j.progress.ProgressMonitor;
+import zip4j.tasks.AddStreamToZipTask.AddStreamToZipTaskParameters;
+import zip4j.util.Zip4jUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import static net.lingala.zip4j.util.Zip4jUtil.getCompressionMethod;
+import static zip4j.util.Zip4jUtil.getCompressionMethod;
 
 public class AddStreamToZipTask extends AbstractAddFileToZipTask<AddStreamToZipTaskParameters> {
 

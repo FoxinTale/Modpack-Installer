@@ -1,6 +1,6 @@
 package zip4j.tasks;
 
-import net.lingala.zip4j.model.Zip4jConfig;
+import zip4j.model.Zip4jConfig;
 
 public abstract class AbstractZipTaskParameters {
 

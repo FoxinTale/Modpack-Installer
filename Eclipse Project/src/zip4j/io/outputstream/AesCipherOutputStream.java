@@ -1,21 +1,19 @@
 package zip4j.io.outputstream;
 
-import net.lingala.zip4j.crypto.AESEncrypter;
-import net.lingala.zip4j.io.outputstream.CipherOutputStream;
-import net.lingala.zip4j.io.outputstream.ZipEntryOutputStream;
-import net.lingala.zip4j.model.ZipParameters;
+import zip4j.crypto.AESEncrypter;
+import zip4j.model.ZipParameters;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
-import static net.lingala.zip4j.util.InternalZipConstants.AES_BLOCK_SIZE;
+import static zip4j.util.InternalZipConstants.AES_BLOCK_SIZE;
 
-class AesCipherOutputStream extends net.lingala.zip4j.io.outputstream.CipherOutputStream<AESEncrypter> {
+class AesCipherOutputStream extends CipherOutputStream<AESEncrypter> {
 
   private byte[] pendingBuffer = new byte[AES_BLOCK_SIZE];
   private int pendingBufferLength = 0;
 
-  public AesCipherOutputStream(net.lingala.zip4j.io.outputstream.ZipEntryOutputStream outputStream, ZipParameters zipParameters, char[] password,
+  public AesCipherOutputStream(ZipEntryOutputStream outputStream, ZipParameters zipParameters, char[] password,
                                boolean useUtf8ForPassword) throws IOException {
     super(outputStream, zipParameters, password, useUtf8ForPassword);
   }

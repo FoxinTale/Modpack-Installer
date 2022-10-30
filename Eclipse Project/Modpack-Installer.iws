@@ -25,17 +25,86 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/zip4j/ZipFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modpack-Installer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modpack-Installer.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modpack-Installer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json_simple/JsonArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/JsonArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json_simple/JsonException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/JsonException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json_simple/JsonObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/JsonObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json_simple/Jsonable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/Jsonable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json_simple/Jsoner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/Jsoner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json_simple/Yylex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/Yylex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json_simple/Yytoken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json_simple/Yytoken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Extractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Extractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/ZipFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/ZipFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/AESDecrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/AESDecrypter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/AESEncrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/AESEncrypter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/AesCipherUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/AesCipherUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/Decrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/Decrypter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/Encrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/Encrypter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/MacBasedPRF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/MacBasedPRF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/PBKDF2Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/PBKDF2Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/PBKDF2HexFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/PBKDF2HexFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/StandardDecrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/StandardDecrypter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/StandardEncrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/StandardEncrypter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/engine/AESEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/engine/AESEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/engine/ZipCryptoEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/engine/ZipCryptoEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/exception/ZipException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/exception/ZipException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/headers/FileHeaderFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/headers/FileHeaderFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/headers/HeaderReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/headers/HeaderReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/headers/HeaderUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/headers/HeaderUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/headers/HeaderWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/headers/HeaderWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/AesCipherInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/AesCipherInputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/CipherInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/CipherInputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/DecompressedInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/DecompressedInputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/InflaterInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/InflaterInputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/NoCipherInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/NoCipherInputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/NumberedSplitFileInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/NumberedSplitFileInputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/NumberedSplitRandomAccessFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/NumberedSplitRandomAccessFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/SplitFileInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/SplitFileInputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/ZipInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/ZipInputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/ZipStandardCipherInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/ZipStandardCipherInputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/ZipStandardSplitFileInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/ZipStandardSplitFileInputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/AesCipherOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/AesCipherOutputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/CipherOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/CipherOutputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/CompressedOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/CompressedOutputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/CountingOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/CountingOutputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/DeflaterOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/DeflaterOutputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/NoCipherOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/NoCipherOutputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/SplitOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/SplitOutputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/ZipOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/ZipOutputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/ZipStandardCipherOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/ZipStandardCipherOutputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/AESExtraDataRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/AESExtraDataRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/AbstractFileHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/AbstractFileHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/ArchiveExtraDataRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/ArchiveExtraDataRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/CentralDirectory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/CentralDirectory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/DataDescriptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/DataDescriptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/DigitalSignature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/DigitalSignature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/EndOfCentralDirectoryRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/EndOfCentralDirectoryRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/ExtraDataRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/ExtraDataRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/FileHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/FileHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/LocalFileHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/LocalFileHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/Zip64EndOfCentralDirectoryLocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/Zip64EndOfCentralDirectoryLocator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/Zip64EndOfCentralDirectoryRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/Zip64EndOfCentralDirectoryRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/Zip64ExtendedInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/Zip64ExtendedInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/ZipHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/ZipHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/ZipModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/ZipModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/ZipParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/ZipParameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/enums/AesVersion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/enums/AesVersion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/model/enums/CompressionMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/enums/CompressionMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/progress/ProgressMonitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/progress/ProgressMonitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/AbstractAddFileToZipTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/AbstractAddFileToZipTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/AbstractExtractFileTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/AbstractExtractFileTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/AbstractModifyFileTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/AbstractModifyFileTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/AbstractZipTaskParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/AbstractZipTaskParameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/AddFilesToZipTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/AddFilesToZipTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/AddFolderToZipTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/AddFolderToZipTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/AddStreamToZipTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/AddStreamToZipTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/AsyncZipTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/AsyncZipTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/ExtractAllFilesTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/ExtractAllFilesTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/ExtractFileTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/ExtractFileTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/MergeSplitZipFileTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/MergeSplitZipFileTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/RemoveFilesFromZipTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/RemoveFilesFromZipTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/RenameFilesTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/RenameFilesTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/SetCommentTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/SetCommentTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/util/CrcUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/util/CrcUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/util/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/util/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/util/InternalZipConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/util/InternalZipConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/util/RawIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/util/RawIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/util/UnzipUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/util/UnzipUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/util/Zip4jUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/util/Zip4jUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/zip4j/util/ZipVersionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/util/ZipVersionUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,14 +135,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "last_opened_file_path": "F:/Java Libraries/sigar/sigar.jar",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;last_opened_file_path&quot;: &quot;F:/Java Libraries/sigar/sigar.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\zip4j" />

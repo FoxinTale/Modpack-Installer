@@ -1,24 +1,22 @@
 package zip4j.tasks;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderWriter;
-import net.lingala.zip4j.model.Zip4jConfig;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.progress.ProgressMonitor;
-import net.lingala.zip4j.tasks.AddFilesToZipTask.AddFilesToZipTaskParameters;
-import net.lingala.zip4j.tasks.AsyncZipTask;
-import net.lingala.zip4j.util.FileUtils;
+import zip4j.exception.ZipException;
+import zip4j.headers.HeaderWriter;
+import zip4j.model.Zip4jConfig;
+import zip4j.model.ZipModel;
+import zip4j.model.ZipParameters;
+import zip4j.progress.ProgressMonitor;
+import zip4j.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.lingala.zip4j.model.ZipParameters.SymbolicLinkAction.INCLUDE_LINK_ONLY;
-import static net.lingala.zip4j.util.FileUtils.isSymbolicLink;
+import static zip4j.model.ZipParameters.SymbolicLinkAction.INCLUDE_LINK_ONLY;
+import static zip4j.util.FileUtils.isSymbolicLink;
 
-public class AddFilesToZipTask extends AbstractAddFileToZipTask<AddFilesToZipTaskParameters> {
+public class AddFilesToZipTask extends AbstractAddFileToZipTask<AddFilesToZipTask.AddFilesToZipTaskParameters> {
 
   public AddFilesToZipTask(ZipModel zipModel, char[] password, HeaderWriter headerWriter,
                            AsyncZipTask.AsyncTaskParameters asyncTaskParameters) {

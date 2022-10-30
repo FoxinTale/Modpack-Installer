@@ -1,7 +1,7 @@
 package zip4j.tasks;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.progress.ProgressMonitor;
+import zip4j.exception.ZipException;
+import zip4j.progress.ProgressMonitor;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;

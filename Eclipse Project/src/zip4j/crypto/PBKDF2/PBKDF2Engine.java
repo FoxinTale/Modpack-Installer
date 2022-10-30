@@ -1,25 +1,7 @@
-/*
- * Copyright 2010 Srikanth Reddy Lingala
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package zip4j.crypto.PBKDF2;
 
-import net.lingala.zip4j.crypto.PBKDF2.MacBasedPRF;
-import net.lingala.zip4j.crypto.PBKDF2.PRF;
 
-import static net.lingala.zip4j.util.Zip4jUtil.convertCharArrayToByteArray;
+import static zip4j.util.Zip4jUtil.convertCharArrayToByteArray;
 
 /*
  * Source referred from Matthias Gartner's PKCS#5 implementation -
@@ -29,13 +11,13 @@ import static net.lingala.zip4j.util.Zip4jUtil.convertCharArrayToByteArray;
 public class PBKDF2Engine {
 
   private PBKDF2Parameters parameters;
-  private net.lingala.zip4j.crypto.PBKDF2.PRF prf;
+  private PRF prf;
 
   public PBKDF2Engine(PBKDF2Parameters parameters) {
     this(parameters, null);
   }
 
-  public PBKDF2Engine(PBKDF2Parameters parameters, net.lingala.zip4j.crypto.PBKDF2.PRF prf) {
+  public PBKDF2Engine(PBKDF2Parameters parameters, PRF prf) {
     this.parameters = parameters;
     this.prf = prf;
   }
@@ -62,7 +44,7 @@ public class PBKDF2Engine {
     prf.init(P);
   }
 
-  private byte[] PBKDF2(net.lingala.zip4j.crypto.PBKDF2.PRF prf, byte[] S, int c, int dkLen) {
+  private byte[] PBKDF2(PRF prf, byte[] S, int c, int dkLen) {
     if (S == null) {
       S = new byte[0];
     }
@@ -92,7 +74,7 @@ public class PBKDF2Engine {
     return a / b + m;
   }
 
-  private void _F(byte[] dest, int offset, net.lingala.zip4j.crypto.PBKDF2.PRF prf, byte[] S, int c,
+  private void _F(byte[] dest, int offset, PRF prf, byte[] S, int c,
                   int blockIndex) {
     int hLen = prf.getHLen();
     byte U_r[] = new byte[hLen];
@@ -130,7 +112,7 @@ public class PBKDF2Engine {
     this.parameters = parameters;
   }
 
-  public void setPseudoRandomFunction(net.lingala.zip4j.crypto.PBKDF2.PRF prf) {
+  public void setPseudoRandomFunction(PRF prf) {
     this.prf = prf;
   }
 }

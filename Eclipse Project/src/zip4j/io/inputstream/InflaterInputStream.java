@@ -1,6 +1,5 @@
 package zip4j.io.inputstream;
 
-import net.lingala.zip4j.io.inputstream.CipherInputStream;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -16,7 +15,7 @@ public class InflaterInputStream extends DecompressedInputStream {
   private byte[] singleByteBuffer = new byte[1];
   private int len;
 
-  public InflaterInputStream(net.lingala.zip4j.io.inputstream.CipherInputStream<?> cipherInputStream, int bufferSize) {
+  public InflaterInputStream(CipherInputStream<?> cipherInputStream, int bufferSize) {
     super(cipherInputStream);
     this.inflater = new Inflater(true);
     buff = new byte[bufferSize];

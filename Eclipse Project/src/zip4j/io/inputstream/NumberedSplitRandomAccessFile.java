@@ -1,7 +1,7 @@
 package zip4j.io.inputstream;
 
-import net.lingala.zip4j.model.enums.RandomAccessFileMode;
-import net.lingala.zip4j.util.FileUtils;
+import zip4j.model.enums.RandomAccessFileMode;
+import zip4j.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;

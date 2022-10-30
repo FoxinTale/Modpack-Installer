@@ -1,23 +1,21 @@
 package zip4j.io.inputstream;
 
-import net.lingala.zip4j.crypto.AESDecrypter;
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.io.inputstream.CipherInputStream;
-import net.lingala.zip4j.io.inputstream.ZipEntryInputStream;
-import net.lingala.zip4j.model.AESExtraDataRecord;
-import net.lingala.zip4j.model.LocalFileHeader;
-import net.lingala.zip4j.model.enums.CompressionMethod;
-import net.lingala.zip4j.util.InternalZipConstants;
-import net.lingala.zip4j.util.Zip4jUtil;
+import zip4j.crypto.AESDecrypter;
+import zip4j.exception.ZipException;
+import zip4j.model.AESExtraDataRecord;
+import zip4j.model.LocalFileHeader;
+import zip4j.model.enums.CompressionMethod;
+import zip4j.util.InternalZipConstants;
+import zip4j.util.Zip4jUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
-import static net.lingala.zip4j.util.InternalZipConstants.AES_AUTH_LENGTH;
-import static net.lingala.zip4j.util.Zip4jUtil.readFully;
+import static zip4j.util.InternalZipConstants.AES_AUTH_LENGTH;
+import static zip4j.util.Zip4jUtil.readFully;
 
-class AesCipherInputStream extends net.lingala.zip4j.io.inputstream.CipherInputStream<AESDecrypter> {
+class AesCipherInputStream extends CipherInputStream<AESDecrypter> {
 
   private byte[] singleByteBuffer = new byte[1];
   private byte[] aes16ByteBlock = new byte[16];
@@ -29,7 +27,7 @@ class AesCipherInputStream extends net.lingala.zip4j.io.inputstream.CipherInputS
   private int lengthToCopyInThisIteration = 0;
   private int aes16ByteBlockReadLength = 0;
 
-  public AesCipherInputStream(net.lingala.zip4j.io.inputstream.ZipEntryInputStream zipEntryInputStream, LocalFileHeader localFileHeader,
+  public AesCipherInputStream(ZipEntryInputStream zipEntryInputStream, LocalFileHeader localFileHeader,
                               char[] password, int bufferSize, boolean useUtf8ForPassword) throws IOException {
     super(zipEntryInputStream, localFileHeader, password, bufferSize, useUtf8ForPassword);
   }

@@ -1,28 +1,28 @@
 package zip4j.headers;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderSignature;
-import net.lingala.zip4j.headers.HeaderUtil;
-import net.lingala.zip4j.model.AESExtraDataRecord;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.LocalFileHeader;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.model.enums.AesKeyStrength;
-import net.lingala.zip4j.model.enums.CompressionLevel;
-import net.lingala.zip4j.model.enums.CompressionMethod;
-import net.lingala.zip4j.model.enums.EncryptionMethod;
-import net.lingala.zip4j.util.FileUtils;
-import net.lingala.zip4j.util.InternalZipConstants;
-import net.lingala.zip4j.util.RawIO;
-import net.lingala.zip4j.util.Zip4jUtil;
+
+import zip4j.exception.ZipException;
+import zip4j.model.AESExtraDataRecord;
+import zip4j.model.FileHeader;
+import zip4j.model.LocalFileHeader;
+import zip4j.model.ZipParameters;
+import zip4j.model.enums.AesKeyStrength;
+import zip4j.model.enums.CompressionLevel;
+import zip4j.model.enums.CompressionMethod;
+import zip4j.model.enums.EncryptionMethod;
+import zip4j.util.FileUtils;
+import zip4j.util.InternalZipConstants;
+import zip4j.util.RawIO;
+import zip4j.util.Zip4jUtil;
 
 import java.nio.charset.Charset;
 
-import static net.lingala.zip4j.util.BitUtils.setBit;
-import static net.lingala.zip4j.util.BitUtils.unsetBit;
-import static net.lingala.zip4j.util.FileUtils.isZipEntryDirectory;
-import static net.lingala.zip4j.util.ZipVersionUtils.determineVersionMadeBy;
-import static net.lingala.zip4j.util.ZipVersionUtils.determineVersionNeededToExtract;
+import static zip4j.headers.HeaderSignature.CENTRAL_DIRECTORY;
+import static zip4j.util.BitUtils.setBit;
+import static zip4j.util.BitUtils.unsetBit;
+import static zip4j.util.FileUtils.isZipEntryDirectory;
+import static zip4j.util.ZipVersionUtils.determineVersionMadeBy;
+import static zip4j.util.ZipVersionUtils.determineVersionNeededToExtract;
 
 public class FileHeaderFactory {
 
@@ -31,7 +31,7 @@ public class FileHeaderFactory {
       throws ZipException {
 
     FileHeader fileHeader = new FileHeader();
-    fileHeader.setSignature(net.lingala.zip4j.headers.HeaderSignature.CENTRAL_DIRECTORY);
+    fileHeader.setSignature(CENTRAL_DIRECTORY);
     fileHeader.setVersionMadeBy(determineVersionMadeBy(zipParameters, rawIO));
     fileHeader.setVersionNeededToExtract(determineVersionNeededToExtract(zipParameters).getCode());
 

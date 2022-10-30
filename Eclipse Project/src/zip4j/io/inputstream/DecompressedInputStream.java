@@ -1,17 +1,15 @@
 package zip4j.io.inputstream;
 
-import net.lingala.zip4j.io.inputstream.CipherInputStream;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PushbackInputStream;
 
 abstract class DecompressedInputStream extends InputStream {
 
-  private net.lingala.zip4j.io.inputstream.CipherInputStream<?> cipherInputStream;
+  private CipherInputStream<?> cipherInputStream;
   protected byte[] oneByteBuffer = new byte[1];
 
-  public DecompressedInputStream(net.lingala.zip4j.io.inputstream.CipherInputStream<?> cipherInputStream) {
+  public DecompressedInputStream(CipherInputStream<?> cipherInputStream) {
     this.cipherInputStream = cipherInputStream;
   }
 

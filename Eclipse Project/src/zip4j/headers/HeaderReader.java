@@ -1,43 +1,13 @@
-/*
- * Copyright 2010 Srikanth Reddy Lingala
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package zip4j.headers;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderUtil;
-import net.lingala.zip4j.io.inputstream.NumberedSplitRandomAccessFile;
-import net.lingala.zip4j.model.AESExtraDataRecord;
-import net.lingala.zip4j.model.AbstractFileHeader;
-import net.lingala.zip4j.model.CentralDirectory;
-import net.lingala.zip4j.model.DataDescriptor;
-import net.lingala.zip4j.model.DigitalSignature;
-import net.lingala.zip4j.model.EndOfCentralDirectoryRecord;
-import net.lingala.zip4j.model.ExtraDataRecord;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.LocalFileHeader;
-import net.lingala.zip4j.model.Zip4jConfig;
-import net.lingala.zip4j.model.Zip64EndOfCentralDirectoryLocator;
-import net.lingala.zip4j.model.Zip64EndOfCentralDirectoryRecord;
-import net.lingala.zip4j.model.Zip64ExtendedInfo;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.model.enums.AesKeyStrength;
-import net.lingala.zip4j.model.enums.AesVersion;
-import net.lingala.zip4j.model.enums.CompressionMethod;
-import net.lingala.zip4j.model.enums.EncryptionMethod;
-import net.lingala.zip4j.util.RawIO;
+import zip4j.exception.ZipException;
+import zip4j.io.inputstream.NumberedSplitRandomAccessFile;
+import zip4j.model.*;
+import zip4j.model.enums.AesKeyStrength;
+import zip4j.model.enums.AesVersion;
+import zip4j.model.enums.CompressionMethod;
+import zip4j.model.enums.EncryptionMethod;
+import zip4j.util.RawIO;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,14 +17,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static net.lingala.zip4j.headers.HeaderUtil.decodeStringWithCharset;
-import static net.lingala.zip4j.util.BitUtils.isBitSet;
-import static net.lingala.zip4j.util.InternalZipConstants.ENDHDR;
-import static net.lingala.zip4j.util.InternalZipConstants.MAX_COMMENT_SIZE;
-import static net.lingala.zip4j.util.InternalZipConstants.ZIP4J_DEFAULT_CHARSET;
-import static net.lingala.zip4j.util.InternalZipConstants.ZIP_64_NUMBER_OF_ENTRIES_LIMIT;
-import static net.lingala.zip4j.util.InternalZipConstants.ZIP_64_SIZE_LIMIT;
-import static net.lingala.zip4j.util.Zip4jUtil.readFully;
+import static zip4j.headers.HeaderUtil.decodeStringWithCharset;
+import static zip4j.util.BitUtils.isBitSet;
+import static zip4j.util.InternalZipConstants.*;
+import static zip4j.util.Zip4jUtil.readFully;
 
 /**
  * Helper class to read header information for the zip file

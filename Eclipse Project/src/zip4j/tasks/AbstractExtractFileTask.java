@@ -1,16 +1,16 @@
 package zip4j.tasks;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.io.inputstream.ZipInputStream;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.LocalFileHeader;
-import net.lingala.zip4j.model.UnzipParameters;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.progress.ProgressMonitor;
-import net.lingala.zip4j.tasks.AsyncZipTask;
-import net.lingala.zip4j.util.BitUtils;
-import net.lingala.zip4j.util.UnzipUtil;
-import net.lingala.zip4j.util.Zip4jUtil;
+
+import zip4j.exception.ZipException;
+import zip4j.io.inputstream.ZipInputStream;
+import zip4j.model.FileHeader;
+import zip4j.model.LocalFileHeader;
+import zip4j.model.UnzipParameters;
+import zip4j.model.ZipModel;
+import zip4j.progress.ProgressMonitor;
+import zip4j.util.BitUtils;
+import zip4j.util.UnzipUtil;
+import zip4j.util.Zip4jUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,7 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.regex.Matcher;
 
-import static net.lingala.zip4j.util.InternalZipConstants.FILE_SEPARATOR;
+import static zip4j.util.InternalZipConstants.FILE_SEPARATOR;
 
 public abstract class AbstractExtractFileTask<T> extends AsyncZipTask<T> {
 

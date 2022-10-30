@@ -1,7 +1,6 @@
 package zip4j.io.outputstream;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.io.outputstream.SplitOutputStream;
+import zip4j.exception.ZipException;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -34,15 +33,15 @@ public class CountingOutputStream extends OutputStream implements OutputStreamWi
   @Override
   public int getCurrentSplitFileCounter() {
     if (isSplitZipFile()) {
-      return ((net.lingala.zip4j.io.outputstream.SplitOutputStream) outputStream).getCurrentSplitFileCounter();
+      return ((SplitOutputStream) outputStream).getCurrentSplitFileCounter();
     }
 
     return 0;
   }
 
   public long getOffsetForNextEntry() throws IOException {
-    if (outputStream instanceof net.lingala.zip4j.io.outputstream.SplitOutputStream) {
-      return ((net.lingala.zip4j.io.outputstream.SplitOutputStream) outputStream).getFilePointer();
+    if (outputStream instanceof SplitOutputStream) {
+      return ((SplitOutputStream) outputStream).getFilePointer();
     }
 
     return numberOfBytesWritten;
@@ -50,20 +49,20 @@ public class CountingOutputStream extends OutputStream implements OutputStreamWi
 
   public long getSplitLength() {
     if (isSplitZipFile()) {
-      return ((net.lingala.zip4j.io.outputstream.SplitOutputStream) outputStream).getSplitLength();
+      return ((SplitOutputStream) outputStream).getSplitLength();
     }
 
     return 0;
   }
 
   public boolean isSplitZipFile() {
-    return outputStream instanceof net.lingala.zip4j.io.outputstream.SplitOutputStream
-        && ((net.lingala.zip4j.io.outputstream.SplitOutputStream)outputStream).isSplitZipFile();
+    return outputStream instanceof SplitOutputStream
+        && ((SplitOutputStream)outputStream).isSplitZipFile();
   }
 
   public long getNumberOfBytesWritten() throws IOException {
-    if (outputStream instanceof net.lingala.zip4j.io.outputstream.SplitOutputStream) {
-      return ((net.lingala.zip4j.io.outputstream.SplitOutputStream) outputStream).getFilePointer();
+    if (outputStream instanceof SplitOutputStream) {
+      return ((SplitOutputStream) outputStream).getFilePointer();
     }
 
     return numberOfBytesWritten;
@@ -74,12 +73,12 @@ public class CountingOutputStream extends OutputStream implements OutputStreamWi
       return false;
     }
 
-    return ((net.lingala.zip4j.io.outputstream.SplitOutputStream)outputStream).checkBufferSizeAndStartNextSplitFile(bufferSize);
+    return ((SplitOutputStream)outputStream).checkBufferSizeAndStartNextSplitFile(bufferSize);
   }
 
   @Override
   public long getFilePointer() throws IOException {
-    if (outputStream instanceof net.lingala.zip4j.io.outputstream.SplitOutputStream) {
+    if (outputStream instanceof SplitOutputStream) {
       return ((SplitOutputStream) outputStream).getFilePointer();
     }
 

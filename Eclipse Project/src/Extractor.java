@@ -1,4 +1,5 @@
 import zip4j.ZipFile;
+import zip4j.exception.ZipException;
 
 import java.io.File;
 
@@ -9,15 +10,13 @@ public class Extractor {
         File modpack = new File(Common.getDownloadsLocation() + Common.q + name);
         if (modpack.exists()) {
             modpack.delete();
-            // This deletes a modpack folder in the downloads if it exists already.
-            // If this wasn't done, the extract would fail.
         }
 
         String folderPath = Common.getDownloadsLocation() + Common.q + name + Common.q;
     }
 
 
-    public static void unzip(String zipFilePath, String extractFolder) {
+    public static void unzip(String zipFilePath, String extractFolder) throws ZipException {
         ZipFile zipFile = new ZipFile(zipFilePath);
         zipFile.extractAll(extractFolder);
         System.out.println(" Extraction complete.");

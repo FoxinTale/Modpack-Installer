@@ -1,18 +1,16 @@
 package zip4j.tasks;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderWriter;
-import net.lingala.zip4j.io.outputstream.SplitOutputStream;
-import net.lingala.zip4j.model.EndOfCentralDirectoryRecord;
-import net.lingala.zip4j.model.Zip4jConfig;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.progress.ProgressMonitor;
-import net.lingala.zip4j.tasks.AsyncZipTask;
-import net.lingala.zip4j.tasks.SetCommentTask.SetCommentTaskTaskParameters;
+import zip4j.exception.ZipException;
+import zip4j.headers.HeaderWriter;
+import zip4j.io.outputstream.SplitOutputStream;
+import zip4j.model.EndOfCentralDirectoryRecord;
+import zip4j.model.Zip4jConfig;
+import zip4j.model.ZipModel;
+import zip4j.progress.ProgressMonitor;
 
 import java.io.IOException;
 
-public class SetCommentTask extends AsyncZipTask<SetCommentTaskTaskParameters> {
+public class SetCommentTask extends AsyncZipTask<SetCommentTask.SetCommentTaskTaskParameters> {
 
   private final ZipModel zipModel;
 

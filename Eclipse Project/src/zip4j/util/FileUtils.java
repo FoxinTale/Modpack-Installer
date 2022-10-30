@@ -1,44 +1,21 @@
 package zip4j.util;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.progress.ProgressMonitor;
-import net.lingala.zip4j.util.BitUtils;
+import zip4j.exception.ZipException;
+import zip4j.model.ZipModel;
+import zip4j.model.ZipParameters;
+import zip4j.progress.ProgressMonitor;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
-import java.nio.file.attribute.DosFileAttributeView;
-import java.nio.file.attribute.DosFileAttributes;
-import java.nio.file.attribute.FileTime;
-import java.nio.file.attribute.PosixFileAttributeView;
-import java.nio.file.attribute.PosixFilePermission;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.nio.file.attribute.*;
+import java.util.*;
 
-import static java.nio.file.attribute.PosixFilePermission.GROUP_EXECUTE;
-import static java.nio.file.attribute.PosixFilePermission.GROUP_READ;
-import static java.nio.file.attribute.PosixFilePermission.GROUP_WRITE;
-import static java.nio.file.attribute.PosixFilePermission.OTHERS_EXECUTE;
-import static java.nio.file.attribute.PosixFilePermission.OTHERS_READ;
-import static java.nio.file.attribute.PosixFilePermission.OTHERS_WRITE;
-import static java.nio.file.attribute.PosixFilePermission.OWNER_EXECUTE;
-import static java.nio.file.attribute.PosixFilePermission.OWNER_READ;
-import static java.nio.file.attribute.PosixFilePermission.OWNER_WRITE;
-import static net.lingala.zip4j.model.ZipParameters.SymbolicLinkAction.INCLUDE_LINKED_FILE_ONLY;
-import static net.lingala.zip4j.model.ZipParameters.SymbolicLinkAction.INCLUDE_LINK_AND_LINKED_FILE;
-import static net.lingala.zip4j.model.ZipParameters.SymbolicLinkAction.INCLUDE_LINK_ONLY;
-import static net.lingala.zip4j.util.BitUtils.isBitSet;
-import static net.lingala.zip4j.util.BitUtils.setBit;
+import static java.nio.file.attribute.PosixFilePermission.*;
+import static zip4j.model.ZipParameters.SymbolicLinkAction.*;
+import static zip4j.util.BitUtils.isBitSet;
+import static zip4j.util.BitUtils.setBit;
 import static zip4j.util.InternalZipConstants.FILE_SEPARATOR;
 import static zip4j.util.InternalZipConstants.ZIP_FILE_SEPARATOR;
 import static zip4j.util.Zip4jUtil.isStringNotNullAndNotEmpty;
@@ -580,7 +557,7 @@ public class FileUtils {
 
   private static byte setBitIfApplicable(boolean applicable, byte b, int pos) {
     if (applicable) {
-      b = BitUtils.setBit(b, pos);
+      b = setBit(b, pos);
     }
 
     return b;

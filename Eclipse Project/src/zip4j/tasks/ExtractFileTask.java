@@ -1,28 +1,27 @@
 package zip4j.tasks;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderUtil;
-import net.lingala.zip4j.io.inputstream.SplitFileInputStream;
-import net.lingala.zip4j.io.inputstream.ZipInputStream;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.UnzipParameters;
-import net.lingala.zip4j.model.Zip4jConfig;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.progress.ProgressMonitor;
-import net.lingala.zip4j.tasks.AsyncZipTask;
-import net.lingala.zip4j.tasks.ExtractFileTask.ExtractFileTaskParameters;
-import net.lingala.zip4j.util.FileUtils;
-import net.lingala.zip4j.util.InternalZipConstants;
-import net.lingala.zip4j.util.UnzipUtil;
-import net.lingala.zip4j.util.Zip4jUtil;
+import zip4j.exception.ZipException;
+import zip4j.headers.HeaderUtil;
+import zip4j.io.inputstream.SplitFileInputStream;
+import zip4j.io.inputstream.ZipInputStream;
+import zip4j.model.FileHeader;
+import zip4j.model.UnzipParameters;
+import zip4j.model.Zip4jConfig;
+import zip4j.model.ZipModel;
+import zip4j.progress.ProgressMonitor;
+import zip4j.tasks.ExtractFileTask.ExtractFileTaskParameters;
+import zip4j.util.FileUtils;
+import zip4j.util.InternalZipConstants;
+import zip4j.util.UnzipUtil;
+import zip4j.util.Zip4jUtil;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-import static net.lingala.zip4j.exception.ZipException.Type.FILE_NOT_FOUND;
-import static net.lingala.zip4j.headers.HeaderUtil.getFileHeadersUnderDirectory;
-import static net.lingala.zip4j.headers.HeaderUtil.getTotalUncompressedSizeOfAllFileHeaders;
+import static zip4j.exception.ZipException.Type.FILE_NOT_FOUND;
+import static zip4j.headers.HeaderUtil.getFileHeadersUnderDirectory;
+import static zip4j.headers.HeaderUtil.getTotalUncompressedSizeOfAllFileHeaders;
 
 public class ExtractFileTask extends AbstractExtractFileTask<ExtractFileTaskParameters> {
 

@@ -1,24 +1,22 @@
 package zip4j.tasks;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderUtil;
-import net.lingala.zip4j.headers.HeaderWriter;
-import net.lingala.zip4j.io.outputstream.SplitOutputStream;
-import net.lingala.zip4j.io.outputstream.ZipOutputStream;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.Zip4jConfig;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.model.enums.CompressionMethod;
-import net.lingala.zip4j.model.enums.EncryptionMethod;
-import net.lingala.zip4j.progress.ProgressMonitor;
-import net.lingala.zip4j.tasks.AsyncZipTask;
-import net.lingala.zip4j.tasks.RemoveFilesFromZipTask;
-import net.lingala.zip4j.tasks.RemoveFilesFromZipTask.RemoveFilesFromZipTaskParameters;
-import net.lingala.zip4j.util.BitUtils;
-import net.lingala.zip4j.util.FileUtils;
-import net.lingala.zip4j.util.InternalZipConstants;
-import net.lingala.zip4j.util.Zip4jUtil;
+import zip4j.exception.ZipException;
+import zip4j.headers.HeaderUtil;
+import zip4j.headers.HeaderWriter;
+import zip4j.io.outputstream.SplitOutputStream;
+import zip4j.io.outputstream.ZipOutputStream;
+import zip4j.model.FileHeader;
+import zip4j.model.Zip4jConfig;
+import zip4j.model.ZipModel;
+import zip4j.model.ZipParameters;
+import zip4j.model.enums.CompressionMethod;
+import zip4j.model.enums.EncryptionMethod;
+import zip4j.progress.ProgressMonitor;
+import zip4j.tasks.RemoveFilesFromZipTask.RemoveFilesFromZipTaskParameters;
+import zip4j.util.BitUtils;
+import zip4j.util.FileUtils;
+import zip4j.util.InternalZipConstants;
+import zip4j.util.Zip4jUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,19 +26,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static net.lingala.zip4j.headers.HeaderUtil.getFileHeader;
-import static net.lingala.zip4j.model.ZipParameters.SymbolicLinkAction.INCLUDE_LINK_AND_LINKED_FILE;
-import static net.lingala.zip4j.model.ZipParameters.SymbolicLinkAction.INCLUDE_LINK_ONLY;
-import static net.lingala.zip4j.model.enums.CompressionMethod.DEFLATE;
-import static net.lingala.zip4j.model.enums.CompressionMethod.STORE;
-import static net.lingala.zip4j.model.enums.EncryptionMethod.NONE;
-import static net.lingala.zip4j.model.enums.EncryptionMethod.ZIP_STANDARD;
-import static net.lingala.zip4j.progress.ProgressMonitor.Task.ADD_ENTRY;
-import static net.lingala.zip4j.progress.ProgressMonitor.Task.CALCULATE_CRC;
-import static net.lingala.zip4j.progress.ProgressMonitor.Task.REMOVE_ENTRY;
-import static net.lingala.zip4j.util.CrcUtil.computeFileCrc;
-import static net.lingala.zip4j.util.FileUtils.assertFilesExist;
-import static net.lingala.zip4j.util.FileUtils.getRelativeFileName;
+import static zip4j.headers.HeaderUtil.getFileHeader;
+import static zip4j.model.ZipParameters.SymbolicLinkAction.INCLUDE_LINK_AND_LINKED_FILE;
+import static zip4j.model.ZipParameters.SymbolicLinkAction.INCLUDE_LINK_ONLY;
+import static zip4j.model.enums.CompressionMethod.DEFLATE;
+import static zip4j.model.enums.CompressionMethod.STORE;
+import static zip4j.model.enums.EncryptionMethod.NONE;
+import static zip4j.model.enums.EncryptionMethod.ZIP_STANDARD;
+import static zip4j.progress.ProgressMonitor.Task.ADD_ENTRY;
+import static zip4j.progress.ProgressMonitor.Task.CALCULATE_CRC;
+import static zip4j.progress.ProgressMonitor.Task.REMOVE_ENTRY;
+import static zip4j.util.CrcUtil.computeFileCrc;
+import static zip4j.util.FileUtils.assertFilesExist;
+import static zip4j.util.FileUtils.getRelativeFileName;
 
 public abstract class AbstractAddFileToZipTask<T> extends AsyncZipTask<T> {
 
@@ -242,7 +240,7 @@ public abstract class AbstractAddFileToZipTask<T> extends AsyncZipTask<T> {
 
   private List<File> removeFilesIfExists(List<File> files, ZipParameters zipParameters, ProgressMonitor progressMonitor,
                                          Zip4jConfig zip4jConfig)
-      throws ZipException {
+          throws ZipException {
 
     List<File> filesToAdd = new ArrayList<>(files);
     if (!zipModel.getZipFile().exists()) {
@@ -276,9 +274,9 @@ public abstract class AbstractAddFileToZipTask<T> extends AsyncZipTask<T> {
 
   void removeFile(FileHeader fileHeader, ProgressMonitor progressMonitor, Zip4jConfig zip4jConfig) throws ZipException {
     AsyncTaskParameters asyncTaskParameters = new AsyncTaskParameters(null, false, progressMonitor);
-    net.lingala.zip4j.tasks.RemoveFilesFromZipTask removeFilesFromZipTask = new RemoveFilesFromZipTask(zipModel, headerWriter, asyncTaskParameters);
+    RemoveFilesFromZipTask removeFilesFromZipTask = new RemoveFilesFromZipTask(zipModel, headerWriter, asyncTaskParameters);
     RemoveFilesFromZipTaskParameters parameters = new RemoveFilesFromZipTaskParameters(
-        Collections.singletonList(fileHeader.getFileName()), zip4jConfig);
+            Collections.singletonList(fileHeader.getFileName()), zip4jConfig);
     removeFilesFromZipTask.execute(parameters);
   }
 
@@ -293,7 +291,7 @@ public abstract class AbstractAddFileToZipTask<T> extends AsyncZipTask<T> {
 
   private boolean addSymlink(ZipParameters zipParameters) {
     return INCLUDE_LINK_ONLY.equals(zipParameters.getSymbolicLinkAction()) ||
-        INCLUDE_LINK_AND_LINKED_FILE.equals(zipParameters.getSymbolicLinkAction());
+            INCLUDE_LINK_AND_LINKED_FILE.equals(zipParameters.getSymbolicLinkAction());
   }
 
   @Override

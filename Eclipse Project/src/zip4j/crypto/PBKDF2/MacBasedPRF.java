@@ -16,7 +16,7 @@
 
 package zip4j.crypto.PBKDF2;
 
-import net.lingala.zip4j.crypto.PBKDF2.PRF;
+
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -28,7 +28,7 @@ import java.security.NoSuchAlgorithmException;
  * see http://rtner.de/software/PBKDF2.html
  */
 
-public class MacBasedPRF implements net.lingala.zip4j.crypto.PBKDF2.PRF {
+public class MacBasedPRF implements PRF {
   private Mac mac;
   private int hLen;
   private String macAlgorithm;

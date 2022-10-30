@@ -1,30 +1,19 @@
 package zip4j.tasks;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderSignature;
-import net.lingala.zip4j.headers.HeaderWriter;
-import net.lingala.zip4j.model.EndOfCentralDirectoryRecord;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.Zip4jConfig;
-import net.lingala.zip4j.model.Zip64EndOfCentralDirectoryLocator;
-import net.lingala.zip4j.model.Zip64EndOfCentralDirectoryRecord;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.model.enums.RandomAccessFileMode;
-import net.lingala.zip4j.progress.ProgressMonitor;
-import net.lingala.zip4j.tasks.AsyncZipTask;
-import net.lingala.zip4j.tasks.MergeSplitZipFileTask.MergeSplitZipFileTaskParameters;
-import net.lingala.zip4j.util.RawIO;
+import zip4j.exception.ZipException;
+import zip4j.headers.HeaderSignature;
+import zip4j.headers.HeaderWriter;
+import zip4j.model.*;
+import zip4j.model.enums.RandomAccessFileMode;
+import zip4j.progress.ProgressMonitor;
+import zip4j.tasks.MergeSplitZipFileTask.MergeSplitZipFileTaskParameters;
+import zip4j.util.RawIO;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import static net.lingala.zip4j.util.FileUtils.copyFile;
+import static zip4j.util.FileUtils.copyFile;
 
 public class MergeSplitZipFileTask extends AsyncZipTask<MergeSplitZipFileTaskParameters> {
 

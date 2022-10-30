@@ -1,6 +1,6 @@
 package zip4j.model;
 
-import net.lingala.zip4j.headers.HeaderSignature;
+import zip4j.headers.HeaderSignature;
 
 public abstract class ZipHeader {
 

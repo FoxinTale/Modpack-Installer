@@ -16,18 +16,17 @@
 
 package zip4j.crypto;
 
-import net.lingala.zip4j.crypto.Decrypter;
-import net.lingala.zip4j.crypto.PBKDF2.MacBasedPRF;
-import net.lingala.zip4j.crypto.engine.AESEngine;
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.model.AESExtraDataRecord;
-import net.lingala.zip4j.model.enums.AesKeyStrength;
+import zip4j.crypto.PBKDF2.MacBasedPRF;
+import zip4j.crypto.engine.AESEngine;
+import zip4j.exception.ZipException;
+import zip4j.model.AESExtraDataRecord;
+import zip4j.model.enums.AesKeyStrength;
 
 import java.util.Arrays;
 
 import static zip4j.crypto.AesCipherUtil.prepareBuffAESIVBytes;
-import static net.lingala.zip4j.exception.ZipException.Type.WRONG_PASSWORD;
-import static net.lingala.zip4j.util.InternalZipConstants.AES_BLOCK_SIZE;
+import static zip4j.exception.ZipException.Type.WRONG_PASSWORD;
+import static zip4j.util.InternalZipConstants.AES_BLOCK_SIZE;
 
 /**
  * AES Decrypter supports AE-1 and AE-2 decryption for AES-CTR with 128, 192, or 256 Key Strength
@@ -59,7 +58,7 @@ public class AESDecrypter implements Decrypter {
     final byte[] derivedKey = AesCipherUtil.derivePasswordBasedKey(salt, password, aesKeyStrength, useUtf8ForPassword);
     final byte[] derivedPasswordVerifier = AesCipherUtil.derivePasswordVerifier(derivedKey, aesKeyStrength);
     if (!Arrays.equals(passwordVerifier, derivedPasswordVerifier)) {
-      throw new ZipException("Wrong Password", ZipException.Type.WRONG_PASSWORD);
+      throw new ZipException("Wrong Password", WRONG_PASSWORD);
     }
 
     aesEngine = AesCipherUtil.getAESEngine(derivedKey, aesKeyStrength);

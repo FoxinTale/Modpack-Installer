@@ -1,14 +1,15 @@
 package zip4j.io.inputstream;
 
-import net.lingala.zip4j.crypto.Decrypter;
-import net.lingala.zip4j.model.LocalFileHeader;
-import net.lingala.zip4j.model.enums.CompressionMethod;
-import net.lingala.zip4j.util.Zip4jUtil;
+
+import zip4j.crypto.Decrypter;
+import zip4j.model.LocalFileHeader;
+import zip4j.model.enums.CompressionMethod;
+import zip4j.util.Zip4jUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import static net.lingala.zip4j.util.Zip4jUtil.readFully;
+import static zip4j.util.Zip4jUtil.readFully;
 
 abstract class CipherInputStream<T extends Decrypter> extends InputStream {
 

@@ -1,18 +1,19 @@
 package zip4j.headers;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.util.InternalZipConstants;
+
+import zip4j.exception.ZipException;
+import zip4j.model.FileHeader;
+import zip4j.model.ZipModel;
+import zip4j.util.InternalZipConstants;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.lingala.zip4j.util.InternalZipConstants.ZIP4J_DEFAULT_CHARSET;
-import static net.lingala.zip4j.util.InternalZipConstants.ZIP_STANDARD_CHARSET_NAME;
-import static net.lingala.zip4j.util.Zip4jUtil.isStringNotNullAndNotEmpty;
+import static zip4j.util.InternalZipConstants.ZIP4J_DEFAULT_CHARSET;
+import static zip4j.util.InternalZipConstants.ZIP_STANDARD_CHARSET_NAME;
+import static zip4j.util.Zip4jUtil.isStringNotNullAndNotEmpty;
 
 public class HeaderUtil {
 

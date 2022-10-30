@@ -1,6 +1,7 @@
 package zip4j.model.enums;
 
-import net.lingala.zip4j.exception.ZipException;
+
+import zip4j.exception.ZipException;
 
 /**
  * Indicates the algorithm used for compression

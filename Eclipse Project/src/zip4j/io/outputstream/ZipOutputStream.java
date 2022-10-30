@@ -1,30 +1,23 @@
 package zip4j.io.outputstream;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.FileHeaderFactory;
-import net.lingala.zip4j.headers.HeaderSignature;
-import net.lingala.zip4j.headers.HeaderWriter;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.LocalFileHeader;
-import net.lingala.zip4j.model.Zip4jConfig;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.model.enums.AesVersion;
-import net.lingala.zip4j.model.enums.CompressionMethod;
-import net.lingala.zip4j.model.enums.EncryptionMethod;
-import net.lingala.zip4j.util.InternalZipConstants;
-import net.lingala.zip4j.util.RawIO;
-import net.lingala.zip4j.util.Zip4jUtil;
+import zip4j.exception.ZipException;
+import zip4j.headers.FileHeaderFactory;
+import zip4j.headers.HeaderSignature;
+import zip4j.headers.HeaderWriter;
+import zip4j.model.*;
+import zip4j.model.enums.AesVersion;
+import zip4j.model.enums.CompressionMethod;
+import zip4j.model.enums.EncryptionMethod;
+import zip4j.util.RawIO;
+import zip4j.util.Zip4jUtil;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.zip.CRC32;
 
-import static net.lingala.zip4j.util.FileUtils.isZipEntryDirectory;
-import static net.lingala.zip4j.util.InternalZipConstants.BUFF_SIZE;
-import static net.lingala.zip4j.util.InternalZipConstants.MIN_BUFF_SIZE;
-import static net.lingala.zip4j.util.InternalZipConstants.USE_UTF8_FOR_PASSWORD_ENCODING_DECODING;
+import static zip4j.util.FileUtils.isZipEntryDirectory;
+import static zip4j.util.InternalZipConstants.*;
 
 public class ZipOutputStream extends OutputStream {
 
@@ -64,7 +57,7 @@ public class ZipOutputStream extends OutputStream {
 
   public ZipOutputStream(OutputStream outputStream, char[] password, Zip4jConfig zip4jConfig,
                          ZipModel zipModel) throws IOException {
-    if (zip4jConfig.getBufferSize() < InternalZipConstants.MIN_BUFF_SIZE) {
+    if (zip4jConfig.getBufferSize() < MIN_BUFF_SIZE) {
       throw new IllegalArgumentException("Buffer size cannot be less than " + MIN_BUFF_SIZE + " bytes");
     }
 

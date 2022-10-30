@@ -1,35 +1,19 @@
-/*
- * Copyright 2010 Srikanth Reddy Lingala
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package zip4j.io.inputstream;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderReader;
-import net.lingala.zip4j.headers.HeaderSignature;
-import net.lingala.zip4j.model.AESExtraDataRecord;
-import net.lingala.zip4j.model.DataDescriptor;
-import net.lingala.zip4j.model.ExtraDataRecord;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.LocalFileHeader;
-import net.lingala.zip4j.model.Zip4jConfig;
-import net.lingala.zip4j.model.enums.AesVersion;
-import net.lingala.zip4j.model.enums.CompressionMethod;
-import net.lingala.zip4j.model.enums.EncryptionMethod;
-import net.lingala.zip4j.util.InternalZipConstants;
-import net.lingala.zip4j.util.PasswordCallback;
+import zip4j.exception.ZipException;
+import zip4j.headers.HeaderReader;
+import zip4j.headers.HeaderSignature;
+import zip4j.model.AESExtraDataRecord;
+import zip4j.model.DataDescriptor;
+import zip4j.model.ExtraDataRecord;
+import zip4j.model.FileHeader;
+import zip4j.model.LocalFileHeader;
+import zip4j.model.Zip4jConfig;
+import zip4j.model.enums.AesVersion;
+import zip4j.model.enums.CompressionMethod;
+import zip4j.model.enums.EncryptionMethod;
+import zip4j.util.InternalZipConstants;
+import zip4j.util.PasswordCallback;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,10 +22,10 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.zip.CRC32;
 
-import static net.lingala.zip4j.util.InternalZipConstants.BUFF_SIZE;
-import static net.lingala.zip4j.util.InternalZipConstants.MIN_BUFF_SIZE;
-import static net.lingala.zip4j.util.InternalZipConstants.USE_UTF8_FOR_PASSWORD_ENCODING_DECODING;
-import static net.lingala.zip4j.util.Zip4jUtil.getCompressionMethod;
+import static zip4j.util.InternalZipConstants.BUFF_SIZE;
+import static zip4j.util.InternalZipConstants.MIN_BUFF_SIZE;
+import static zip4j.util.InternalZipConstants.USE_UTF8_FOR_PASSWORD_ENCODING_DECODING;
+import static zip4j.util.Zip4jUtil.getCompressionMethod;
 
 public class ZipInputStream extends InputStream {
 

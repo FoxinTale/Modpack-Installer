@@ -1,8 +1,8 @@
 package zip4j.io.inputstream;
 
-import net.lingala.zip4j.io.inputstream.SplitFileInputStream;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.enums.RandomAccessFileMode;
+
+import zip4j.model.FileHeader;
+import zip4j.model.enums.RandomAccessFileMode;
 
 import java.io.File;
 import java.io.FileNotFoundException;

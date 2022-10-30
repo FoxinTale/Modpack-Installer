@@ -1,12 +1,10 @@
 package zip4j.util;
 
-import net.lingala.zip4j.headers.VersionMadeBy;
-import net.lingala.zip4j.headers.VersionNeededToExtract;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.model.enums.CompressionMethod;
-import net.lingala.zip4j.model.enums.EncryptionMethod;
-import net.lingala.zip4j.util.FileUtils;
-import net.lingala.zip4j.util.RawIO;
+import zip4j.headers.VersionMadeBy;
+import zip4j.headers.VersionNeededToExtract;
+import zip4j.model.ZipParameters;
+import zip4j.model.enums.CompressionMethod;
+import zip4j.model.enums.EncryptionMethod;
 
 public class ZipVersionUtils {
 

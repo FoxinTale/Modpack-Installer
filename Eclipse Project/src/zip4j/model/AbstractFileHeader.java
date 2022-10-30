@@ -1,11 +1,8 @@
 package zip4j.model;
 
-import net.lingala.zip4j.model.ExtraDataRecord;
-import net.lingala.zip4j.model.Zip64ExtendedInfo;
-import net.lingala.zip4j.model.ZipHeader;
-import net.lingala.zip4j.model.enums.CompressionMethod;
-import net.lingala.zip4j.model.enums.EncryptionMethod;
-import net.lingala.zip4j.util.Zip4jUtil;
+import zip4j.model.enums.CompressionMethod;
+import zip4j.model.enums.EncryptionMethod;
+import zip4j.util.Zip4jUtil;
 
 import java.util.List;
 
@@ -24,10 +21,10 @@ public abstract class AbstractFileHeader extends ZipHeader {
   private boolean isEncrypted;
   private EncryptionMethod encryptionMethod = EncryptionMethod.NONE;
   private boolean dataDescriptorExists;
-  private net.lingala.zip4j.model.Zip64ExtendedInfo zip64ExtendedInfo;
+  private Zip64ExtendedInfo zip64ExtendedInfo;
   private AESExtraDataRecord aesExtraDataRecord;
   private boolean fileNameUTF8Encoded;
-  private List<net.lingala.zip4j.model.ExtraDataRecord> extraDataRecords;
+  private List<ExtraDataRecord> extraDataRecords;
   private boolean isDirectory;
 
   public int getVersionNeededToExtract() {
@@ -138,7 +135,7 @@ public abstract class AbstractFileHeader extends ZipHeader {
     this.dataDescriptorExists = dataDescriptorExists;
   }
 
-  public net.lingala.zip4j.model.Zip64ExtendedInfo getZip64ExtendedInfo() {
+  public Zip64ExtendedInfo getZip64ExtendedInfo() {
     return zip64ExtendedInfo;
   }
 
@@ -162,7 +159,7 @@ public abstract class AbstractFileHeader extends ZipHeader {
     this.fileNameUTF8Encoded = fileNameUTF8Encoded;
   }
 
-  public List<net.lingala.zip4j.model.ExtraDataRecord> getExtraDataRecords() {
+  public List<ExtraDataRecord> getExtraDataRecords() {
     return extraDataRecords;
   }
 

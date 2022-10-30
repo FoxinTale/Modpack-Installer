@@ -1,63 +1,30 @@
-/*
- * Copyright 2010 Srikanth Reddy Lingala
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package zip4j;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderReader;
-import net.lingala.zip4j.headers.HeaderUtil;
-import net.lingala.zip4j.headers.HeaderWriter;
-import net.lingala.zip4j.io.inputstream.NumberedSplitRandomAccessFile;
-import net.lingala.zip4j.io.inputstream.ZipInputStream;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.UnzipParameters;
-import net.lingala.zip4j.model.Zip4jConfig;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.model.enums.RandomAccessFileMode;
-import net.lingala.zip4j.progress.ProgressMonitor;
-import net.lingala.zip4j.tasks.AddFilesToZipTask;
-import net.lingala.zip4j.tasks.AddFilesToZipTask.AddFilesToZipTaskParameters;
-import net.lingala.zip4j.tasks.AddFolderToZipTask;
-import net.lingala.zip4j.tasks.AddFolderToZipTask.AddFolderToZipTaskParameters;
-import net.lingala.zip4j.tasks.AddStreamToZipTask;
-import net.lingala.zip4j.tasks.AddStreamToZipTask.AddStreamToZipTaskParameters;
-import net.lingala.zip4j.tasks.AsyncZipTask;
-import net.lingala.zip4j.tasks.ExtractAllFilesTask;
-import net.lingala.zip4j.tasks.ExtractAllFilesTask.ExtractAllFilesTaskParameters;
-import net.lingala.zip4j.tasks.ExtractFileTask;
-import net.lingala.zip4j.tasks.ExtractFileTask.ExtractFileTaskParameters;
-import net.lingala.zip4j.tasks.MergeSplitZipFileTask;
-import net.lingala.zip4j.tasks.MergeSplitZipFileTask.MergeSplitZipFileTaskParameters;
-import net.lingala.zip4j.tasks.RemoveFilesFromZipTask;
-import net.lingala.zip4j.tasks.RemoveFilesFromZipTask.RemoveFilesFromZipTaskParameters;
-import net.lingala.zip4j.tasks.RenameFilesTask;
-import net.lingala.zip4j.tasks.RenameFilesTask.RenameFilesTaskParameters;
-import net.lingala.zip4j.tasks.SetCommentTask;
-import net.lingala.zip4j.tasks.SetCommentTask.SetCommentTaskTaskParameters;
-import net.lingala.zip4j.util.FileUtils;
-import net.lingala.zip4j.util.InternalZipConstants;
-import net.lingala.zip4j.util.RawIO;
-import net.lingala.zip4j.util.Zip4jUtil;
+import zip4j.exception.ZipException;
+import zip4j.headers.HeaderReader;
+import zip4j.headers.HeaderUtil;
+import zip4j.headers.HeaderWriter;
+import zip4j.io.inputstream.NumberedSplitRandomAccessFile;
+import zip4j.io.inputstream.ZipInputStream;
+import zip4j.model.*;
+import zip4j.model.enums.RandomAccessFileMode;
+import zip4j.progress.ProgressMonitor;
+import zip4j.tasks.*;
+import zip4j.tasks.AddFolderToZipTask.AddFolderToZipTaskParameters;
+import zip4j.tasks.AddStreamToZipTask.AddStreamToZipTaskParameters;
+import zip4j.tasks.ExtractAllFilesTask.ExtractAllFilesTaskParameters;
+import zip4j.tasks.ExtractFileTask.ExtractFileTaskParameters;
+import zip4j.tasks.MergeSplitZipFileTask.MergeSplitZipFileTaskParameters;
+import zip4j.tasks.RemoveFilesFromZipTask.RemoveFilesFromZipTaskParameters;
+import zip4j.tasks.RenameFilesTask.RenameFilesTaskParameters;
+import zip4j.tasks.SetCommentTask.SetCommentTaskTaskParameters;
+import zip4j.util.FileUtils;
+import zip4j.util.InternalZipConstants;
+import zip4j.util.RawIO;
+import zip4j.util.Zip4jUtil;
+import zip4j.tasks.AddFilesToZipTask.AddFilesToZipTaskParameters;
 
-import java.io.Closeable;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,11 +34,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
-import static net.lingala.zip4j.util.FileUtils.isNumberedSplitFile;
-import static net.lingala.zip4j.util.InternalZipConstants.CHARSET_UTF_8;
-import static net.lingala.zip4j.util.InternalZipConstants.MIN_BUFF_SIZE;
-import static net.lingala.zip4j.util.UnzipUtil.createZipInputStream;
-import static net.lingala.zip4j.util.Zip4jUtil.isStringNotNullAndNotEmpty;
+import static zip4j.util.FileUtils.isNumberedSplitFile;
+import static zip4j.util.InternalZipConstants.CHARSET_UTF_8;
+import static zip4j.util.InternalZipConstants.MIN_BUFF_SIZE;
+import static zip4j.util.UnzipUtil.createZipInputStream;
+import static zip4j.util.Zip4jUtil.isStringNotNullAndNotEmpty;
 
 /**
  * Base class to handle zip files. Some of the operations supported
@@ -167,7 +134,7 @@ public class ZipFile implements Closeable {
    * @throws ZipException
    */
   public void createSplitZipFile(List<File> filesToAdd, ZipParameters parameters, boolean splitArchive,
-                            long splitLength) throws ZipException {
+                                 long splitLength) throws ZipException {
 
     if (zipFile.exists()) {
       throw new ZipException("zip file: " + zipFile
@@ -183,7 +150,7 @@ public class ZipFile implements Closeable {
     zipModel.setSplitLength(splitLength);
 
     new AddFilesToZipTask(zipModel, password, headerWriter, buildAsyncParameters()).execute(
-        new AddFilesToZipTaskParameters(filesToAdd, parameters, buildConfig()));
+        new AddFilesToZipTask.AddFilesToZipTaskParameters(filesToAdd, parameters, buildConfig()));
   }
 
   /**

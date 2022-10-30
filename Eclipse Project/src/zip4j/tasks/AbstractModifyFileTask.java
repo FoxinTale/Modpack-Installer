@@ -1,22 +1,21 @@
 package zip4j.tasks;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderUtil;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.progress.ProgressMonitor;
-import net.lingala.zip4j.tasks.AsyncZipTask;
-import net.lingala.zip4j.util.FileUtils;
+import zip4j.exception.ZipException;
+import zip4j.headers.HeaderUtil;
+import zip4j.model.FileHeader;
+import zip4j.model.ZipModel;
+import zip4j.progress.ProgressMonitor;
+import zip4j.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.security.SecureRandom;
 
 abstract class AbstractModifyFileTask<T> extends AsyncZipTask<T> {
 
@@ -69,7 +68,7 @@ abstract class AbstractModifyFileTask<T> extends AsyncZipTask<T> {
   }
 
   long copyFile(RandomAccessFile randomAccessFile, OutputStream outputStream, long start, long length,
-                        ProgressMonitor progressMonitor, int bufferSize) throws IOException {
+                ProgressMonitor progressMonitor, int bufferSize) throws IOException {
     FileUtils.copyFile(randomAccessFile, outputStream, start, start + length, progressMonitor, bufferSize);
     return length;
   }

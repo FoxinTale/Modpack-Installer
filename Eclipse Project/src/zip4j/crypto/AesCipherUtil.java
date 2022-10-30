@@ -1,16 +1,13 @@
 package zip4j.crypto;
 
-import net.lingala.zip4j.crypto.PBKDF2.MacBasedPRF;
-import net.lingala.zip4j.crypto.PBKDF2.PBKDF2Engine;
-import net.lingala.zip4j.crypto.PBKDF2.PBKDF2Parameters;
-import net.lingala.zip4j.crypto.engine.AESEngine;
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.model.enums.AesKeyStrength;
+import zip4j.crypto.PBKDF2.MacBasedPRF;
+import zip4j.crypto.PBKDF2.PBKDF2Engine;
+import zip4j.crypto.PBKDF2.PBKDF2Parameters;
+import zip4j.crypto.engine.AESEngine;
+import zip4j.exception.ZipException;
+import zip4j.model.enums.AesKeyStrength;
 
-import static net.lingala.zip4j.util.InternalZipConstants.AES_HASH_CHARSET;
-import static net.lingala.zip4j.util.InternalZipConstants.AES_HASH_ITERATIONS;
-import static net.lingala.zip4j.util.InternalZipConstants.AES_MAC_ALGORITHM;
-import static net.lingala.zip4j.util.InternalZipConstants.AES_PASSWORD_VERIFIER_LENGTH;
+import static zip4j.util.InternalZipConstants.*;
 
 public class AesCipherUtil {
   private static final int START_INDEX = 0;

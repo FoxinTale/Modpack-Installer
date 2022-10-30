@@ -1,21 +1,20 @@
 package zip4j.tasks;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderWriter;
-import net.lingala.zip4j.model.Zip4jConfig;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.progress.ProgressMonitor;
-import net.lingala.zip4j.tasks.AddFolderToZipTask.AddFolderToZipTaskParameters;
-import net.lingala.zip4j.tasks.AsyncZipTask;
+
+import zip4j.exception.ZipException;
+import zip4j.headers.HeaderWriter;
+import zip4j.model.Zip4jConfig;
+import zip4j.model.ZipModel;
+import zip4j.model.ZipParameters;
+import zip4j.progress.ProgressMonitor;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import static net.lingala.zip4j.util.FileUtils.getFilesInDirectoryRecursive;
+import static zip4j.util.FileUtils.getFilesInDirectoryRecursive;
 
-public class AddFolderToZipTask extends AbstractAddFileToZipTask<AddFolderToZipTaskParameters> {
+public class AddFolderToZipTask extends AbstractAddFileToZipTask<AddFolderToZipTask.AddFolderToZipTaskParameters> {
 
   public AddFolderToZipTask(ZipModel zipModel, char[] password, HeaderWriter headerWriter, AsyncZipTask.AsyncTaskParameters asyncTaskParameters) {
     super(zipModel, password, headerWriter, asyncTaskParameters);

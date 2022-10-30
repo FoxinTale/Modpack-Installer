@@ -1,34 +1,13 @@
-/*
- * Copyright 2010 Srikanth Reddy Lingala
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package zip4j.headers;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.io.outputstream.CountingOutputStream;
-import net.lingala.zip4j.io.outputstream.OutputStreamWithSplitZipSupport;
-import net.lingala.zip4j.io.outputstream.SplitOutputStream;
-import net.lingala.zip4j.model.AESExtraDataRecord;
-import net.lingala.zip4j.model.ExtraDataRecord;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.LocalFileHeader;
-import net.lingala.zip4j.model.Zip64EndOfCentralDirectoryLocator;
-import net.lingala.zip4j.model.Zip64EndOfCentralDirectoryRecord;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.util.InternalZipConstants;
-import net.lingala.zip4j.util.RawIO;
+
+import zip4j.exception.ZipException;
+import zip4j.io.outputstream.CountingOutputStream;
+import zip4j.io.outputstream.OutputStreamWithSplitZipSupport;
+import zip4j.io.outputstream.SplitOutputStream;
+import zip4j.model.*;
+import zip4j.util.InternalZipConstants;
+import zip4j.util.RawIO;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -37,11 +16,11 @@ import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import static net.lingala.zip4j.headers.HeaderUtil.getBytesFromString;
-import static net.lingala.zip4j.util.FileUtils.getZipFileNameWithoutExtension;
-import static net.lingala.zip4j.util.InternalZipConstants.ZIP_64_NUMBER_OF_ENTRIES_LIMIT;
-import static net.lingala.zip4j.util.InternalZipConstants.ZIP_64_SIZE_LIMIT;
-import static net.lingala.zip4j.util.Zip4jUtil.isStringNotNullAndNotEmpty;
+import static zip4j.headers.HeaderUtil.getBytesFromString;
+import static zip4j.util.FileUtils.getZipFileNameWithoutExtension;
+import static zip4j.util.InternalZipConstants.ZIP_64_NUMBER_OF_ENTRIES_LIMIT;
+import static zip4j.util.InternalZipConstants.ZIP_64_SIZE_LIMIT;
+import static zip4j.util.Zip4jUtil.isStringNotNullAndNotEmpty;
 
 public class HeaderWriter {
 
@@ -180,7 +159,7 @@ public class HeaderWriter {
       int sizeOfCentralDir = byteArrayOutputStream.size();
 
       if (zipModel.isZip64Format() || offsetCentralDir >= InternalZipConstants.ZIP_64_SIZE_LIMIT
-          || zipModel.getCentralDirectory().getFileHeaders().size() >= InternalZipConstants.ZIP_64_NUMBER_OF_ENTRIES_LIMIT) {
+          || zipModel.getCentralDirectory().getFileHeaders().size() >= ZIP_64_NUMBER_OF_ENTRIES_LIMIT) {
 
         if (zipModel.getZip64EndOfCentralDirectoryRecord() == null) {
           zipModel.setZip64EndOfCentralDirectoryRecord(new Zip64EndOfCentralDirectoryRecord());
@@ -226,7 +205,7 @@ public class HeaderWriter {
       int sizeOfCentralDir = byteArrayOutputStream.size();
 
       if (zipModel.isZip64Format() || offsetCentralDir >= InternalZipConstants.ZIP_64_SIZE_LIMIT
-          || zipModel.getCentralDirectory().getFileHeaders().size() >= InternalZipConstants.ZIP_64_NUMBER_OF_ENTRIES_LIMIT) {
+          || zipModel.getCentralDirectory().getFileHeaders().size() >= ZIP_64_NUMBER_OF_ENTRIES_LIMIT) {
 
         if (zipModel.getZip64EndOfCentralDirectoryRecord() == null) {
           zipModel.setZip64EndOfCentralDirectoryRecord(new Zip64EndOfCentralDirectoryRecord());
@@ -607,13 +586,13 @@ public class HeaderWriter {
           zipModel.getEndOfCentralDirectoryRecord().getNumberOfThisDisk());
     }
 
-    if (numEntriesOnThisDisk > InternalZipConstants.ZIP_64_NUMBER_OF_ENTRIES_LIMIT) {
-      numEntriesOnThisDisk = InternalZipConstants.ZIP_64_NUMBER_OF_ENTRIES_LIMIT;
+    if (numEntriesOnThisDisk > ZIP_64_NUMBER_OF_ENTRIES_LIMIT) {
+      numEntriesOnThisDisk = ZIP_64_NUMBER_OF_ENTRIES_LIMIT;
     }
     rawIO.writeShortLittleEndian(byteArrayOutputStream, (int) numEntriesOnThisDisk);
 
-    if (numEntries > InternalZipConstants.ZIP_64_NUMBER_OF_ENTRIES_LIMIT) {
-      numEntries = InternalZipConstants.ZIP_64_NUMBER_OF_ENTRIES_LIMIT;
+    if (numEntries > ZIP_64_NUMBER_OF_ENTRIES_LIMIT) {
+      numEntries = ZIP_64_NUMBER_OF_ENTRIES_LIMIT;
     }
     rawIO.writeShortLittleEndian(byteArrayOutputStream, (int) numEntries);
 

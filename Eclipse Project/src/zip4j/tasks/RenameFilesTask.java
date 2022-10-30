@@ -1,18 +1,17 @@
 package zip4j.tasks;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.headers.HeaderUtil;
-import net.lingala.zip4j.headers.HeaderWriter;
-import net.lingala.zip4j.io.outputstream.SplitOutputStream;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.Zip4jConfig;
-import net.lingala.zip4j.model.ZipModel;
-import net.lingala.zip4j.model.enums.RandomAccessFileMode;
-import net.lingala.zip4j.progress.ProgressMonitor;
-import net.lingala.zip4j.tasks.AsyncZipTask;
-import net.lingala.zip4j.util.InternalZipConstants;
-import net.lingala.zip4j.util.RawIO;
-import net.lingala.zip4j.util.Zip4jUtil;
+import zip4j.exception.ZipException;
+import zip4j.headers.HeaderUtil;
+import zip4j.headers.HeaderWriter;
+import zip4j.io.outputstream.SplitOutputStream;
+import zip4j.model.FileHeader;
+import zip4j.model.Zip4jConfig;
+import zip4j.model.ZipModel;
+import zip4j.model.enums.RandomAccessFileMode;
+import zip4j.progress.ProgressMonitor;
+import zip4j.util.InternalZipConstants;
+import zip4j.util.RawIO;
+import zip4j.util.Zip4jUtil;
 
 import java.io.File;
 import java.io.IOException;

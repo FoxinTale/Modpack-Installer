@@ -21,12 +21,9 @@ package zip4j.crypto.PBKDF2;
  * see http://rtner.de/software/PBKDF2.html
  */
 
-import net.lingala.zip4j.crypto.PBKDF2.BinTools;
-import net.lingala.zip4j.crypto.PBKDF2.PBKDF2Parameters;
-
 class PBKDF2HexFormatter {
 
-  public boolean fromString(net.lingala.zip4j.crypto.PBKDF2.PBKDF2Parameters p, String s) {
+  public boolean fromString(PBKDF2Parameters p, String s) {
     if (p == null || s == null) {
       return true;
     }
@@ -36,9 +33,9 @@ class PBKDF2HexFormatter {
       return true;
     }
 
-    byte salt[] = net.lingala.zip4j.crypto.PBKDF2.BinTools.hex2bin(pSplit[0]);
+    byte salt[] = BinTools.hex2bin(pSplit[0]);
     int iterationCount = Integer.parseInt(pSplit[1]);
-    byte bDK[] = net.lingala.zip4j.crypto.PBKDF2.BinTools.hex2bin(pSplit[2]);
+    byte bDK[] = BinTools.hex2bin(pSplit[2]);
 
     p.setSalt(salt);
     p.setIterationCount(iterationCount);
@@ -47,8 +44,8 @@ class PBKDF2HexFormatter {
   }
 
   public String toString(PBKDF2Parameters p) {
-    String s = net.lingala.zip4j.crypto.PBKDF2.BinTools.bin2hex(p.getSalt()) + ":" + String.valueOf(p.getIterationCount()) + ":"
-        + net.lingala.zip4j.crypto.PBKDF2.BinTools.bin2hex(p.getDerivedKey());
+    String s = BinTools.bin2hex(p.getSalt()) + ":" + String.valueOf(p.getIterationCount()) + ":"
+        + BinTools.bin2hex(p.getDerivedKey());
     return s;
   }
 }

@@ -1,15 +1,13 @@
 package zip4j.io.outputstream;
 
-import net.lingala.zip4j.io.outputstream.CipherOutputStream;
-
 import java.io.IOException;
 import java.io.OutputStream;
 
 abstract class CompressedOutputStream extends OutputStream {
 
-  private net.lingala.zip4j.io.outputstream.CipherOutputStream<?> cipherOutputStream;
+  private CipherOutputStream<?> cipherOutputStream;
 
-  public CompressedOutputStream(net.lingala.zip4j.io.outputstream.CipherOutputStream<?> cipherOutputStream) {
+  public CompressedOutputStream(CipherOutputStream<?> cipherOutputStream) {
     this.cipherOutputStream = cipherOutputStream;
   }
 

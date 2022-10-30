@@ -1,6 +1,6 @@
 package zip4j.io.inputstream;
 
-import net.lingala.zip4j.model.FileHeader;
+import zip4j.model.FileHeader;
 
 import java.io.IOException;
 import java.io.InputStream;

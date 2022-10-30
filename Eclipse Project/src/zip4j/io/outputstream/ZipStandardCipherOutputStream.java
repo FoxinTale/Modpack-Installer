@@ -1,17 +1,15 @@
 package zip4j.io.outputstream;
 
-import net.lingala.zip4j.crypto.StandardEncrypter;
-import net.lingala.zip4j.io.outputstream.CipherOutputStream;
-import net.lingala.zip4j.io.outputstream.ZipEntryOutputStream;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.util.Zip4jUtil;
+import zip4j.crypto.StandardEncrypter;
+import zip4j.model.ZipParameters;
+import zip4j.util.Zip4jUtil;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
-class ZipStandardCipherOutputStream extends net.lingala.zip4j.io.outputstream.CipherOutputStream<StandardEncrypter> {
+class ZipStandardCipherOutputStream extends CipherOutputStream<StandardEncrypter> {
 
-  public ZipStandardCipherOutputStream(net.lingala.zip4j.io.outputstream.ZipEntryOutputStream outputStream, ZipParameters zipParameters, char[] password,
+  public ZipStandardCipherOutputStream(ZipEntryOutputStream outputStream, ZipParameters zipParameters, char[] password,
                                        boolean useUtf8ForPassword) throws IOException {
     super(outputStream, zipParameters, password, useUtf8ForPassword);
   }

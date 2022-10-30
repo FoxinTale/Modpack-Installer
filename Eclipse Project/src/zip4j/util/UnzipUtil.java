@@ -1,20 +1,19 @@
 package zip4j.util;
 
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.io.inputstream.NumberedSplitFileInputStream;
-import net.lingala.zip4j.io.inputstream.SplitFileInputStream;
-import net.lingala.zip4j.io.inputstream.ZipInputStream;
-import net.lingala.zip4j.io.inputstream.ZipStandardSplitFileInputStream;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.ZipModel;
+
+import zip4j.exception.ZipException;
+import zip4j.io.inputstream.NumberedSplitFileInputStream;
+import zip4j.io.inputstream.SplitFileInputStream;
+import zip4j.io.inputstream.ZipInputStream;
+import zip4j.io.inputstream.ZipStandardSplitFileInputStream;
+import zip4j.model.FileHeader;
+import zip4j.model.ZipModel;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static net.lingala.zip4j.util.FileUtils.setFileAttributes;
-import static net.lingala.zip4j.util.FileUtils.setFileLastModifiedTime;
-import static net.lingala.zip4j.util.FileUtils.setFileLastModifiedTimeWithoutNio;
+import static zip4j.util.FileUtils.*;
 
 public class UnzipUtil {
 
