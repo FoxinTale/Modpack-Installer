@@ -40,8 +40,8 @@ public class PerfDataUtil {
     // Is AddEnglishCounter available?
     private static final boolean IS_VISTA_OR_GREATER = VersionHelpers.IsWindowsVistaOrGreater();
 
-    public class PerfCounter {
-        private String object;
+    public static class PerfCounter {
+        private final String object;
         private String instance;
         private String counter;
 
@@ -104,7 +104,7 @@ public class PerfDataUtil {
      *         counter
      */
     public static PerfCounter createCounter(String object, String instance, String counter) {
-        return INSTANCE.new PerfCounter(object, instance, counter);
+        return new PerfCounter(object, instance, counter);
     }
 
     /**
@@ -122,7 +122,7 @@ public class PerfDataUtil {
         int retries = 0;
         while (ret == PdhMsg.PDH_NO_DATA && retries++ < 3) {
             // Exponential fallback.
-            Util.sleep(1 << retries);
+            Util.sleep(1L << retries);
             ret = IS_VISTA_OR_GREATER ? PDH.PdhCollectQueryDataWithTime(query.getValue(), pllTimeStamp)
                     : PDH.PdhCollectQueryData(query.getValue());
         }
@@ -157,13 +157,11 @@ public class PerfDataUtil {
 
     /**
      * Close a pdh query
-     * 
-     * @param q
-     *            pointer to the query
-     * @return true if successful
+     *
+     * @param q pointer to the query
      */
-    public static boolean closeQuery(HANDLEByReference q) {
-        return WinError.ERROR_SUCCESS == PDH.PdhCloseQuery(q.getValue());
+    public static void closeQuery(HANDLEByReference q) {
+        PDH.PdhCloseQuery(q.getValue());
     }
 
     /**

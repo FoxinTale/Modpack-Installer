@@ -37,14 +37,7 @@ public class WmiQueryHandler {
     // Factory to create this or a subclass
     private static Class<? extends WmiQueryHandler> customClass = null;
 
-    /**
-     * Factory method to create an instance of this class. To override this
-     * class, use {@link #setInstanceClass(Class)} to define a sublcass which
-     * extends {@link WmiQueryHandler}.
-     * 
-     * @return An instance of this class or a class defined by
-     *         {@link #setInstanceClass(Class)}
-     */
+
     public static WmiQueryHandler createInstance() {
         if (customClass == null) {
             return new WmiQueryHandler();
@@ -60,16 +53,6 @@ public class WmiQueryHandler {
         return null;
     }
 
-    /**
-     * Define a subclass to be instantiated by {@link #createInstance()}. The
-     * class must extend {@link WmiQueryHandler}.
-     * 
-     * @param instanceClass
-     *            The class to instantiate with {@link #createInstance()}.
-     */
-    public static void setInstanceClass(Class<? extends WmiQueryHandler> instanceClass) {
-        customClass = instanceClass;
-    }
 
     /**
      * Query WMI for values, with no timeout.
@@ -217,25 +200,4 @@ public class WmiQueryHandler {
         return securityInitialized;
     }
 
-    /**
-     * Gets the current WMI timeout. WMI queries will fail if they take longer
-     * than this number of milliseconds. A value of -1 is infinite (no timeout).
-     *
-     * @return Returns the current value of wmiTimeout.
-     */
-    public int getWmiTimeout() {
-        return wmiTimeout;
-    }
-
-    /**
-     * Sets the WMI timeout. WMI queries will fail if they take longer than this
-     * number of milliseconds.
-     *
-     * @param wmiTimeout
-     *            The wmiTimeout to set, in milliseconds. To disable timeouts,
-     *            set timeout as -1 (infinite).
-     */
-    public void setWmiTimeout(int wmiTimeout) {
-        this.wmiTimeout = wmiTimeout;
-    }
 }

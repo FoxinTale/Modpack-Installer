@@ -23,20 +23,17 @@
  */
 package oshi.hardware.platform.linux;
 
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.sun.jna.Native; // NOSONAR
+import com.sun.jna.Native;
 import com.sun.jna.platform.linux.LibC;
 import com.sun.jna.platform.linux.LibC.Sysinfo;
-
-import oshi.hardware.VirtualMemory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import oshi.hardware.common.AbstractGlobalMemory;
 import oshi.util.ExecutingCommand;
 import oshi.util.FileUtil;
 import oshi.util.ParseUtil;
+
+import java.util.List;
 
 /**
  * Memory obtained by /proc/meminfo and sysinfo.totalram
@@ -51,17 +48,6 @@ public class LinuxGlobalMemory extends AbstractGlobalMemory {
      * {@inheritDoc}
      */
     @Override
-    public long getAvailable() {
-        if (this.memAvailable < 0) {
-            updateMemInfo();
-        }
-        return this.memAvailable;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public long getTotal() {
         if (this.memTotal < 0) {
             readSysinfo();
@@ -69,27 +55,6 @@ public class LinuxGlobalMemory extends AbstractGlobalMemory {
         return this.memTotal;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public long getPageSize() {
-        if (this.pageSize < 0) {
-            readSysinfo();
-        }
-        return this.pageSize;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public VirtualMemory getVirtualMemory() {
-        if (this.virtualMemory == null) {
-            this.virtualMemory = new LinuxVirtualMemory();
-        }
-        return this.virtualMemory;
-    }
 
     private void readSysinfo() {
         try {

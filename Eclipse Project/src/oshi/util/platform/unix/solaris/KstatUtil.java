@@ -11,9 +11,6 @@ import org.slf4j.LoggerFactory;
 import oshi.util.FormatUtil;
 import oshi.util.Util;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Provides access to kstat information on Solaris
  *
@@ -35,49 +32,6 @@ public class KstatUtil {
     }
 
     private KstatUtil() {
-    }
-
-    /**
-     * Convenience method for kstat_data_lookup() with String return values.
-     * Searches the kstat's data section for the record with the specified name.
-     * This operation is valid only for kstat types which have named data
-     * records. Currently, only the KSTAT_TYPE_NAMED and KSTAT_TYPE_TIMER kstats
-     * have named data records.
-     *
-     * @param ksp
-     *            The kstat to search
-     * @param name
-     *            The key for the name-value pair, or name of the timer as
-     *            applicable
-     * @return The value as a String.
-     */
-    public static synchronized String kstatDataLookupString(Kstat ksp, String name) {
-        if (ksp.ks_type != LibKstat.KSTAT_TYPE_NAMED && ksp.ks_type != LibKstat.KSTAT_TYPE_TIMER) {
-            throw new IllegalArgumentException("Not a kstat_named or kstat_timer kstat.");
-        }
-        Pointer p = LibKstat.INSTANCE.kstat_data_lookup(ksp, name);
-        if (p == null) {
-            LOG.error("Failed lo lookup kstat value for key {}", name);
-            return "";
-        }
-        KstatNamed data = new KstatNamed(p);
-        switch (data.data_type) {
-        case LibKstat.KSTAT_DATA_CHAR:
-            return new String(data.value.charc).trim();
-        case LibKstat.KSTAT_DATA_INT32:
-            return Integer.toString(data.value.i32);
-        case LibKstat.KSTAT_DATA_UINT32:
-            return FormatUtil.toUnsignedString(data.value.ui32);
-        case LibKstat.KSTAT_DATA_INT64:
-            return Long.toString(data.value.i64);
-        case LibKstat.KSTAT_DATA_UINT64:
-            return FormatUtil.toUnsignedString(data.value.ui64);
-        case LibKstat.KSTAT_DATA_STRING:
-            return data.value.str.addr.getString(0);
-        default:
-            LOG.error("Unimplemented kstat data type {}", data.data_type);
-            return "";
-        }
     }
 
     /**
@@ -175,36 +129,4 @@ public class KstatUtil {
         return LibKstat.INSTANCE.kstat_lookup(kc, module, instance, name);
     }
 
-    /**
-     * Convenience method for kstat_lookup(). Traverses the kstat chain,
-     * searching for all kstats with the same ks_module, ks_instance, and
-     * ks_name fields; this triplet uniquely identifies a kstat. If ks_module is
-     * NULL, ks_instance is -1, or ks_name is NULL, then those fields will be
-     * ignored in the search.
-     *
-     * @param module
-     *            The module, or null to ignore
-     * @param instance
-     *            The instance, or -1 to ignore
-     * @param name
-     *            The name, or null to ignore
-     * @return All matches of the requested Kstat structure if found, or an
-     *         empty list otherwise
-     */
-    public static synchronized List<Kstat> kstatLookupAll(String module, int instance, String name) {
-        List<Kstat> kstats = new ArrayList<>();
-        int ret = LibKstat.INSTANCE.kstat_chain_update(kc);
-        if (ret < 0) {
-            LOG.error("Failed to update kstat chain");
-            return kstats;
-        }
-        for (Kstat ksp = LibKstat.INSTANCE.kstat_lookup(kc, module, instance, name); ksp != null; ksp = ksp.next()) {
-            if ((module == null || module.equals(new String(ksp.ks_module).trim()))
-                    && (instance < 0 || instance == ksp.ks_instance)
-                    && (name == null || name.equals(new String(ksp.ks_name).trim()))) {
-                kstats.add(ksp);
-            }
-        }
-        return kstats;
-    }
 }

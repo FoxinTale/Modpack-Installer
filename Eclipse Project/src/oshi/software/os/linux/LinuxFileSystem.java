@@ -1,26 +1,20 @@
 package oshi.software.os.linux;
 
+import com.sun.jna.Native;
+import com.sun.jna.platform.linux.LibC;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import oshi.software.os.FileSystem;
+import oshi.software.os.OSFileStore;
+import oshi.util.FileUtil;
+import oshi.util.ParseUtil;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.sun.jna.Native; // NOSONAR
-import com.sun.jna.platform.linux.LibC;
-
-import oshi.software.os.FileSystem;
-import oshi.software.os.OSFileStore;
-import oshi.util.FileUtil;
-import oshi.util.ParseUtil;
+import java.util.*;
 
 /**
  * The Linux File System contains {@link OSFileStore}s which are a storage pool,
@@ -37,7 +31,7 @@ public class LinuxFileSystem implements FileSystem {
     private static final Logger LOG = LoggerFactory.getLogger(LinuxFileSystem.class);
 
     // Linux defines a set of virtual file systems
-    private final List<String> pseudofs = Arrays.asList(new String[] { //
+    private final List<String> pseudofs = Arrays.asList(//
             "rootfs", // Minimal fs to support kernel boot
             "sysfs", // SysFS file system
             "proc", // Proc file system
@@ -63,11 +57,11 @@ public class LinuxFileSystem implements FileSystem {
             // "tmpfs", // Temporary file system
             // NOTE: tmpfs is evaluated apart, because Linux uses it for
             // RAMdisks
-            "overlay", //Overlay file system https://wiki.archlinux.org/index.php/Overlay_filesystem
-    });
+            "overlay" //Overlay file system https://wiki.archlinux.org/index.php/Overlay_filesystem
+    );
 
     // System path mounted as tmpfs
-    private final List<String> tmpfsPaths = Arrays.asList(new String[] { "/dev/shm", "/run", "/sys", "/proc" });
+    private final List<String> tmpfsPaths = Arrays.asList("/dev/shm", "/run", "/sys", "/proc");
 
     /**
      * Checks if file path equals or starts with an element in the given list

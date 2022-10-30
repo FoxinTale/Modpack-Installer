@@ -37,9 +37,7 @@ public class PerfCounterQuery<T extends Enum<T>> {
      * Multiple classes use these constants
      */
     public static final String TOTAL_INSTANCE = "_Total";
-    public static final String TOTAL_INSTANCES = "*_Total";
-    public static final String NOT_TOTAL_INSTANCE = "^" + TOTAL_INSTANCE;
-    public static final String NOT_TOTAL_INSTANCES = "^" + TOTAL_INSTANCES;
+
 
     /**
      * Construct a new object to hold performance counter data source and
@@ -92,23 +90,22 @@ public class PerfCounterQuery<T extends Enum<T>> {
 
     /**
      * Set the Data Source for these counters
-     * 
-     * @param source
-     *            The source of data
-     * @return Whether the data source was successfully set
+     *
+     * @param source The source of data
      */
-    public boolean setDataSource(CounterDataSource source) {
+    public void setDataSource(CounterDataSource source) {
         this.source = source;
         switch (source) {
         case PDH:
             LOG.debug("Attempting to set PDH Data Source.");
             unInitWmiCounters();
-            return initPdhCounters();
+            initPdhCounters();
+            return;
         case WMI:
             LOG.debug("Attempting to set WMI Data Source.");
             unInitPdhCounters();
             initWmiCounters();
-            return true;
+            return;
         default:
             // This should never happen unless you've added a new source and
             // forgot to add a case for it
@@ -205,7 +202,7 @@ public class PerfCounterQuery<T extends Enum<T>> {
             for (T prop : props) {
                 switch (result.getCIMType(prop)) {
                 case Wbemcli.CIM_UINT16:
-                    valueMap.put(prop, Long.valueOf(WmiUtil.getUint16(result, prop, 0)));
+                    valueMap.put(prop, (long) WmiUtil.getUint16(result, prop, 0));
                     break;
                 case Wbemcli.CIM_UINT32:
                     valueMap.put(prop, WmiUtil.getUint32asLong(result, prop, 0));

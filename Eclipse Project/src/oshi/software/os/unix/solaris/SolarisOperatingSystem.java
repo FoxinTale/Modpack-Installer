@@ -3,7 +3,6 @@ package oshi.software.os.unix.solaris;
 import oshi.jna.platform.linux.Libc;
 import oshi.software.common.AbstractOperatingSystem;
 import oshi.software.os.FileSystem;
-import oshi.software.os.NetworkParams;
 import oshi.software.os.OSProcess;
 import oshi.util.ExecutingCommand;
 import oshi.util.LsofUtil;
@@ -168,27 +167,6 @@ public class SolarisOperatingSystem extends AbstractOperatingSystem {
     @Override
     public int getProcessCount() {
         return ProcUtil.getPidFiles().length;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getThreadCount() {
-        List<String> threadList = ExecutingCommand.runNative("ps -eLo pid");
-        if (!threadList.isEmpty()) {
-            // Subtract 1 for header
-            return threadList.size() - 1;
-        }
-        return getProcessCount();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NetworkParams getNetworkParams() {
-        return new SolarisNetworkParams();
     }
 
 }

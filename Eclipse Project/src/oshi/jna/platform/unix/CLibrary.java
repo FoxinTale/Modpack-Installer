@@ -21,38 +21,12 @@ public interface CLibrary extends Library {
      */
     int AI_CANONNAME = 2;
 
-    /**
-     * Return type for BSD sysctl kern.boottime
-     */
-    @FieldOrder({ "tv_sec", "tv_usec" })
-    class Timeval extends Structure {
-        public long tv_sec; // seconds
-        public long tv_usec; // microseconds
-    }
-
-    @FieldOrder({ "sa_family", "sa_data" })
-    class Sockaddr extends Structure {
-        public short sa_family;
-        public byte[] sa_data = new byte[14];
-
-        public static class ByReference extends Sockaddr implements Structure.ByReference {
-        }
-    }
-
     @FieldOrder({ "ai_flags", "ai_family", "ai_socktype", "ai_protocol", "ai_addrlen", "ai_addr", "ai_canonname",
             "ai_next" })
     class Addrinfo extends Structure {
         public int ai_flags;
-        public int ai_family;
-        public int ai_socktype;
-        public int ai_protocol;
-        public int ai_addrlen;
-        public Sockaddr.ByReference ai_addr;
-        public String ai_canonname;
-        public ByReference ai_next;
 
-        public static class ByReference extends Addrinfo implements Structure.ByReference {
-        }
+        public String ai_canonname;
 
         public Addrinfo() {
         }
@@ -125,57 +99,6 @@ public interface CLibrary extends Library {
      * @return 0 on success; sets errno on failure
      */
     int sysctlbyname(String name, Pointer oldp, IntByReference oldlenp, Pointer newp, int newlen);
-
-    /**
-     * The sysctlnametomib() function accepts an ASCII representation of the
-     * name, looks up the integer name vector, and returns the numeric
-     * representation in the mib array pointed to by mibp. The number of
-     * elements in the mib array is given by the location specified by sizep
-     * before the call, and that location gives the number of entries copied
-     * after a successful call. The resulting mib and size may be used in
-     * subsequent sysctl() calls to get the data associated with the requested
-     * ASCII name. This interface is intended for use by applications that want
-     * to repeatedly request the same variable (the sysctl() function runs in
-     * about a third the time as the same request made via the sysctlbyname()
-     * function).
-     *
-     * The number of elements in the mib array can be determined by calling
-     * sysctlnametomib() with the NULL argument for mibp.
-     *
-     * The sysctlnametomib() function is also useful for fetching mib prefixes.
-     * If size on input is greater than the number of elements written, the
-     * array still contains the additional elements which may be written
-     * programmatically.
-     *
-     * @param name
-     *            ASCII representation of the name
-     * @param mibp
-     *            Integer array containing the corresponding name vector.
-     * @param size
-     *            On input, number of elements in the returned array; on output,
-     *            the number of entries copied.
-     * @return 0 on success; sets errno on failure
-     */
-    int sysctlnametomib(String name, Pointer mibp, IntByReference size);
-
-    /**
-     * The getloadavg() function returns the number of processes in the system
-     * run queue averaged over various periods of time. Up to nelem samples are
-     * retrieved and assigned to successive elements of loadavg[]. The system
-     * imposes a maximum of 3 samples, representing averages over the last 1, 5,
-     * and 15 minutes, respectively.
-     *
-     * @param loadavg
-     *            An array of doubles which will be filled with the results
-     * @param nelem
-     *            Number of samples to return
-     * @return If the load average was unobtainable, -1 is returned; otherwise,
-     *         the number of samples actually retrieved is returned.
-     * @see <A HREF=
-     *      "https://www.freebsd.org/cgi/man.cgi?query=getloadavg&sektion=3">
-     *      getloadavg(3)</A>
-     */
-    int getloadavg(double[] loadavg, int nelem);
 
     /**
      * Returns the process ID of the calling process. The ID is guaranteed to be

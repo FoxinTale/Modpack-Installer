@@ -23,13 +23,7 @@
  */
 package oshi.hardware.platform.unix.solaris;
 
-import com.sun.jna.platform.unix.solaris.LibKstat.Kstat; // NOSONAR
-
-import oshi.hardware.VirtualMemory;
 import oshi.hardware.common.AbstractGlobalMemory;
-import oshi.util.ExecutingCommand;
-import oshi.util.ParseUtil;
-import oshi.util.platform.unix.solaris.KstatUtil;
 
 /**
  * Memory obtained by kstat
@@ -37,58 +31,12 @@ import oshi.util.platform.unix.solaris.KstatUtil;
 public class SolarisGlobalMemory extends AbstractGlobalMemory {
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public long getAvailable() {
-        if (this.memAvailable < 0) {
-            updateSystemPages();
-        }
-        return this.memAvailable;
-    }
-
     /**
      * {@inheritDoc}
      */
     @Override
     public long getTotal() {
-        if (this.memTotal < 0) {
-            updateSystemPages();
-        }
         return this.memTotal;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public long getPageSize() {
-        if (this.pageSize < 0) {
-            this.pageSize = ParseUtil.parseLongOrDefault(ExecutingCommand.getFirstAnswer("pagesize"), 4096L);
-        }
-        return this.pageSize;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public VirtualMemory getVirtualMemory() {
-        if (this.virtualMemory == null) {
-            this.virtualMemory = new SolarisVirtualMemory();
-        }
-        return this.virtualMemory;
-    }
-
-    private void updateSystemPages() {
-        // Get first result
-        Kstat ksp = KstatUtil.kstatLookup(null, -1, "system_pages");
-        // Set values
-        if (ksp != null && KstatUtil.kstatRead(ksp)) {
-            this.memAvailable = KstatUtil.kstatDataLookupLong(ksp, "availrmem") * getPageSize();
-            this.memTotal = KstatUtil.kstatDataLookupLong(ksp, "physmem") * getPageSize();
-        }
-    }
 }

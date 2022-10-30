@@ -1,16 +1,12 @@
 package oshi.software.os.linux;
 
 import com.sun.jna.Memory;
-import com.sun.jna.Native;
 import com.sun.jna.Pointer;
-import com.sun.jna.platform.linux.LibC;
-import com.sun.jna.platform.linux.LibC.Sysinfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import oshi.jna.platform.linux.Libc;
 import oshi.software.common.AbstractOperatingSystem;
 import oshi.software.os.FileSystem;
-import oshi.software.os.NetworkParams;
 import oshi.software.os.OSProcess;
 import oshi.software.os.OSUser;
 import oshi.util.ExecutingCommand;
@@ -322,31 +318,6 @@ public class LinuxOperatingSystem extends AbstractOperatingSystem {
         return ProcUtil.getPidFiles().length;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getThreadCount() {
-        try {
-            Sysinfo info = new Sysinfo();
-            if (0 != LibC.INSTANCE.sysinfo(info)) {
-                LOG.error("Failed to get process thread count. Error code: {}", Native.getLastError());
-                return 0;
-            }
-            return info.procs;
-        } catch (UnsatisfiedLinkError | NoClassDefFoundError e) {
-            LOG.error("Failed to get procs from sysinfo. {}", e);
-        }
-        return 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NetworkParams getNetworkParams() {
-        return new LinuxNetworkParams();
-    }
 
     private void setFamilyFromReleaseFiles() {
         if (this.family == null) {

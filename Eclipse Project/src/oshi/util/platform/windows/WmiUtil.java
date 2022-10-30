@@ -67,49 +67,6 @@ public class WmiUtil {
                 result.getCIMType(property), result.getVtType(property)));
     }
 
-    /**
-     * Gets a Date value from a WmiResult as a String
-     *
-     * @param <T>
-     *            The enum type containing the property keys
-     * @param result
-     *            The WmiResult from which to fetch the value
-     * @param property
-     *            The property (column) to fetch
-     * @param index
-     *            The index (row) to fetch
-     * @return The stored value if non-null, an empty-string otherwise
-     */
-    public static <T extends Enum<T>> String getDateString(WmiResult<T> result, T property, int index) {
-        if (result.getCIMType(property) == Wbemcli.CIM_DATETIME) {
-            String date = getStr(result, property, index);
-            return date.substring(0, 4) + '-' + date.substring(4, 6) + '-' + date.substring(6, 8);
-        }
-        throw new ClassCastException(String.format(CLASS_CAST_MSG, property.name(), "DateTime",
-                result.getCIMType(property), result.getVtType(property)));
-    }
-
-    /**
-     * Gets a Reference value from a WmiResult as a String
-     *
-     * @param <T>
-     *            The enum type containing the property keys
-     * @param result
-     *            The WmiResult from which to fetch the value
-     * @param property
-     *            The property (column) to fetch
-     * @param index
-     *            The index (row) to fetch
-     * @return The stored value if non-null, an empty-string otherwise
-     */
-    public static <T extends Enum<T>> String getRefString(WmiResult<T> result, T property, int index) {
-        if (result.getCIMType(property) == Wbemcli.CIM_REFERENCE) {
-            return getStr(result, property, index);
-        }
-        throw new ClassCastException(String.format(CLASS_CAST_MSG, property.name(), "Reference",
-                result.getCIMType(property), result.getVtType(property)));
-    }
-
     private static <T extends Enum<T>> String getStr(WmiResult<T> result, T property, int index) {
         Object o = result.getValue(property, index);
         if (o == null) {
@@ -193,29 +150,6 @@ public class WmiUtil {
     }
 
     /**
-     * Gets a Sint32 value from a WmiResult. Note that while the CIM type is
-     * unsigned, the return type is signed and requires further processing by
-     * the user if unsigned values are desired.
-     *
-     * @param <T>
-     *            The enum type containing the property keys
-     * @param result
-     *            The WmiResult from which to fetch the value
-     * @param property
-     *            The property (column) to fetch
-     * @param index
-     *            The index (row) to fetch
-     * @return The stored value if non-null, 0 otherwise
-     */
-    public static <T extends Enum<T>> int getSint32(WmiResult<T> result, T property, int index) {
-        if (result.getCIMType(property) == Wbemcli.CIM_SINT32) {
-            return getInt(result, property, index);
-        }
-        throw new ClassCastException(String.format(CLASS_CAST_MSG, property.name(), "SINT32",
-                result.getCIMType(property), result.getVtType(property)));
-    }
-
-    /**
      * Gets a Uint16 value from a WmiResult. Note that while the CIM type is
      * unsigned, the return type is signed and requires further processing by
      * the user if unsigned values are desired.
@@ -249,27 +183,4 @@ public class WmiUtil {
                 result.getCIMType(property), result.getVtType(property)));
     }
 
-    /**
-     * Gets a Float value from a WmiResult
-     *
-     * @param <T>
-     *            The enum type containing the property keys
-     * @param result
-     *            The WmiResult from which to fetch the value
-     * @param property
-     *            The property (column) to fetch
-     * @param index
-     *            The index (row) to fetch
-     * @return The stored value if non-null, 0 otherwise
-     */
-    public static <T extends Enum<T>> float getFloat(WmiResult<T> result, T property, int index) {
-        Object o = result.getValue(property, index);
-        if (o == null) {
-            return 0f;
-        } else if (result.getCIMType(property) == Wbemcli.CIM_REAL32 && result.getVtType(property) == Variant.VT_R4) {
-            return (float) o;
-        }
-        throw new ClassCastException(String.format(CLASS_CAST_MSG, property.name(), "Float",
-                result.getCIMType(property), result.getVtType(property)));
-    }
 }

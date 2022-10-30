@@ -182,35 +182,6 @@ public class OSProcess implements Serializable {
     }
 
     /**
-     * @return Returns the number of threads in this process.
-     */
-    public int getThreadCount() {
-        return this.threadCount;
-    }
-
-    /**
-     * @return Returns the priority of this process.
-     *
-     *         For Linux and Unix, priority is a value in the range -20 to 19
-     *         (20 on some systems). The default priority is 0; lower priorities
-     *         cause more favorable scheduling.
-     *
-     *         For Windows, priority values can range from 0 (lowest priority)
-     *         to 31 (highest priority).
-     *
-     *         Mac OS X has 128 priority levels, ranging from 0 (lowest
-     *         priority) to 127 (highest priority). They are divided into
-     *         several major bands: 0 through 51 are the normal levels; the
-     *         default priority is 31. 52 through 79 are the highest priority
-     *         regular threads; 80 through 95 are for kernel mode threads; and
-     *         96 through 127 correspond to real-time threads, which are treated
-     *         differently than other threads by the scheduler.
-     */
-    public int getPriority() {
-        return this.priority;
-    }
-
-    /**
      * @return Returns the Virtual Memory Size (VSZ). It includes all memory
      *         that the process can access, including memory that is swapped out
      *         and memory that is from shared libraries.
@@ -260,20 +231,6 @@ public class OSProcess implements Serializable {
      */
     public long getStartTime() {
         return this.startTime;
-    }
-
-    /**
-     * @return Returns the number of bytes the process has read from disk.
-     */
-    public long getBytesRead() {
-        return this.bytesRead;
-    }
-
-    /**
-     * @return Returns the number of bytes the process has written to disk.
-     */
-    public long getBytesWritten() {
-        return this.bytesWritten;
     }
 
     /**

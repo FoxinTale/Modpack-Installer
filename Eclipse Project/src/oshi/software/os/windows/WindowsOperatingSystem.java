@@ -20,7 +20,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import oshi.software.common.AbstractOperatingSystem;
 import oshi.software.os.FileSystem;
-import oshi.software.os.NetworkParams;
 import oshi.software.os.OSProcess;
 import oshi.util.platform.windows.WmiQueryHandler;
 import oshi.util.platform.windows.WmiUtil;
@@ -636,27 +635,6 @@ public class WindowsOperatingSystem extends AbstractOperatingSystem {
             return 0;
         }
         return perfInfo.ProcessCount.intValue();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getThreadCount() {
-        PERFORMANCE_INFORMATION perfInfo = new PERFORMANCE_INFORMATION();
-        if (!Psapi.INSTANCE.GetPerformanceInfo(perfInfo, perfInfo.size())) {
-            LOG.error("Failed to get Performance Info. Error code: {}", Kernel32.INSTANCE.GetLastError());
-            return 0;
-        }
-        return perfInfo.ThreadCount.intValue();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NetworkParams getNetworkParams() {
-        return new WindowsNetworkParams();
     }
 
     /**

@@ -21,7 +21,7 @@ public class PerfCounterWildcardQuery<T extends Enum<T>> extends PerfCounterQuer
     private static final Logger LOG = LoggerFactory.getLogger(PerfCounterWildcardQuery.class);
 
     private EnumMap<T, List<PerfCounter>> counterListMap = null;
-    private List<String> instancesFromLastQuery = new ArrayList<>();
+    private final List<String> instancesFromLastQuery = new ArrayList<>();
     private final String perfObjectLocalized;
     private final String instanceFilter;
 
@@ -219,7 +219,7 @@ public class PerfCounterWildcardQuery<T extends Enum<T>> extends PerfCounterQuer
                 for (int i = 0; i < result.getResultCount(); i++) {
                     switch (result.getCIMType(prop)) {
                     case Wbemcli.CIM_UINT16:
-                        values.add(Long.valueOf(WmiUtil.getUint16(result, prop, i)));
+                        values.add((long) WmiUtil.getUint16(result, prop, i));
                         break;
                     case Wbemcli.CIM_UINT32:
                         values.add(WmiUtil.getUint32asLong(result, prop, i));

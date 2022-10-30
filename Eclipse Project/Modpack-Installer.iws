@@ -25,34 +25,144 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/oshi/PlatformEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/oshi/SystemInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modpack-Installer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modpack-Installer.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modpack-Installer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Common.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Common.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Driver.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Driver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Extractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Extractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Install.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Install.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/installOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/installOptions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/JsonArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/JsonArray.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/JsonException$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/JsonException$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/JsonException$Problems.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/JsonException$Problems.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/JsonException.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/JsonException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/JsonObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/JsonObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/Jsoner$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/Jsoner$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/Jsoner$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/Jsoner$DeserializationOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/Jsoner$DeserializationOptions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/Jsoner$SerializationOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/Jsoner$SerializationOptions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/Jsoner$States.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/Jsoner$States.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/Jsoner.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/Jsoner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/Yylex.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/Yylex.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/Yytoken$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/Yytoken$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/Yytoken$Types.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/Yytoken$Types.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/json_simple/Yytoken.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/json_simple/Yytoken.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/osDetect.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/osDetect.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Extractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Extractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/osDetect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/osDetect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/SystemInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/SystemInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterQueryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterWildcardQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterWildcardQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/Baseboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/CentralProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/ComputerSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/Disks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/Display.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/Firmware.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/GlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/GlobalMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/HWDiskStore.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/HWPartition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/HardwareAbstractionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/HardwareAbstractionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/NetworkIF.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/Networks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/PowerSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/Sensors.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/SoundCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/UsbDevice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractBaseboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractCentralProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractComputerSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractDisplay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractFirmware.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractGlobalMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractHardwareAbstractionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractHardwareAbstractionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractNetworks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractPowerSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractSoundCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractUsbDevice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxBaseboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxCentralProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxComputerSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxDisks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxDisplay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxFirmware.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxGlobalMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxHardwareAbstractionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxHardwareAbstractionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxNetworks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxPowerSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxSensors.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxSoundCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxUsbDevice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacBaseboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacCentralProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacComputerSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacDisks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacDisplay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacFirmware.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacGlobalMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacHardwareAbstractionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacHardwareAbstractionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacNetworks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacPowerSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacSensors.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacSoundCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacUsbDevice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacVirtualMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacVirtualMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdBaseboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdCentralProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdComputerSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdDisks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdDisplay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdFirmware.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdGlobalMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdHardwareAbstractionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdHardwareAbstractionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdNetworks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdPowerSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdSensors.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdSoundCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdUsbDevice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisBaseboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisCentralProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisComputerSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisDisks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisDisplay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisFirmware.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisGlobalMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisHardwareAbstractionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisHardwareAbstractionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisNetworks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisPowerSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisSensors.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisSoundCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisUsbDevice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsBaseboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsCentralProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsComputerSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsDisks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsDisplay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsFirmware.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsGlobalMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsHardwareAbstractionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsHardwareAbstractionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsNetworks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsPowerSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsSensors.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsSoundCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsUsbDevice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/jna/platform/linux/Libc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/jna/platform/linux/Libc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/jna/platform/linux/Udev.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/jna/platform/mac/CoreFoundation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/jna/platform/mac/CoreFoundation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/jna/platform/mac/DiskArbitration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/jna/platform/mac/DiskArbitration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/jna/platform/mac/IOKit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/jna/platform/mac/IOKit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/jna/platform/mac/SystemB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/jna/platform/mac/SystemB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/jna/platform/unix/CLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/jna/platform/unix/CLibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/jna/platform/unix/freebsd/Libc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/jna/platform/unix/freebsd/Libc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/common/AbstractNetworkParams.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/NetworkParams.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/OSProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/OSProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/OSUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/OSUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/OperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/OperatingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxFileSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxFileSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxNetworkParams.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxOperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxOperatingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/mac/MacNetworkParams.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/mac/MacOperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/mac/MacOperatingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/unix/freebsd/FreeBsdNetworkParams.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/unix/freebsd/FreeBsdOperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/unix/freebsd/FreeBsdOperatingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/unix/solaris/SolarisNetworkParams.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/unix/solaris/SolarisOperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/unix/solaris/SolarisOperatingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/windows/WindowsNetworkParams.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/windows/WindowsOperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/windows/WindowsOperatingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/linux/ProcUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/linux/ProcUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/mac/CfUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/mac/CfUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/mac/IOKitUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/mac/IOKitUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/mac/SmcUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/unix/solaris/KstatUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/unix/solaris/KstatUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/windows/PerfDataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/windows/PerfDataUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/windows/WmiQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/windows/WmiQueryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/windows/WmiUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/windows/WmiUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,14 +193,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "last_opened_file_path": "F:/Java Libraries/slf4j-nop-2.0.3.jar",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;last_opened_file_path&quot;: &quot;F:/Java Libraries/slf4j-nop-2.0.3.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\oshi\util" />

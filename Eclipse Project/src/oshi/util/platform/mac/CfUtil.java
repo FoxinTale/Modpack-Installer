@@ -3,8 +3,6 @@ package oshi.util.platform.mac;
 import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
 import com.sun.jna.PointerType;
-import com.sun.jna.ptr.IntByReference;
-import com.sun.jna.ptr.LongByReference;
 import oshi.jna.platform.mac.CoreFoundation;
 import oshi.jna.platform.mac.CoreFoundation.CFAllocatorRef;
 import oshi.jna.platform.mac.CoreFoundation.CFStringRef;
@@ -50,44 +48,6 @@ public class CfUtil {
      */
     public enum CFNumberType {
         unusedZero, kCFNumberSInt8Type, kCFNumberSInt16Type, kCFNumberSInt32Type, kCFNumberSInt64Type, kCFNumberFloat32Type, kCFNumberFloat64Type, kCFNumberCharType, kCFNumberShortType, kCFNumberIntType, kCFNumberLongType, kCFNumberLongLongType, kCFNumberFloatType, kCFNumberDoubleType, kCFNumberCFIndexType, kCFNumberNSIntegerType, kCFNumberCGFloatType, kCFNumberMaxType
-    }
-
-    /**
-     * Convert a pointer representing a Core Foundations LongLong into its long
-     *
-     * @param p
-     *            The pointer to a 64-bit integer
-     * @return The corresponding long
-     */
-    public static long cfPointerToLong(Pointer p) {
-        LongByReference lbr = new LongByReference();
-        CoreFoundation.INSTANCE.CFNumberGetValue(p, CFNumberType.kCFNumberLongLongType.ordinal(), lbr);
-        return lbr.getValue();
-    }
-
-    /**
-     * Convert a pointer representing a Core Foundations LongLong into its long
-     *
-     * @param p
-     *            The pointer to an integer
-     * @return The corresponding int
-     */
-    public static int cfPointerToInt(Pointer p) {
-        IntByReference ibr = new IntByReference();
-        CoreFoundation.INSTANCE.CFNumberGetValue(p, CFNumberType.kCFNumberIntType.ordinal(), ibr);
-        return ibr.getValue();
-    }
-
-    /**
-     * Convert a pointer representing a Core Foundations Boolean into its
-     * boolean
-     *
-     * @param p
-     *            The pointer to a boolean
-     * @return The corresponding boolean
-     */
-    public static boolean cfPointerToBoolean(Pointer p) {
-        return CoreFoundation.INSTANCE.CFBooleanGetValue(p);
     }
 
     /**

@@ -23,13 +23,7 @@
  */
 package oshi.jna.platform.mac;
 
-import com.sun.jna.Library;
-import com.sun.jna.Native;
-import com.sun.jna.NativeLong;
-import com.sun.jna.Pointer;
-import com.sun.jna.PointerType;
-import com.sun.jna.ptr.ByReference;
-import com.sun.jna.ptr.PointerByReference;
+import com.sun.jna.*;
 
 /**
  * CoreFoundation framework for power supply stats. This class should be
@@ -43,18 +37,10 @@ public interface CoreFoundation extends Library {
 
     int UTF_8 = 0x08000100;
 
-    int CFArrayGetCount(CFArrayRef array);
-
     /*
      * Decorator class types for PointerType to better match ported code
      */
     class CFTypeRef extends PointerType {
-    }
-
-    class CFNumberRef extends PointerType {
-    }
-
-    class CFBooleanRef extends PointerType {
     }
 
     class CFArrayRef extends PointerType {
@@ -91,9 +77,6 @@ public interface CoreFoundation extends Library {
 
     CFStringRef CFStringCreateWithCharacters(Object object, char[] chars, NativeLong length);
 
-    CFMutableDictionaryRef CFDictionaryCreateMutable(CFAllocatorRef allocator, int capacity, Pointer keyCallBacks,
-            Pointer valueCallBacks);
-
     void CFRelease(PointerType blob);
 
     /*
@@ -102,19 +85,9 @@ public interface CoreFoundation extends Library {
      * not use CFRelease if you do not own.
      */
 
-    void CFDictionarySetValue(CFMutableDictionaryRef dict, PointerType key, PointerType value);
-
     Pointer CFDictionaryGetValue(CFDictionaryRef dictionary, CFStringRef key);
 
-    boolean CFDictionaryGetValueIfPresent(CFDictionaryRef dictionary, CFStringRef key, PointerType value);
-
     boolean CFStringGetCString(Pointer cfString, Pointer bufferToFill, long maxSize, int encoding);
-
-    boolean CFBooleanGetValue(Pointer booleanRef);
-
-    CFTypeRef CFArrayGetValueAtIndex(CFArrayRef array, int index);
-
-    void CFNumberGetValue(Pointer cfNumber, int intSize, ByReference value);
 
     long CFStringGetLength(Pointer str);
 
@@ -122,10 +95,4 @@ public interface CoreFoundation extends Library {
 
     CFAllocatorRef CFAllocatorGetDefault();
 
-    class CFDataRef extends CFTypeRef {
-    }
-
-    int CFDataGetLength(CFTypeRef theData);
-
-    PointerByReference CFDataGetBytePtr(CFTypeRef theData);
 }

@@ -14,29 +14,4 @@ public interface GlobalMemory extends Serializable {
      */
     long getTotal();
 
-    /**
-     * The amount of physical memory currently available, in bytes.
-     *
-     * @return Available number of bytes.
-     */
-    long getAvailable();
-
-    /**
-     * The number of bytes in a memory page
-     *
-     * @return Page size in bytes.
-     */
-    long getPageSize();
-
-    /**
-     * Virtual memory, such as a swap file.
-     * 
-     * @return A VirtualMemory object.
-     */
-    VirtualMemory getVirtualMemory();
-
-    /**
-     * Update the values for the next call to the getters on this class.
-     */
-    void updateAttributes();
 }

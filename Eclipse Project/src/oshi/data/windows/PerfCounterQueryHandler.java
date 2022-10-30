@@ -17,9 +17,9 @@ public class PerfCounterQueryHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(PerfCounterQueryHandler.class);
 
-    private Map<PerfCounter, HANDLEByReference> counterHandleMap = new ConcurrentHashMap<>();
-    private Map<String, HANDLEByReference> queryHandleMap = new ConcurrentHashMap<>();
-    private Map<String, List<PerfCounter>> queryCounterMap = new ConcurrentHashMap<>();
+    private final Map<PerfCounter, HANDLEByReference> counterHandleMap = new ConcurrentHashMap<>();
+    private final Map<String, HANDLEByReference> queryHandleMap = new ConcurrentHashMap<>();
+    private final Map<String, List<PerfCounter>> queryCounterMap = new ConcurrentHashMap<>();
 
     // Singleton pattern
     private static PerfCounterQueryHandler instance;
@@ -46,18 +46,6 @@ public class PerfCounterQueryHandler {
             instance = new PerfCounterQueryHandler();
         }
         return instance;
-    }
-
-    /**
-     * Begin monitoring a Performance Data counter, attached to a query whose
-     * key is the counter's object.
-     *
-     * @param counter
-     *            A PerfCounter object.
-     * @return True if the counter was successfully added.
-     */
-    public boolean addCounterToQuery(PerfCounter counter) {
-        return addCounterToQuery(counter, counter.getObject());
     }
 
     /**

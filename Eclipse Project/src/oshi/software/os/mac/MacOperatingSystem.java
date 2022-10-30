@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import oshi.software.common.AbstractOperatingSystem;
 import oshi.software.os.FileSystem;
-import oshi.software.os.NetworkParams;
 import oshi.software.os.OSProcess;
 import oshi.util.ExecutingCommand;
 import oshi.util.ParseUtil;
@@ -310,33 +309,6 @@ public class MacOperatingSystem extends AbstractOperatingSystem {
     @Override
     public int getProcessCount() {
         return SystemB.INSTANCE.proc_listpids(SystemB.PROC_ALL_PIDS, 0, null, 0) / SystemB.INT_SIZE;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getThreadCount() {
-        // Get current pids, then slightly pad in case new process starts while
-        // allocating array space
-        int[] pids = new int[getProcessCount() + 10];
-        int numberOfProcesses = SystemB.INSTANCE.proc_listpids(SystemB.PROC_ALL_PIDS, 0, pids, pids.length)
-                / SystemB.INT_SIZE;
-        int numberOfThreads = 0;
-        ProcTaskInfo taskInfo = new ProcTaskInfo();
-        for (int i = 0; i < numberOfProcesses; i++) {
-            SystemB.INSTANCE.proc_pidinfo(pids[i], SystemB.PROC_PIDTASKINFO, 0, taskInfo, taskInfo.size());
-            numberOfThreads += taskInfo.pti_threadnum;
-        }
-        return numberOfThreads;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NetworkParams getNetworkParams() {
-        return new MacNetworkParams();
     }
 
 }

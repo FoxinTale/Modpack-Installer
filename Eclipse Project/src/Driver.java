@@ -75,8 +75,9 @@ static Boolean validOS = false;
     }
 
     public static void sharedActions() throws IOException, JsonException {
-   //     Preinstall.checkForMinecraftandForge();
-  //      GUI.launchGUI();
+        Preinstall.checkForMinecraftandForge();
+        GUI.launchGUI();
+        System.out.println(Common.getSystemMemory());
   //      Json.modpackData();
    //   Json.modpackLatestInfo();
    //     Json.adjustLauncherMemory("1.16.5-forge-36.2.39", 6);

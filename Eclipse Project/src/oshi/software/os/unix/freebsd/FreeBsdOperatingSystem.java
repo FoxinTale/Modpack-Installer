@@ -3,7 +3,6 @@ package oshi.software.os.unix.freebsd;
 import oshi.jna.platform.linux.Libc;
 import oshi.software.common.AbstractOperatingSystem;
 import oshi.software.os.FileSystem;
-import oshi.software.os.NetworkParams;
 import oshi.software.os.OSProcess;
 import oshi.util.ExecutingCommand;
 import oshi.util.LsofUtil;
@@ -178,25 +177,4 @@ public class FreeBsdOperatingSystem extends AbstractOperatingSystem {
         }
         return 0;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getThreadCount() {
-        int threads = 0;
-        for (String proc : ExecutingCommand.runNative("ps -axo nlwp")) {
-            threads += ParseUtil.parseIntOrDefault(proc.trim(), 0);
-        }
-        return threads;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NetworkParams getNetworkParams() {
-        return new FreeBsdNetworkParams();
-    }
-
 }
