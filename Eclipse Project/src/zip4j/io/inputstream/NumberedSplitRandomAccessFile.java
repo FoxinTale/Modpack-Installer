@@ -13,12 +13,12 @@ import java.io.RandomAccessFile;
  */
 public class NumberedSplitRandomAccessFile extends RandomAccessFile {
 
-  private long splitLength;
-  private File[] allSortedSplitFiles;
+  private final long splitLength;
+  private final File[] allSortedSplitFiles;
   private RandomAccessFile randomAccessFile;
-  private byte[] singleByteBuffer = new byte[1];
+  private final byte[] singleByteBuffer = new byte[1];
   private int currentOpenSplitFileCounter = 0;
-  private String rwMode;
+  private final String rwMode;
 
   public NumberedSplitRandomAccessFile(String name, String mode) throws IOException {
     this(new File(name), mode);

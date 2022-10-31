@@ -13,7 +13,6 @@ import zip4j.util.Zip4jUtil;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.charset.Charset;
 import java.util.zip.CRC32;
 
 import static zip4j.util.FileUtils.isZipEntryDirectory;
@@ -21,39 +20,20 @@ import static zip4j.util.InternalZipConstants.*;
 
 public class ZipOutputStream extends OutputStream {
 
-  private CountingOutputStream countingOutputStream;
-  private char[] password;
-  private ZipModel zipModel;
+  private final CountingOutputStream countingOutputStream;
+  private final char[] password;
+  private final ZipModel zipModel;
   private CompressedOutputStream compressedOutputStream;
   private FileHeader fileHeader;
   private LocalFileHeader localFileHeader;
-  private FileHeaderFactory fileHeaderFactory = new FileHeaderFactory();
-  private HeaderWriter headerWriter = new HeaderWriter();
-  private CRC32 crc32 = new CRC32();
-  private RawIO rawIO = new RawIO();
+  private final FileHeaderFactory fileHeaderFactory = new FileHeaderFactory();
+  private final HeaderWriter headerWriter = new HeaderWriter();
+  private final CRC32 crc32 = new CRC32();
+  private final RawIO rawIO = new RawIO();
   private long uncompressedSizeForThisEntry = 0;
-  private Zip4jConfig zip4jConfig;
+  private final Zip4jConfig zip4jConfig;
   private boolean streamClosed;
   private boolean entryClosed = true;
-
-  public ZipOutputStream(OutputStream outputStream) throws IOException {
-    this(outputStream, null, null);
-  }
-
-  public ZipOutputStream(OutputStream outputStream, Charset charset) throws IOException {
-    this(outputStream, null, charset);
-  }
-
-  public ZipOutputStream(OutputStream outputStream, char[] password) throws IOException {
-    this(outputStream, password, null);
-  }
-
-  public ZipOutputStream(OutputStream outputStream, char[] password, Charset charset) throws IOException {
-    this(outputStream,
-            password,
-            new Zip4jConfig(charset, BUFF_SIZE, USE_UTF8_FOR_PASSWORD_ENCODING_DECODING),
-            new ZipModel());
-  }
 
   public ZipOutputStream(OutputStream outputStream, char[] password, Zip4jConfig zip4jConfig,
                          ZipModel zipModel) throws IOException {
@@ -132,11 +112,6 @@ public class ZipOutputStream extends OutputStream {
     headerWriter.finalizeZipFile(zipModel, countingOutputStream, zip4jConfig.getCharset());
     countingOutputStream.close();
     this.streamClosed = true;
-  }
-
-  public void setComment(String comment) throws IOException {
-    ensureStreamOpen();
-    zipModel.getEndOfCentralDirectoryRecord().setComment(comment);
   }
 
   private void ensureStreamOpen() throws IOException {

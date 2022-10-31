@@ -31,11 +31,11 @@ public class StandardEncrypter implements Encrypter {
     encryptData(headerBytes);
   }
 
-  public int encryptData(byte[] buff) throws ZipException {
+  public void encryptData(byte[] buff) throws ZipException {
     if (buff == null) {
       throw new NullPointerException();
     }
-    return encryptData(buff, 0, buff.length);
+    encryptData(buff, 0, buff.length);
   }
 
   public int encryptData(byte[] buff, int start, int len) throws ZipException {

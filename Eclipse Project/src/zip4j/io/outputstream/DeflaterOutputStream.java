@@ -7,7 +7,7 @@ import java.util.zip.Deflater;
 
 class DeflaterOutputStream extends CompressedOutputStream {
 
-  private byte[] buff;
+  private final byte[] buff;
   protected Deflater deflater;
 
   public DeflaterOutputStream(CipherOutputStream<?> cipherOutputStream, CompressionLevel compressionLevel, int bufferSize) {

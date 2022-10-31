@@ -13,11 +13,11 @@ import static zip4j.util.InternalZipConstants.MIN_SPLIT_LENGTH;
 public class SplitOutputStream extends OutputStream implements OutputStreamWithSplitZipSupport {
 
   private RandomAccessFile raf;
-  private long splitLength;
+  private final long splitLength;
   private File zipFile;
   private int currSplitFileCounter;
   private long bytesWrittenForThisPart;
-  private RawIO rawIO = new RawIO();
+  private final RawIO rawIO = new RawIO();
 
   public SplitOutputStream(File file) throws FileNotFoundException, ZipException {
     this(file, -1);
@@ -122,9 +122,7 @@ public class SplitOutputStream extends OutputStream implements OutputStreamWithS
    * Checks if the buffer size is sufficient for the current split file. If not
    * a new split file will be started.
    *
-   * @param bufferSize
    * @return true if a new split file was started else false
-   * @throws ZipException
    */
   public boolean checkBufferSizeAndStartNextSplitFile(int bufferSize) throws ZipException {
     if (bufferSize < 0) {
@@ -148,7 +146,6 @@ public class SplitOutputStream extends OutputStream implements OutputStreamWithS
    * Checks if the given buffer size will be fit in the current split file.
    * If this output stream is a non-split file, then this method always returns true
    *
-   * @param bufferSize
    * @return true if the buffer size is fit in the current split file or else false.
    */
   private boolean isBufferSizeFitForCurrSplitFile(int bufferSize) {

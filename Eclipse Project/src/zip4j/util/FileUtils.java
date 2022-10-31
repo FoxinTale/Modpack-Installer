@@ -380,10 +380,6 @@ public class FileUtils {
     return allSplitFiles;
   }
 
-  public static String getNextNumberedSplitFileCounterAsExtension(int index) {
-    return "." + getExtensionZerosPrefix(index) + (index + 1);
-  }
-
   public static boolean isSymbolicLink(File file) {
     try {
       return Files.isSymbolicLink(file.toPath());
@@ -429,16 +425,6 @@ public class FileUtils {
     return (os.contains("nux"));
   }
 
-  private static String getExtensionZerosPrefix(int index) {
-    if (index < 9) {
-      return "00";
-    } else if (index < 99) {
-      return "0";
-    } else {
-      return "";
-    }
-  }
-
   private static void applyWindowsFileAttributes(Path file, byte[] fileAttributes) {
     if (fileAttributes[0] == 0) {
       // No file attributes defined in the archive
@@ -450,7 +436,6 @@ public class FileUtils {
     //IntelliJ complains that fileAttributeView can never be null. But apparently it can.
     //See https://github.com/srikanth-lingala/zip4j/issues/435
     //Even the javadoc of Files.getFileAttributeView says it can be null
-    //noinspection ConstantConditions
     if (fileAttributeView == null) {
       return;
     }

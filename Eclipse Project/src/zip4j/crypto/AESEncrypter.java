@@ -38,7 +38,6 @@ public class AESEncrypter implements Encrypter {
   private boolean finished;
 
   private int nonce = 1;
-  private int loopCount = 0;
 
   private final byte[] iv;
   private final byte[] counterBlock;
@@ -68,11 +67,11 @@ public class AESEncrypter implements Encrypter {
     mac = getMacBasedPRF(derivedKey, aesKeyStrength);
   }
 
-  public int encryptData(byte[] buff) throws ZipException {
+  public void encryptData(byte[] buff) throws ZipException {
     if (buff == null) {
       throw new ZipException("input bytes are null, cannot perform AES encryption");
     }
-    return encryptData(buff, 0, buff.length);
+      encryptData(buff, 0, buff.length);
   }
 
   public int encryptData(byte[] buff, int start, int len) throws ZipException {
@@ -89,8 +88,8 @@ public class AESEncrypter implements Encrypter {
     }
 
     for (int j = start; j < (start + len); j += AES_BLOCK_SIZE) {
-      loopCount = (j + AES_BLOCK_SIZE <= (start + len)) ?
-          AES_BLOCK_SIZE : ((start + len) - j);
+      int loopCount = (j + AES_BLOCK_SIZE <= (start + len)) ?
+              AES_BLOCK_SIZE : ((start + len) - j);
 
       prepareBuffAESIVBytes(iv, nonce);
       aesEngine.processBlock(iv, counterBlock);

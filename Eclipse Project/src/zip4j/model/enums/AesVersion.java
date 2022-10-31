@@ -16,7 +16,7 @@ public enum AesVersion {
    */
   TWO(2);
 
-  private int versionNumber;
+  private final int versionNumber;
 
   AesVersion(int versionNumber) {
     this.versionNumber = versionNumber;

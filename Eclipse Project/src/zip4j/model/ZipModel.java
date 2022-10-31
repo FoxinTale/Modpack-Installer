@@ -6,9 +6,7 @@ import java.util.List;
 
 public class ZipModel implements Cloneable {
 
-  private List<LocalFileHeader> localFileHeaders = new ArrayList<>();
-  private List<DataDescriptor> dataDescriptors = new ArrayList<>();
-  private ArchiveExtraDataRecord archiveExtraDataRecord = new ArchiveExtraDataRecord();
+  private final List<LocalFileHeader> localFileHeaders = new ArrayList<>();
   private CentralDirectory centralDirectory = new CentralDirectory();
   private EndOfCentralDirectoryRecord endOfCentralDirectoryRecord = new EndOfCentralDirectoryRecord();
   private Zip64EndOfCentralDirectoryLocator zip64EndOfCentralDirectoryLocator = new Zip64EndOfCentralDirectoryLocator();
@@ -30,18 +28,6 @@ public class ZipModel implements Cloneable {
     return localFileHeaders;
   }
 
-  public void setLocalFileHeaders(List<LocalFileHeader> localFileHeaderList) {
-    this.localFileHeaders = localFileHeaderList;
-  }
-
-  public List<DataDescriptor> getDataDescriptors() {
-    return dataDescriptors;
-  }
-
-  public void setDataDescriptors(List<DataDescriptor> dataDescriptors) {
-    this.dataDescriptors = dataDescriptors;
-  }
-
   public CentralDirectory getCentralDirectory() {
     return centralDirectory;
   }
@@ -56,15 +42,6 @@ public class ZipModel implements Cloneable {
 
   public void setEndOfCentralDirectoryRecord(EndOfCentralDirectoryRecord endOfCentralDirectoryRecord) {
     this.endOfCentralDirectoryRecord = endOfCentralDirectoryRecord;
-  }
-
-  public ArchiveExtraDataRecord getArchiveExtraDataRecord() {
-    return archiveExtraDataRecord;
-  }
-
-  public void setArchiveExtraDataRecord(
-      ArchiveExtraDataRecord archiveExtraDataRecord) {
-    this.archiveExtraDataRecord = archiveExtraDataRecord;
   }
 
   public boolean isSplitArchive() {
@@ -107,14 +84,6 @@ public class ZipModel implements Cloneable {
 
   public void setZip64Format(boolean isZip64Format) {
     this.isZip64Format = isZip64Format;
-  }
-
-  public boolean isNestedZipFile() {
-    return isNestedZipFile;
-  }
-
-  public void setNestedZipFile(boolean isNestedZipFile) {
-    this.isNestedZipFile = isNestedZipFile;
   }
 
   public long getStart() {

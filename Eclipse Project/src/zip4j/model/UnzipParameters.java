@@ -2,13 +2,8 @@ package zip4j.model;
 
 public class UnzipParameters {
 
-  private boolean extractSymbolicLinks = true;
-
   public boolean isExtractSymbolicLinks() {
-    return extractSymbolicLinks;
+    return true;
   }
 
-  public void setExtractSymbolicLinks(boolean extractSymbolicLinks) {
-    this.extractSymbolicLinks = extractSymbolicLinks;
-  }
 }

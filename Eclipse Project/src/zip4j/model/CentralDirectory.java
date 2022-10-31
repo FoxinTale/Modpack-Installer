@@ -16,13 +16,5 @@ public class CentralDirectory {
     this.fileHeaders = fileHeaders;
   }
 
-  public DigitalSignature getDigitalSignature() {
-    return digitalSignature;
-  }
-
-  public void setDigitalSignature(DigitalSignature digitalSignature) {
-    this.digitalSignature = digitalSignature;
-  }
-
 
 }

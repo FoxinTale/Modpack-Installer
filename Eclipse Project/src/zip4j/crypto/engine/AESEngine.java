@@ -58,8 +58,8 @@ public class AESEngine {
     return W;
   }
 
-  public int processBlock(byte[] in, byte[] out) throws ZipException {
-    return processBlock(in, 0, out, 0);
+  public void processBlock(byte[] in, byte[] out) throws ZipException {
+    processBlock(in, 0, out, 0);
   }
 
   public int processBlock(byte[] in, int inOff, byte[] out, int outOff) throws ZipException {

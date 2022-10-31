@@ -5,7 +5,7 @@ import java.io.OutputStream;
 
 abstract class CompressedOutputStream extends OutputStream {
 
-  private CipherOutputStream<?> cipherOutputStream;
+  private final CipherOutputStream<?> cipherOutputStream;
 
   public CompressedOutputStream(CipherOutputStream<?> cipherOutputStream) {
     this.cipherOutputStream = cipherOutputStream;

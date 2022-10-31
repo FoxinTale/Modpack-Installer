@@ -7,10 +7,10 @@ class ZipEntryInputStream extends InputStream {
 
   private static final int MAX_RAW_READ_FULLY_RETRY_ATTEMPTS = 15;
 
-  private InputStream inputStream;
+  private final InputStream inputStream;
   private long numberOfBytesRead = 0;
-  private byte[] singleByteArray = new byte[1];
-  private long compressedSize;
+  private final byte[] singleByteArray = new byte[1];
+  private final long compressedSize;
 
   public ZipEntryInputStream(InputStream inputStream, long compressedSize) {
     this.inputStream = inputStream;

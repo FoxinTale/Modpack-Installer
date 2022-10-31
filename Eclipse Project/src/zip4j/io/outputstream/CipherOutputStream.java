@@ -8,8 +8,8 @@ import java.io.OutputStream;
 
 abstract class CipherOutputStream<T extends Encrypter> extends OutputStream {
 
-  private ZipEntryOutputStream zipEntryOutputStream;
-  private T encrypter;
+  private final ZipEntryOutputStream zipEntryOutputStream;
+  private final T encrypter;
 
   public CipherOutputStream(ZipEntryOutputStream zipEntryOutputStream, ZipParameters zipParameters, char[] password,
                             boolean useUtf8ForPassword) throws IOException {

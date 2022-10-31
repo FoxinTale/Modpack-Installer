@@ -1,10 +1,8 @@
 package zip4j.util;
 
 
-import zip4j.exception.ZipException;
 import zip4j.io.inputstream.NumberedSplitFileInputStream;
 import zip4j.io.inputstream.SplitFileInputStream;
-import zip4j.io.inputstream.ZipInputStream;
 import zip4j.io.inputstream.ZipStandardSplitFileInputStream;
 import zip4j.model.FileHeader;
 import zip4j.model.ZipModel;
@@ -16,28 +14,6 @@ import java.nio.file.Path;
 import static zip4j.util.FileUtils.*;
 
 public class UnzipUtil {
-
-  public static ZipInputStream createZipInputStream(ZipModel zipModel, FileHeader fileHeader, char[] password)
-      throws IOException {
-
-    SplitFileInputStream splitInputStream = null;
-    try {
-      splitInputStream = createSplitInputStream(zipModel);
-      splitInputStream.prepareExtractionForFileHeader(fileHeader);
-
-      ZipInputStream zipInputStream = new ZipInputStream(splitInputStream, password);
-      if (zipInputStream.getNextEntry(fileHeader, false) == null) {
-        throw new ZipException("Could not locate local file header for corresponding file header");
-      }
-
-      return zipInputStream;
-    } catch (IOException e) {
-      if (splitInputStream != null) {
-        splitInputStream.close();
-      }
-      throw e;
-    }
-  }
 
   public static void applyFileAttributes(FileHeader fileHeader, File file) {
 

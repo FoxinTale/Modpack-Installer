@@ -25,7 +25,7 @@ import static zip4j.headers.HeaderUtil.getTotalUncompressedSizeOfAllFileHeaders;
 
 public class ExtractFileTask extends AbstractExtractFileTask<ExtractFileTaskParameters> {
 
-  private char[] password;
+  private final char[] password;
   private SplitFileInputStream splitInputStream;
 
   public ExtractFileTask(ZipModel zipModel, char[] password, UnzipParameters unzipParameters,
@@ -95,9 +95,9 @@ public class ExtractFileTask extends AbstractExtractFileTask<ExtractFileTaskPara
   }
 
   public static class ExtractFileTaskParameters extends AbstractZipTaskParameters {
-    private String outputPath;
-    private String fileToExtract;
-    private String newFileName;
+    private final String outputPath;
+    private final String fileToExtract;
+    private final String newFileName;
 
     public ExtractFileTaskParameters(String outputPath, String fileToExtract, String newFileName,
                                      Zip4jConfig zip4jConfig) {

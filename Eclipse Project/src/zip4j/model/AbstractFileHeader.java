@@ -2,7 +2,6 @@ package zip4j.model;
 
 import zip4j.model.enums.CompressionMethod;
 import zip4j.model.enums.EncryptionMethod;
-import zip4j.util.Zip4jUtil;
 
 import java.util.List;
 
@@ -57,10 +56,6 @@ public abstract class AbstractFileHeader extends ZipHeader {
 
   public void setLastModifiedTime(long lastModifiedTime) {
     this.lastModifiedTime = lastModifiedTime;
-  }
-
-  public long getLastModifiedTimeEpoch() {
-    return Zip4jUtil.dosToExtendedEpochTme(lastModifiedTime);
   }
 
   public long getCrc() {

@@ -6,7 +6,7 @@ import java.io.OutputStream;
 class ZipEntryOutputStream extends OutputStream {
 
   private long numberOfBytesWrittenForThisEntry = 0;
-  private OutputStream outputStream;
+  private final OutputStream outputStream;
   private boolean entryClosed;
 
   public ZipEntryOutputStream(OutputStream outputStream) {

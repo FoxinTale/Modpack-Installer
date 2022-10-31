@@ -20,8 +20,7 @@ class NoCipherInputStream extends CipherInputStream<NoCipherInputStream.NoDecryp
   static class NoDecrypter implements Decrypter {
 
     @Override
-    public int decryptData(byte[] buff, int start, int len) {
-      return len;
+    public void decryptData(byte[] buff, int start, int len) {
     }
   }
 }

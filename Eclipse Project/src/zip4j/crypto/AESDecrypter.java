@@ -37,8 +37,8 @@ public class AESDecrypter implements Decrypter {
   private MacBasedPRF mac;
 
   private int nonce = 1;
-  private byte[] iv;
-  private byte[] counterBlock;
+  private final byte[] iv;
+  private final byte[] counterBlock;
 
   public AESDecrypter(AESExtraDataRecord aesExtraDataRecord, char[] password, byte[] salt,
                       byte[] passwordVerifier, boolean useUtf8ForPassword) throws ZipException {
@@ -66,7 +66,7 @@ public class AESDecrypter implements Decrypter {
   }
 
   @Override
-  public int decryptData(byte[] buff, int start, int len) throws ZipException {
+  public void decryptData(byte[] buff, int start, int len) throws ZipException {
 
     for (int j = start; j < (start + len); j += AES_BLOCK_SIZE) {
       int loopCount = (j + AES_BLOCK_SIZE <= (start + len)) ?
@@ -83,7 +83,6 @@ public class AESDecrypter implements Decrypter {
       nonce++;
     }
 
-    return len;
   }
 
   public byte[] getCalculatedAuthenticationBytes() {

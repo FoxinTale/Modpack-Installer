@@ -10,7 +10,7 @@ import static zip4j.util.InternalZipConstants.AES_BLOCK_SIZE;
 
 class AesCipherOutputStream extends CipherOutputStream<AESEncrypter> {
 
-  private byte[] pendingBuffer = new byte[AES_BLOCK_SIZE];
+  private final byte[] pendingBuffer = new byte[AES_BLOCK_SIZE];
   private int pendingBufferLength = 0;
 
   public AesCipherOutputStream(ZipEntryOutputStream outputStream, ZipParameters zipParameters, char[] password,
@@ -55,7 +55,7 @@ class AesCipherOutputStream extends CipherOutputStream<AESEncrypter> {
       return;
     }
 
-    if (len != 0 && len % 16 != 0) {
+    if (len % 16 != 0) {
       System.arraycopy(b, (len + off) - (len % 16), pendingBuffer, 0, len % 16);
       pendingBufferLength = len % 16;
       len = len - pendingBufferLength;

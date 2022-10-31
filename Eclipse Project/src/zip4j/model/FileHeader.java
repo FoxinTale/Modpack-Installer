@@ -7,9 +7,7 @@ import java.util.Objects;
 public class FileHeader extends AbstractFileHeader {
 
   private int versionMadeBy;
-  private int fileCommentLength = 0;
   private int diskNumberStart;
-  private byte[] internalFileAttributes;
   private byte[] externalFileAttributes;
   private long offsetLocalHeader;
   private String fileComment;
@@ -26,12 +24,7 @@ public class FileHeader extends AbstractFileHeader {
     this.versionMadeBy = versionMadeBy;
   }
 
-  public int getFileCommentLength() {
-    return fileCommentLength;
-  }
-
-  public void setFileCommentLength(int fileCommentLength) {
-    this.fileCommentLength = fileCommentLength;
+  public void setFileCommentLength() {
   }
 
   public int getDiskNumberStart() {
@@ -42,12 +35,7 @@ public class FileHeader extends AbstractFileHeader {
     this.diskNumberStart = diskNumberStart;
   }
 
-  public byte[] getInternalFileAttributes() {
-    return internalFileAttributes;
-  }
-
   public void setInternalFileAttributes(byte[] internalFileAttributes) {
-    this.internalFileAttributes = internalFileAttributes;
   }
 
   public byte[] getExternalFileAttributes() {

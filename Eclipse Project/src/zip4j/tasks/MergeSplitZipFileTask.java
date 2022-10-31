@@ -182,7 +182,7 @@ public class MergeSplitZipFileTask extends AsyncZipTask<MergeSplitZipFileTaskPar
   }
 
   public static class MergeSplitZipFileTaskParameters extends AbstractZipTaskParameters {
-    private File outputZipFile;
+    private final File outputZipFile;
 
     public MergeSplitZipFileTaskParameters(File outputZipFile, Zip4jConfig zip4jConfig) {
       super(zip4jConfig);

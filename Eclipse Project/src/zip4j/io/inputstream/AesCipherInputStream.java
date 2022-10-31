@@ -17,15 +17,13 @@ import static zip4j.util.Zip4jUtil.readFully;
 
 class AesCipherInputStream extends CipherInputStream<AESDecrypter> {
 
-  private byte[] singleByteBuffer = new byte[1];
-  private byte[] aes16ByteBlock = new byte[16];
+  private final byte[] singleByteBuffer = new byte[1];
+  private final byte[] aes16ByteBlock = new byte[16];
   private int aes16ByteBlockPointer = 0;
   private int remainingAes16ByteBlockLength = 0;
   private int lengthToRead = 0;
   private int offsetWithAesBlock = 0;
   private int bytesCopiedInThisIteration = 0;
-  private int lengthToCopyInThisIteration = 0;
-  private int aes16ByteBlockReadLength = 0;
 
   public AesCipherInputStream(ZipEntryInputStream zipEntryInputStream, LocalFileHeader localFileHeader,
                               char[] password, int bufferSize, boolean useUtf8ForPassword) throws IOException {
@@ -70,7 +68,7 @@ class AesCipherInputStream extends CipherInputStream<AESDecrypter> {
     }
 
     if (lengthToRead < 16) {
-      aes16ByteBlockReadLength = super.read(aes16ByteBlock, 0, aes16ByteBlock.length);
+      int aes16ByteBlockReadLength = super.read(aes16ByteBlock, 0, aes16ByteBlock.length);
       aes16ByteBlockPointer = 0;
 
       if (aes16ByteBlockReadLength == -1) {
@@ -106,7 +104,7 @@ class AesCipherInputStream extends CipherInputStream<AESDecrypter> {
   }
 
   private void copyBytesFromBuffer(byte[] b, int off) {
-    lengthToCopyInThisIteration = lengthToRead < remainingAes16ByteBlockLength ? lengthToRead : remainingAes16ByteBlockLength;
+    int lengthToCopyInThisIteration = Math.min(lengthToRead, remainingAes16ByteBlockLength);
     System.arraycopy(aes16ByteBlock, aes16ByteBlockPointer, b, off, lengthToCopyInThisIteration);
 
     incrementAesByteBlockPointer(lengthToCopyInThisIteration);

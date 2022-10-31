@@ -13,22 +13,6 @@ public class LocalFileHeader extends AbstractFileHeader {
     setSignature(HeaderSignature.LOCAL_FILE_HEADER);
   }
 
-  public byte[] getExtraField() {
-    return extraField;
-  }
-
-  public void setExtraField(byte[] extraField) {
-    this.extraField = extraField;
-  }
-
-  public long getOffsetStartOfData() {
-    return offsetStartOfData;
-  }
-
-  public void setOffsetStartOfData(long offsetStartOfData) {
-    this.offsetStartOfData = offsetStartOfData;
-  }
-
   public boolean isWriteCompressedSizeInZip64ExtraRecord() {
     return writeCompressedSizeInZip64ExtraRecord;
   }

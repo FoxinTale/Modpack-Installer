@@ -50,10 +50,6 @@ public class EndOfCentralDirectoryRecord extends ZipHeader {
     this.totalNumberOfEntriesInCentralDirectory = totNoOfEntrisInCentralDir;
   }
 
-  public int getSizeOfCentralDirectory() {
-    return sizeOfCentralDirectory;
-  }
-
   public void setSizeOfCentralDirectory(int sizeOfCentralDirectory) {
     this.sizeOfCentralDirectory = sizeOfCentralDirectory;
   }

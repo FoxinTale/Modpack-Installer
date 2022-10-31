@@ -88,10 +88,6 @@ public class Zip64EndOfCentralDirectoryRecord extends ZipHeader {
     this.offsetStartCentralDirectoryWRTStartDiskNumber = offsetStartCentralDirectoryWRTStartDiskNumber;
   }
 
-  public byte[] getExtensibleDataSector() {
-    return extensibleDataSector;
-  }
-
   public void setExtensibleDataSector(byte[] extensibleDataSector) {
     this.extensibleDataSector = extensibleDataSector;
   }

@@ -34,15 +34,9 @@ public final class InternalZipConstants {
   // the offset of start of local header
   public static final int UPDATE_LFH_CRC = 14;
 
-  public static final int UPDATE_LFH_COMP_SIZE = 18;
-
-  public static final int UPDATE_LFH_UNCOMP_SIZE = 22;
-
   public static final String FILE_SEPARATOR = File.separator;
 
   public static final String ZIP_FILE_SEPARATOR = "/";
-
-  public static final int MAX_ALLOWED_ZIP_COMMENT_LENGTH = 0xFFFF;
 
   public static final String ZIP_STANDARD_CHARSET_NAME = "Cp437";
 

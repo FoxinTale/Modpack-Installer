@@ -22,8 +22,8 @@ class NoCipherOutputStream extends CipherOutputStream<NoCipherOutputStream.NoEnc
   static class NoEncrypter implements Encrypter {
 
     @Override
-    public int encryptData(byte[] buff) {
-      return encryptData(buff, 0, buff.length);
+    public void encryptData(byte[] buff) {
+      encryptData(buff, 0, buff.length);
     }
 
     @Override

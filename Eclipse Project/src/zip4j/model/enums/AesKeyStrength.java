@@ -19,10 +19,10 @@ public enum AesKeyStrength {
    */
   KEY_STRENGTH_256(3, 16, 32, 32);
 
-  private int rawCode;
-  private int saltLength;
-  private int macLength;
-  private int keyLength;
+  private final int rawCode;
+  private final int saltLength;
+  private final int macLength;
+  private final int keyLength;
 
   AesKeyStrength(int rawCode, int saltLength, int macLength, int keyLength) {
     this.rawCode = rawCode;

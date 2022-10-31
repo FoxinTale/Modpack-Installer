@@ -15,7 +15,7 @@ public enum HeaderSignature {
   ZIP64_EXTRA_FIELD_SIGNATURE(0x0001),
   AES_EXTRA_DATA_RECORD(0x9901);
 
-  private long value;
+  private final long value;
 
   HeaderSignature(long value) {
     this.value = value;

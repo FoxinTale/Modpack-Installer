@@ -13,11 +13,11 @@ import static zip4j.util.Zip4jUtil.readFully;
 
 abstract class CipherInputStream<T extends Decrypter> extends InputStream {
 
-  private ZipEntryInputStream zipEntryInputStream;
-  private T decrypter;
+  private final ZipEntryInputStream zipEntryInputStream;
+  private final T decrypter;
   private byte[] lastReadRawDataCache;
-  private byte[] singleByteBuffer = new byte[1];
-  private LocalFileHeader localFileHeader;
+  private final byte[] singleByteBuffer = new byte[1];
+  private final LocalFileHeader localFileHeader;
 
   public CipherInputStream(ZipEntryInputStream zipEntryInputStream, LocalFileHeader localFileHeader,
                            char[] password, int bufferSize, boolean useUtf8ForPassword) throws IOException {
@@ -67,8 +67,8 @@ abstract class CipherInputStream<T extends Decrypter> extends InputStream {
     return lastReadRawDataCache;
   }
 
-  protected int readRaw(byte[] b) throws IOException {
-    return zipEntryInputStream.readRawFully(b);
+  protected void readRaw(byte[] b) throws IOException {
+    zipEntryInputStream.readRawFully(b);
   }
 
   private void cacheRawData(byte[] b, int len) {
@@ -83,10 +83,6 @@ abstract class CipherInputStream<T extends Decrypter> extends InputStream {
 
   protected void endOfEntryReached(InputStream inputStream) throws IOException {
     // is optional but useful for AES
-  }
-
-  protected long getNumberOfBytesReadForThisEntry() {
-    return zipEntryInputStream.getNumberOfBytesRead();
   }
 
   public LocalFileHeader getLocalFileHeader() {

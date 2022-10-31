@@ -142,29 +142,12 @@ public void setEncryptFiles(boolean encryptFiles) {
   }
 
   /**
-   * Set the compression level used to compress files
-   * @param compressionLevel the compression level used to compress files
-   */
-  public void setCompressionLevel(CompressionLevel compressionLevel) {
-    this.compressionLevel = compressionLevel;
-  }
-
-  /**
    * Test if hidden files will be included during folder recursion
    *
    * @return true if hidden files will be included when adding folders to the zip
    */
   public boolean isReadHiddenFiles() {
     return readHiddenFiles;
-  }
-
-  /**
-   * Indicate if hidden files will be included during folder recursion
-   *
-   * @param readHiddenFiles if true, hidden files will be included when adding folders to the zip
-   */
-  public void setReadHiddenFiles(boolean readHiddenFiles) {
-    this.readHiddenFiles = readHiddenFiles;
   }
 
   /**
@@ -177,27 +160,11 @@ public void setEncryptFiles(boolean encryptFiles) {
   }
 
   /**
-   * Indicate if hidden folders will be included during folder recursion
-   * @param readHiddenFolders if true, hidden folders will be included when added folders to the zip
-   */
-  public void setReadHiddenFolders(boolean readHiddenFolders) {
-    this.readHiddenFolders = readHiddenFolders;
-  }
-
-  /**
    * Get the key strength of the AES encryption key
    * @return the key strength of the AES encryption key
    */
   public AesKeyStrength getAesKeyStrength() {
     return aesKeyStrength;
-  }
-
-  /**
-   * Set the key strength of the AES encryption key
-   * @param aesKeyStrength the key strength of the AES encryption key
-   */
-  public void setAesKeyStrength(AesKeyStrength aesKeyStrength) {
-    this.aesKeyStrength = aesKeyStrength;
   }
 
   /**
@@ -209,14 +176,6 @@ public void setEncryptFiles(boolean encryptFiles) {
   }
 
   /**
-   * Set the AES format version to use for encryption
-   * @param aesVersion the AES format version to use
-   */
-  public void setAesVersion(AesVersion aesVersion) {
-    this.aesVersion = aesVersion;
-  }
-
-  /**
    * Test if the parent folder of the added files will be included in the ZIP
    * @return true if the parent folder of the added files will be included into the zip
    */
@@ -224,45 +183,16 @@ public void setEncryptFiles(boolean encryptFiles) {
     return includeRootFolder;
   }
 
-  /**
-   * Set the flag to indicate if the parent folder of added files will be included in the ZIP
-   * @param includeRootFolder if true, the parent folder of added files will be included in the ZIP
-   */
-  public void setIncludeRootFolder(boolean includeRootFolder) {
-    this.includeRootFolder = includeRootFolder;
-  }
-
   public long getEntryCRC() {
     return entryCRC;
-  }
-
-  public void setEntryCRC(long entryCRC) {
-    this.entryCRC = entryCRC;
   }
 
   public String getDefaultFolderPath() {
     return defaultFolderPath;
   }
 
-  public void setDefaultFolderPath(String defaultFolderPath) {
-    this.defaultFolderPath = defaultFolderPath;
-  }
-
   public String getFileNameInZip() {
     return fileNameInZip;
-  }
-
-  /**
-   * Set the filename that will be used to include a file into the ZIP file to a different name
-   * that given by the source filename added to the ZIP file.  The filenameInZip must
-   * adhere to the ZIP filename specification, including the use of forward slash '/' as the
-   * directory separator, and it must also be a relative file.  If the filenameInZip given is not null and
-   * not empty, the value specified by setRootFolderNameInZip() will be ignored.
-   *
-   * @param fileNameInZip the filename to set in the ZIP. Use null or an empty String to set the default behavior
-   */
-   public void setFileNameInZip(String fileNameInZip) {
-    this.fileNameInZip = fileNameInZip;
   }
 
   /**
@@ -307,27 +237,8 @@ public void setEncryptFiles(boolean encryptFiles) {
     return overrideExistingFilesInZip;
   }
 
-  /**
-   * Set the behavior if a file is added that already exists in the ZIP.
-   * @param overrideExistingFilesInZip if true, remove the existing file in the ZIP; if false do not add the new file
-   */
-  public void setOverrideExistingFilesInZip(boolean overrideExistingFilesInZip) {
-    this.overrideExistingFilesInZip = overrideExistingFilesInZip;
-  }
-
   public String getRootFolderNameInZip() {
     return rootFolderNameInZip;
-  }
-
-  /**
-   * Set the folder name that will be prepended to the filename in the ZIP.  This value is ignored
-   * if setFileNameInZip() is specified with a non-null, non-empty string.
-   *
-   * @param rootFolderNameInZip the name of the folder to be prepended to the filename
-   * in the ZIP archive
-   */
-  public void setRootFolderNameInZip(String rootFolderNameInZip) {
-    this.rootFolderNameInZip = rootFolderNameInZip;
   }
 
   /**
@@ -339,27 +250,11 @@ public void setEncryptFiles(boolean encryptFiles) {
   }
 
   /**
-   * Set the file comment
-   * @param fileComment the file comment
-   */
-  public void setFileComment(String fileComment) {
-    this.fileComment = fileComment;
-  }
-
-  /**
    * Get the behavior when adding a symbolic link
    * @return the behavior when adding a symbolic link
    */
   public SymbolicLinkAction getSymbolicLinkAction() {
     return symbolicLinkAction;
-  }
-
-  /**
-   * Set the behavior when adding a symbolic link
-   * @param symbolicLinkAction the behavior when adding a symbolic link
-   */
-  public void setSymbolicLinkAction(SymbolicLinkAction symbolicLinkAction) {
-    this.symbolicLinkAction = symbolicLinkAction;
   }
 
   /**
@@ -371,14 +266,6 @@ public void setEncryptFiles(boolean encryptFiles) {
   }
 
   /**
-   * Set a filter to exclude any files from the list of files being added to zip. Mostly used when adding a folder
-   * to a zip, and if certain files have to be excluded from adding to the zip file.
-   */
-  public void setExcludeFileFilter(ExcludeFileFilter excludeFileFilter) {
-    this.excludeFileFilter = excludeFileFilter;
-  }
-
-  /**
    * Returns true if zip4j is using unix mode as default. Returns False otherwise.
    * @return true if zip4j is using unix mode as default, false otherwise
    */
@@ -386,11 +273,4 @@ public void setEncryptFiles(boolean encryptFiles) {
     return unixMode;
   }
 
-  /**
-   * When set to true, zip4j uses unix mode as default when generating file headers.
-   * @param unixMode
-   */
-  public void setUnixMode(boolean unixMode) {
-    this.unixMode = unixMode;
-  }
 }

@@ -76,28 +76,8 @@ public class ProgressMonitor {
     this.state = state;
   }
 
-  public long getTotalWork() {
-    return totalWork;
-  }
-
   public void setTotalWork(long totalWork) {
     this.totalWork = totalWork;
-  }
-
-  public long getWorkCompleted() {
-    return workCompleted;
-  }
-
-  public int getPercentDone() {
-    return percentDone;
-  }
-
-  public void setPercentDone(int percentDone) {
-    this.percentDone = percentDone;
-  }
-
-  public Task getCurrentTask() {
-    return currentTask;
   }
 
   public void setCurrentTask(Task currentTask) {
@@ -132,15 +112,4 @@ public class ProgressMonitor {
     return cancelAllTasks;
   }
 
-  public void setCancelAllTasks(boolean cancelAllTasks) {
-    this.cancelAllTasks = cancelAllTasks;
-  }
-
-  public boolean isPause() {
-    return pause;
-  }
-
-  public void setPause(boolean pause) {
-    this.pause = pause;
-  }
 }

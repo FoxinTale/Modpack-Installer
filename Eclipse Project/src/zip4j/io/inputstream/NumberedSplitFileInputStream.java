@@ -12,7 +12,7 @@ import java.io.RandomAccessFile;
  */
 public class NumberedSplitFileInputStream extends SplitFileInputStream {
 
-  private RandomAccessFile randomAccessFile;
+  private final RandomAccessFile randomAccessFile;
 
   public NumberedSplitFileInputStream(File zipFile) throws IOException {
     this.randomAccessFile = new NumberedSplitRandomAccessFile(zipFile, RandomAccessFileMode.READ.getValue());
