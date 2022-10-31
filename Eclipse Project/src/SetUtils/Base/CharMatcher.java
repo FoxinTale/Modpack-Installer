@@ -111,23 +111,6 @@ public abstract class CharMatcher implements Predicate<Character> {
         return new IsNot(match);
     }
 
-    public static CharMatcher anyOf(final CharSequence sequence) {
-        switch (sequence.length()) {
-            case 0:
-                return none();
-            case 1:
-                return is(sequence.charAt(0));
-            case 2:
-                return isEither(sequence.charAt(0), sequence.charAt(1));
-            default:
-                return new AnyOf(sequence);
-        }
-    }
-
-    public static CharMatcher noneOf(CharSequence sequence) {
-        return anyOf(sequence).negate();
-    }
-
     protected CharMatcher() {
     }
 
@@ -239,15 +222,6 @@ public abstract class CharMatcher implements Predicate<Character> {
     }
 
 
-    public int lastIndexIn(CharSequence sequence) {
-        for (int i = sequence.length() - 1; i >= 0; i--) {
-            if (matches(sequence.charAt(i))) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     public int countIn(CharSequence sequence) {
         int count = 0;
         for (int i = 0; i < sequence.length(); i++) {
@@ -256,34 +230,6 @@ public abstract class CharMatcher implements Predicate<Character> {
             }
         }
         return count;
-    }
-
-    public String removeFrom(CharSequence sequence) {
-        String string = sequence.toString();
-        int pos = indexIn(string);
-        if (pos == -1) {
-            return string;
-        }
-
-        char[] chars = string.toCharArray();
-        int spread = 1;
-
-        OUT:
-        while (true) {
-            pos++;
-            while (true) {
-                if (pos == chars.length) {
-                    break OUT;
-                }
-                if (matches(chars[pos])) {
-                    break;
-                }
-                chars[pos - spread] = chars[pos];
-                pos++;
-            }
-            spread++;
-        }
-        return new String(chars, 0, pos - spread);
     }
 
     public String replaceFrom(CharSequence sequence, char replacement) {
@@ -302,99 +248,6 @@ public abstract class CharMatcher implements Predicate<Character> {
         return new String(chars);
     }
 
-
-    public String replaceFrom(CharSequence sequence, CharSequence replacement) {
-        int replacementLen = replacement.length();
-        if (replacementLen == 0) {
-            return removeFrom(sequence);
-        }
-        if (replacementLen == 1) {
-            return replaceFrom(sequence, replacement.charAt(0));
-        }
-
-        String string = sequence.toString();
-        int pos = indexIn(string);
-        if (pos == -1) {
-            return string;
-        }
-
-        int len = string.length();
-        StringBuilder buf = new StringBuilder((len * 3 / 2) + 16);
-
-        int oldpos = 0;
-        do {
-            buf.append(string, oldpos, pos);
-            buf.append(replacement);
-            oldpos = pos + 1;
-            pos = indexIn(string, oldpos);
-        } while (pos != -1);
-
-        buf.append(string, oldpos, len);
-        return buf.toString();
-    }
-
-
-    public String collapseFrom(CharSequence sequence, char replacement) {
-        // This implementation avoids unnecessary allocation.
-        int len = sequence.length();
-        for (int i = 0; i < len; i++) {
-            char c = sequence.charAt(i);
-            if (matches(c)) {
-                if (c == replacement && (i == len - 1 || !matches(sequence.charAt(i + 1)))) {
-                    // a no-op replacement
-                    i++;
-                } else {
-                    StringBuilder builder = new StringBuilder(len).append(sequence, 0, i).append(replacement);
-                    return finishCollapseFrom(sequence, i + 1, len, replacement, builder, true);
-                }
-            }
-        }
-        // no replacement needed
-        return sequence.toString();
-    }
-
-
-    public String trimAndCollapseFrom(CharSequence sequence, char replacement) {
-        // This implementation avoids unnecessary allocation.
-        int len = sequence.length();
-        int first = 0;
-        int last = len - 1;
-
-        while (first < len && matches(sequence.charAt(first))) {
-            first++;
-        }
-
-        while (last > first && matches(sequence.charAt(last))) {
-            last--;
-        }
-
-        return (first == 0 && last == len - 1)
-                ? collapseFrom(sequence, replacement)
-                : finishCollapseFrom(
-                sequence, first, last + 1, replacement, new StringBuilder(last + 1 - first), false);
-    }
-
-    private String finishCollapseFrom(
-            CharSequence sequence,
-            int start,
-            int end,
-            char replacement,
-            StringBuilder builder,
-            boolean inMatchingGroup) {
-        for (int i = start; i < end; i++) {
-            char c = sequence.charAt(i);
-            if (matches(c)) {
-                if (!inMatchingGroup) {
-                    builder.append(replacement);
-                    inMatchingGroup = true;
-                }
-            } else {
-                builder.append(c);
-                inMatchingGroup = false;
-            }
-        }
-        return builder.toString();
-    }
 
     @Deprecated
     @Override
@@ -512,11 +365,6 @@ public abstract class CharMatcher implements Predicate<Character> {
         }
 
         @Override
-        public int lastIndexIn(CharSequence sequence) {
-            return sequence.length() - 1;
-        }
-
-        @Override
         public boolean matchesAllOf(CharSequence sequence) {
             Preconditions.checkNotNull(sequence);
             return true;
@@ -528,26 +376,10 @@ public abstract class CharMatcher implements Predicate<Character> {
         }
 
         @Override
-        public String removeFrom(CharSequence sequence) {
-            Preconditions.checkNotNull(sequence);
-            return "";
-        }
-
-        @Override
         public String replaceFrom(CharSequence sequence, char replacement) {
             char[] array = new char[sequence.length()];
             Arrays.fill(array, replacement);
             return new String(array);
-        }
-
-        @Override
-        public String replaceFrom(CharSequence sequence, CharSequence replacement) {
-            return String.valueOf(replacement).repeat(Math.max(0, sequence.length()));
-        }
-
-        @Override
-        public String collapseFrom(CharSequence sequence, char replacement) {
-            return (sequence.length() == 0) ? "" : String.valueOf(replacement);
         }
 
         @Override
@@ -599,12 +431,6 @@ public abstract class CharMatcher implements Predicate<Character> {
         }
 
         @Override
-        public int lastIndexIn(CharSequence sequence) {
-            Preconditions.checkNotNull(sequence);
-            return -1;
-        }
-
-        @Override
         public boolean matchesAllOf(CharSequence sequence) {
             return sequence.length() == 0;
         }
@@ -616,23 +442,7 @@ public abstract class CharMatcher implements Predicate<Character> {
         }
 
         @Override
-        public String removeFrom(CharSequence sequence) {
-            return sequence.toString();
-        }
-
-        @Override
         public String replaceFrom(CharSequence sequence, char replacement) {
-            return sequence.toString();
-        }
-
-        @Override
-        public String replaceFrom(CharSequence sequence, CharSequence replacement) {
-            Preconditions.checkNotNull(replacement);
-            return sequence.toString();
-        }
-
-        @Override
-        public String collapseFrom(CharSequence sequence, char replacement) {
             return sequence.toString();
         }
 
@@ -1045,39 +855,6 @@ public abstract class CharMatcher implements Predicate<Character> {
         @Override
         public String toString() {
             return "CharMatcher.anyOf(\"" + showCharacter(match1) + showCharacter(match2) + "\")";
-        }
-    }
-
-    private static final class AnyOf extends CharMatcher {
-
-        private final char[] chars;
-
-        public AnyOf(CharSequence chars) {
-            this.chars = chars.toString().toCharArray();
-            Arrays.sort(this.chars);
-        }
-
-        @Override
-        public boolean matches(char c) {
-            return Arrays.binarySearch(chars, c) >= 0;
-        }
-
-        @Override
-        @GwtIncompatible
-        void setBits(BitSet table) {
-            for (char c : chars) {
-                table.set(c);
-            }
-        }
-
-        @Override
-        public String toString() {
-            StringBuilder description = new StringBuilder("CharMatcher.anyOf(\"");
-            for (char c : chars) {
-                description.append(showCharacter(c));
-            }
-            description.append("\")");
-            return description.toString();
         }
     }
 

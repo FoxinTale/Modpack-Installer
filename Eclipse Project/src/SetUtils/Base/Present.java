@@ -12,11 +12,6 @@ final class Present<T> extends Optional<T> {
     }
 
     @Override
-    public boolean isPresent() {
-        return true;
-    }
-
-    @Override
     public T get() {
         return reference;
     }
@@ -36,11 +31,6 @@ final class Present<T> extends Optional<T> {
     @Override
     public T or(Supplier<? extends T> supplier) {
         Preconditions.checkNotNull(supplier);
-        return reference;
-    }
-
-    @Override
-    public T orNull() {
         return reference;
     }
 

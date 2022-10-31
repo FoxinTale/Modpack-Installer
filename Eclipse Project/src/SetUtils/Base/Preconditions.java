@@ -10,12 +10,6 @@ public final class Preconditions {
     private Preconditions() {
     }
 
-    public static void checkArgument(boolean b, @Nullable String errorMessageTemplate, int p1) {
-        if (!b) {
-            throw new IllegalArgumentException(Strings.lenientFormat(errorMessageTemplate, p1));
-        }
-    }
-
     public static void checkState(boolean expression) {
         if (!expression) {
             throw new IllegalStateException();

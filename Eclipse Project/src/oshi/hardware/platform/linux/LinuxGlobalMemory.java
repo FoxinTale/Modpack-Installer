@@ -16,9 +16,6 @@ import java.util.List;
  * Memory obtained by /proc/meminfo and sysinfo.totalram
  */
 public class LinuxGlobalMemory extends AbstractGlobalMemory {
-
-
-
     private static final Logger LOG = LoggerFactory.getLogger(LinuxGlobalMemory.class);
 
     /**

@@ -25,78 +25,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Modpack-Installer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modpack-Installer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/IMarkerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/IMarkerFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/Logger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/LoggerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/LoggerFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/LoggerFactoryFriend.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/MDC$MDCCloseable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/MDC.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/MDC.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/Marker.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/Marker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/MarkerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/MarkerFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/DefaultLoggingEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/event/DefaultLoggingEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/EventConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/event/EventConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/EventRecordingLogger.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/event/EventRecordingLogger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/KeyValuePair.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/event/KeyValuePair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/LoggingEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/event/LoggingEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/SubstituteLoggingEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/event/SubstituteLoggingEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/AbstractLogger.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/AbstractLogger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMDCAdapter$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMDCAdapter$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMDCAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMDCAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMarkerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMarkerFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/FormattingTuple.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/FormattingTuple.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/MessageFormatter.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/MessageFormatter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NOPLogger.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/NOPLogger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NOPMDCAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/NOPMDCAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NamedLoggerBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/NamedLoggerBase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NormalizedParameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/NormalizedParameters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/SubstituteLogger.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/SubstituteLogger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/SubstituteLoggerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/SubstituteLoggerFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/ThreadLocalMapOfStacks.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/ThreadLocalMapOfStacks.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/Util.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/Util.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/DefaultLoggingEventBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/DefaultLoggingEventBuilder$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/DefaultLoggingEventBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/DefaultLoggingEventBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/LoggerFactoryBinder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/LoggerFactoryBinder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/LoggingEventBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/LoggingEventBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/MDCAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/MDCAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/MarkerFactoryBinder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/MarkerFactoryBinder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/NOPLoggingEventBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/NOPLoggingEventBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/ILoggerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/ILoggerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/IMarkerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/IMarkerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/LoggerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/LoggerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/LoggerFactoryFriend.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/MDC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/MDC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/Marker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/Marker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/MarkerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/MarkerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/event/DefaultLoggingEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/event/DefaultLoggingEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/event/EventConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/event/EventConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/event/EventRecordingLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/event/EventRecordingLogger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/event/KeyValuePair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/event/KeyValuePair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/event/LoggingEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/event/LoggingEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/event/SubstituteLoggingEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/event/SubstituteLoggingEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/AbstractLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/AbstractLogger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/BasicMDCAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/BasicMDCAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/BasicMarkerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/BasicMarkerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/FormattingTuple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/FormattingTuple.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/MessageFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/MessageFormatter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/NOPLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/NOPLogger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/NOPMDCAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/NOPMDCAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/NamedLoggerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/NamedLoggerBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/NormalizedParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/NormalizedParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/SubstituteLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/SubstituteLogger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/SubstituteLoggerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/SubstituteLoggerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/ThreadLocalMapOfStacks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/ThreadLocalMapOfStacks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/CallerBoundaryAware.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/CallerBoundaryAware.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/DefaultLoggingEventBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/DefaultLoggingEventBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/LocationAwareLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/LocationAwareLogger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/LoggerFactoryBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/LoggerFactoryBinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/LoggingEventBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/LoggingEventBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/MDCAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/MDCAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/MarkerFactoryBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/MarkerFactoryBinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/NOPLoggingEventBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/NOPLoggingEventBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/SLF4JServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/SLF4JServiceProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/Absent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$And.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$And.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$Any.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$Any.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$AnyOf.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$BitSetMatcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$BitSetMatcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$Digit.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$Digit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$FastMatcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$FastMatcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$Invisible.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$Invisible.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$Is.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$Is.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$IsEither.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$IsEither.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$IsNot.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$IsNot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$JavaDigit.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$JavaDigit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$JavaLetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$JavaLetter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$JavaLetterOrDigit.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$JavaLetterOrDigit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$JavaLowerCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$JavaLowerCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$JavaUpperCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$JavaUpperCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$NamedFastMatcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$NamedFastMatcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$Negated.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$Negated.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$NegatedFastMatcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$NegatedFastMatcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$None.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$None.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$Or.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$Or.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$RangesMatcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$RangesMatcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$SingleWidth.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher$SingleWidth.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/CharMatcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/Converter$ConverterComposition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/Converter$FunctionBasedConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/Converter$FunctionBasedConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/Converter$ReverseConverter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/Converter.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/Converter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/Optional$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/Optional.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/Optional.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/Preconditions.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/Preconditions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/Present.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/Present.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SetUtils/Base/Strings.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SetUtils/Base/Strings.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/JsonKey.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/platform/linux/LinuxGlobalMemory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/oshi/hardware/platform/linux/LinuxGlobalMemory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SetUtils/Base/Absent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SetUtils/Base/CharMatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SetUtils/Base/CharMatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SetUtils/Base/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SetUtils/Base/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SetUtils/Base/Optional.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SetUtils/Base/Optional.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SetUtils/Base/Preconditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SetUtils/Base/Preconditions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SetUtils/Base/Present.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SetUtils/Base/Present.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SetUtils/Base/Strings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SetUtils/Base/Strings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json_simple/JsonKey.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxGlobalMemory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +106,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;last_opened_file_path&quot;: &quot;F:/Java Libraries/slf4j-nop-2.0.3.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Java Libraries/jna-jpms-5.12.1.jar&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;

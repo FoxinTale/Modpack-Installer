@@ -89,6 +89,7 @@ public class GUI {
         downloadOption.setBackground(rbc);
 
         //Setting the location of each element.
+        downloadPanel.setToolTipText("If you want to download just the full zip to install it yourself, or import.");
         scroll.setBounds(30, 20, 400, 200);
         modpackOne.setBounds(120, 235, 200, 15);
         modpackPanel.setBounds(115, 230, 250, 25);
