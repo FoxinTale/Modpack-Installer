@@ -1,17 +1,13 @@
 package oshi.data.windows;
 
-import com.sun.jna.platform.win32.COM.Wbemcli;
 import com.sun.jna.platform.win32.COM.WbemcliUtil.WmiQuery;
-import com.sun.jna.platform.win32.COM.WbemcliUtil.WmiResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import oshi.util.platform.windows.PerfDataUtil;
 import oshi.util.platform.windows.PerfDataUtil.PerfCounter;
 import oshi.util.platform.windows.WmiQueryHandler;
-import oshi.util.platform.windows.WmiUtil;
 
 import java.util.EnumMap;
-import java.util.Map;
 
 public class PerfCounterQuery<T extends Enum<T>> {
 
@@ -38,25 +34,6 @@ public class PerfCounterQuery<T extends Enum<T>> {
      */
     public static final String TOTAL_INSTANCE = "_Total";
 
-
-    /**
-     * Construct a new object to hold performance counter data source and
-     * results
-     * 
-     * @param propertyEnum
-     *            An enum which implements {@link PdhCounterProperty} and
-     *            contains the WMI field (Enum value) and PDH Counter string
-     *            (instance and counter)
-     * @param perfObject
-     *            The PDH object for this counter; all counters on this object
-     *            will be refreshed at the same time
-     * @param perfWmiClass
-     *            The WMI PerfData_RawData_* class corresponding to the PDH
-     *            object
-     */
-    public PerfCounterQuery(Class<T> propertyEnum, String perfObject, String perfWmiClass) {
-        this(propertyEnum, perfObject, perfWmiClass, perfObject);
-    }
 
     /**
      * Construct a new object to hold performance counter data source and
@@ -156,65 +133,6 @@ public class PerfCounterQuery<T extends Enum<T>> {
      */
     protected void unInitWmiCounters() {
         this.counterQuery = null;
-    }
-
-    /**
-     * Query the current data source (PDH or WMI) for the Performance Counter
-     * values corresponding to the property enum.
-     * 
-     * @return A map of the values by the counter enum.
-     */
-    public Map<T, Long> queryValues() {
-        EnumMap<T, Long> valueMap = new EnumMap<>(propertyEnum);
-        T[] props = this.propertyEnum.getEnumConstants();
-        if (source.equals(CounterDataSource.PDH)) {
-            // Set up the query and counter handles, and query
-            if (initPdhCounters() && queryPdh(valueMap, props)) {
-                // If both init and query return true, then valueMap contains
-                // the results. Release the handles.
-                unInitPdhCounters();
-            } else {
-                // If either init or query failed, switch to WMI
-                setDataSource(CounterDataSource.WMI);
-            }
-        }
-        if (source.equals(CounterDataSource.WMI)) {
-            queryWmi(valueMap, props);
-        }
-        return valueMap;
-    }
-
-    private boolean queryPdh(Map<T, Long> valueMap, T[] props) {
-        if (counterMap != null && 0 < pdhQueryHandler.updateQuery(this.queryKey)) {
-            for (T prop : props) {
-                valueMap.put(prop, pdhQueryHandler.queryCounter(counterMap.get(prop)));
-            }
-            return true;
-        }
-        // Zero timestamp means update failed after muliple
-        // attempts; fallback to WMI
-        return false;
-    }
-
-    private void queryWmi(Map<T, Long> valueMap, T[] props) {
-        WmiResult<T> result = wmiQueryHandler.queryWMI(this.counterQuery);
-        if (result.getResultCount() > 0) {
-            for (T prop : props) {
-                switch (result.getCIMType(prop)) {
-                case Wbemcli.CIM_UINT16:
-                    valueMap.put(prop, (long) WmiUtil.getUint16(result, prop, 0));
-                    break;
-                case Wbemcli.CIM_UINT32:
-                    valueMap.put(prop, WmiUtil.getUint32asLong(result, prop, 0));
-                    break;
-                case Wbemcli.CIM_UINT64:
-                    valueMap.put(prop, WmiUtil.getUint64(result, prop, 0));
-                    break;
-                default:
-                    throw new ClassCastException("Unimplemented CIM Type Mapping.");
-                }
-            }
-        }
     }
 
     /**

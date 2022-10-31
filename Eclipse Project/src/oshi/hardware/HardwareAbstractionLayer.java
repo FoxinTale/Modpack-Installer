@@ -16,5 +16,4 @@ public interface HardwareAbstractionLayer extends Serializable {
      * @return A memory object.
      */
     GlobalMemory getMemory();
-
 }

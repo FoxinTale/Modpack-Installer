@@ -80,45 +80,6 @@ public class PerfCounterQueryHandler {
     }
 
     /**
-     * Stop monitoring a Performance Data counter, attached to a query whose key
-     * is the counter's object.
-     *
-     * @param counter
-     *            A PerfCounter object
-     * @return True if the counter was successfully removed.
-     */
-    public boolean removeCounterFromQuery(PerfCounter counter) {
-        return removeCounterFromQuery(counter, counter.getObject());
-    }
-
-    /**
-     * Stop monitoring a Performance Data counter, attached to a query whose key
-     * is the specified string..
-     *
-     * @param counter
-     *            A PerfCounter object
-     * @param key
-     *            A string used as the key for the query. All counters with this
-     *            key will be updated when any single counter is updated.
-     * @return True if the counter was successfully removed.
-     */
-    public boolean removeCounterFromQuery(PerfCounter counter, String key) {
-        HANDLEByReference href = counterHandleMap.remove(counter);
-        // null if handle wasn't present
-        boolean success = false;
-        if (href != null) {
-            success = PerfDataUtil.removeCounter(href);
-        }
-        List<PerfCounter> counterList = queryCounterMap.get(key);
-        // null if list wasn't present
-        if (counterList != null && counterList.remove(counter) && counterList.isEmpty()) {
-            queryCounterMap.remove(key);
-            PerfDataUtil.closeQuery(queryHandleMap.remove(key));
-        }
-        return success;
-    }
-
-    /**
      * Stop monitoring Performance Data counters for a particular queryKey and
      * release their resources
      *

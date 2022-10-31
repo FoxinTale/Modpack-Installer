@@ -39,9 +39,9 @@ public class Strings {
 
 
     // Checking the existence of Vanilla Minecraft and Modded.
-    static String noVanillaMessage = "Please run Vanilla Minecraft 1.7.10 at least once before continuing.";
+    static String noVanillaMessage = "Please run Vanilla Minecraft 1.16.5 at least once before continuing.";
     static String noVanillaTitle = "Vanilla not Found";
-    static String noModsMessage = "Please install the latest version of Forge for 1.7.10 before continuing!";
+    static String noModsMessage = "Please install the latest version of Forge for 1.16.5 before continuing!";
     static String noModsTitle = "Forge not Found";
 
 

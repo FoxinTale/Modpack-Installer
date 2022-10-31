@@ -26,60 +26,32 @@
   <component name="ChangeListManager">
     <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Modpack-Installer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/ZipFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/ZipFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/AESDecrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/AESDecrypter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/AESEncrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/AESEncrypter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/Decrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/Decrypter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/Encrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/Encrypter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/StandardDecrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/StandardDecrypter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/StandardEncrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/StandardEncrypter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/engine/AESEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/engine/AESEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/headers/HeaderReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/headers/HeaderReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/headers/HeaderSignature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/headers/HeaderSignature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/AesCipherInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/AesCipherInputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/CipherInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/CipherInputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/DecompressedInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/DecompressedInputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/InflaterInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/InflaterInputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/NoCipherInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/NoCipherInputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/NumberedSplitFileInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/NumberedSplitFileInputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/NumberedSplitRandomAccessFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/NumberedSplitRandomAccessFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/ZipEntryInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/ZipEntryInputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/ZipInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/ZipInputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/inputstream/ZipStandardSplitFileInputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/inputstream/ZipStandardSplitFileInputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/AesCipherOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/AesCipherOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/CipherOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/CipherOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/CompressedOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/CompressedOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/CountingOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/CountingOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/DeflaterOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/DeflaterOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/NoCipherOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/NoCipherOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/SplitOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/SplitOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/ZipEntryOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/ZipEntryOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/io/outputstream/ZipOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/io/outputstream/ZipOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/AbstractFileHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/AbstractFileHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/ArchiveExtraDataRecord.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/CentralDirectory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/CentralDirectory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/DigitalSignature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/DigitalSignature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/EndOfCentralDirectoryRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/EndOfCentralDirectoryRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/FileHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/FileHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/LocalFileHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/LocalFileHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/UnzipParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/UnzipParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/Zip64EndOfCentralDirectoryRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/Zip64EndOfCentralDirectoryRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/ZipModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/ZipModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/ZipParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/ZipParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/enums/AesKeyStrength.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/enums/AesKeyStrength.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/enums/AesVersion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/enums/AesVersion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/model/enums/CompressionMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/model/enums/CompressionMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/progress/ProgressMonitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/progress/ProgressMonitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/AbstractAddFileToZipTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/AbstractAddFileToZipTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/AddFilesToZipTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/AddFolderToZipTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/ExtractFileTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/ExtractFileTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/MergeSplitZipFileTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/tasks/MergeSplitZipFileTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/RenameFilesTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/tasks/SetCommentTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/util/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/util/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/util/InternalZipConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/util/InternalZipConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/util/UnzipUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/util/UnzipUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Common.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Common.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Strings.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Strings.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SetUtils/Sets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SetUtils/Sets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Strings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterQueryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterWildcardQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterWildcardQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/HardwareAbstractionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/HardwareAbstractionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/VirtualMemory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractHardwareAbstractionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractHardwareAbstractionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/common/AbstractVirtualMemory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxGlobalMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxHardwareAbstractionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxHardwareAbstractionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxVirtualMemory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacGlobalMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/mac/MacVirtualMemory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdVirtualMemory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/solaris/SolarisVirtualMemory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsGlobalMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsVirtualMemory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/jna/platform/mac/CoreFoundation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/jna/platform/mac/CoreFoundation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/jna/platform/mac/SystemB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/jna/platform/windows/PowrProf.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/OSProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/OSProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/OSUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/OSUser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

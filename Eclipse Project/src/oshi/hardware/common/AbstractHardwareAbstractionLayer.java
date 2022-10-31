@@ -11,6 +11,4 @@ public abstract class AbstractHardwareAbstractionLayer implements HardwareAbstra
 
     private static final long serialVersionUID = 1L;
     protected GlobalMemory memory;
-
-
 }

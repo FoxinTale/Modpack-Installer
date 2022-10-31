@@ -128,34 +128,6 @@ public class OSProcess implements Serializable {
         return this.userID;
     }
 
-    /**
-     * @return Returns the group.
-     *
-     *         On Windows systems, populating this value for processes other
-     *         than the current user requires administrative privileges (and
-     *         still may fail for some system processes) and can incur
-     *         significant latency. The value is only calculated for single
-     *         process queries using {@link OperatingSystem#getProcess(int)}.
-     *         When successful, returns a comma-delimited list of groups with
-     *         access to this process, corresponding to the SIDs in
-     *         {@link #getGroupID()}.
-     */
-    public String getGroup() {
-        return this.group;
-    }
-
-    /**
-     * @return Returns the groupID.
-     *
-     *         On Windows systems, populating this value for processes other
-     *         than the current user requires administrative privileges (and
-     *         still may fail for some system processes) and can incur
-     *         significant latency. The value is only calculated for single
-     *         process queries using {@link OperatingSystem#getProcess(int)}.
-     *         When successful, returns a comma-delimited list of group SIDs
-     *         with access to this process, corresponding to the names in
-     *         {@link #getGroup()}.
-     */
     public String getGroupID() {
         return this.groupID;
     }
@@ -179,15 +151,6 @@ public class OSProcess implements Serializable {
      */
     public int getParentProcessID() {
         return this.parentProcessID;
-    }
-
-    /**
-     * @return Returns the Virtual Memory Size (VSZ). It includes all memory
-     *         that the process can access, including memory that is swapped out
-     *         and memory that is from shared libraries.
-     */
-    public long getVirtualSize() {
-        return this.virtualSize;
     }
 
     /**
@@ -473,19 +436,6 @@ public class OSProcess implements Serializable {
      */
     public void setOpenFiles(long count) {
         this.openFiles = count;
-    }
-
-    /**
-     * Sets the number of open file handles (or network connections) that
-     * belongs to the process
-     *
-     * On FreeBSD and Solaris, this value is only populated if information for a
-     * single process id is requested.
-     *
-     * @return open files or -1 if unknown or not supported
-     */
-    public long getOpenFiles() {
-        return this.openFiles;
     }
 
     /**

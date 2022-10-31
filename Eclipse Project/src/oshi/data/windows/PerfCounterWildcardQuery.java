@@ -149,16 +149,6 @@ public class PerfCounterWildcardQuery<T extends Enum<T>> extends PerfCounterQuer
     }
 
     /**
-     * This method is not implemented on this class.
-     * 
-     * @see #queryValuesWildcard
-     */
-    @Override
-    public Map<T, Long> queryValues() {
-        throw new UnsupportedOperationException("Use queryValuesWildcard() on this class.");
-    }
-
-    /**
      * Query the current data source (PDH or WMI) for the Performance Counter
      * values corresponding to the property enum.
      * 
@@ -234,16 +224,6 @@ public class PerfCounterWildcardQuery<T extends Enum<T>> extends PerfCounterQuer
                 valueMap.put(prop, values);
             }
         }
-    }
-
-    /**
-     * List the instances corresponding to the value map lists
-     * 
-     * @return A list of the in the order they are returned in the value map
-     *         query
-     */
-    public List<String> getInstancesFromLastQuery() {
-        return this.instancesFromLastQuery;
     }
 
     private boolean fillCounterListMap() {
