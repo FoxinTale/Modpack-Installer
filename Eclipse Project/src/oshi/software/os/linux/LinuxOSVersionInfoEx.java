@@ -1,7 +1,7 @@
 package oshi.software.os.linux;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import slf4j.Logger;
+import slf4j.LoggerFactory;
 import oshi.software.common.AbstractOSVersionInfoEx;
 import oshi.util.ExecutingCommand;
 import oshi.util.FileUtil;

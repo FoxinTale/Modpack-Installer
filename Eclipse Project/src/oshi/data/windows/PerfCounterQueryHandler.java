@@ -1,8 +1,8 @@
 package oshi.data.windows;
 
 import com.sun.jna.platform.win32.WinNT.HANDLEByReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import slf4j.Logger;
+import slf4j.LoggerFactory;
 import oshi.util.FormatUtil;
 import oshi.util.platform.windows.PerfDataUtil;
 import oshi.util.platform.windows.PerfDataUtil.PerfCounter;

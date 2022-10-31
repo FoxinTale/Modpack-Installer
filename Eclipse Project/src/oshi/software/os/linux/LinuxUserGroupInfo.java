@@ -53,7 +53,7 @@ public class LinuxUserGroupInfo {
                 // we use the first one
                 if (!this.usersIdMap.containsKey(uid)) {
                     OSUser user = new OSUser();
-                    user.setUserId(uid);
+                    user.setUserId();
                     user.setUserName(userName);
                     this.usersIdMap.put(uid, user);
                 }

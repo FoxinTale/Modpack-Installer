@@ -2,8 +2,8 @@ package oshi.software.os.linux;
 
 import com.sun.jna.Native;
 import com.sun.jna.platform.linux.LibC;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import slf4j.Logger;
+import slf4j.LoggerFactory;
 import oshi.software.os.FileSystem;
 import oshi.software.os.OSFileStore;
 import oshi.util.FileUtil;

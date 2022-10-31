@@ -27,15 +27,11 @@ public class OSProcess implements Serializable {
     private int parentProcessID;
     private int threadCount;
     private int priority;
-    private long virtualSize;
     private long residentSetSize;
     private long kernelTime;
     private long userTime;
     private long startTime;
     private long upTime;
-    private long bytesRead;
-    private long bytesWritten;
-    private long openFiles;
     // cache calculation for sorting
     private transient double cpuPercent = -1d;
 
@@ -322,7 +318,7 @@ public class OSProcess implements Serializable {
      * For Linux, priority is a value in the range -20 to 19 (20 on some
      * systems). The default priority is 0; lower priorities cause more
      * favorable scheduling.
-     *
+     * <p>
      * For Windows, priority values can range from 0 (lowest priority) to 31
      * (highest priority).
      *
@@ -349,7 +345,6 @@ public class OSProcess implements Serializable {
      *            virtual size
      */
     public void setVirtualSize(long virtualSize) {
-        this.virtualSize = virtualSize;
     }
 
     /**
@@ -414,7 +409,6 @@ public class OSProcess implements Serializable {
      *            number of bytes read
      */
     public void setBytesRead(long bytesRead) {
-        this.bytesRead = bytesRead;
     }
 
     /**
@@ -424,7 +418,6 @@ public class OSProcess implements Serializable {
      *            number of bytes written
      */
     public void setBytesWritten(long bytesWritten) {
-        this.bytesWritten = bytesWritten;
     }
 
     /**
@@ -435,7 +428,6 @@ public class OSProcess implements Serializable {
      *            The number of handles
      */
     public void setOpenFiles(long count) {
-        this.openFiles = count;
     }
 
     /**
@@ -456,10 +448,9 @@ public class OSProcess implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("OSProcess@");
-        builder.append(Integer.toHexString(hashCode()));
-        builder.append("[processID=").append(this.processID);
-        builder.append(", name=").append(this.name).append(']');
-        return builder.toString();
+        String builder = "OSProcess@" + Integer.toHexString(hashCode()) +
+                "[processID=" + this.processID +
+                ", name=" + this.name + ']';
+        return builder;
     }
 }

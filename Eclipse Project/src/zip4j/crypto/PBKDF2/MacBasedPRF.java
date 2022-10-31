@@ -29,9 +29,9 @@ import java.security.NoSuchAlgorithmException;
  */
 
 public class MacBasedPRF implements PRF {
-  private Mac mac;
-  private int hLen;
-  private String macAlgorithm;
+  private final Mac mac;
+  private final int hLen;
+  private final String macAlgorithm;
 
   public MacBasedPRF(String macAlgorithm) {
     this.macAlgorithm = macAlgorithm;

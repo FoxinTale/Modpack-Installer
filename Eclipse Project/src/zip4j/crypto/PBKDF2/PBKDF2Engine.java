@@ -10,7 +10,7 @@ import static zip4j.util.Zip4jUtil.convertCharArrayToByteArray;
 
 public class PBKDF2Engine {
 
-  private PBKDF2Parameters parameters;
+  private final PBKDF2Parameters parameters;
   private PRF prf;
 
   public PBKDF2Engine(PBKDF2Parameters parameters) {
@@ -104,15 +104,4 @@ public class PBKDF2Engine {
     dest[offset + 3] = (byte) (i);
   }
 
-  public PBKDF2Parameters getParameters() {
-    return parameters;
-  }
-
-  public void setParameters(PBKDF2Parameters parameters) {
-    this.parameters = parameters;
-  }
-
-  public void setPseudoRandomFunction(PRF prf) {
-    this.prf = prf;
-  }
 }
