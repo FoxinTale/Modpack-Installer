@@ -37,9 +37,7 @@ public final class LoggerFactory {
     static final String NO_PROVIDERS_URL = CODES_PREFIX + "#noProviders";
     static final String IGNORED_BINDINGS_URL = CODES_PREFIX + "#ignoredBindings";
 
-    static final String NO_STATICLOGGERBINDER_URL = CODES_PREFIX + "#StaticLoggerBinder";
     static final String MULTIPLE_BINDINGS_URL = CODES_PREFIX + "#multiple_bindings";
-    static final String NULL_LF_URL = CODES_PREFIX + "#null_LF";
     static final String VERSION_MISMATCH = CODES_PREFIX + "#version_mismatch";
     static final String SUBSTITUTE_LOGGER_URL = CODES_PREFIX + "#substituteLogger";
     static final String LOGGER_NAME_MISMATCH_URL = CODES_PREFIX + "#loggerNameMismatch";
@@ -61,7 +59,6 @@ public final class LoggerFactory {
 
     // Support for detecting mismatched logger names.
     static final String DETECT_LOGGER_NAME_MISMATCH_PROPERTY = "slf4j.detectLoggerNameMismatch";
-    static final String JAVA_VENDOR_PROPERTY = "java.vendor.url";
 
     static boolean DETECT_LOGGER_NAME_MISMATCH = Util.safeGetBooleanSystemProperty(DETECT_LOGGER_NAME_MISMATCH_PROPERTY);
 
@@ -89,29 +86,14 @@ public final class LoggerFactory {
     private LoggerFactory() {
     }
 
-    /**
-     * Force LoggerFactory to consider itself uninitialized.
-     * <p>
-     * <p>
-     * This method is intended to be called by classes (in the same package) for
-     * testing purposes. This method is internal. It can be modified, renamed or
-     * removed at any time without notice.
-     * <p>
-     * <p>
-     * You are strongly discouraged from calling this method in production code.
-     */
-    static void reset() {
-        INITIALIZATION_STATE = UNINITIALIZED;
-    }
-
-    private final static void performInitialization() {
+    private static void performInitialization() {
         bind();
         if (INITIALIZATION_STATE == SUCCESSFUL_INITIALIZATION) {
             versionSanityCheck();
         }
     }
 
-    private final static void bind() {
+    private static void bind() {
         try {
             List<SLF4JServiceProvider> providersList = findServiceProviders();
             reportMultipleBindingAmbiguity(providersList);
@@ -262,7 +244,7 @@ public final class LoggerFactory {
         Util.report("See also " + REPLAY_URL);
     }
 
-    private final static void versionSanityCheck() {
+    private static void versionSanityCheck() {
         try {
             String requested = PROVIDER.getRequestedApiVersion();
 

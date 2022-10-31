@@ -1,7 +1,5 @@
 package slf4j.spi;
 
-import slf4j.Marker;
-
 import java.util.function.Supplier;
 
 /**
@@ -23,36 +21,6 @@ public class NOPLoggingEventBuilder implements LoggingEventBuilder {
     }
     public static LoggingEventBuilder singleton() {
         return SINGLETON;
-    }
-
-    @Override
-    public LoggingEventBuilder addMarker(Marker marker) {
-        return singleton();
-    }
-
-    @Override
-    public LoggingEventBuilder addArgument(Object p) {
-        return singleton();
-    }
-
-    @Override
-    public LoggingEventBuilder addArgument(Supplier<?> objectSupplier) {
-        return singleton();
-    }
-
-    @Override
-    public LoggingEventBuilder addKeyValue(String key, Object value) {
-        return singleton();
-    }
-
-    @Override
-    public LoggingEventBuilder addKeyValue(String key, Supplier<Object> value) {
-        return singleton();
-    }
-
-    @Override
-    public LoggingEventBuilder setCause(Throwable cause) {
-        return singleton();
     }
 
     @Override

@@ -54,13 +54,13 @@ public interface Logger {
      *
      * @since 1.3
      */
-    final public String ROOT_LOGGER_NAME = "ROOT";
+    String ROOT_LOGGER_NAME = "ROOT";
 
     /**
      * Return the name of this <code>Logger</code> instance.
      * @return name of this logger instance 
      */
-    public String getName();
+    String getName();
 
     /**
      * <p>Make a new {@link LoggingEventBuilder} instance as appropriate for this logger implementation.
@@ -74,7 +74,7 @@ public interface Logger {
      * @return a new {@link LoggingEventBuilder} instance as appropriate for this logger
      * @since 2.0
      */
-    default public LoggingEventBuilder makeLoggingEventBuilder(Level level) {
+    default LoggingEventBuilder makeLoggingEventBuilder(Level level) {
         return new DefaultLoggingEventBuilder(this, level);
     }
 
@@ -83,12 +83,11 @@ public interface Logger {
      * desired {@link Level} passed as parameter. If this Logger is disabled for the given Level, then
      * a {@link  NOPLoggingEventBuilder} is returned.
      *
-     *
      * @param level desired level for the event builder
      * @return a new {@link LoggingEventBuilder} instance as appropriate for this logger
      * @since 2.0
      */
-    default public LoggingEventBuilder atLevel(Level level) {
+    default LoggingEventBuilder atLevel(Level level) {
         if (isEnabledForLevel(level)) {
             return makeLoggingEventBuilder(level);
         } else {
@@ -101,10 +100,9 @@ public interface Logger {
     /**
      * Returns whether this Logger is enabled for a given {@link Level}. 
      * 
-     * @param level
      * @return true if enabled, false otherwise.
      */
-    default public boolean isEnabledForLevel(Level level) {
+    default boolean isEnabledForLevel(Level level) {
         int levelInt = level.toInt();
         switch (levelInt) {
         case (TRACE_INT):
@@ -808,7 +806,7 @@ public interface Logger {
      * @param format    the format string
      * @param arguments a list of 3 or more arguments
      */
-    public void error(Marker marker, String format, Object... arguments);
+    void error(Marker marker, String format, Object... arguments);
 
     /**
      * This method is similar to {@link #error(String, Throwable)}
@@ -819,7 +817,7 @@ public interface Logger {
      * @param msg    the message accompanying the exception
      * @param t      the exception (throwable) to log
      */
-    public void error(Marker marker, String msg, Throwable t);
+    void error(Marker marker, String msg, Throwable t);
 
     /**
      * Entry point for fluent-logging for {@link slf4j.event.Level#ERROR} level.

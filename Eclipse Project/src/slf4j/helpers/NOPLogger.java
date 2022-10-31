@@ -18,8 +18,7 @@ public class NOPLogger extends NamedLoggerBase implements Logger {
     public static final NOPLogger NOP_LOGGER = new NOPLogger();
 
     /**
-     * There is no point in creating multiple instances of NOPLogger. 
-     * 
+     * There is no point in creating multiple instances of NOPLogger.
      * The present constructor should be "private" but we are leaving it as "protected" for compatibility.
      */
     protected NOPLogger() {

@@ -25,52 +25,78 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/slf4j/ILoggerFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/slf4j/IMarkerFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/slf4j/Logger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/slf4j/LoggerFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/slf4j/LoggerFactoryFriend.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/slf4j/MDC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/slf4j/Marker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/slf4j/MarkerFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/slf4j/nop/NOPServiceProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modpack-Installer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modpack-Installer.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modpack-Installer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterQueryHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterWildcardQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/data/windows/PerfCounterWildcardQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/linux/LinuxGlobalMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/unix/freebsd/FreeBsdGlobalMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsGlobalMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/hardware/platform/windows/WindowsGlobalMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/OSProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/OSProcess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/OSUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/OSUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxFileSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxFileSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxOSVersionInfoEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxOSVersionInfoEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxOperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxOperatingSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxUserGroupInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/linux/LinuxUserGroupInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/mac/MacFileSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/mac/MacFileSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/mac/MacOSVersionInfoEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/mac/MacOSVersionInfoEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/mac/MacOperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/mac/MacOperatingSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/windows/WindowsOSSystemInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/windows/WindowsOSSystemInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/windows/WindowsOSVersionInfoEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/windows/WindowsOSVersionInfoEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/software/os/windows/WindowsOperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/software/os/windows/WindowsOperatingSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/util/EdidUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/EdidUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/util/ExecutingCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/ExecutingCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/util/FileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/FileUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/util/ParseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/ParseUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/util/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/mac/IOKitUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/mac/IOKitUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/mac/SysctlUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/mac/SysctlUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/unix/freebsd/BsdSysctlUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/unix/freebsd/BsdSysctlUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/unix/solaris/KstatUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/unix/solaris/KstatUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/windows/PerfDataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/windows/PerfDataUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oshi/util/platform/windows/WmiQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oshi/util/platform/windows/WmiQueryHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/BinTools.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/MacBasedPRF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/MacBasedPRF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/PBKDF2Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/PBKDF2Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/PBKDF2HexFormatter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/PBKDF2Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/zip4j/crypto/PBKDF2/PBKDF2Parameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/IMarkerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/IMarkerFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/Logger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/LoggerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/LoggerFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/LoggerFactoryFriend.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/MDC$MDCCloseable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/MDC.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/MDC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/Marker.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/Marker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/MarkerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/MarkerFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/DefaultLoggingEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/event/DefaultLoggingEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/EventConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/event/EventConstants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/EventRecordingLogger.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/event/EventRecordingLogger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/KeyValuePair.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/event/KeyValuePair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/LoggingEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/event/LoggingEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/SubstituteLoggingEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/event/SubstituteLoggingEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/AbstractLogger.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/AbstractLogger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMDCAdapter$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMDCAdapter$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMDCAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMDCAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMarkerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMarkerFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/FormattingTuple.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/FormattingTuple.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/MessageFormatter.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/MessageFormatter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NOPLogger.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/NOPLogger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NOPMDCAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/NOPMDCAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NamedLoggerBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/NamedLoggerBase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NormalizedParameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/NormalizedParameters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/SubstituteLogger.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/SubstituteLogger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/SubstituteLoggerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/SubstituteLoggerFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/ThreadLocalMapOfStacks.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/ThreadLocalMapOfStacks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/Util.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/helpers/Util.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/DefaultLoggingEventBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/DefaultLoggingEventBuilder$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/DefaultLoggingEventBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/DefaultLoggingEventBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/LoggerFactoryBinder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/LoggerFactoryBinder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/LoggingEventBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/LoggingEventBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/MDCAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/MDCAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/MarkerFactoryBinder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/MarkerFactoryBinder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/NOPLoggingEventBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/slf4j/spi/NOPLoggingEventBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/ILoggerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/ILoggerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/IMarkerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/IMarkerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/LoggerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/LoggerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/LoggerFactoryFriend.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/MDC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/MDC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/Marker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/Marker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/MarkerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/MarkerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/event/DefaultLoggingEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/event/DefaultLoggingEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/event/EventConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/event/EventConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/event/EventRecordingLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/event/EventRecordingLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/event/KeyValuePair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/event/KeyValuePair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/event/LoggingEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/event/LoggingEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/event/SubstituteLoggingEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/event/SubstituteLoggingEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/AbstractLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/AbstractLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/BasicMDCAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/BasicMDCAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/BasicMarkerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/BasicMarkerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/FormattingTuple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/FormattingTuple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/MessageFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/MessageFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/NOPLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/NOPLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/NOPMDCAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/NOPMDCAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/NamedLoggerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/NamedLoggerBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/NormalizedParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/NormalizedParameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/SubstituteLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/SubstituteLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/SubstituteLoggerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/SubstituteLoggerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/ThreadLocalMapOfStacks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/ThreadLocalMapOfStacks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/helpers/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/helpers/Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/CallerBoundaryAware.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/CallerBoundaryAware.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/DefaultLoggingEventBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/DefaultLoggingEventBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/LocationAwareLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/LocationAwareLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/LoggerFactoryBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/LoggerFactoryBinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/LoggingEventBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/LoggingEventBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/MDCAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/MDCAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/MarkerFactoryBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/MarkerFactoryBinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/NOPLoggingEventBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/NOPLoggingEventBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slf4j/spi/SLF4JServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/slf4j/spi/SLF4JServiceProvider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

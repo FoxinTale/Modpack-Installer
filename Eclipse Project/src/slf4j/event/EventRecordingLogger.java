@@ -11,7 +11,6 @@ import java.util.Queue;
  * This class is used to record events during the initialization phase of the
  * underlying logging framework. It is called by {@link SubstituteLogger}.
  * 
- * 
  * @author Ceki G&uuml;lc&uuml;
  * @author Wessel van Norel
  *
@@ -77,8 +76,4 @@ public class EventRecordingLogger extends LegacyAbstractLogger {
 
     }
 
-    @Override
-    protected String getFullyQualifiedCallerName() {
-        return null;
-    }
 }

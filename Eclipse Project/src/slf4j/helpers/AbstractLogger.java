@@ -366,8 +366,6 @@ public abstract class AbstractLogger implements Logger, Serializable {
         }
     }
 
-    abstract protected String getFullyQualifiedCallerName();
-
     /**
      * Given various arguments passed as parameters, perform actual logging.
      * 

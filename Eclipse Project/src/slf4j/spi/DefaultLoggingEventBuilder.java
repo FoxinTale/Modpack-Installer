@@ -27,37 +27,6 @@ public class DefaultLoggingEventBuilder implements LoggingEventBuilder, CallerBo
         loggingEvent = new DefaultLoggingEvent(level, logger);
     }
 
-    /**
-     * Add a marker to the current logging event being built.
-     * 
-     * It is possible to add multiple markers to the same logging event.
-     *
-     * @param marker the marker to add
-     */
-    @Override
-    public LoggingEventBuilder addMarker(Marker marker) {
-        loggingEvent.addMarker(marker);
-        return this;
-    }
-
-    @Override
-    public LoggingEventBuilder setCause(Throwable t) {
-        loggingEvent.setThrowable(t);
-        return this;
-    }
-
-    @Override
-    public LoggingEventBuilder addArgument(Object p) {
-        loggingEvent.addArgument(p);
-        return this;
-    }
-
-    @Override
-    public LoggingEventBuilder addArgument(Supplier<?> objectSupplier) {
-        loggingEvent.addArgument(objectSupplier.get());
-        return this;
-    }
-
     @Override
     public void setCallerBoundary(String fqcn) {
         loggingEvent.setCallerBoundary(fqcn);
@@ -168,10 +137,6 @@ public class DefaultLoggingEventBuilder implements LoggingEventBuilder, CallerBo
 
     /**
      * Prepend markers and key-value pairs to the message.
-     * 
-     * @param aLoggingEvent
-     * @param msg
-     * @return
      */
     private String mergeMarkersAndKeyValuePairs(LoggingEvent aLoggingEvent, String msg) {
 
@@ -205,18 +170,5 @@ public class DefaultLoggingEventBuilder implements LoggingEventBuilder, CallerBo
         }
     }
 
-
-
-    @Override
-    public LoggingEventBuilder addKeyValue(String key, Object value) {
-        loggingEvent.addKeyValue(key, value);
-        return this;
-    }
-
-    @Override
-    public LoggingEventBuilder addKeyValue(String key, Supplier<Object> value) {
-        loggingEvent.addKeyValue(key, value.get());
-        return this;
-    }
 
 }

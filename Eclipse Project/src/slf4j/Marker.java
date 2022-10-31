@@ -20,21 +20,11 @@ import java.util.Iterator;
 public interface Marker extends Serializable {
 
     /**
-     * This constant represents any marker, including a null marker.
-     */
-    public final String ANY_MARKER = "*";
-
-    /**
-     * This constant represents any non-null marker.
-     */
-    public final String ANY_NON_NULL_MARKER = "+";
-
-    /**
      * Get the name of this Marker.
      * 
      * @return name of marker
      */
-    public String getName();
+    String getName();
 
     /**
      * Add a reference to another Marker.
@@ -91,7 +81,7 @@ public interface Marker extends Serializable {
      *                 if 'other' is null
      * @return Whether this marker contains the other marker.
      */
-    public boolean contains(Marker other);
+    boolean contains(Marker other);
 
     /**
      * Does this marker contain the marker named 'name'?
@@ -101,12 +91,11 @@ public interface Marker extends Serializable {
      * @param name The marker name to test for inclusion.
      * @return Whether this marker contains the other marker.
      */
-    public boolean contains(String name);
+    boolean contains(String name);
 
     /**
      * Markers are considered equal if they have the same name.
      *
-     * @param o
      * @return true, if this.name equals o.name
      *
      * @since 1.5.1

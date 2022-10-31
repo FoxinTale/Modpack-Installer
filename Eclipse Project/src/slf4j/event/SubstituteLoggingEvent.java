@@ -44,10 +44,6 @@ public class SubstituteLoggingEvent implements LoggingEvent {
         markers.add(marker);
     }
 
-    public String getLoggerName() {
-        return loggerName;
-    }
-
     public void setLoggerName(String loggerName) {
         this.loggerName = loggerName;
     }
@@ -84,16 +80,8 @@ public class SubstituteLoggingEvent implements LoggingEvent {
         return Arrays.asList(argArray);
     }
 
-    public long getTimeStamp() {
-        return timeStamp;
-    }
-
     public void setTimeStamp(long timeStamp) {
         this.timeStamp = timeStamp;
-    }
-
-    public String getThreadName() {
-        return threadName;
     }
 
     public void setThreadName(String threadName) {

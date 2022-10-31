@@ -15,10 +15,10 @@ import slf4j.LoggerFactory;
  */
 public interface SLF4JServiceProvider {
 
-    public ILoggerFactory getLoggerFactory();
+    ILoggerFactory getLoggerFactory();
 
 
-    public IMarkerFactory getMarkerFactory();
+    IMarkerFactory getMarkerFactory();
 
     /**
      * Return the instance of {@link MDCAdapter} that

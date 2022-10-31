@@ -448,9 +448,7 @@ public class SubstituteLogger implements Logger {
         if (isDelegateEventAware()) {
             try {
                 logMethodCache.invoke(_delegate, event);
-            } catch (IllegalAccessException e) {
-            } catch (IllegalArgumentException e) {
-            } catch (InvocationTargetException e) {
+            } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException ignored) {
             }
         }
     }

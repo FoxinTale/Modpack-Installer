@@ -27,10 +27,6 @@ public class FormattingTuple {
         return message;
     }
 
-    public Object[] getArgArray() {
-        return argArray;
-    }
-
     public Throwable getThrowable() {
         return throwable;
     }

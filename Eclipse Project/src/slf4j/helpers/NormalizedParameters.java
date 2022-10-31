@@ -85,7 +85,6 @@ public class NormalizedParameters {
 
     /**
      * This method serves to normalize logging call invocation parameters.
-     * 
      * More specifically, if a throwable argument is not supplied directly, it
      * attempts to extract it from the argument array.
      */

@@ -33,10 +33,6 @@ public class SubstituteLoggerFactory implements ILoggerFactory {
         return logger;
     }
 
-    public List<String> getLoggerNames() {
-        return new ArrayList<>(loggers.keySet());
-    }
-
     public List<SubstituteLogger> getLoggers() {
         return new ArrayList<>(loggers.values());
     }

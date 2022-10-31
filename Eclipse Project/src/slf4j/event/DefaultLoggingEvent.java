@@ -1,11 +1,11 @@
 package slf4j.event;
 
+import slf4j.Logger;
+import slf4j.Marker;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import slf4j.Logger;
-import slf4j.Marker;
 
 /**
  * A default implementation of {@link LoggingEvent}.
@@ -25,21 +25,12 @@ public class DefaultLoggingEvent implements LoggingEvent {
     List<KeyValuePair> keyValuePairs;
 
     Throwable throwable;
-    String threadName;
-    long timeStamp;
-    
+
     String callerBoundary;
 
     public DefaultLoggingEvent(Level level, Logger logger) {
         this.logger = logger;
         this.level = level;
-    }
-
-    public void addMarker(Marker marker) {
-        if (markers == null) {
-            markers = new ArrayList<>(2);
-        }
-        markers.add(marker);
     }
 
     @Override
@@ -74,17 +65,6 @@ public class DefaultLoggingEvent implements LoggingEvent {
         return arguments.toArray();
     }
 
-    public void addKeyValue(String key, Object value) {
-        getNonnullKeyValuePairs().add(new KeyValuePair(key, value));
-    }
-
-    private List<KeyValuePair> getNonnullKeyValuePairs() {
-        if (keyValuePairs == null) {
-            keyValuePairs = new ArrayList<>(4);
-        }
-        return keyValuePairs;
-    }
-
     @Override
     public List<KeyValuePair> getKeyValuePairs() {
         return keyValuePairs;
@@ -97,11 +77,6 @@ public class DefaultLoggingEvent implements LoggingEvent {
     @Override
     public Level getLevel() {
         return level;
-    }
-
-    @Override
-    public String getLoggerName() {
-        return logger.getName();
     }
 
     @Override
@@ -118,23 +93,8 @@ public class DefaultLoggingEvent implements LoggingEvent {
         return throwable;
     }
 
-    public String getThreadName() {
-        return threadName;
-    }
-
-    public long getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
-    }
-
     public void setCallerBoundary(String fqcn) {
         this.callerBoundary = fqcn;
     }
-    
-    public String getCallerBoundary() {
-        return callerBoundary;
-    }
+
 }

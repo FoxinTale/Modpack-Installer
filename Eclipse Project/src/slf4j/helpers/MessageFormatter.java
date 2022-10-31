@@ -97,7 +97,6 @@ import java.util.Map;
  */
 final public class MessageFormatter {
     static final char DELIM_START = '{';
-    static final char DELIM_STOP = '}';
     static final String DELIM_STR = "{}";
     private static final char ESCAPE_CHAR = '\\';
 
@@ -120,7 +119,7 @@ final public class MessageFormatter {
      *          The argument to be substituted in place of the formatting anchor
      * @return The formatted message
      */
-    final public static FormattingTuple format(String messagePattern, Object arg) {
+    public static FormattingTuple format(String messagePattern, Object arg) {
         return arrayFormat(messagePattern, new Object[] { arg });
     }
 
@@ -147,11 +146,11 @@ final public class MessageFormatter {
      *          anchor
      * @return The formatted message
      */
-    final public static FormattingTuple format(final String messagePattern, Object arg1, Object arg2) {
+    public static FormattingTuple format(final String messagePattern, Object arg1, Object arg2) {
         return arrayFormat(messagePattern, new Object[] { arg1, arg2 });
     }
 
-    final public static FormattingTuple arrayFormat(final String messagePattern, final Object[] argArray) {
+    public static FormattingTuple arrayFormat(final String messagePattern, final Object[] argArray) {
         Throwable throwableCandidate = MessageFormatter.getThrowableCandidate(argArray);
         Object[] args = argArray;
         if (throwableCandidate != null) {
@@ -160,22 +159,7 @@ final public class MessageFormatter {
         return arrayFormat(messagePattern, args, throwableCandidate);
     }
 
-    /**
-     * Assumes that argArray only contains arguments with no throwable as last element.
-     * 
-     * @param messagePattern
-     * @param argArray
-     */
-    final public static String basicArrayFormat(final String messagePattern, final Object[] argArray) {
-        FormattingTuple ft = arrayFormat(messagePattern, argArray, null);
-        return ft.getMessage();
-    }
-
-    public static String basicArrayFormat(NormalizedParameters np) {
-        return basicArrayFormat(np.getMessage(), np.getArguments());
-    }
-
-    final public static FormattingTuple arrayFormat(final String messagePattern, final Object[] argArray, Throwable throwable) {
+    public static FormattingTuple arrayFormat(final String messagePattern, final Object[] argArray, Throwable throwable) {
 
         if (messagePattern == null) {
             return new FormattingTuple(null, argArray, throwable);
@@ -232,7 +216,7 @@ final public class MessageFormatter {
         return new FormattingTuple(sbuf.toString(), argArray, throwable);
     }
 
-    final static boolean isEscapedDelimeter(String messagePattern, int delimeterStartIndex) {
+    static boolean isEscapedDelimeter(String messagePattern, int delimeterStartIndex) {
 
         if (delimeterStartIndex == 0) {
             return false;
@@ -245,7 +229,7 @@ final public class MessageFormatter {
         }
     }
 
-    final static boolean isDoubleEscaped(String messagePattern, int delimeterStartIndex) {
+    static boolean isDoubleEscaped(String messagePattern, int delimeterStartIndex) {
         if (delimeterStartIndex >= 2 && messagePattern.charAt(delimeterStartIndex - 2) == ESCAPE_CHAR) {
             return true;
         } else {

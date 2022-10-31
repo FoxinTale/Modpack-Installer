@@ -60,7 +60,6 @@ abstract class NamedLoggerBase implements Logger, Serializable {
      * this approach would be mostly counterproductive.
      * 
      * @return logger with same name as returned by LoggerFactory
-     * @throws ObjectStreamException
      */
     protected Object readResolve() throws ObjectStreamException {
         // using getName() instead of this.name works even for
