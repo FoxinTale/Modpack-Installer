@@ -15,18 +15,18 @@ public class Checksums {
             md5Digest = MessageDigest.getInstance("MD5");
 
             System.out.println(Strings.installerVerifyingFile);
-            zipFile = new File(Common.getDownloadsLocation() + Common.q + zipName);
+         //   zipFile = new File(Common.getDownloadsLocation() + Common.q + zipName);
 
-            if (zipName.equals("Modpack.zip")) {
-                modpackSum = checksums.get(0);
-                cModpackSum = getFileChecksum(md5Digest, zipFile);
-                if (checkSums(modpackSum, cModpackSum)) {
-                    System.out.println(Strings.installerVerificationPassed);
-                    //Extractor.Extract(Common.q + Common.getDownloadsLocation() + Common.q + Common.zipFile, "Modpack", 0);
-                }
-                if (!checkSums(modpackSum, cModpackSum)) {
-                    Downloader.redownloadModpack();
-                }
+            modpackSum = checksums.get(0);
+            cModpackSum = getFileChecksum(md5Digest, zipFile);
+            if (checkSums(modpackSum, cModpackSum)) {
+                System.out.println(Strings.installerVerificationPassed);
+                Extractor.unzip(zipFile.getPath(), Common.getDownloadsLocation() + Common.q + "modpack");
+                //Extractor.Extract(Common.q + Common.getDownloadsLocation() + Common.q + Common.zipFile, "Modpack", 0);
+            }
+            if (!checkSums(modpackSum, cModpackSum)) {
+  //              Downloader.redownloadModpack();
+                System.out.println("Verification failed");
             }
         } catch (NoSuchAlgorithmException e) {
             // This should never, ever happen. Java required this catch.

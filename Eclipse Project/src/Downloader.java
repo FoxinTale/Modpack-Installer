@@ -33,9 +33,8 @@ public class Downloader {
                 System.out.println(Strings.installerDownloadComplete);
                 GUI.progress.setValue(0);
                 zipFile = new File(Common.q + Common.getDownloadsLocation() + Common.q + zipName);
-                Extractor.unzip(zipFile.getPath(), Common.getDownloadsLocation() + Common.q + "modpack" );
-   //             Extractor.Extract(zipFile.getPath(), 0);
-  //              Checksums.checksum(zipFile, "Modpack.zip"); // Checksum it.
+     //           Extractor.unzip(zipFile.getPath(), Common.getDownloadsLocation() + Common.q + "modpack" );
+                Checksums.checksum(zipFile, zipName); // Checksum it.
             } catch (FileNotFoundException e) {
                 // If the zip file could not be found.
                 GUI.errorOccured("Roserade");

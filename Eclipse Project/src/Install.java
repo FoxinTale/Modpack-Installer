@@ -16,11 +16,14 @@ public class Install {
         System.out.println(Strings.installerInstallNotice);
         modpackLocation.deleteOnExit();
         File modsLocation = new File(Common.getMinecraftInstall() + Common.q);
-
-      //  installOptions.verifyInstall();
-        System.out.println(Strings.installerModsVerification);
-        backupMinecraftContent();
+        System.out.println(Strings.installerInstalling);
         copyFiles(modpackLocation, modsLocation);
+      //
+        System.out.println(Strings.installerModsVerification);
+
+        backupMinecraftContent();
+
+        installOptions.verifyInstall();
 
         if (installOptions.packGood) {
             installFinalize();
@@ -48,7 +51,7 @@ public class Install {
     public static void serverPing() {
         try {
             Socket server = new Socket();
-            server.connect(new InetSocketAddress("IP ADDRESS", 25525), 10000);
+            server.connect(new InetSocketAddress("162.33.26.2", 25577), 10000);
             // Not putting my IP address out there for all to see.
             // If ran as is, it will throw the UnknownHostException below, but if changed to
             // a proper IP that error should never be thrown.
@@ -74,30 +77,23 @@ public class Install {
     public static void backupMinecraftContent(){
         String minecraftPath = Common.getMinecraftInstall();
         File minecraftMods = new File(minecraftPath + Common.q + "mods");
-        File minecraftConfig = new File(minecraftPath + Common.q + "config");
         File backups = new File(Common.getDesktopLocation() + Common.q + "Minecraft Stuff");
         String backupsLocation = backups.getAbsolutePath();
 
         File backupMods = new File(backupsLocation + Common.q + "Mods");
-        File backupConfig = new File(backupsLocation + Common.q + "Config");
         File modpackMods = new File(modpackLocation + Common.q + "mods");
-        File modpackConfig = new File(modpackLocation + Common.q + "config");
 
         Common.folderCreate(backups);
         Common.folderCreate(backupMods);
-        Common.folderCreate(backupConfig);
 
         moveFiles(minecraftMods, backupMods, Strings.installerBackupMods);
-        moveFiles(minecraftConfig, backupConfig, Strings.installerBackupConfig);
 
         //installOptions.backup();
-        Common.folderCreate(minecraftConfig);
         Common.folderCreate(minecraftMods);
 
         System.out.println(Strings.installerInstalling);
 
         copyFiles(modpackMods, minecraftMods);
-        copyFiles(modpackConfig, minecraftConfig);
     }
 
     public static void moveFiles(File dirOne, File dirTwo, String s) {

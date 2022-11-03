@@ -25,27 +25,188 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONArray.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPointer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPointerException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPropertyIgnore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONPropertyName.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONString.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONTokener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/json/JSONWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modpack-Installer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Checksums.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Checksums.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Common.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Common.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Downloader.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Downloader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Driver.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Driver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Extractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Extractor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Install.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Install.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Json.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Json.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Notes.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/installOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/installOptions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/JsonArray.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/JsonException$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/JsonException$Problems.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/JsonException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/JsonObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/Jsonable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/Jsoner$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/Jsoner$DeserializationOptions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/Jsoner$SerializationOptions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/Jsoner$States.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/Jsoner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/Yylex.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/Yytoken$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/Yytoken$Types.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/json_simple/Yytoken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/osDetect.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/osDetect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/PlatformEnum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/SystemInfo$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/SystemInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/data/windows/PerfCounterQuery$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/data/windows/PerfCounterQuery$CounterDataSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/data/windows/PerfCounterQuery$PdhCounterProperty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/data/windows/PerfCounterQuery.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/data/windows/PerfCounterQueryHandler$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/data/windows/PerfCounterQueryHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/data/windows/PerfCounterWildcardQuery$PdhCounterWildcardProperty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/data/windows/PerfCounterWildcardQuery.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/GlobalMemory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/HardwareAbstractionLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/common/AbstractGlobalMemory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/common/AbstractHardwareAbstractionLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/platform/linux/LinuxGlobalMemory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/platform/linux/LinuxHardwareAbstractionLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/platform/mac/MacGlobalMemory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/platform/mac/MacHardwareAbstractionLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/platform/unix/freebsd/FreeBsdGlobalMemory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/platform/unix/freebsd/FreeBsdHardwareAbstractionLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/platform/unix/solaris/SolarisGlobalMemory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/platform/unix/solaris/SolarisHardwareAbstractionLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/platform/windows/WindowsGlobalMemory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/hardware/platform/windows/WindowsHardwareAbstractionLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/linux/Libc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/mac/CoreFoundation$CFAllocatorRef.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/mac/CoreFoundation$CFDictionaryRef.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/mac/CoreFoundation$CFMutableDictionaryRef.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/mac/CoreFoundation$CFStringRef.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/mac/CoreFoundation$CFTypeRef.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/mac/CoreFoundation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/mac/DiskArbitration$DADiskRef.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/mac/DiskArbitration$DASessionRef.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/mac/DiskArbitration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/mac/IOKit$MachPort.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/mac/IOKit.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/unix/CLibrary$Addrinfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/unix/CLibrary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/unix/freebsd/Libc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/jna/platform/windows/ProcInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/common/AbstractOSVersionInfoEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/common/AbstractOperatingSystem$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/common/AbstractOperatingSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/FileSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/OSFileStore.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/OSProcess$State.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/OSProcess.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/OSUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/OperatingSystem$ProcessSort.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/OperatingSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/OperatingSystemVersion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/linux/LinuxFileSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/linux/LinuxOSVersionInfoEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/linux/LinuxOperatingSystem$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/linux/LinuxOperatingSystem$ProcPidStat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/linux/LinuxOperatingSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/linux/LinuxUserGroupInfo$GroupsCache.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/linux/LinuxUserGroupInfo$UsersCache.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/linux/LinuxUserGroupInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/mac/MacFileSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/mac/MacOSVersionInfoEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/mac/MacOperatingSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/unix/freebsd/FreeBsdFileSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/unix/freebsd/FreeBsdOSVersionInfoEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/unix/freebsd/FreeBsdOperatingSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/unix/solaris/SolarisFileSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/unix/solaris/SolarisOSVersionInfoEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/unix/solaris/SolarisOperatingSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/windows/WindowsFileSystem$HandleCountProperty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/windows/WindowsFileSystem$LogicalDiskProperty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/windows/WindowsFileSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/windows/WindowsOSSystemInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/windows/WindowsOSVersionInfoEx$OSVersionProperty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/windows/WindowsOSVersionInfoEx.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/windows/WindowsOperatingSystem$BitnessProperty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/windows/WindowsOperatingSystem$ProcessProperty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/windows/WindowsOperatingSystem$ProcessXPProperty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/software/os/windows/WindowsOperatingSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/EdidUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/ExecutingCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/FileUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/FormatUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/LsofUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/ParseUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/Util.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/linux/ProcUtil$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/linux/ProcUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/mac/CfUtil$CFNumberType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/mac/CfUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/mac/IOKitUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/mac/SysctlUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/unix/freebsd/BsdSysctlUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/unix/solaris/KstatUtil$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/unix/solaris/KstatUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/windows/PdhUtilXP.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/windows/PerfDataUtil$PerfCounter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/windows/PerfDataUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/windows/WmiQueryHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/oshi/util/platform/windows/WmiUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/ILoggerFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/IMarkerFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/Logger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/LoggerFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/MDC.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/Marker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/MarkerFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/DefaultLoggingEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/EventConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/EventRecordingLogger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/KeyValuePair.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/Level.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/LoggingEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/event/SubstituteLoggingEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/AbstractLogger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMDCAdapter$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMDCAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMarker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/BasicMarkerFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/CheckReturnValue.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/FormattingTuple.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/LegacyAbstractLogger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/MarkerIgnoringBase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/MessageFormatter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NOPLogger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NOPLoggerFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NOPMDCAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NOP_FallbackServiceProvider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NamedLoggerBase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/NormalizedParameters.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/SubstituteLogger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/SubstituteLoggerFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/SubstituteServiceProvider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/ThreadLocalMapOfStacks.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/Util$ClassContextSecurityManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/helpers/Util.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/nop/NOPServiceProvider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/CallerBoundaryAware.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/DefaultLoggingEventBuilder$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/DefaultLoggingEventBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/LocationAwareLogger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/LoggerFactoryBinder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/LoggingEventAware.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/LoggingEventBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/MDCAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/MarkerFactoryBinder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/NOPLoggingEventBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/slf4j/spi/SLF4JServiceProvider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Checksums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Checksums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Downloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Downloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Extractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Extractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Install.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Install.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Json.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Notes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Strings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/installOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/installOptions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

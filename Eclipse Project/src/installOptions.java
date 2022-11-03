@@ -8,10 +8,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class installOptions extends Install {
-    static Boolean packGood = true;
+    static Boolean packGood = false;
 
     public static void verifyInstall() {
-        String downloadedMods = Common.getDownloadsLocation() + Common.q + "Modpack" + Common.q + "mods" + Common.q;
+        String downloadedMods = Common.getDownloadsLocation() + Common.q + "modpack" + Common.q + "mods" + Common.q;
         String minecraftMods = Common.getMinecraftInstallLocation() + Common.q + "mods" + Common.q;
         ArrayList<String> modList = Json.getModlist();
         ArrayList<String> minecraftModsList = new ArrayList<>();
@@ -35,6 +35,7 @@ public class installOptions extends Install {
 
             if (fileCheck.isEmpty()) {
                 packGood = true;
+
             }
             if (fileCheck.size() != 0) {
                 for (int i = fileCheck.size(); i > 0; i--) {

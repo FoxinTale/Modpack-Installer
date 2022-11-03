@@ -28,8 +28,7 @@ public class Strings {
     static String installerInstallNotice = " Installing the Modpack now.";
     static String installerModsVerification = " Verifying mods installed correctly.";
     static String installerBackupMods = " Backing up any Mods";
-    static String installerBackupConfig = " Backing up any existing configs";
-    static String installerInstalling = " Installing...";
+    static String installerInstalling = " Installing Mods...";
 
 
     // Installer Options

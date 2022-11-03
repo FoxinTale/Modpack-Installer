@@ -23,18 +23,17 @@ import java.io.PrintStream;
 
 public class Driver {
     static int selectedOption = 0;
- //   public static URL installerUpdateLink;
     private static PrintStream standardOut; // This sets the outputs.
 
-static Boolean validOS = false;
-    public static void main(String[] args){
+    static Boolean validOS = false;
+
+    public static void main(String[] args) {
         // Creating the custom output stream.
         PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
- //       standardOut = System.out;
- //     System.setOut(printStream);
-//      System.setErr(printStream);
+        standardOut = System.out;
+        System.setOut(printStream);
+        System.setErr(printStream);
 
-//        installerUpdateLink = new URL(Common.installerLatestLink);
         String OS = System.getProperty("os.name"); // This gets the name of the current operating system.
         if (OS.equals("Windows 10") || OS.equals("Windows 8.1") || OS.equals("Windows 7")) {
             // For modern Windows systems
@@ -72,19 +71,17 @@ static Boolean validOS = false;
         }
     }
 
-    public static void sharedActions(){
+    public static void sharedActions() {
         Preinstall.checkForMinecraftandForge();
         GUI.launchGUI();
         Json.modpackData();
-   //     System.out.println(Common.getSystemMemory());
-//      Json.modpackLatestInfo();
-   //     Json.adjustLauncherMemory("1.16.5-forge-36.2.39", 6);
     }
 
 
     public static int getSelectedOption() {
         return selectedOption;
     }
+
     public static void setSelectedOption(int selectedOption) {
         Driver.selectedOption = selectedOption;
     }

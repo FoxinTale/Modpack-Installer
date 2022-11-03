@@ -47,8 +47,6 @@ public class Json {
             JSONArray modsArray = data.getJSONArray("modList");
             JSONArray removal = data.getJSONArray("toRemove");
 
-
-          //  System.out.println(modsArray);
             readJSONArray(checksumArray, checksums, "modpack");
             readJSONArray(modsArray, modlist, "mod");
             readJSONArray(removal, toRemove, "remove");
