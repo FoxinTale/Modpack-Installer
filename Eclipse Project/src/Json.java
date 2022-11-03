@@ -1,11 +1,15 @@
-import json_simple.JsonArray;
 import json_simple.JsonException;
 import json_simple.JsonObject;
 import json_simple.Jsoner;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.io.Reader;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -15,26 +19,28 @@ public class Json {
     static ArrayList<String> toRemove = new ArrayList<>();
     static ArrayList<String> checksums = new ArrayList<>();
 
+    /*
+    Right. Why am I using two separate JSON libraries here. Well,for some reason simple JSON failed to parse the JSOn from Github all of a sudden.
+    Even though it was tested and verified toi work, suddenly it stopped working and I could not be bothered to figure out why. It was saying invalid token (commas)
+    and well, there was no way for me to really even verify this. I couldn't debug it, I couldn't get it to print out what it was reading, to I reverted back to what I knew worked.
+    I may work on figuring that out later, or just rework this to work with good ol' org.json again. Probably not.
+
+    As the main reason I switched to simple JSON is because I couldn't seem to get org.json to be able to write a clean file with the launcher memory setting thing.
+    and if I could get it to work, it was really, really messy. Look back at the commit history of this file, it took like three or four functions just to handle that.
+    With simple JSON, I do it in one, clean function.
+     */
 
     public static void modpackLatestInfo() {
         try {
             URL modpackLink = new URL(Common.modpackLatestLink);
+            JSONObject data = (JSONObject) new JSONTokener(modpackLink.openStream()).nextValue();
+            JSONArray assetsArray = (JSONArray) data.get("assets");
+            JSONObject assets = (JSONObject) assetsArray.get(0);
 
-            InputStream linkStream = modpackLink.openStream();
-            BufferedReader linkReader = new BufferedReader(new InputStreamReader(linkStream, StandardCharsets.UTF_8));
-
-            JsonObject linkParser = (JsonObject) Jsoner.deserialize(linkReader);
-            JsonArray assetsArray = (JsonArray) linkParser.get("assets");
-            JsonObject assets = (JsonObject) assetsArray.get(0);
-
-            String downloadURL, fileName;
-
-            downloadURL = assets.get("browser_download_url").toString();
-
-            fileName = downloadURL.substring(downloadURL.lastIndexOf("/") + 1);
-            // Feed to download function.
-            Downloader.Download(new URL(downloadURL), fileName);
-        } catch (IOException | JsonException e) {
+            String downloadURL = (String) assets.get("browser_download_url");
+            String modpackFileName = downloadURL.substring(downloadURL.lastIndexOf("/") + 1);
+            Downloader.Download(new URL(downloadURL), modpackFileName);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -42,32 +48,27 @@ public class Json {
     public static void modpackData() {
         try {
             URL modpackDataLink = new URL(Common.modpackDataJsonLink);
-            InputStream dataStream = modpackDataLink.openStream();
-            BufferedReader dataReader = new BufferedReader(new InputStreamReader(dataStream, StandardCharsets.UTF_8));
+            JSONObject data = (JSONObject) new JSONTokener(modpackDataLink.openStream()).nextValue();
+            // Checksums layout: First one is main, second is testing and so on.
 
-            JsonObject dataParser = (JsonObject) Jsoner.deserialize(dataReader);
+            JSONArray checksumArray = data.getJSONArray("checksums");
+            JSONArray modsArray = data.getJSONArray("modList");
+            JSONArray removal = data.getJSONArray("toRemove");
 
-            JsonArray checksumArray = (JsonArray) dataParser.get("checksums");
-            JsonArray modArray = (JsonArray) dataParser.get("modList");
-            JsonArray removal = (JsonArray) dataParser.get("toRemove");
 
-            readJSONArray(modArray, modlist, "mod");
+          //  System.out.println(modsArray);
+            readJSONArray(checksumArray, checksums, "modpack");
+            readJSONArray(modsArray, modlist, "mod");
             readJSONArray(removal, toRemove, "remove");
-
-            JsonObject checksumObj = (JsonObject) checksumArray.get(0);
-
-            System.out.println();
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (JsonException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void readJSONArray(JsonArray array, ArrayList<String> list, String key) {
-        JsonObject obj;
-        for (int i = 0; i < array.size(); i++) {
-            obj = (JsonObject) array.get(i);
+    public static void readJSONArray(JSONArray array, ArrayList<String> list, String key) {
+        JSONObject obj;
+        for (int i = 0; i < array.length(); i++) {
+            obj = (JSONObject) array.get(i);
             list.add((String) obj.get(key));
         }
     }

@@ -138,7 +138,7 @@ public class GUI {
         b.setEnabled(false);
     }
 
-    public static void beginDownload(JButton button) throws MalformedURLException {
+    public static void beginDownload(JButton button) throws MalformedURLException{
         Json.modpackLatestInfo();
         button.setEnabled(false);
     }

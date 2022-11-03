@@ -10,17 +10,17 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
 public class Install {
-    static int selectedOption = 0;
-    static Boolean featuresUsed = false;
     static File modpackLocation = new File(Common.getDownloadsLocation() + Common.q + "modpack");
 
     public static void install() {
-
         System.out.println(Strings.installerInstallNotice);
         modpackLocation.deleteOnExit();
+        File modsLocation = new File(Common.getMinecraftInstall() + Common.q);
 
-        installOptions.verifyInstall();
+      //  installOptions.verifyInstall();
         System.out.println(Strings.installerModsVerification);
+        backupMinecraftContent();
+        copyFiles(modpackLocation, modsLocation);
 
         if (installOptions.packGood) {
             installFinalize();

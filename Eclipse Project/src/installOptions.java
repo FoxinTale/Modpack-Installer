@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class installOptions extends Install {
-    static Boolean packGood = false;
+    static Boolean packGood = true;
 
     public static void verifyInstall() {
         String downloadedMods = Common.getDownloadsLocation() + Common.q + "Modpack" + Common.q + "mods" + Common.q;

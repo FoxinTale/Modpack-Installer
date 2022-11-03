@@ -19,5 +19,6 @@ public class Extractor {
         ZipFile zipFile = new ZipFile(zipFilePath);
         zipFile.extractAll(extractFolder);
         System.out.println(" Extraction complete.");
+        Install.install();
     }
 }

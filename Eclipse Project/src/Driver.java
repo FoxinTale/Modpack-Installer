@@ -1,9 +1,7 @@
-//import GUI.CustomOutputStream;
-
-import json_simple.JsonException;
+import GUI.CustomOutputStream;
 
 import javax.swing.*;
-import java.io.IOException;
+import java.io.PrintStream;
 /*
  * This program is free software. It comes without any warranty, to the extent
  * permitted by applicable law. You can redistribute it and/or modify it under
@@ -26,15 +24,15 @@ import java.io.IOException;
 public class Driver {
     static int selectedOption = 0;
  //   public static URL installerUpdateLink;
-//    private static PrintStream standardOut; // This sets the outputs.
+    private static PrintStream standardOut; // This sets the outputs.
 
 static Boolean validOS = false;
-    public static void main(String[] args) throws IOException, JsonException {
+    public static void main(String[] args){
         // Creating the custom output stream.
-  //      PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
-   //     standardOut = System.out;
-   //     System.setOut(printStream);
-  //      System.setErr(printStream);
+        PrintStream printStream = new PrintStream(new CustomOutputStream(GUI.consoleOutput));
+ //       standardOut = System.out;
+ //     System.setOut(printStream);
+//      System.setErr(printStream);
 
 //        installerUpdateLink = new URL(Common.installerLatestLink);
         String OS = System.getProperty("os.name"); // This gets the name of the current operating system.
@@ -74,12 +72,12 @@ static Boolean validOS = false;
         }
     }
 
-    public static void sharedActions() throws IOException, JsonException {
+    public static void sharedActions(){
         Preinstall.checkForMinecraftandForge();
         GUI.launchGUI();
-        System.out.println(Common.getSystemMemory());
-  //      Json.modpackData();
-   //   Json.modpackLatestInfo();
+        Json.modpackData();
+   //     System.out.println(Common.getSystemMemory());
+//      Json.modpackLatestInfo();
    //     Json.adjustLauncherMemory("1.16.5-forge-36.2.39", 6);
     }
 
