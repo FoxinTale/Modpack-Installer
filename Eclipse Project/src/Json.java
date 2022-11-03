@@ -1,17 +1,9 @@
-import json_simple.JsonException;
-import json_simple.JsonObject;
-import json_simple.Jsoner;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Json {
@@ -71,49 +63,6 @@ public class Json {
             obj = (JSONObject) array.get(i);
             list.add((String) obj.get(key));
         }
-    }
-
-    public static void adjustLauncherMemory(String versionId, int newMemAmt) throws IOException, JsonException {
-        File launcherFile = new File(Common.getMinecraftInstall() + Common.q + "launcher_profiles.json");
-
-        Reader profilesReader = Files.newBufferedReader(Paths.get(launcherFile.toURI()));
-
-        JsonObject profileParser = (JsonObject) Jsoner.deserialize(profilesReader);
-        JsonObject profiles = (JsonObject) profileParser.get("profiles");
-
-        Object[] keysArray = profiles.keySet().toArray();
-        ArrayList<String> stringKeys = new ArrayList<>();
-
-        for (Object o : keysArray) {
-            stringKeys.add(o.toString());
-        }
-
-        JsonObject obj;
-        String versionKey;
-        int foundSpot = 0;
-
-        for (int i = 0; i < stringKeys.size(); i++) {
-            obj = (JsonObject) profiles.get(stringKeys.get(i));
-            versionKey = obj.get("lastVersionId").toString();
-            if (versionKey.equals(versionId)) {
-                foundSpot = i;
-                break;
-            }
-        }
-
-        JsonObject chosenOne = (JsonObject) profiles.get(stringKeys.get(foundSpot));
-        String javaArgs = chosenOne.get("javaArgs").toString();
-        String newArgs = "-Xmx" + newMemAmt + "G ";
-        String currentArgs = javaArgs.substring(javaArgs.indexOf("-Xmx"), javaArgs.indexOf("-Xmx") + 7);
-        javaArgs = javaArgs.replace(currentArgs, newArgs);
-        chosenOne.put("javaArgs", javaArgs);
-
-        profiles.put(stringKeys.get(foundSpot), chosenOne);
-
-        BufferedWriter profileWriter = Files.newBufferedWriter(Paths.get("profiles.json"));
-
-        Jsoner.serialize(profileParser, profileWriter);
-        profileWriter.close();
     }
 
 
