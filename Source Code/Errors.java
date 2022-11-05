@@ -1,86 +1,104 @@
-import java.io.File;
+public class Errors{
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.WindowConstants;
+    // Ideally, I'd like to use a data structure here, similar to a json file.
+    // Kind of like "Error name: Severity, Cause, Fix" with all being a string
+    public static String severity = "";
+    public static String cause = "";
+    public static String fix = "";
 
-public class Errors {
+    public static void resetErrors(){
+        severity = "";
+        cause = "";
+        fix = "";
+    }
 
-	static Object fix;
-	static Object cause;
-	static Object severity;
-	static String errorCode;
-	static String q = File.separator;
+    public static void garchomp(){
+        severity = "Unknown.";
+        cause = "Somehow, the selection was invalid.";
+        fix = "Contact me, saying exactly what you did to make this happen.";
+    }
 
-	public static void init() {
-		System.out.println(" Click the red square to look up the error.");
-		errorCode = GUI.errors.getText();
-		GUI.errorLookup.setVisible(true);
-		Json.errorRead(errorCode);
-	}
+    public static void sylveon(){
+        severity = "Severe";
+        cause = "The JSON file is improperly formatted.";
+        fix = "There's not really much you can do, other than tell me.";
+    }
+    
+    public static void shaymin(){
+        severity = "Minor";
+        cause = "The file could not be found on the server.";
+        fix = "Notify me. I likely forgot to set the file as public...";
+    }
+    
+    public static void uxie(){
+        severity = "Minor";
+        cause = "The font used is in an invalid format";
+        fix = "Delete the font in the resources folder.";
+    }
+    
+    public static void roserade(){
+        severity = "Severe";
+        cause = "The installer could not find the downloaded file.";
+        fix = "If the file is not in your downloads, put it there. Else, notify me.";
+    }
+    
+    public static void jumpluff(){
+        severity = "Unknown";
+        cause = "A generic IO error...";
+        fix = "Try putting the file in the downloads folder. ";
+    }
+    
+    public static void blastoise(){
+        severity = "Severe";
+        cause = "The algorithm used for verifying files is invalid.";
+        fix = "You're screwed. There is no fix, as this should never have happened."; 
+    }
+        
+    public static void glameow(){
+        severity = "Severe";
+        cause = "The installer could not find the file for verification.";
+        fix = "If the file is not in your downloads, put it there. Else, notify me.";
+    }
+    
+    public static void luxray(){
+        severity = "Severe";
+        cause = "The installer could not find the file for extraction.";
+        fix = "If the file is not in your downloads, put it there. Else, notify me.";
+    }
 
-	public static void makeGUI() {
-		JFrame.setDefaultLookAndFeelDecorated(true);
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    public static void kyogre(){
+        severity = "Moderate";
+        cause = "The zip file is corrupted or in an invalid format.";
+        fix = "Restart the installer or let ir re-download the zip file.";
+    }
 
-		JLabel errorLabel = new JLabel("\"Error\" Code: ");
-		JLabel severityLabel = new JLabel("Severity: ");
-		JLabel causeLabel = new JLabel("Cause: ");
-		JLabel fixLabel = new JLabel("Fix: ");
+    public static void chickorita(){
+        severity = "Low";
+        cause = "The installer failed to verify everything installed correctly.";
+        fix = "You can ignore it.";
+    }
 
-		JLabel errorBox = new JLabel(errorCode.toString());
-		JLabel severityBox = new JLabel(severity.toString());
-		JLabel causeBox = new JLabel(cause.toString());
-		JLabel fixBox = new JLabel(fix.toString());
+    public static void marill(){
+        severity = "Severe";
+        cause = "The hostname for the Minecraft server is invalid.";
+        fix = "Notify me. This should never happen.";
+    }
 
-		errorLabel.setBounds(20, 25, 150, 36);
-		severityLabel.setBounds(20, 50, 100, 36);
-		causeLabel.setBounds(20, 75, 100, 36);
-		fixLabel.setBounds(20, 100, 100, 36);
+    public static void mantyke(){
+        severity = "Low";
+        cause = "While verifying the pack installed, a file could not be found.";
+        fix = "Ignore it, unless a mod rejection occurs on connection.";
+    }
 
-		errorBox.setBounds(120, 25, 350, 36);
-		severityBox.setBounds(120, 50, 300, 36);
-		causeBox.setBounds(120, 75, 300, 36);
-		fixBox.setBounds(120, 100, 500, 36);
+    public static void zebstrika(){
+        severity = "Severe";
+        cause = "Somehow, the Json file the installer uses on Github could not be found.";
+        fix = "Nothing you can do other than tell me.";
+    }
 
-		frame.add(errorLabel);
-		frame.add(severityLabel);
-		frame.add(causeLabel);
-		frame.add(fixLabel);
-
-		frame.add(errorBox);
-		frame.add(severityBox);
-		frame.add(causeBox);
-		frame.add(fixBox);
-
-		frame.setSize(640, 240);
-		frame.setResizable(false);
-		frame.setLayout(null);
-		frame.setVisible(true);
-	}
-
-	public static Object getFix() {
-		return fix;
-	}
-
-	public static void setFix(Object fix) {
-		Errors.fix = fix;
-	}
-
-	public static Object getCause() {
-		return cause;
-	}
-
-	public static void setCause(Object cause) {
-		Errors.cause = cause;
-	}
-
-	public static Object getSeverity() {
-		return severity;
-	}
-
-	public static void setSeverity(Object severity) {
-		Errors.severity = severity;
-	}
+    public static void litwick(){
+        severity = "Moderate";
+        cause = "Generic IO error while handling the Json file.";
+        fix = "No idea. This shouldn't happen.";
+    }
 }
