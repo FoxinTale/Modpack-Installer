@@ -37,7 +37,9 @@ public class Install {
     }
 
     public static void installFinalize() {
-        JOptionPane.showMessageDialog(new JFrame(), Strings.installerStuffBackupMessage, Strings.installerStuffBackupTitle, JOptionPane.INFORMATION_MESSAGE);
+        if(Driver.getSelectedOption() == 0){
+            JOptionPane.showMessageDialog(new JFrame(), Strings.installerStuffBackupMessage, Strings.installerStuffBackupTitle, JOptionPane.INFORMATION_MESSAGE);
+        }
 
         int o = JOptionPane.showConfirmDialog(new JFrame(), Strings.installerPingServerMessage, Strings.installerPingServerTitle, JOptionPane.YES_NO_OPTION);
         if (o == JOptionPane.YES_OPTION) {
@@ -88,11 +90,8 @@ public class Install {
 
         moveFiles(minecraftMods, backupMods, Strings.installerBackupMods);
 
-        //installOptions.backup();
         Common.folderCreate(minecraftMods);
-
         System.out.println(Strings.installerInstalling);
-
         copyFiles(modpackMods, minecraftMods);
     }
 

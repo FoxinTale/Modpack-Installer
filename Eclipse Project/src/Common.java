@@ -7,10 +7,7 @@ public class Common {
     private static String minecraftInstall = null;
     private static String downloadsLocation = null;
     private static String desktopLocation = null;
-    private static String minecraftDefaultInstall = null;
     static String q = File.separator;
-    static String zipFile = ""; //This will get deleted soon, as it's no longer called this anymore.
-
     static String modpackLatestLink = "https://api.github.com/repos/foxintale/minecraft-modpack/releases/latest";
     static String modpackDataJsonLink = "https://raw.githubusercontent.com/FoxinTale/Minecraft-Modpack/1.16.5/data.json";
 

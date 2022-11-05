@@ -15,18 +15,21 @@ public class Checksums {
             md5Digest = MessageDigest.getInstance("MD5");
 
             System.out.println(Strings.installerVerifyingFile);
-         //   zipFile = new File(Common.getDownloadsLocation() + Common.q + zipName);
 
             modpackSum = checksums.get(0);
             cModpackSum = getFileChecksum(md5Digest, zipFile);
             if (checkSums(modpackSum, cModpackSum)) {
                 System.out.println(Strings.installerVerificationPassed);
-                Extractor.unzip(zipFile.getPath(), Common.getDownloadsLocation() + Common.q + "modpack");
-                //Extractor.Extract(Common.q + Common.getDownloadsLocation() + Common.q + Common.zipFile, "Modpack", 0);
+                if(Driver.getSelectedOption() == 0){
+                    Extractor.unzip(zipFile.getPath(), Common.getDownloadsLocation() + Common.q + "modpack");
+                } else if(Driver.getSelectedOption() == 1){
+                    Install.installFinalize();
+                } else{
+                    // shouldn't happen, but is left here as like a try/catch thing.
+                }
             }
             if (!checkSums(modpackSum, cModpackSum)) {
-  //              Downloader.redownloadModpack();
-                System.out.println("Verification failed");
+                Downloader.redownloadModpack();
             }
         } catch (NoSuchAlgorithmException e) {
             // This should never, ever happen. Java required this catch.
@@ -56,7 +59,7 @@ public class Checksums {
     }
 
     public static Boolean checkSums(String sumOne, String sumTwo) {
-        Boolean good = false;
+        boolean good = false;
         if (sumOne.equals(sumTwo)) {
             good = true;
         }

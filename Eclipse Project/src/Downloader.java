@@ -12,8 +12,8 @@ public class Downloader {
             try {
                 HttpURLConnection httpConnection = (HttpURLConnection) (fileLink.openConnection());
                 long completeFileSize = httpConnection.getContentLength();
-                java.io.BufferedInputStream in = new java.io.BufferedInputStream(httpConnection.getInputStream());
-                java.io.FileOutputStream fos = new java.io.FileOutputStream(Common.q + Common.getDownloadsLocation() + Common.q + zipName);
+                BufferedInputStream in = new BufferedInputStream(httpConnection.getInputStream());
+                FileOutputStream fos = new FileOutputStream(Common.q + Common.getDownloadsLocation() + Common.q + zipName);
                 BufferedOutputStream bout = new BufferedOutputStream(fos, 1024);
                 byte[] data = new byte[1024];
                 long downloadedFileSize = 0;
@@ -33,7 +33,6 @@ public class Downloader {
                 System.out.println(Strings.installerDownloadComplete);
                 GUI.progress.setValue(0);
                 zipFile = new File(Common.q + Common.getDownloadsLocation() + Common.q + zipName);
-     //           Extractor.unzip(zipFile.getPath(), Common.getDownloadsLocation() + Common.q + "modpack" );
                 Checksums.checksum(zipFile, zipName); // Checksum it.
             } catch (FileNotFoundException e) {
                 // If the zip file could not be found.
@@ -65,9 +64,9 @@ public class Downloader {
     public static void redownloadModpack() {
         URL modpackOneLink;
         try {
-            System.out.println(Strings.installerVerificationRedownlaoding1);
-            System.out.println(Strings.installerVerificationRedownlaoding2);
-            System.out.println(Strings.installerVerificationRedownlaoding3);
+            System.out.println(Strings.installerVerificationRedownloading1);
+            System.out.println(Strings.installerVerificationRedownloading2);
+            System.out.println(Strings.installerVerificationRedownloading3);
             modpackOneLink = new URL("https://aubreys-storage.s3.us-east-2.amazonaws.com/1.7.10/Modpack.zip");
             Download(modpackOneLink, "Modpack.zip");
         } catch (MalformedURLException e) {

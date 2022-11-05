@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
 import java.net.MalformedURLException;
 
 // Let's be honest, this class does document itself, for the most part.
@@ -18,6 +19,7 @@ public class GUI {
     public static void launchGUI() {
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame();
+
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JRadioButton modpackOne = new JRadioButton(Strings.installerOptionOne);
         JRadioButton downloadOption = new JRadioButton(Strings.installerOptionTwo);
@@ -47,11 +49,11 @@ public class GUI {
             switch (selection) {
                 case "Do it for me.":
                     validPack = true;
-                    Driver.setSelectedOption(1);
+                    Driver.setSelectedOption(0);
                     button.setText(Strings.downloadText);
                     break;
                 case "Just download the zip file.":
-                    Driver.setSelectedOption(2);
+                    Driver.setSelectedOption(1);
                     button.setText(Strings.downloadText);
                     validPack = true;
                     break;
@@ -77,6 +79,11 @@ public class GUI {
                     break;
                 case 2: //Just download the zip files.
                     radioSet(modpackOne, downloadOption);
+                    try {
+                        beginDownload(button);
+                    } catch (MalformedURLException murle) {
+                        throw new RuntimeException(murle);
+                    }
                     break;
                 default:
                     break;
@@ -84,12 +91,16 @@ public class GUI {
         };
         frame.setTitle(Strings.installerWindowTitle);
 
-        //Setting background colours.
+        // Setting background colours.
         modpackOne.setBackground(rbc);
         downloadOption.setBackground(rbc);
 
+        // Tooltip setting.
+        downloadPanel.setToolTipText(Strings.downloadTooltip);
+        downloadOption.setToolTipText(Strings.downloadTooltip);
+
         //Setting the location of each element.
-        downloadPanel.setToolTipText("If you want to download just the full zip to install it yourself, or import.");
+
         scroll.setBounds(30, 20, 400, 200);
         modpackOne.setBounds(120, 235, 200, 15);
         modpackPanel.setBounds(115, 230, 250, 25);
@@ -105,6 +116,8 @@ public class GUI {
         downloadPanel.add(downloadOption);
         consoleOutput.setEditable(false);
         errorsBox.setEditable(false);
+
+        frame.setShape(new RoundRectangle2D.Double(2.5, 2.5, 480, 575, 10, 10));
 
         System.out.println(Strings.installerWelcome);
         System.out.println(Strings.installerBugReport);
