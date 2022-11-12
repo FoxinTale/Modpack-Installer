@@ -6,7 +6,6 @@
 		"1.16.5 modpack": "d86c24729a17502a8d6020a25fca3f0b"
 	}],
 
-
 	"modList": [{
 		"mod": "abnormals_core-1.16.5-3.3.0.jar"
 	}, {
@@ -18,7 +17,6 @@
 	}, {
 		"mod": "alexsmobs-1.12.1.jar"
 	}],
-
 
 	"toRemove": [{
 		"remove": "dummy.jar"
