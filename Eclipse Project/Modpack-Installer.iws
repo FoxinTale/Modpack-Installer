@@ -1,7 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Modpack-Installer:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="" />
+    <list default="true" id="9d99b913-73d2-4736-86c4-bbfa6d479e95" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Modpack-Installer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Modpack-Installer.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Checksums.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Checksums.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Common.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Common.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Downloader.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Downloader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Extractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Extractor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Install.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Install.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Strings.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Strings.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Checksums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Checksums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Downloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Downloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Extractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Extractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Install.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Install.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Strings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strings.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,31 +49,59 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="ProjectId" id="1VRPbjedkyLZ4kt61L5om1e8zhR" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
       <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="1VRPbjedkyLZ4kt61L5om1e8zhR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;last_opened_file_path&quot;: &quot;F:/Java Libraries/jna-jpms-5.12.1.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\org\json" />
+      <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\slf4j\nop" />
+      <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\slf4j" />
+      <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\oshi\util" />
+      <recent name="C:\Users\Aubrey\Documents\GitHub\Modpack-Installer\Eclipse Project\src\oshi" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Driver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Driver" />
+      <module name="Modpack-Installer" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Driver" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -48,22 +115,25 @@
     </task>
     <servers />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="481" y="292" width="307" height="217" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1577213032801">
-      <screen x="0" y="27" width="1280" height="747" />
-    </state>
-    <state x="481" y="292" width="307" height="217" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.27.1280.747@0.27.1280.747" timestamp="1577213032801" />
-    <state x="390" y="115" width="480" height="571" key="DetectedRootsChooserDialog" timestamp="1577213311255">
-      <screen x="0" y="27" width="1280" height="747" />
-    </state>
-    <state x="390" y="115" width="480" height="571" key="DetectedRootsChooserDialog/0.27.1280.747@0.27.1280.747" timestamp="1577213311255" />
-    <state x="270" y="143" width="719" height="515" key="FileChooserDialogImpl" timestamp="1577213309098">
-      <screen x="0" y="27" width="1280" height="747" />
-    </state>
-    <state x="270" y="143" width="719" height="515" key="FileChooserDialogImpl/0.27.1280.747@0.27.1280.747" timestamp="1577213309098" />
-    <state x="123" y="27" width="1024" height="747" key="SettingsEditor" timestamp="1577213313977">
-      <screen x="0" y="27" width="1280" height="747" />
-    </state>
-    <state x="123" y="27" width="1024" height="747" key="SettingsEditor/0.27.1280.747@0.27.1280.747" timestamp="1577213313977" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.StackOverflowError" package="java.lang" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
